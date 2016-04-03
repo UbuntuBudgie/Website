@@ -1,0 +1,11 @@
+title: budgie-remix
+#email: your-email@domain.com
+description: Simplicity & Elegance – budgie-desktop powered by Ubuntu
+baseurl: ""
+url: "http://budgie-remix.github.io"
+
+github_username:        budgie-remix
+googleplus_username:    /communities/106822666079268690759
+
+# Build settings
+markdown: kramdown
