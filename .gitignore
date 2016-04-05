@@ -5,3 +5,6 @@ _site
 #Dependencies config for bundler
 Gemfile
 Gemfile.lock
+
+# patches
+*.patch
