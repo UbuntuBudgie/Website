@@ -4,12 +4,12 @@ title: Team
 permalink: /team/
 ---
 
-David Mohammed (fossfreedom)
+[David "fossfreedom" Mohammed](https://github.com/fossfreedom)
 
-Joshua Fogg (Foggalong)
+[Joshua "Foggalong" Fogg](https://github.com/Foggalong)
 
-HEXcube
+[HEXcube](https://github.com/HEXcube)
 
-Corbin Crutchley (crutchcorn)
+[Corbin "crutchcorn" Crutchley](https://github.com/crutchcorn)
 
-Philippe Loctaux (ploctaux)
+[Philippe "ploctaux" Loctaux](https://github.com/ploctaux)
