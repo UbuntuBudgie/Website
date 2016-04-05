@@ -1,3 +1,7 @@
 _site
 .sass-cache
 .jekyll-metadata
+
+#Dependencies config for bundler
+Gemfile
+Gemfile.lock

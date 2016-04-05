@@ -6,7 +6,7 @@ permalink: /team/
 
 David Mohammed (fossfreedom)
 
-Joshua Fogg (foggalong)
+Joshua Fogg (Foggalong)
 
 HEXcube
 
