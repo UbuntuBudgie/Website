@@ -1,13 +1,13 @@
 budgie-remix Website
 ====================
-- Website designed by [Philippe "ploctaux" Loctaux][ploctaux] on [Jekyll][jekyll-website] static site generator
+- Website made by [Philippe Loctaux][ploctaux] using [Jekyll][jekyll-website] static site generator
 - budgie-remix logo designed by [HEXcube][hexcube] and [Joshua "Foggalong" Fogg][foggalong] is derived from [Yuri Henrique][yurihenriq]'s [Budgie logo][budgie-original]
 - `budgie-optimized.svg` is an optimized version of [Yuri Henrique][yurihenriq]'s [original Budgie logo][budgie-original]
 - [Original Budgie logo] by [Yuri Henrique][yurihenriq] is licensed under [CC BY-SA 4.0][CC-BY-SA4]
 - `ubuntu-cof-logo.svg` derived from [Ubuntu Circle of Friends icon][ubuntu-CoF-orange] on [Ubuntu Design website][ubuntu-design-logos], used under the terms of [Canonical's IPRights Policy][IPpolicy]
 - `plus-icon.svg` derived from [IcoMoon][icomoon-website]'s [plus][plus-icon] vector icon licensed under [CC BY 4.0][CC-BY4]
 - Google+ icon derived from [IcoMoon][icomoon-website]'s [google-plus3][google-plus] vector icon licensed under [CC BY 4.0][CC-BY4]
-- `equal-icon.svg` derived from [Equal Symbol][equal-icon] by [Picol][picol] licensed under [CC BY 3.0][CC-BY3]
+- `equal-icon.svg` derived from [Equal Symbol][equal-icon] by [Picol][picol-website] licensed under [CC BY 3.0][CC-BY3]
 
 
 [ploctaux]: https://github.com/ploctaux "Philippe Loctaux's Github page"
