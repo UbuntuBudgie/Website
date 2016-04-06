@@ -1,23 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="128" width="128" version="1.1" y="0px" x="0px" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 128 128">
- <title>Equal Icon</title>
- <metadata>
-  <rdf:RDF>
-   <cc:Work rdf:about="">
-    <dc:format>image/svg+xml</dc:format>
-    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:title>Equal Icon</dc:title>
-    <dc:creator>
-     <cc:Agent>
-      <dc:title>HEXcube</dc:title>
-     </cc:Agent>
-    </dc:creator>
-    <cc:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
-    <dc:source>Equal Symbol from http://www.flaticon.com/free-icon/equal-symbol_14334</dc:source>
-    <dc:description>Derived from Equal Symbol by Picol: http://www.flaticon.com/packs/picol-1</dc:description>
-   </cc:Work>
-  </rdf:RDF>
- </metadata>
+<svg xmlns="http://www.w3.org/2000/svg" height="128" width="128" viewBox="0 0 128 128">
  <rect rx="2" height="16" width="64" y="40" x="32"/>
  <rect rx="2" height="16" width="64" y="72" x="32"/>
 </svg>
