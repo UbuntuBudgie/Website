@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Orchis Theme &#8211; Ubuntu Budgie</title>
+	<atom:link href="/tag/orchis-theme/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description></description>
+	<lastBuildDate>Mon, 27 Dec 2021 17:28:30 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+
+<image>
+	<url>/wp-content/uploads/2021/11/ubwc.svg</url>
+	<title>Orchis Theme &#8211; Ubuntu Budgie</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Ubuntu Budgie and  Orchis theme deliver a smooth, elegant desktop experience</title>
+		<link>/2021/12/ubuntu-budgie-and-orchis-theme-deliver-a-smooth-elegant-desktop-experience/</link>
+		
+		<dc:creator><![CDATA[Mauro]]></dc:creator>
+		<pubDate>Mon, 27 Dec 2021 14:58:03 +0000</pubDate>
+				<category><![CDATA[Other]]></category>
+		<category><![CDATA[Budgie]]></category>
+		<category><![CDATA[Orchis Theme]]></category>
+		<category><![CDATA[Ubuntu Budgie]]></category>
+		<guid isPermaLink="false">/?p=2527</guid>
+
+					<description><![CDATA[With this quick write up I am going to show you a theme we recently added to Ubuntu Budgie. Vinceliuice, the author of this theme, delivered an awesome GTK/GNOME theme called Orchis. And how could we miss it? As soon as we saw it, we asked David to get it in our &#34;Themes and Layouts&#34; [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>With this quick write up I am going to show you a theme we recently added to Ubuntu Budgie. Vinceliuice, the author of this theme, delivered an awesome GTK/GNOME theme called Orchis. And how could we miss it? As soon as we saw it, we asked David to get it in our &quot;Themes and Layouts&quot; Application. Before we knew it, David included it, and by now all users of 20.04, 21.04 and 21.10&#8230;</p>
+<p><a href="/2021/12/ubuntu-budgie-and-orchis-theme-deliver-a-smooth-elegant-desktop-experience/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Tutorial &#8211; Ubuntu Budgie</title>
+	<atom:link href="/category/tutorial/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description></description>
+	<lastBuildDate>Sat, 19 Mar 2022 05:47:12 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+
+<image>
+	<url>/wp-content/uploads/2021/11/ubwc.svg</url>
+	<title>Tutorial &#8211; Ubuntu Budgie</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Automate System Updates on Ubuntu Desktop</title>
+		<link>/2022/03/automate-system-updates-on-ubuntu-desktop/</link>
+		
+		<dc:creator><![CDATA[Mauro]]></dc:creator>
+		<pubDate>Fri, 18 Mar 2022 16:19:48 +0000</pubDate>
+				<category><![CDATA[Tutorial]]></category>
+		<category><![CDATA[Ubuntu]]></category>
+		<category><![CDATA[Ubuntu Budgie]]></category>
+		<category><![CDATA[Unattended Upgrades]]></category>
+		<guid isPermaLink="false">/?p=2669</guid>
+
+					<description><![CDATA[Introduction Please note this configuration below is suitable for desktops. For servers, we would need to dig a bit deeper in options, systemd services, timers, email notifications, automatic reboot, and more. Also, I strongly recommended to take system snapshots with Timeshift on a daily basis, and Clonezilla every month. Goals Our goal is the following: [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Please note this configuration below is suitable for desktops. For servers, we would need to dig a bit deeper in options, systemd services, timers, email notifications, automatic reboot, and more. Also, I strongly recommended to take system snapshots with Timeshift on a daily basis, and Clonezilla every month. Our goal is the following: Automate cleanup of old kernels, system updates&#8230;</p>
+<p><a href="/2022/03/automate-system-updates-on-ubuntu-desktop/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>All-In-One PC with Ubuntu Budgie and Raspberry PI</title>
+		<link>/2021/08/all-in-one-pc-with-ubuntu-budgie-and-raspberry-pi/</link>
+		
+		<dc:creator><![CDATA[Mauro]]></dc:creator>
+		<pubDate>Sun, 15 Aug 2021 16:05:25 +0000</pubDate>
+				<category><![CDATA[Tutorial]]></category>
+		<guid isPermaLink="false">/?p=2391</guid>
+
+					<description><![CDATA[A few days ago I was thinking that I never got a Raspberry PI. I always had a look at those but never considered them powerful enough for what I do. However, now that the raspberry PI 4B 8GB is out, and Ubuntu Budgie released Alpha1 of Ubuntu Budgie 21.10, I thought it was time [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>A few days ago I was thinking that I never got a Raspberry PI. I always had a look at those but never considered them powerful enough for what I do. However, now that the raspberry PI 4B 8GB is out, and Ubuntu Budgie released Alpha1 of Ubuntu Budgie 21.10, I thought it was time to finally jump in and check it out. I really like a nice and tidy setup, with good cable management.</p>
+<p><a href="/2021/08/all-in-one-pc-with-ubuntu-budgie-and-raspberry-pi/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

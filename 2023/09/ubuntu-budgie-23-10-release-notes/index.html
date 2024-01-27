@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>window.koko_analytics = {"url":"\/fortress\/admin-ajax.php?action=koko_analytics_collect","post_id":3353,"use_cookie":1,"cookie_path":"\/"};</script>
+<!-- The SEO Framework by Sybre Waaijer -->
+<link rel="canonical" href="/2023/09/ubuntu-budgie-23-10-release-notes/">
+<meta name="description" content="Ubuntu Budgie 23.10 (Mantic Minotaur) is a normal release with 9 months of support, from Oct 2023 to July 2024. Ubuntu LTS releases are focused on long term&#8230;">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ubuntu Budgie">
+<meta property="og:title" content="Ubuntu Budgie 23.10 Release Notes | Ubuntu Budgie">
+<meta property="og:description" content="Ubuntu Budgie 23.10 (Mantic Minotaur) is a normal release with 9 months of support, from Oct 2023 to July 2024. Ubuntu LTS releases are focused on long term support. If stability is more important&#8230;">
+<meta property="og:url" content="/2023/09/ubuntu-budgie-23-10-release-notes/">
+<meta property="og:image" content="https://buddiesofbudgie.org/_next/image?url=%2Fimages%2Fblog%2F2023%2F08%2Fbudgie-10.8%2Ftrash-applet.jpg&amp;w=3840&amp;q=75">
+<meta property="article:published_time" content="2023-09-19T18:56+00:00">
+<meta property="article:modified_time" content="2023-10-08T11:29+00:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ubuntu Budgie 23.10 Release Notes | Ubuntu Budgie">
+<meta name="twitter:description" content="Ubuntu Budgie 23.10 (Mantic Minotaur) is a normal release with 9 months of support, from Oct 2023 to July 2024. Ubuntu LTS releases are focused on long term support. If stability is more important&#8230;">
+<meta name="twitter:image" content="https://buddiesofbudgie.org/_next/image?url=%2Fimages%2Fblog%2F2023%2F08%2Fbudgie-10.8%2Ftrash-applet.jpg&amp;w=3840&amp;q=75">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"/#/schema/WebSite","url":"/","name":"Ubuntu Budgie","inLanguage":"en-US","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"/search/{search_term_string}/"},"query-input":"required name=search_term_string"},"publisher":{"@type":"Organization","@id":"/#/schema/Organization","name":"Ubuntu Budgie","url":"/"}},{"@type":"WebPage","@id":"/2023/09/ubuntu-budgie-23-10-release-notes/","url":"/2023/09/ubuntu-budgie-23-10-release-notes/","name":"Ubuntu Budgie 23.10 Release Notes | Ubuntu Budgie","description":"Ubuntu Budgie 23.10 (Mantic Minotaur) is a normal release with 9 months of support, from Oct 2023 to July 2024. Ubuntu LTS releases are focused on long term…","inLanguage":"en-US","isPartOf":{"@id":"/#/schema/WebSite"},"breadcrumb":{"@type":"BreadcrumbList","@id":"/#/schema/BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":"/","name":"Ubuntu Budgie"},{"@type":"ListItem","position":2,"item":"/category/other/","name":"Category: Other"},{"@type":"ListItem","position":3,"name":"Ubuntu Budgie 23.10 Release Notes"}]},"potentialAction":{"@type":"ReadAction","target":"/2023/09/ubuntu-budgie-23-10-release-notes/"},"datePublished":"2023-09-19T18:56+00:00","dateModified":"2023-10-08T11:29+00:00","author":{"@type":"Person","@id":"/#/schema/Person/8fcdf0cee93a80b7972f1f63a1973146","name":"David"}}]}</script>
+<!-- / The SEO Framework by Sybre Waaijer | 7.78ms meta | 0.31ms boot -->
+
+<link media="all" href="/wp-content/cache/autoptimize/autoptimize_357baf5c705d485aa3240cc8b25a3802.php" rel="stylesheet">
+<title>Ubuntu Budgie 23.10 Release Notes | Ubuntu Budgie</title>
+<link href="https://fonts.gstatic.com/" crossorigin="anonymous" rel="preconnect">
+<link rel="alternate" type="application/rss+xml" title="Ubuntu Budgie &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="Ubuntu Budgie &raquo; Comments Feed" href="/comments/feed/">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style id="core-block-supports-inline-css">.wp-elements-2464b7f5990ca9091be48150130dba65 a{color:var(--wp--preset--color--base);}.wp-container-core-navigation-layout-1.wp-container-core-navigation-layout-1{gap:20px;}.wp-container-core-group-layout-1.wp-container-core-group-layout-1{justify-content:space-between;}.wp-elements-72e07f095da13a7bb673ea461d9ed494 a{color:var(--wp--preset--color--primary);}.wp-elements-9aa739effdf6d06d6e39339e4e43e1b3 a{color:var(--wp--preset--color--secondary);}.wp-container-core-group-layout-3.wp-container-core-group-layout-3{flex-wrap:nowrap;gap:10px;}.wp-elements-bd79afba7f00a2d2e79e252b6511e7e8 a{color:var(--wp--preset--color--secondary);}.wp-container-core-group-layout-5.wp-container-core-group-layout-5{justify-content:space-between;}.wp-container-core-group-layout-7.wp-container-core-group-layout-7 > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width:1265px;margin-left:auto !important;margin-right:auto !important;}.wp-container-core-group-layout-7.wp-container-core-group-layout-7 > .alignwide{max-width:1265px;}.wp-container-core-group-layout-7.wp-container-core-group-layout-7 .alignfull{max-width:none;}.wp-container-core-group-layout-7.wp-container-core-group-layout-7 > *{margin-block-start:0;margin-block-end:0;}.wp-container-core-group-layout-7.wp-container-core-group-layout-7.wp-container-core-group-layout-7.wp-container-core-group-layout-7 > * + *{margin-block-start:var(--wp--preset--spacing--medium);margin-block-end:0;}.wp-elements-a976c11822b091852887cff9848f1bbd a{color:var(--wp--preset--color--base);}.wp-elements-c91fa68301c8b8956e916e93caa4fa88 a{color:var(--wp--preset--color--base);}.wp-elements-948a5443c0ea732657204d47876b6de4 a:hover{color:var(--wp--preset--color--base);}.wp-container-core-post-template-layout-1.wp-container-core-post-template-layout-1{grid-template-columns:repeat(3, minmax(0, 1fr));}.wp-container-core-post-template-layout-2.wp-container-core-post-template-layout-2{grid-template-columns:repeat(3, minmax(0, 1fr));}.wp-container-core-group-layout-14.wp-container-core-group-layout-14 > *{margin-block-start:0;margin-block-end:0;}.wp-container-core-group-layout-14.wp-container-core-group-layout-14.wp-container-core-group-layout-14.wp-container-core-group-layout-14 > * + *{margin-block-start:0;margin-block-end:0;}.wp-elements-32b77430c90ad012087d490f119b5ab4 a{color:var(--wp--preset--color--base);}.wp-container-core-group-layout-15.wp-container-core-group-layout-15{flex-wrap:nowrap;}.wp-container-core-group-layout-16.wp-container-core-group-layout-16{flex-wrap:nowrap;}.wp-container-core-group-layout-17.wp-container-core-group-layout-17{justify-content:center;}.wp-elements-0b217ef4136b8d9e7805bcc95b7ff5aa a{color:var(--wp--preset--color--main-accent);}.wp-container-core-group-layout-18.wp-container-core-group-layout-18{gap:var(--wp--preset--spacing--small);justify-content:center;}.wp-container-core-group-layout-19.wp-container-core-group-layout-19{flex-wrap:nowrap;justify-content:center;}.wp-container-core-group-layout-20.wp-container-core-group-layout-20{justify-content:flex-start;}.wp-container-core-group-layout-21.wp-container-core-group-layout-21{flex-wrap:nowrap;}.wp-container-core-group-layout-22.wp-container-core-group-layout-22 > *{margin-block-start:0;margin-block-end:0;}.wp-container-core-group-layout-22.wp-container-core-group-layout-22.wp-container-core-group-layout-22.wp-container-core-group-layout-22 > * + *{margin-block-start:var(--wp--preset--spacing--x-large);margin-block-end:0;}.wp-duotone-unset-1.wp-block-site-logo img, .wp-duotone-unset-1.wp-block-site-logo .components-placeholder__illustration, .wp-duotone-unset-1.wp-block-site-logo .components-placeholder::before{filter:unset;}</style>
+
+
+
+
+
+<script src="/wp-includes/js/dist/interactivity.min.js" id="wp-interactivity-js" defer data-wp-strategy="defer"></script>
+<script src="/wp-includes/blocks/navigation/view.min.js" id="wp-block-navigation-view-js" defer data-wp-strategy="defer"></script>
+<script src="/wp-includes/js/jquery/jquery.min.js" id="jquery-core-js"></script>
+<script src="/wp-content/plugins/svg-support/vendor/DOMPurify/DOMPurify.min.js" id="bodhi-dompurify-library-js"></script>
+<script src="/wp-content/cache/asset-cleanup/js/item/hide-security-enhancer__assets__js__devtools-detect-js-vbae3faae490d3d76f7a0a3ae96983ac41686829c.js" id="devtools-detect-js"></script>
+<script id="asenha-public-js-extra">var phpVars = {"externalPermalinksEnabled":"1"};</script>
+<script src="/wp-content/cache/asset-cleanup/js/item/admin-site-enhancements__assets__js__external-permalinks-js-vf39fa17d40dfb6de0d716bd2e00c6c9de78401c4.js" id="asenha-public-js"></script>
+<script id="cookie-law-info-js-extra">var Cli_Data = {"nn_cookie_ids":[],"cookielist":[],"non_necessary_cookies":[],"ccpaEnabled":"1","ccpaRegionBased":"","ccpaBarEnabled":"","strictlyEnabled":["necessary","obligatoire"],"ccpaType":"ccpa_gdpr","js_blocking":"1","custom_integration":"","triggerDomRefresh":"","secure_cookies":""};
+var cli_cookiebar_settings = {"animate_speed_hide":"500","animate_speed_show":"500","background":"#FFF","border":"#b1a6a6c2","border_on":"","button_1_button_colour":"#61a229","button_1_button_hover":"#4e8221","button_1_link_colour":"#fff","button_1_as_button":"1","button_1_new_win":"","button_2_button_colour":"#333","button_2_button_hover":"#292929","button_2_link_colour":"#444","button_2_as_button":"","button_2_hidebar":"","button_3_button_colour":"#dedfe0","button_3_button_hover":"#b2b2b3","button_3_link_colour":"#333333","button_3_as_button":"1","button_3_new_win":"","button_4_button_colour":"#dedfe0","button_4_button_hover":"#b2b2b3","button_4_link_colour":"#333333","button_4_as_button":"1","button_7_button_colour":"#61a229","button_7_button_hover":"#4e8221","button_7_link_colour":"#fff","button_7_as_button":"1","button_7_new_win":"","font_family":"inherit","header_fix":"","notify_animate_hide":"1","notify_animate_show":"","notify_div_id":"#cookie-law-info-bar","notify_position_horizontal":"right","notify_position_vertical":"bottom","scroll_close":"","scroll_close_reload":"","accept_close_reload":"","reject_close_reload":"","showagain_tab":"","showagain_background":"#fff","showagain_border":"#000","showagain_div_id":"#cookie-law-info-again","showagain_x_position":"100px","text":"#333333","show_once_yn":"","show_once":"10000","logging_on":"","as_popup":"","popup_overlay":"1","bar_heading_text":"","cookie_bar_as":"banner","popup_showagain_position":"bottom-right","widget_position":"left"};
+var log_object = {"ajax_url":"\/fortress\/admin-ajax.php"};</script>
+<script src="/wp-content/cache/asset-cleanup/js/item/cookie-law-info__legacy__public__js__cookie-law-info-public-js-v515b486035533da9d96189a084a1e1ab0630db3f.js" id="cookie-law-info-js"></script>
+<script id="cookie-law-info-ccpa-js-extra">var ccpa_data = {"opt_out_prompt":"Do you really wish to opt out?","opt_out_confirm":"Confirm","opt_out_cancel":"Cancel"};</script>
+<script src="/wp-content/cache/asset-cleanup/js/item/cookie-law-info__legacy__admin__modules__ccpa__assets__js__cookie-law-info-ccpa-js-vff8a082feed3ca11ae73e5e69777f2a7c5183dff.js" id="cookie-law-info-ccpa-js"></script>
+<script src="/wp-content/plugins/wp-githuber-md/assets/js/jquery.toc.min.js" id="githuber-toc-js"></script>
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2F2023%2F09%2Fubuntu-budgie-23-10-release-notes%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2F2023%2F09%2Fubuntu-budgie-23-10-release-notes%2F#038;format=xml">
+
+		<!-- GA Google Analytics @ https://m0n.co/ga -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-87514907-1"></script>
+		<script>window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-87514907-1');</script>
+
+	
+<link rel="icon" href="/wp-content/uploads/2021/11/ubwc.svg" sizes="32x32">
+<link rel="icon" href="/wp-content/uploads/2021/11/ubwc.svg" sizes="192x192">
+<link rel="apple-touch-icon" href="/wp-content/uploads/2021/11/ubwc.svg">
+<meta name="msapplication-TileImage" content="/wp-content/uploads/2021/11/ubwc.svg">
+</head>
+
+<body class="post-template-default single single-post postid-3353 single-format-standard wp-custom-logo wp-embed-responsive">
+
+<div class="wp-site-blocks">
+<header class="site-header wp-block-template-part">
+<div class="wp-block-group alignfull is-style-column-box-shadow has-base-color has-main-background-color has-text-color has-background has-link-color wp-elements-91f6c8d20945bb22547b2b2c6e7982a8 is-layout-flow wp-block-group-is-layout-flow" style="margin-top:0px;padding-top:var(--wp--preset--spacing--large);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--large);padding-left:var(--wp--preset--spacing--medium)">
+<div class="wp-block-group alignwide is-content-justification-space-between is-layout-flex wp-container-core-group-layout-1 wp-block-group-is-layout-flex">
+<div class="wp-block-site-logo wp-duotone-unset-1"><a href="/" class="custom-logo-link" rel="home"><img width="224" height="40" src="/wp-content/uploads/2023/11/UbuntuBudgie-Wordmark-white.svg" class="custom-logo" alt="Ubuntu Budgie" decoding="async"></a></div>
+
+<nav class="has-text-color has-base-color has-small-font-size is-responsive wp-block-navigation has-small-font-size is-horizontal is-layout-flex wp-container-core-navigation-layout-1 wp-block-navigation-is-layout-flex" aria-label="Original" data-wp-interactive data-wp-context='{"core":{"navigation":{"overlayOpenedBy":[],"type":"overlay","roleAttribute":"","ariaLabel":"Menu"}}}'><button aria-haspopup="true" aria-label="Open menu" class="wp-block-navigation__responsive-container-open " data-wp-on--click="actions.core.navigation.openMenuOnClick" data-wp-on--keydown="actions.core.navigation.handleMenuKeydown"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="7.5" width="16" height="1.5"></rect><rect x="4" y="15" width="16" height="1.5"></rect></svg></button>
+			<div class="wp-block-navigation__responsive-container  has-text-color has-base-color has-background has-main-background-color" id="modal-2" data-wp-class--has-modal-open="selectors.core.navigation.isMenuOpen" data-wp-class--is-menu-open="selectors.core.navigation.isMenuOpen" data-wp-effect="effects.core.navigation.initMenu" data-wp-on--keydown="actions.core.navigation.handleMenuKeydown" data-wp-on--focusout="actions.core.navigation.handleMenuFocusout" tabindex="-1">
+				<div class="wp-block-navigation__responsive-close" tabindex="-1">
+					<div class="wp-block-navigation__responsive-dialog" data-wp-bind--aria-modal="selectors.core.navigation.ariaModal" data-wp-bind--aria-label="selectors.core.navigation.ariaLabel" data-wp-bind--role="selectors.core.navigation.roleAttribute" data-wp-effect="effects.core.navigation.focusFirstElement">
+							<button aria-label="Close menu" class="wp-block-navigation__responsive-container-close" data-wp-on--click="actions.core.navigation.closeMenuOnClick"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M13 11.8l6.1-6.3-1-1-6.1 6.2-6.1-6.2-1 1 6.1 6.3-6.5 6.7 1 1 6.5-6.6 6.5 6.6 1-1z"></path></svg></button>
+						<div class="wp-block-navigation__responsive-container-content" id="modal-2-content">
+							<ul class="wp-block-navigation__container has-text-color has-base-color has-small-font-size is-responsive wp-block-navigation has-small-font-size">
+<li class="has-small-font-size wp-block-navigation-item  menu-item menu-item-type-post_type menu-item-object-page menu-item-home wp-block-navigation-link"><a class="wp-block-navigation-item__content" href="/" title=""><span class="wp-block-navigation-item__label">Home</span></a></li>
+<li class="has-small-font-size wp-block-navigation-item  menu-item menu-item-type-post_type menu-item-object-page wp-block-navigation-link"><a class="wp-block-navigation-item__content" href="/about-us/" title=""><span class="wp-block-navigation-item__label">About us</span></a></li>
+<li class="has-small-font-size wp-block-navigation-item  menu-item menu-item-type-post_type menu-item-object-page wp-block-navigation-link"><a class="wp-block-navigation-item__content" href="/downloads/" title=""><span class="wp-block-navigation-item__label">Downloads</span></a></li>
+<li class="has-small-font-size wp-block-navigation-item  menu-item menu-item-type-post_type menu-item-object-page wp-block-navigation-link"><a class="wp-block-navigation-item__content" href="/donate/" title=""><span class="wp-block-navigation-item__label">Donate</span><span class="wp-block-navigation-item__description">[:en][:]</span></a></li>
+<li class="has-small-font-size wp-block-navigation-item  menu-item menu-item-type-post_type menu-item-object-page current_page_parent wp-block-navigation-link"><a class="wp-block-navigation-item__content" href="/blog/" title=""><span class="wp-block-navigation-item__label">Blog</span></a></li>
+<li class="has-small-font-size wp-block-navigation-item  menu-item menu-item-type-post_type menu-item-object-page wp-block-navigation-link"><a class="wp-block-navigation-item__content" href="/team/" title=""><span class="wp-block-navigation-item__label">Our Team</span></a></li>
+<li class="has-small-font-size wp-block-navigation-item  menu-item menu-item-type-custom menu-item-object-custom wp-block-navigation-link"><a class="wp-block-navigation-item__content" href="https://discourse.ubuntubudgie.org/c/Get-Involved" title=""><span class="wp-block-navigation-item__label">Opportunities</span></a></li>
+<li class="has-small-font-size wp-block-navigation-item  menu-item menu-item-type-post_type menu-item-object-page wp-block-navigation-link"><a class="wp-block-navigation-item__content" href="/gallery/" title=""><span class="wp-block-navigation-item__label">Gallery</span></a></li>
+<li class="has-small-font-size wp-block-navigation-item  menu-item menu-item-type-post_type menu-item-object-page wp-block-navigation-link"><a class="wp-block-navigation-item__content" href="/contact/" title=""><span class="wp-block-navigation-item__label">Contact</span></a></li>
+<li class="has-small-font-size wp-block-navigation-item  menu-item menu-item-type-custom menu-item-object-custom wp-block-navigation-link"><a class="wp-block-navigation-item__content" href="https://discourse.ubuntubudgie.org/" title=""><span class="wp-block-navigation-item__label">Support</span></a></li>
+</ul>
+						</div>
+					</div>
+				</div>
+			</div></nav>
+</div>
+</div>
+</header>
+
+
+<main class="wp-block-group alignwide has-global-padding is-layout-constrained wp-container-core-group-layout-7 wp-block-group-is-layout-constrained" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--xx-large);padding-bottom:var(--wp--preset--spacing--xx-large)">
+<div class="wp-block-group alignwide is-layout-flow wp-block-group-is-layout-flow">
+<div style="font-style:normal;font-weight:500" class="taxonomy-category has-link-color has-text-color has-primary-color is-style-default wp-block-post-terms has-small-font-size wp-elements-62a8ff269677baf3bb6aa6d9b25c6eb0"><a href="/category/other/" rel="tag">Other</a></div>
+
+<h1 class="wp-block-post-title has-xx-large-font-size has-secondary-font-family">Ubuntu Budgie 23.10 Release Notes</h1>
+
+
+<div class="wp-block-group has-secondary-color has-text-color has-link-color has-small-font-size wp-elements-9697c7f13848f28e51da76a10cad14db is-nowrap is-layout-flex wp-container-core-group-layout-3 wp-block-group-is-layout-flex">
+<div style="font-style:normal;font-weight:500;" class="wp-block-post-author">
+<div class="wp-block-post-author__avatar"><img alt="" src="https://secure.gravatar.com/avatar/1a587999ea204e17220f507fe4eb6f2b?s=48&#038;d=mm&#038;r=g" srcset="https://secure.gravatar.com/avatar/1a587999ea204e17220f507fe4eb6f2b?s=96&#038;d=mm&#038;r=g 2x" class="avatar avatar-48 photo" height="48" width="48" decoding="async"></div>
+<div class="wp-block-post-author__content"><p class="wp-block-post-author__name">David</p></div>
+</div>
+
+
+<p class="has-secondary-color has-text-color">·</p>
+
+
+<div style="font-style:normal;font-weight:500;" class="wp-block-post-date"><time datetime="2023-09-19T20:56:22+02:00">September 19, 2023</time></div>
+</div>
+</div>
+
+
+<div class="entry-content alignwide wp-block-post-content is-layout-flow wp-block-post-content-is-layout-flow">
+<h1>Release notes</h1>
+<h2>Introduction and overview</h2>
+<p>Ubuntu Budgie 23.10 (Mantic Minotaur) is a normal release with 9 months of support, from Oct 2023 to July 2024.</p>
+<p>Ubuntu LTS releases are focused on long term support. If stability is more important than having the latest and greatest version of the kernel, desktop environment, and applications then Ubuntu Budgie 22.04 LTS is perfect for you.</p>
+<p>In these release notes, we are going to cover the following items:</p>
+<ul>
+<li>Release schedule</li>
+<li>New features and enhancements</li>
+<li>Upgrade from 22.04 LTS</li>
+<li>Upgrade from 23.04</li>
+<li>Where to download Ubuntu Budgie daily, beta and final releases</li>
+<li>Infrastructure Sponsors</li>
+</ul>
+<h2>Release Schedule</h2>
+<p>If you want to learn more, please see Release planning and scheduling, shared by Canonical on this <a href="https://discourse.ubuntu.com/t/mantic-minotaur-release-schedule/34989">post</a>.</p>
+<h2>New Features and Enhancements</h2>
+<h3>Budgie Desktop</h3>
+<p><em>The following reiterates the upstream blog announcement for budgie-desktop v10.8 supplemented in italics Ubuntu Budgie specifics.</em></p>
+<p>Budgie 10.8 is a brand new release series for Budgie Desktop, featuring improvements to Budgie Menu <em>(the alternative menu available to be added to your panel)</em>, adoption of StatusNotifier support in System Tray <em>(an alternative to the application indicator that can be added to your panel)</em>, Magpie v0.x support, and more!</p>
+<h4>Budgie Trash Applet</h4>
+<p><img decoding="async" src="https://buddiesofbudgie.org/_next/image?url=%2Fimages%2Fblog%2F2023%2F08%2Fbudgie-10.8%2Ftrash-applet.jpg&amp;w=3840&amp;q=75" alt="|1920x1080"><br>
+<em>Budgie Trash applet allows easy access to the trash folder</em> </p>
+<p>The previously third-party Budgie Trash Applet, developed by Buddies of Budgie team member Evan Maddock, has been merged into mainline Budgie Desktop to become a part of the default applets available to users out-of-the-box. This trash applet enables the user to quickly access and empty the contents of their trashcan as well as restore files.</p>
+<h4>Magpie v0.x Support</h4>
+<p>Budgie 10.8 is the first release which includes support for our Magpie ABI. To quickly summarize for those that did not catch our blog post on planned <a href="https://buddiesofbudgie.org/blog/wayland">Wayland support</a> and may not be familiar with Magpie, as well as to offer a bit of a history lesson, we will quickly go over the important parts.Historically, Budgie Desktop has used GNOME&#8217;s <a href="https://gitlab.gnome.org/GNOME/mutter">Mutter</a> window manager (nowadays Mutter is also a Wayland compositor) to do the heavy lifting for <code>budgie-wm</code>. budgie-wm has served as a small layer on top of Mutter, handling select keybindings for Budgie-specific functionality, input management, animations, screenshot management, backgrounds, and so forth. With every GNOME Stack release, Mutter ABI would change and Budgie Desktop would need to be updated to support the latest ABI and typically two or three ABIs prior so those on older GNOME stacks could still get newer Budgie Desktop releases. On many occasions, this resulted in significant pressure on the team as late ABI changes would land and we would need to work quickly to adapt to them.As GNOME has pursued improvements around their Wayland support, this has understandably at times resulted in regressions in its support for X11. As Budgie Desktop currently uses X11, this has created a less optimal user experience for our users. This reached a turning point with GNOME 44 / mutter-12 ABI when there was a larger split between Wayland and X11 support in Mutter, resulting in many regressions in its X11 support that to this day remain unresolved.During our team discussions, we came to the conclusion that we wanted to address this in two manners:</p>
+<ol>
+<li>Restore X11 support / functionality expected by our users for the immediate future.</li>
+<li>Prioritize adoption of Wayland, a longer-term goal, by developing a wlroots-based compositor that would serve as our window manager for both future Budgie 10.x releases when we go Wayland-only, as well as Budgie 11.</li>
+</ol>
+<p>To accomplish these goals, we first decided to soft-fork Mutter at the state it was in for GNOME 43, eliminating the regressions introduced in GNOME 44 / mutter-12. This version of Magpie is &lt; 1.0 (e.g. 0.9.x) and is designed to be a temporary fork catered to Budgie and its current X11-only support. Alongside this effort, we are building &quot;Magpie 1.0&quot; as the wlroots-based Wayland compositor, with the plan to <strong>fully drop X11 support once Magpie 1.0 is ready for consumption</strong>. In the case of Budgie 10.8, this series <a href="https://github.com/BuddiesOfBudgie/budgie-desktop/pull/387">supports magpie-0 ABI</a>, which is effectively identical to the mutter-12 ABI. This provides us a stable ABI that can be leveraged across multiple GNOME Stack releases until Magpie 1.0 is released. Magpie v0.x should be used for GNOME 44+ and we will not be pursuing support for newer mutter ABIs, such as mutter-13 ABI for GNOME 45, as this would not be the most optimal use of our engineering bandwidth over development efforts around Wayland and Budgie 11.</p>
+<h4>Privilege Escalation Dialog Improvements</h4>
+<p><img decoding="async" src="https://buddiesofbudgie.org/_next/image?url=%2Fimages%2Fblog%2F2023%2F08%2Fbudgie-10.8%2Fpolkit.jpg&amp;w=3840&amp;q=75" alt="|1920x1080"><br>
+<em>Polkit Dialogs now provide an action description</em></p>
+<p>Wonder what is prompting that PolicyKit authentication dialog? Wonder no longer! In this release of Budgie Desktop, our polkit dialog will now show the action description and action ID when graphical privilege escalation is requested.Alongside this change, we made sure the dialog could no longer be resized.</p>
+<h4>Performance / Power Modes In Battery Status Applet</h4>
+<p><img decoding="async" src="https://buddiesofbudgie.org/_next/image?url=%2Fimages%2Fblog%2F2023%2F08%2Fbudgie-10.8%2Fperformance-mode-selector.jpg&amp;w=3840&amp;q=75" alt="|1920x1080"><br>
+<em>Quickly switch between different power profile modes</em></p>
+<p>Budgie&#8217;s battery indicator in the Status applet now provides the ability to control the Performance / Power profile modes offered by <a href="https://gitlab.freedesktop.org/hadess/power-profiles-daemon?ref=buddiesofbudgie.org">power-profiles-daemon</a>. When available on a supported system, you will get access to various options such as:</p>
+<ul>
+<li>Balanced</li>
+<li>Power Saver</li>
+<li>Performance</li>
+</ul>
+<h4>System Tray Adopts Status Notifier Specification</h4>
+<p><em>Ubuntu Budgie has had support for Appindicators for many years.  The buddies project have developed a new applet which similarly supports Appindicators which can be added to your panel.  You cannot have both the Appindicator and the new Status Notifier applet at the same time on your panel.</em></p>
+<p><img decoding="async" src="https://buddiesofbudgie.org/_next/image?url=%2Fimages%2Fblog%2F2023%2F08%2Fbudgie-10.8%2Fsystem-tray.jpg&amp;w=3840&amp;q=75" alt="|1920x1080"><br>
+<em>System Tray applet using Status Notifier Specification</em></p>
+<p>The System Tray applet has been overhauled for Budgie 10.8. As we elaborated on in our <a href="https://buddiesofbudgie.org/blog/wayland">Wayland</a> blog post, historically we have used either <code>na-tray</code> or the XEmbed Protocol for the creation, management, and rendering of trays icons. This had notable downsides, such as:</p>
+<ul>
+<li>Icons not scaling with panel size</li>
+<li>High DPI scaling relied on the application providing the icon to support DPI scaling</li>
+<li>Inconsistent styling of tray menus</li>
+<li>Relies on X11 APIs, which is not viable for our Wayland-only future</li>
+</ul>
+<p>For Budgie 10.8, our System Tray has adopted the <a href="https://www.freedesktop.org/wiki/Specifications/StatusNotifierItem/">Status Notifier</a> specification. This is a modern, vendor-agnostic solution that enables applications to communicate all relevant information for the rendering of their tray icon over DBus rather than being responsible for drawing tray icons and menus themselves, promoting the development of catered solutions by desktop environments and those developing panels for user experiences such as tiling window managers.The result of this on the Budgie Desktop side is that we can draw all menus and items in a manner that is visually consistent. Going into Budgie 11, we will have a similar solution and paired with multiple panels across multiple monitors (a requirement for Budgie 11), you will even be able to have multiple tray applet instances enabled, which was not otherwise possible with the XEmbed-based solutions.</p>
+<h4>General Improvements</h4>
+<p>Budgie 10.8 features a bunch of smaller improvements, complementing our major new features and changes.</p>
+<h5>Budgie Menu</h5>
+<p><img decoding="async" src="/wp-content/uploads/2023/09/budgiemenu-1.png" alt="Budgie Menu" title="Budgie Menu"><br>
+<em>The upstream budgie menu is available to be added to your panel via budgie desktop settings.</em></p>
+<p><em>The following enhancements and changes have been made by upstream to this upstream applet.</em></p>
+<p>Our Application Indexer&#8217;s fuzzy scoring function <a href="https://github.com/BuddiesOfBudgie/budgie-desktop/pull/385">has been ported to C</a>. When transpiling to C, Vala would mangle this function, causing it to crash randomly on non-Latin text. Porting it to C fixed the crashing issue while still producing the desired search results.For Budgie Menu, we <a href="https://github.com/BuddiesOfBudgie/budgie-desktop/pull/388">made changes</a> to the organization of some applications based on user feedback. Applications that previously were put into the Other category ended up fitting better in other existing categories and some application exclusions no longer making sense either. The Utilities category has been removed entirely, as we found it had considerable overlap with the System Tools category and it was not immediately clear what the difference was between Accessories and Utilities. Now, applications previously in Utilities can be found in the System Tools category.</p>
+<h5>Internal Theme Refinements</h5>
+<p><img decoding="async" src="/wp-content/uploads/2023/09/budgie-internal-theme.jpg" alt="Internal Theme" title="Internal Theme"><br>
+<em>The internal theme now features a green accent color, and better contrast</em></p>
+<p>We have made some small refinements and recoloring to our internal theme. Historically, the primary accent color in our internal theme mirrored that of the Solus blue. When Budgie Desktop development began under Buddies of Budgie, the decision was made early on to move to our adopted light green primary color. This was chosen to be more like greenery and common (green) budgerigars. The first to be updated was the Budgie logo itself and the color has finally made its way to our default internal theme as well.Alongside this change, we have darkened some elements such as Budgie Menu, the panel, and Raven&#8217;s background. Raven widgets, text, and iconography should contrast better against the darker background as a result!</p>
+<h5>Other Small Things</h5>
+<ul>
+<li>Kvantum and Murrine themes are now hidden in Budgie Desktop Settings <a href="https://github.com/BuddiesOfBudgie/budgie-desktop/pull/393">#393</a>
+</li>
+<li>power-dialog: We have removed style class changes and made it behave more like polkit dialog. This fixes the case where themes which do not style the dialog end up having a transparent background, making it very hard to see and use the dialog <a href="https://github.com/BuddiesOfBudgie/budgie-desktop/pull/381">#381</a>
+</li>
+<li>We now search for plugins in both /usr and /usr/local <a href="https://github.com/BuddiesOfBudgie/budgie-desktop/pull/404">#404</a>
+</li>
+<li>We have moved the battery label setting to Budgie Desktop Settings as well as moved the percentage label from left of icon to right <a href="https://github.com/BuddiesOfBudgie/budgie-desktop/pull/389">#389</a>
+</li>
+</ul>
+<h4>Bug Fixes</h4>
+<p>It would not be a Budgie release without some bug squashing. In this release, we have:</p>
+<ul>
+<li>Enabled ellipsize for Style boxes in BDS <a href="https://github.com/BuddiesOfBudgie/budgie-desktop/pull/403">#403</a>
+</li>
+<li>Fixed Icon Tasklist not showing Private Internet Access <a href="https://github.com/BuddiesOfBudgie/budgie-desktop/pull/379">#379</a>
+</li>
+<li>Fixed Polkit dialog resizing</li>
+<li>Prevented notifications and screenshot from locking up when sink is locked</li>
+<li>keyboard-layout: Don&#8217;t try to initialize IBus <a href="https://github.com/BuddiesOfBudgie/budgie-desktop/pull/418">#418</a>
+<ul>
+<li>IBus already gets initialized in wm, and calling that function here causes severe breakage, leading to budgie-panel being repeatedly killed for OOM.</li>
+</ul>
+</li>
+</ul>
+<h3>Other Improvements and Bug Fixes</h3>
+<h4>Budgie Control Center</h4>
+<p>We have uploaded a brand new budgie-control-center to mantic &#8211; this incorporates dozens of enhancements and bug fixes that have been pulled together over the last 6 months since the last release.  </p>
+<p>Changelog here <a href="https://github.com/BuddiesOfBudgie/budgie-control-center/releases/tag/v1.3.0">https://github.com/BuddiesOfBudgie/budgie-control-center/releases/tag/v1.3.0</a></p>
+<h4>Budgie Applets and mini-apps</h4>
+<ul>
+<li>VisualSpace applet has now an option in Budgie Desktop Settings to reverse the icon scroll direction to switch between workspaces</li>
+<li>WeatherShow and Applications Menu have been moved to libsoup3 removing the reliance on the deprecated libsoup2.4.  These should hopefully be a seamless change but do let us know if you note any crashes/freezes etc.</li>
+<li>The Extras trash applet is to be removed when budgie-desktop v10.8 is released.  This new version has a native trash applet.  Where you have previously added the Extras trash applet, it will be removed and you will need to re-add the new built-in trash applet.</li>
+<li>The Brightness applet no longer resets the night-light setting/colour if it is active when the brightness popover is shown.</li>
+<li>Wallstreet images are now displayed in alphabetical order rather than in file-system order. </li>
+<li>A fix to the application indicators to display more chrome based icons has been made &#8211; fix has been backported to jammy and lunar as well</li>
+<li>QuickNote now includes a copy button and a paste button.  These perform the same as CTRL+C and CTRL+V in quicknote &#8211; quick GUI based method for copy/paste.</li>
+</ul>
+<p><img decoding="async" src="/wp-content/uploads/2023/09/quicknote-1.png" alt="QuickNote" title="QuickNote"><br>
+<em>New copy/paste buttons in QuickNote</em></p>
+<ul>
+<li>QuickNote buttons have gained a tooltip to improved understanding</li>
+<li>In the budgie desktop v10.8 section upstream removed the legacy xembed based system tray in favour for the Status Notifier applet.  There are a number of very old legacy apps still in the archive that use the old panel icons.  For 23.10 and 24.04 we have made an optional applet called Budgie Carbon Tray Applet that provides support for these legacy apps.  This applet will be dropped in future Ubuntu Budgie releases that will be based on Wayland.</li>
+</ul>
+<p><img decoding="async" src="/wp-content/uploads/2023/09/image-1695149064732.png" alt="file"><br>
+<em>Carbon Tray Applet supports legacy XEMBED tray apps</em></p>
+<h4>Raspberry Pi</h4>
+<p>Sam has been busy again</p>
+<p><img decoding="async" src="/wp-content/uploads/2023/09/image-1695148694728.png" alt="file"><br>
+<em>The simplicity and elegance of Ubuntu Budgie&#8217;s desktop experience on a Raspberry Pi</em></p>
+<p>23.10 raspi beta image is now available.</p>
+<p>Expect final image around final release date.</p>
+<p>Please do look at the README and feedback.</p>
+<p><a href="https://sourceforge.net/projects/budgie-remix/files/budgie-raspi-23.10/">https://sourceforge.net/projects/budgie-remix/files/budgie-raspi-23.10/</a></p>
+<ol>
+<li>Default theme corrected as QogirBudgie-Dark &#8211; previously QogirBudgie-dark was used which left the desktop with an unthemed look and feel</li>
+<li>Minor tweaks to the image creation allows snaps such as Budgie Welcome to be immediately available after initial setup. Firefox will no longer disappear from Plank when logging in quickly after setup completes.</li>
+</ol>
+<h4>Themes</h4>
+<ol>
+<li>Latest WhiteSur gtk theme is now available &#8211; and has been backported to lunar</li>
+<li>Latest Orchis gtk theme is now available &#8211; and has been backported to lunar</li>
+<li>Latest Tela-Circle icon theme is now available &#8211; and has been backported to jammy and lunar</li>
+<li>Brand new Fluent gtk theme is now available &#8211; and has been backported to jammy and lunar</li>
+<li>Brand new Fluent icons theme is now available &#8211; and has been backported to jammy and lunar</li>
+<li>Latest WhiteSur-icon theme is now available &#8211; and has been backported to jammy and lunar</li>
+<li>Latest McMojave-circle icon theme is now available &#8211; and has been backported to jammy and lunar</li>
+<li>Latest Mojave-gtk-theme is now available &#8211; and has been backported to lunar</li>
+</ol>
+<p><img decoding="async" src="/wp-content/uploads/2023/09/fluent-lightdark.jpg" alt="Fluent Theme" title="Fluent Theme"><br>
+<em>New Fluent theme, available in light and dark variants, with multiple color choices</em></p>
+
+<p><img decoding="async" src="/wp-content/uploads/2023/09/themes1.png" alt="Updated Themes" title="Updated Themes"><br>
+<em>Latest Orchis, Mojave, and WhiteSur themes improve appearance for Raven widgets</em></p>
+<h4>Budgie Welcome</h4>
+<p>Our welcome app is automatically updated for all 22.04 &amp; 23.04 and 23.10 users</p>
+<ol>
+<li>Welcome has been moved to core22 &#8211; this allows us compatibility with future versions of ubuntu and to reduce our ISO size.</li>
+<li>Tweaks to the dropbox screenshot size and the message when installing Flatpaks has been made</li>
+<li>Nemo Dropbox installation has been tweaked to be more seamless</li>
+<li>New Fluent make-over is available</li>
+</ol>
+<h4>Additional</h4>
+<ol>
+<li>Really nice changes made by the slick-greeter project have been captured on a fresh package by team-member Sam <a href="https://github.com/UbuntuBudgie/slick-greeter/blob/debian/debian/changelog">https://github.com/UbuntuBudgie/slick-greeter/blob/debian/debian/changelog</a>
+</li>
+<li>Likewise the graphical interface for slick called lightdm-settings I have repackaged and uploaded to Ubuntu/mantic</li>
+</ol>
+<p><img decoding="async" src="/wp-content/uploads/2023/09/slick-greeter.png" alt="Slick Greeter" title="Slick Greeter"><br>
+<em>Slick Greeter now allows toggling the password visibility</em></p>
+<h3>Areas to look out for</h3>
+<p>N/A</p>
+<h2>Upgrading from previous releases</h2>
+<p>It is important to keep in mind a few useful tips before attempting a release upgrade:</p>
+<ul>
+<li>Backup your data.</li>
+<li>Install all available updates and reboot.</li>
+<li>It is always a good idea to run either a full system snapshot with Timeshift, to a secondary drive, or a full system image using Clonezilla.</li>
+<li>If you have PPAs that come with updated kernel, mesa, GPU drivers, it is better to purge those PPAs and reboot before attempting release upgrade.</li>
+<li>Once release upgrade starts, all your PPAs will be disabled. If you rely on important software from PPAs, it is better to manually check if those are updated for upcoming release of Ubuntu.</li>
+<li>After upgrade is completed, remember to go to software sources, change release name on your PPAs, enable them and refresh package cache.</li>
+</ul>
+<h3>Scheduled upgrade from 22.04 LTS</h3>
+<p>Users of Ubuntu Budgie 22.04 LTS will not be prompted to upgrade to 23.10 automatically. Remember the upgrade path for most LTS users is from LTS to LTS i.e. 22.04 to 24.04. LTS versions are focused on stability.</p>
+<h3>Manual upgrade from 22.04 to 23.10</h3>
+<p>There is no direct route to upgrade to 23.10 to 22.04. You must first upgrade to 22.10, followed by 23.04 before upgrading to 23.10.</p>
+<p>Please read the 22.10 <a href="/2022/09/ubuntu-budgie-22-10-release-notes/">release notes</a> for this procedure.</p>
+<h3>Upgrade from 23.04 to 23.10</h3>
+<p>IMPORTANT: remember to double-check you have the following vital package before you upgrade:</p>
+<pre><code>sudo apt install ubuntu-budgie-desktop</code></pre>
+<p>A few days/week or two after the formal release of 23.10 in October you will be automatically offered a graphical prompt to upgrade.</p>
+<p>Alternatively, from a command line run:</p>
+<pre><code>update-manager</code></pre>
+<p>Some of the packages that were installed as part of the Ubuntu Budgie backports PPA (ppa:ubuntubudgie/backports) will be uninstalled as part of the upgrade. Use budgie-welcome to reinstall anything that is removed.</p>
+<p>Please refer to the community wiki for more help:</p>
+<p><a href="https://help.ubuntu.com/community/Upgrades">https://help.ubuntu.com/community/Upgrades</a></p>
+<p>Also, Ask Ubuntu has an excellent guide to help you upgrade:</p>
+<p><a href="http://askubuntu.com/questions/110477/how-do-i-upgrade-to-a-newer-version-of-ubuntu">http://askubuntu.com/questions/110477/how-do-i-upgrade-to-a-newer-version-of-ubuntu</a></p>
+<h2>Where to download the Ubuntu Budgie final release</h2>
+<p><img decoding="async" src="/wp-content/uploads/2023/09/installer.jpg" alt="Budgie Installer" title="Budgie Installer"><br>
+<em>Ubuntu Budgie&#8217;s brand new installer</em></p>
+<p>Ubuntu Budgie for 23.10 has two ISOs to download from.</p>
+<p>The first uses Ubuntu Budgie&#8217;s brand new installer built upon the solid desktop installer from Canonical.</p>
+<ul>
+<li>it is strongly recommended that you run <code>snap refresh ubuntu-budgie-installer</code> to get the very latest installer update.</li>
+</ul>
+<p>The second ISO uses the traditional but legacy&quot;Ubiquity&quot; installer.  This will be discontinued from future Ubuntu Budgie releases. This legacy installer should be used if the new installer has an issue that prevents successful installation.</p>
+<p>Links to download final releases, as well as installation instructions, will be available on our Ubuntu Budgie website once Final Release is built: <a href="/downloads/">https://ubuntubudgie.org/downloads/</a>.</p>
+<h2>Known Issues</h2>
+<ul>
+<li>For more generic issues with Ubuntu 23.10, please check this link: <a href="https://discourse.ubuntu.com/t/mantic-minotaur-release-notes/35534">Ubuntu 23.10 Release Notes</a>.</li>
+<li>We recommend that you install Ubuntu Budgie on hardware &#8211; suggested configuration is 4GB or more RAM and a newer than 10 year computer with 40GB disk space or more.  UB can be installed in a virtual machine; we recommend you use 3D host graphics with 128Mb virtual graphics memory and 4GB RAM or more plus 40GB virtual disk space.  Running with defaults on most virtualisation systems often results in a broken experience with crashes when launching budgie-control-center, applications such as Microsoft Edge failing to run because of the lack of a graphics card, choppy youtube experience etc.</li>
+</ul>
+<h2>Infrastructure Sponsors</h2>
+<p>We just wanted to thank our infrastructure sponsors who help us keep the lights on.</p>
+<h3>Digital Ocean</h3>
+<p>On a mission to simplify cloud computing so developers and their teams can spend more time building software that changes the world.</p>
+<h3>Discourse</h3>
+<p>Discourse is the 100% open source discussion platform built for the next decade of the Internet. Use it as a mailing list, discussion forum, long-form chat room, and more!</p>
+</div>
+
+
+<div class="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group post-meta has-small-font-size is-content-justification-space-between is-layout-flex wp-container-core-group-layout-5 wp-block-group-is-layout-flex" style="border-radius:5px;margin-top:var(--wp--preset--spacing--large)"></div>
+</div>
+</main>
+
+
+
+
+
+<div class="wp-block-group alignfull is-style-column-box-shadow has-base-color has-text-color has-background has-link-color wp-elements-d6510f4545180c7f27bb39e639182b6d has-global-padding is-layout-constrained wp-container-core-group-layout-14 wp-block-group-is-layout-constrained" style="background:linear-gradient(135deg,rgb(6,147,227) 2%,rgb(155,81,224) 100%);margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--x-large);padding-bottom:var(--wp--preset--spacing--x-large)">
+<div class="wp-block-query alignwide is-layout-flow wp-block-query-is-layout-flow">
+<ul class="columns-3 wp-block-post-template is-layout-grid wp-container-core-post-template-layout-2 wp-block-post-template-is-layout-grid">
+<li class="wp-block-post post-3381 post type-post status-publish format-standard has-post-thumbnail hentry category-news tag-23-10 tag-ubuntu tag-ubuntu-budgie">
+
+<div class="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="taxonomy-category has-link-color has-text-color has-base-color ticss-3722e3b0 wp-block-post-terms wp-elements-86f0eac85400e8d372b80508fad6f8d7"><a href="/category/news/" rel="tag">News</a></div>
+
+<h2 class="ticss-3c77765b wp-block-post-title has-base-font-size wp-elements-604854ce78fd57cbec91cd798ea0124c"><a href="/2023/10/ubuntu-budgie-23-10-released/" target="_self">Ubuntu Budgie 23.10 Released!</a></h2>
+
+<div class="wp-block-post-date"><time datetime="2023-10-12T16:45:58+02:00">October 12, 2023</time></div>
+</div>
+
+</li>
+<li class="wp-block-post post-3353 post type-post status-publish format-standard hentry category-other">
+
+<div class="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="taxonomy-category has-link-color has-text-color has-base-color ticss-3722e3b0 wp-block-post-terms wp-elements-86f0eac85400e8d372b80508fad6f8d7"><a href="/category/other/" rel="tag">Other</a></div>
+
+<h2 class="ticss-3c77765b wp-block-post-title has-base-font-size wp-elements-604854ce78fd57cbec91cd798ea0124c"><a href="/2023/09/ubuntu-budgie-23-10-release-notes/" target="_self">Ubuntu Budgie 23.10 Release Notes</a></h2>
+
+<div class="wp-block-post-date"><time datetime="2023-09-19T20:56:22+02:00">September 19, 2023</time></div>
+</div>
+
+</li>
+<li class="wp-block-post post-3325 post type-post status-publish format-standard has-post-thumbnail hentry category-other">
+
+<div class="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="taxonomy-category has-link-color has-text-color has-base-color ticss-3722e3b0 wp-block-post-terms wp-elements-86f0eac85400e8d372b80508fad6f8d7"><a href="/category/other/" rel="tag">Other</a></div>
+
+<h2 class="ticss-3c77765b wp-block-post-title has-base-font-size wp-elements-604854ce78fd57cbec91cd798ea0124c"><a href="/2023/08/behind-ubuntu-budgie-infrastructure/" target="_self">Behind Ubuntu Budgie Infrastructure</a></h2>
+
+<div class="wp-block-post-date"><time datetime="2023-08-18T13:11:22+02:00">August 18, 2023</time></div>
+</div>
+
+</li>
+</ul>
+
+</div>
+</div>
+
+
+<footer class="site-footer wp-block-template-part">
+<div class="wp-block-group alignfull dark-footer has-base-color has-main-background-color has-text-color has-background has-link-color wp-elements-b5225ba596b942d449d5826084abf658 has-global-padding is-layout-constrained wp-container-core-group-layout-22 wp-block-group-is-layout-constrained" style="margin-top:0px;padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium);padding-left:var(--wp--preset--spacing--medium)">
+<div class="wp-block-group has-base-color has-text-color is-content-justification-center is-layout-flex wp-container-core-group-layout-17 wp-block-group-is-layout-flex">
+<div class="wp-block-group is-nowrap is-layout-flex wp-container-core-group-layout-15 wp-block-group-is-layout-flex">
+<div id="wp-block-themeisle-blocks-font-awesome-icons-fd9b015b" class="wp-block-themeisle-blocks-font-awesome-icons"><span class="wp-block-themeisle-blocks-font-awesome-icons-container nan-padding"><a href="https://discourse.ubuntubudgie.org/" target="_self" rel="noopener noreferrer"><i class="fab fa-discourse"></i></a></span></div>
+
+
+
+<div id="wp-block-themeisle-blocks-font-awesome-icons-d3d95a68" class="wp-block-themeisle-blocks-font-awesome-icons"><span class="wp-block-themeisle-blocks-font-awesome-icons-container"><a href="https://twitter.com/UbuntuBudgie" target="_self" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a></span></div>
+</div>
+
+
+
+<div class="wp-block-group is-nowrap is-layout-flex wp-container-core-group-layout-16 wp-block-group-is-layout-flex">
+<div id="wp-block-themeisle-blocks-font-awesome-icons-ed9f5e30" class="wp-block-themeisle-blocks-font-awesome-icons"><span class="wp-block-themeisle-blocks-font-awesome-icons-container"><a href="https://github.com/UbuntuBudgie" target="_self" rel="noopener noreferrer"><i class="fab fa-github"></i></a></span></div>
+
+
+
+<div id="wp-block-themeisle-blocks-font-awesome-icons-40fbac28" class="wp-block-themeisle-blocks-font-awesome-icons"><span class="wp-block-themeisle-blocks-font-awesome-icons-container"><a href="https://www.facebook.com/UbuntuBudgie/" target="_self" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a></span></div>
+</div>
+</div>
+
+
+
+<hr class="wp-block-separator alignwide has-text-color has-secondary-color has-alpha-channel-opacity has-secondary-background-color has-background is-style-separator-dotted">
+
+
+
+<div class="wp-block-group alignwide is-nowrap is-layout-flex wp-container-core-group-layout-21 wp-block-group-is-layout-flex">
+<div class="wp-block-group alignwide is-style-default is-horizontal is-content-justification-left is-layout-flex wp-container-core-group-layout-20 wp-block-group-is-layout-flex">
+<div class="wp-block-group alignwide is-content-justification-center is-nowrap is-layout-flex wp-container-core-group-layout-19 wp-block-group-is-layout-flex">
+<div class="wp-block-group has-main-accent-color has-text-color has-link-color wp-elements-9f53bb21083ea08835fd37774e77bd40 is-content-justification-center is-layout-flex wp-container-core-group-layout-18 wp-block-group-is-layout-flex">
+<p class="has-text-align-center has-x-small-font-size">© 2023  Ubuntu Budgie &#8211; Simplicity and Elegance</p>
+</div>
+</div>
+
+
+
+<p class="has-x-small-font-size" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">Ubuntu is a trademark of Canonical Ltd. ubuntubudgie.org is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License. Budgie Desktop is Copyright © 2022 by Buddies of Budgie</p>
+</div>
+</div>
+</div>
+</footer>
+</div>
+                    <script type="text/javascript"></script>
+                    <!--googleoff: all--><div id="cookie-law-info-bar" data-nosnippet="true"><span><div class="cli-bar-container cli-style-v2">
+<div class="cli-bar-message">We use cookies on our website to give you the most relevant experience by remembering your preferences and repeat visits. By clicking “Accept”, you consent to the use of ALL the cookies.<div class="wt-cli-ccpa-element"> <a style="color:#333333" class="wt-cli-ccpa-opt-out">Do not sell my personal information</a>.</div>
+</div>
+<div class="cli-bar-btn_container">
+<a role="button" class="medium cli-plugin-button cli-plugin-main-button cli_settings_button" style="margin:0px 10px 0px 5px">Cookie Settings</a><a role="button" data-cli_action="accept" id="cookie_action_close_header" class="medium cli-plugin-button cli-plugin-main-button cookie_action_close_header cli_action_button wt-cli-accept-btn" style="display:inline-block">Accept</a>
+</div>
+</div></span></div>
+<div id="cookie-law-info-again" style="display:none" data-nosnippet="true"><span id="cookie_hdr_showagain">Manage consent</span></div>
+<div class="cli-modal" data-nosnippet="true" id="cliSettingsPopup" tabindex="-1" role="dialog" aria-labelledby="cliSettingsPopup" aria-hidden="true">
+  <div class="cli-modal-dialog" role="document">
+	<div class="cli-modal-content cli-bar-popup">
+		  <button type="button" class="cli-modal-close" id="cliModalClose">
+			<svg class="" viewbox="0 0 24 24"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"></path><path d="M0 0h24v24h-24z" fill="none"></path></svg>
+			<span class="wt-cli-sr-only">Close</span>
+		  </button>
+		  <div class="cli-modal-body">
+			<div class="cli-container-fluid cli-tab-container">
+	<div class="cli-row">
+		<div class="cli-col-12 cli-align-items-stretch cli-px-0">
+			<div class="cli-privacy-overview">
+				<h4>Privacy Overview</h4>				<div class="cli-privacy-content">
+					<div class="cli-privacy-content-text">This website uses cookies to improve your experience while you navigate through the website. Out of these, the cookies that are categorized as necessary are stored on your browser as they are essential for the working of basic functionalities of the website. We also use third-party cookies that help us analyze and understand how you use this website. These cookies will be stored in your browser only with your consent. You also have the option to opt-out of these cookies. But opting out of some of these cookies may affect your browsing experience.</div>
+				</div>
+				<a class="cli-privacy-readmore" aria-label="Show more" role="button" data-readmore-text="Show more" data-readless-text="Show less"></a>			</div>
+		</div>
+		<div class="cli-col-12 cli-align-items-stretch cli-px-0 cli-tab-section-container">
+												<div class="cli-tab-section">
+						<div class="cli-tab-header">
+							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="necessary" data-toggle="cli-toggle-tab">
+								Necessary							</a>
+															<div class="wt-cli-necessary-checkbox">
+									<input type="checkbox" class="cli-user-preference-checkbox" id="wt-cli-checkbox-necessary" data-id="checkbox-necessary" checked>
+									<label class="form-check-label" for="wt-cli-checkbox-necessary">Necessary</label>
+								</div>
+								<span class="cli-necessary-caption">Always Enabled</span>
+													</div>
+						<div class="cli-tab-content">
+							<div class="cli-tab-pane cli-fade" data-id="necessary">
+								<div class="wt-cli-cookie-description">
+									Necessary cookies are absolutely essential for the website to function properly. These cookies ensure basic functionalities and security features of the website, anonymously.
+<table class="cookielawinfo-row-cat-table cookielawinfo-winter">
+<thead><tr>
+<th class="cookielawinfo-column-1">Cookie</th>
+<th class="cookielawinfo-column-3">Duration</th>
+<th class="cookielawinfo-column-4">Description</th>
+</tr></thead>
+<tbody>
+<tr class="cookielawinfo-row">
+<td class="cookielawinfo-column-1">cookielawinfo-checkbox-analytics</td>
+<td class="cookielawinfo-column-3">11 months</td>
+<td class="cookielawinfo-column-4">This cookie is set by GDPR Cookie Consent plugin. The cookie is used to store the user consent for the cookies in the category "Analytics".</td>
+</tr>
+<tr class="cookielawinfo-row">
+<td class="cookielawinfo-column-1">cookielawinfo-checkbox-functional</td>
+<td class="cookielawinfo-column-3">11 months</td>
+<td class="cookielawinfo-column-4">The cookie is set by GDPR cookie consent to record the user consent for the cookies in the category "Functional".</td>
+</tr>
+<tr class="cookielawinfo-row">
+<td class="cookielawinfo-column-1">cookielawinfo-checkbox-necessary</td>
+<td class="cookielawinfo-column-3">11 months</td>
+<td class="cookielawinfo-column-4">This cookie is set by GDPR Cookie Consent plugin. The cookies is used to store the user consent for the cookies in the category "Necessary".</td>
+</tr>
+<tr class="cookielawinfo-row">
+<td class="cookielawinfo-column-1">cookielawinfo-checkbox-others</td>
+<td class="cookielawinfo-column-3">11 months</td>
+<td class="cookielawinfo-column-4">This cookie is set by GDPR Cookie Consent plugin. The cookie is used to store the user consent for the cookies in the category "Other.</td>
+</tr>
+<tr class="cookielawinfo-row">
+<td class="cookielawinfo-column-1">cookielawinfo-checkbox-performance</td>
+<td class="cookielawinfo-column-3">11 months</td>
+<td class="cookielawinfo-column-4">This cookie is set by GDPR Cookie Consent plugin. The cookie is used to store the user consent for the cookies in the category "Performance".</td>
+</tr>
+<tr class="cookielawinfo-row">
+<td class="cookielawinfo-column-1">viewed_cookie_policy</td>
+<td class="cookielawinfo-column-3">11 months</td>
+<td class="cookielawinfo-column-4">The cookie is set by the GDPR Cookie Consent plugin and is used to store whether or not user has consented to the use of cookies. It does not store any personal data.</td>
+</tr>
+</tbody>
+</table>								</div>
+							</div>
+						</div>
+					</div>
+																	<div class="cli-tab-section">
+						<div class="cli-tab-header">
+							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="functional" data-toggle="cli-toggle-tab">
+								Functional							</a>
+															<div class="cli-switch">
+									<input type="checkbox" id="wt-cli-checkbox-functional" class="cli-user-preference-checkbox" data-id="checkbox-functional">
+									<label for="wt-cli-checkbox-functional" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">Functional</span></label>
+								</div>
+													</div>
+						<div class="cli-tab-content">
+							<div class="cli-tab-pane cli-fade" data-id="functional">
+								<div class="wt-cli-cookie-description">
+									Functional cookies help to perform certain functionalities like sharing the content of the website on social media platforms, collect feedbacks, and other third-party features.
+								</div>
+							</div>
+						</div>
+					</div>
+																	<div class="cli-tab-section">
+						<div class="cli-tab-header">
+							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="performance" data-toggle="cli-toggle-tab">
+								Performance							</a>
+															<div class="cli-switch">
+									<input type="checkbox" id="wt-cli-checkbox-performance" class="cli-user-preference-checkbox" data-id="checkbox-performance">
+									<label for="wt-cli-checkbox-performance" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">Performance</span></label>
+								</div>
+													</div>
+						<div class="cli-tab-content">
+							<div class="cli-tab-pane cli-fade" data-id="performance">
+								<div class="wt-cli-cookie-description">
+									Performance cookies are used to understand and analyze the key performance indexes of the website which helps in delivering a better user experience for the visitors.
+								</div>
+							</div>
+						</div>
+					</div>
+																	<div class="cli-tab-section">
+						<div class="cli-tab-header">
+							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="analytics" data-toggle="cli-toggle-tab">
+								Analytics							</a>
+															<div class="cli-switch">
+									<input type="checkbox" id="wt-cli-checkbox-analytics" class="cli-user-preference-checkbox" data-id="checkbox-analytics">
+									<label for="wt-cli-checkbox-analytics" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">Analytics</span></label>
+								</div>
+													</div>
+						<div class="cli-tab-content">
+							<div class="cli-tab-pane cli-fade" data-id="analytics">
+								<div class="wt-cli-cookie-description">
+									Analytical cookies are used to understand how visitors interact with the website. These cookies help provide information on metrics the number of visitors, bounce rate, traffic source, etc.
+								</div>
+							</div>
+						</div>
+					</div>
+																	<div class="cli-tab-section">
+						<div class="cli-tab-header">
+							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="advertisement" data-toggle="cli-toggle-tab">
+								Advertisement							</a>
+															<div class="cli-switch">
+									<input type="checkbox" id="wt-cli-checkbox-advertisement" class="cli-user-preference-checkbox" data-id="checkbox-advertisement">
+									<label for="wt-cli-checkbox-advertisement" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">Advertisement</span></label>
+								</div>
+													</div>
+						<div class="cli-tab-content">
+							<div class="cli-tab-pane cli-fade" data-id="advertisement">
+								<div class="wt-cli-cookie-description">
+									Advertisement cookies are used to provide visitors with relevant ads and marketing campaigns. These cookies track visitors across websites and collect information to provide customized ads.
+								</div>
+							</div>
+						</div>
+					</div>
+																	<div class="cli-tab-section">
+						<div class="cli-tab-header">
+							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="others" data-toggle="cli-toggle-tab">
+								Others							</a>
+															<div class="cli-switch">
+									<input type="checkbox" id="wt-cli-checkbox-others" class="cli-user-preference-checkbox" data-id="checkbox-others">
+									<label for="wt-cli-checkbox-others" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">Others</span></label>
+								</div>
+													</div>
+						<div class="cli-tab-content">
+							<div class="cli-tab-pane cli-fade" data-id="others">
+								<div class="wt-cli-cookie-description">
+									Other uncategorized cookies are those that are being analyzed and have not been classified into a category as yet.
+								</div>
+							</div>
+						</div>
+					</div>
+										</div>
+	</div>
+</div>
+		  </div>
+		  <div class="cli-modal-footer">
+			<div class="wt-cli-element cli-container-fluid cli-tab-container">
+				<div class="cli-row">
+					<div class="cli-col-12 cli-align-items-stretch cli-px-0">
+						<div class="cli-tab-footer wt-cli-privacy-overview-actions">
+						
+															<a id="wt-cli-privacy-save-btn" role="button" tabindex="0" data-cli-action="accept" class="wt-cli-privacy-btn cli_setting_save_button wt-cli-privacy-accept-btn cli-btn">SAVE &amp; ACCEPT</a>
+													</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>
+</div>
+<div class="cli-modal-backdrop cli-fade cli-settings-overlay"></div>
+<div class="cli-modal-backdrop cli-fade cli-popupbar-overlay"></div>
+<!--googleon: all-->
+
+
+
+
+<script id="wp-block-template-skip-link-js-after">( function() {
+		var skipLinkTarget = document.querySelector( 'main' ),
+			sibling,
+			skipLinkTargetID,
+			skipLink;
+
+		// Early exit if a skip-link target can't be located.
+		if ( ! skipLinkTarget ) {
+			return;
+		}
+
+		/*
+		 * Get the site wrapper.
+		 * The skip-link will be injected in the beginning of it.
+		 */
+		sibling = document.querySelector( '.wp-site-blocks' );
+
+		// Early exit if the root element was not found.
+		if ( ! sibling ) {
+			return;
+		}
+
+		// Get the skip-link target's ID, and generate one if it doesn't exist.
+		skipLinkTargetID = skipLinkTarget.id;
+		if ( ! skipLinkTargetID ) {
+			skipLinkTargetID = 'wp--skip-link--target';
+			skipLinkTarget.id = skipLinkTargetID;
+		}
+
+		// Create the skip link.
+		skipLink = document.createElement( 'a' );
+		skipLink.classList.add( 'skip-link', 'screen-reader-text' );
+		skipLink.href = '#' + skipLinkTargetID;
+		skipLink.innerHTML = 'Skip to content';
+
+		// Inject the skip link.
+		sibling.parentElement.insertBefore( skipLink, sibling );
+	}() );</script>
+<script defer src="/wp-content/plugins/koko-analytics/assets/dist/js/script.js" id="koko-analytics-js"></script>
+  <script id="module-prism-line-number">(function($) { $(function() { $("code").each(function() { var parent_div = $(this).parent("pre"); var pre_css = $(this).attr("class"); if (typeof pre_css !== "undefined" && -1 !== pre_css.indexOf("language-")) { parent_div.addClass("line-numbers"); } }); }); })(jQuery);</script>  <script id="module-toc">(function($) { $(function() { $("#md-widget-toc").initTOC({ selector: "h2, h3, h4, h5, h6", scope: ".post", }); $("#md-widget-toc a").click(function(e) { e.preventDefault(); var aid = $( this ).attr( "href" ); $( "html, body" ).animate( { scrollTop: $(aid).offset().top - 80 }, "slow" ); }); }); })(jQuery);</script> </body>
+</html>

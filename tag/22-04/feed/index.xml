@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>22.04 &#8211; Ubuntu Budgie</title>
+	<atom:link href="/tag/22-04/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description></description>
+	<lastBuildDate>Fri, 14 Oct 2022 19:06:41 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+
+<image>
+	<url>/wp-content/uploads/2021/11/ubwc.svg</url>
+	<title>22.04 &#8211; Ubuntu Budgie</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Ubuntu Budgie 22.10 Release Notes</title>
+		<link>/2022/09/ubuntu-budgie-22-10-release-notes/</link>
+		
+		<dc:creator><![CDATA[David]]></dc:creator>
+		<pubDate>Wed, 28 Sep 2022 19:39:22 +0000</pubDate>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[22.04]]></category>
+		<category><![CDATA[Jammy Jellyfish]]></category>
+		<category><![CDATA[Ubuntu Budgie]]></category>
+		<category><![CDATA[Ubuntu Budgie 22.04]]></category>
+		<guid isPermaLink="false">/?p=2860</guid>
+
+					<description><![CDATA[Introduction and overview Ubuntu Budgie 22.10 (Kinetic Kudu) is a normal release with 9 months of support, from October 2022 to July 2023. Ubuntu LTS releases are focused on long term support. If stability is more important than having the latest and greatest version of the kernel, desktop environment, and applications then Ubuntu Budgie 22.04 [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Ubuntu Budgie 22.10 (Kinetic Kudu) is a normal release with 9 months of support, from October 2022 to July 2023. Ubuntu LTS releases are focused on long term support. If stability is more important than having the latest and greatest version of the kernel, desktop environment, and applications then Ubuntu Budgie 22.04 LTS is perfect for you. In these release notes, we are going to cover the&#8230;</p>
+<p><a href="/2022/09/ubuntu-budgie-22-10-release-notes/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Ubuntu Budgie 22.04 LTS Release Notes</title>
+		<link>/2022/03/ubuntu-budgie-22-04-lts-release-notes/</link>
+		
+		<dc:creator><![CDATA[Mauro]]></dc:creator>
+		<pubDate>Mon, 28 Mar 2022 12:36:30 +0000</pubDate>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[22.04]]></category>
+		<category><![CDATA[Jammy Jellyfish]]></category>
+		<category><![CDATA[Ubuntu Budgie]]></category>
+		<category><![CDATA[Ubuntu Budgie 22.04]]></category>
+		<guid isPermaLink="false">/?p=2694</guid>
+
+					<description><![CDATA[Introduction and overview Ubuntu Budgie 22.04 LTS (Jammy Jellyfish) is a Long Term Support release with 3 years of support, from April 2022 to April 2025. Ubuntu LTS releases are focused on long term support, therefore stability is more important than having latest and greatest version of kernel, desktop environment, and applications. In these release [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Ubuntu Budgie 22.04 LTS (Jammy Jellyfish) is a Long Term Support release with 3 years of support, from April 2022 to April 2025. Ubuntu LTS releases are focused on long term support, therefore stability is more important than having latest and greatest version of kernel, desktop environment, and applications. In these release notes, we are going to cover the following items: If you are&#8230;</p>
+<p><a href="/2022/03/ubuntu-budgie-22-04-lts-release-notes/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

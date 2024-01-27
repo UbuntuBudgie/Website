@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Other &#8211; Ubuntu Budgie</title>
+	<atom:link href="/category/other-de/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description></description>
+	<lastBuildDate>Tue, 11 Feb 2020 23:11:39 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+
+<image>
+	<url>/wp-content/uploads/2021/11/ubwc.svg</url>
+	<title>Other &#8211; Ubuntu Budgie</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Congratulations to the winners of the 20.04 Ubuntu Budgie wallpaper competition</title>
+		<link>/2020/02/congratulation-to-winners-of-20-04-wallpaper-competition/</link>
+		
+		<dc:creator><![CDATA[Nikola]]></dc:creator>
+		<pubDate>Tue, 11 Feb 2020 22:57:15 +0000</pubDate>
+				<category><![CDATA[Other]]></category>
+		<guid isPermaLink="false">https://budgie.grindam.com/?p=1576</guid>
+
+					<description><![CDATA[We would like to thank all of our users that have participated in our Wallpaper Competition to select the desktop artwork for the upcoming Ubuntu Focal 20.04 LTS release of Ubuntu Budgie. There were a lot of great submissions that made our job of selecting winning ones a lot harder. After careful consideration the team [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>We would like to thank all of our users that have participated in our Wallpaper Competition to select the desktop artwork for the upcoming Ubuntu Focal 20.04 LTS release of Ubuntu Budgie. There were a lot of great submissions that made our job of selecting winning ones a lot harder. After careful consideration the team has selected these wallpapers&#8230;</p>
+<p><a href="/2020/02/congratulation-to-winners-of-20-04-wallpaper-competition/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

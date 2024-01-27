@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Ubuntu Budgie</title>
+	<atom:link href="/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description></description>
+	<lastBuildDate>Thu, 09 Nov 2023 16:19:43 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+
+<image>
+	<url>/wp-content/uploads/2021/11/ubwc.svg</url>
+	<title>Ubuntu Budgie</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Ubuntu Budgie 23.10 Released!</title>
+		<link>/2023/10/ubuntu-budgie-23-10-released/</link>
+		
+		<dc:creator><![CDATA[David]]></dc:creator>
+		<pubDate>Thu, 12 Oct 2023 14:45:58 +0000</pubDate>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[23.10]]></category>
+		<category><![CDATA[Ubuntu]]></category>
+		<category><![CDATA[Ubuntu Budgie]]></category>
+		<guid isPermaLink="false">/?p=3381</guid>
+
+					<description><![CDATA[We are pleased to announce the release of the next version of our distro, the 23.10 release. This is a standard release supported for 9 months packed full of all sorts of new capabilities. If you want a well tested and longer term support then our 22.04 LTS version is supported for 3 years. The [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>We are pleased to announce the release of the next version of our distro, the 23.10 release. This is a standard release supported for 9 months packed full of all sorts of new capabilities. If you want a well tested and longer term support then our 22.04 LTS version is supported for 3 years. The new release has many new core updates as well as v10.8 version of budgie itself: We&#8230;</p>
+<p><a href="/2023/10/ubuntu-budgie-23-10-released/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Ubuntu Budgie 23.10 Release Notes</title>
+		<link>/2023/09/ubuntu-budgie-23-10-release-notes/</link>
+		
+		<dc:creator><![CDATA[David]]></dc:creator>
+		<pubDate>Tue, 19 Sep 2023 18:56:22 +0000</pubDate>
+				<category><![CDATA[Other]]></category>
+		<guid isPermaLink="false">/?p=3353</guid>
+
+					<description><![CDATA[Release notes Introduction and overview Ubuntu Budgie 23.10 (Mantic Minotaur) is a normal release with 9 months of support, from Oct 2023 to July 2024. Ubuntu LTS releases are focused on long term support. If stability is more important than having the latest and greatest version of the kernel, desktop environment, and applications then Ubuntu [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Ubuntu Budgie 23.10 (Mantic Minotaur) is a normal release with 9 months of support, from Oct 2023 to July 2024. Ubuntu LTS releases are focused on long term support. If stability is more important than having the latest and greatest version of the kernel, desktop environment, and applications then Ubuntu Budgie 22.04 LTS is perfect for you. In these release notes, we are going to cover the&#8230;</p>
+<p><a href="/2023/09/ubuntu-budgie-23-10-release-notes/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Behind Ubuntu Budgie Infrastructure</title>
+		<link>/2023/08/behind-ubuntu-budgie-infrastructure/</link>
+		
+		<dc:creator><![CDATA[Nikola]]></dc:creator>
+		<pubDate>Fri, 18 Aug 2023 11:11:22 +0000</pubDate>
+				<category><![CDATA[Other]]></category>
+		<guid isPermaLink="false">/?p=3325</guid>
+
+					<description><![CDATA[Making and maintaining a distribution, be it an independent distro or a flavor of a bigger one, such as Ubuntu Budgie, requires a good infrastructure setup to make sure that everything is reliable and functioning like a well oiled machine. In case of a Ubuntu Budgie, we made sure to make a setup that is [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Making and maintaining a distribution, be it an independent distro or a flavor of a bigger one, such as Ubuntu Budgie, requires a good infrastructure setup to make sure that everything is reliable and functioning like a well oiled machine. In case of a Ubuntu Budgie, we made sure to make a setup that is both easy to use and sturdy. The first step, the most visible part is this website that you&#8230;</p>
+<p><a href="/2023/08/behind-ubuntu-budgie-infrastructure/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Ubuntu Budgie 22.04.03 Released!</title>
+		<link>/2023/08/ubuntu-budgie-22-04-03-released/</link>
+		
+		<dc:creator><![CDATA[David]]></dc:creator>
+		<pubDate>Thu, 10 Aug 2023 14:00:30 +0000</pubDate>
+				<category><![CDATA[News]]></category>
+		<guid isPermaLink="false">/?p=3312</guid>
+
+					<description><![CDATA[We are pleased to announce the release of the next version of our distro, the third 22.04 LTS point release. The LTS version is supported for 3 years while the regular releases are supported for 9 months. The new release rolls-up various fixes and optimizations by Ubuntu Budgie team, that have been released since the [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>We are pleased to announce the release of the next version of our distro, the third 22.04 LTS point release. The LTS version is supported for 3 years while the regular releases are supported for 9 months. The new release rolls&#x2d;up various fixes and optimizations by Ubuntu Budgie team, that have been released since the 22.04.2 release in February: We also inherit hundreds of stability&#8230;</p>
+<p><a href="/2023/08/ubuntu-budgie-22-04-03-released/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Ubuntu Budgie 23.04 Released!</title>
+		<link>/2023/04/ubuntu-budgie-23-04-released/</link>
+		
+		<dc:creator><![CDATA[David]]></dc:creator>
+		<pubDate>Tue, 11 Apr 2023 21:06:42 +0000</pubDate>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[23.04]]></category>
+		<category><![CDATA[Ubuntu]]></category>
+		<category><![CDATA[Ubuntu Budgie]]></category>
+		<guid isPermaLink="false">/?p=3296</guid>
+
+					<description><![CDATA[We are pleased to announce the release of the next version of our distro, the 23.04 release for both the desktop and Raspberry Pi4. This is a standard release supported for 9 months packed full of all sorts of new capabilities. If you want a well tested and longer term support then our 22.04.2 LTS [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>We are pleased to announce the release of the next version of our distro, the 23.04 release for both the desktop and Raspberry Pi4. This is a standard release supported for 9 months packed full of all sorts of new capabilities. If you want a well tested and longer term support then our 22.04.2 LTS version is supported for 3 years. New with this release is a full backport of all the&#8230;</p>
+<p><a href="/2023/04/ubuntu-budgie-23-04-released/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Ubuntu Budgie 23.04 Release Notes</title>
+		<link>/2023/04/ubuntu-budgie-23-04-release-notes/</link>
+		
+		<dc:creator><![CDATA[David]]></dc:creator>
+		<pubDate>Tue, 11 Apr 2023 17:51:14 +0000</pubDate>
+				<category><![CDATA[Other]]></category>
+		<guid isPermaLink="false">/?p=3282</guid>
+
+					<description><![CDATA[Draft release notes Introduction and overview Ubuntu Budgie 23.04 (Lunar Lobster) is a normal release with 9 months of support, from April 2023 to January 2024. Ubuntu LTS releases are focused on long term support. If stability is more important than having the latest and greatest version of the kernel, desktop environment, and applications then [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Ubuntu Budgie 23.04 (Lunar Lobster) is a normal release with 9 months of support, from April 2023 to January 2024. Ubuntu LTS releases are focused on long term support. If stability is more important than having the latest and greatest version of the kernel, desktop environment, and applications then Ubuntu Budgie 22.04 LTS is perfect for you. In these release notes, we are going to cover the&#8230;</p>
+<p><a href="/2023/04/ubuntu-budgie-23-04-release-notes/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Budgie Desktop 10.7.x</title>
+		<link>/2023/04/budgie-desktop-10-7-x/</link>
+		
+		<dc:creator><![CDATA[David]]></dc:creator>
+		<pubDate>Tue, 11 Apr 2023 17:33:15 +0000</pubDate>
+				<category><![CDATA[Other]]></category>
+		<guid isPermaLink="false">/?p=3279</guid>
+
+					<description><![CDATA[Budgie Desktop For Ubuntu Budgie the latest budgie-desktop v10.7.1 is now available for 23.04 out of the box. We have also made this available via our backports-budgie PPA for our 22.04 LTS community: sudo add-apt-repository ppa:ubuntubudgie/backports-budgie &#038;& sudo apt full-upgrade This is the new version of the Budgie Desktop v10.7 from the BuddiesOfBudgie organisation which [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>For Ubuntu Budgie the latest budgie&#x2d;desktop v10.7.1 is now available for 23.04 out of the box. We have also made this available via our backports&#x2d;budgie PPA for our 22.04 LTS community: This is the new version of the Budgie Desktop v10.7 from the BuddiesOfBudgie organisation which Ubuntu Budgie are a key contributor to. This is a precis of upstreams release note: Budgie 10.7.1&#8230;</p>
+<p><a href="/2023/04/budgie-desktop-10-7-x/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>New hotcorners feature introduced in 23.04</title>
+		<link>/2023/02/new-hotcorners-feature-introduced-in-23-04/</link>
+		
+		<dc:creator><![CDATA[Jacob Vlijm]]></dc:creator>
+		<pubDate>Mon, 20 Feb 2023 18:27:48 +0000</pubDate>
+				<category><![CDATA[Other]]></category>
+		<guid isPermaLink="false">/?p=3222</guid>
+
+					<description><![CDATA[Introduction With the beta release of 23.04 around the corner, it seems a good moment for another introduction to one of the innovations for Lunar; a new implementation of the hotcorners feature. Hotcorners was completely rewritten and redesigned, to replace the current applet. There are significant differences, both from the user&#8217;s perspective and from a [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>With the beta release of 23.04 around the corner, it seems a good moment for another introduction to one of the innovations for Lunar; a new implementation of the hotcorners feature. Hotcorners was completely rewritten and redesigned, to replace the current applet. There are significant differences, both from the user&rsquo;s perspective and from a technical point of view.</p>
+<p><a href="/2023/02/new-hotcorners-feature-introduced-in-23-04/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>New edge tiling introduced in 23.04</title>
+		<link>/2023/01/new-edge-tiling-introduced-in-23-04/</link>
+		
+		<dc:creator><![CDATA[Jacob Vlijm]]></dc:creator>
+		<pubDate>Thu, 19 Jan 2023 15:24:43 +0000</pubDate>
+				<category><![CDATA[Other]]></category>
+		<guid isPermaLink="false">/?p=3100</guid>
+
+					<description><![CDATA[Replacing the built-in edge-tiling Introduction In the past few months, we&#8217;ve been exploring the options to create a more extended version of the built-in edge tiling, that we have been using for so many years. Ubuntu Budgie&#8217;s Window Shuffler already offered (a.o.) quarter &#38; half tiling, activated by keyboard shortcuts, and controlling windows from the [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>In the past few months, we&rsquo;ve been exploring the options to create a more extended version of the built&#x2d;in edge tiling, that we have been using for so many years. Ubuntu Budgie&rsquo;s Window Shuffler already offered (a.o.) quarter &amp; half tiling, activated by keyboard shortcuts, and controlling windows from the keyboard has been a priority since Shuffler first saw the daylight. For those who prefer&#8230;</p>
+<p><a href="/2023/01/new-edge-tiling-introduced-in-23-04/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		<enclosure url="/wp-content/uploads/2023/01/asymetric_tiling.m4v" length="1419947" type="video/mp4" />
+
+			</item>
+		<item>
+		<title>Ubuntu Budgie 22.10 Released!</title>
+		<link>/2022/10/ubuntu-budgie-22-10-released/</link>
+		
+		<dc:creator><![CDATA[David]]></dc:creator>
+		<pubDate>Thu, 20 Oct 2022 17:19:41 +0000</pubDate>
+				<category><![CDATA[News]]></category>
+		<category><![CDATA[22.10]]></category>
+		<category><![CDATA[Ubuntu]]></category>
+		<category><![CDATA[Ubuntu Budgie]]></category>
+		<guid isPermaLink="false">/?p=2882</guid>
+
+					<description><![CDATA[We are pleased to announce the release of the next version of our distro, the 22.10 release. This is a standard release supported for 9 months packed full of all sorts of new capabilities. If you want a well tested and longer term support then our 22.04.1 LTS version is supported for 3 years. The [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>We are pleased to announce the release of the next version of our distro, the 22.10 release. This is a standard release supported for 9 months packed full of all sorts of new capabilities. If you want a well tested and longer term support then our 22.04.1 LTS version is supported for 3 years. The new release has many new core updates as well as a bleeding edge version of budgie itself&#8230;</p>
+<p><a href="/2022/10/ubuntu-budgie-22-10-released/" rel="nofollow">Source</a></p>]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>
