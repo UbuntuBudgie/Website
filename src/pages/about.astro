@@ -1,0 +1,279 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Faq from "../components/infopages/Faq.astro";
+const pageTitle = "About Us";
+
+
+---
+
+
+
+<BaseLayout title={pageTitle}>
+
+
+const pageTitle = "Gallery - Screenshots";
+
+<section class="max-w-4xl mx-auto px-4 py-16 text-center space-y-6">
+  <p class="uppercase text-xs tracking-wide text-gray-500">
+    Built For The Future
+  </p>
+  <h1 class="text-3xl md:text-5xl font-bold">
+    What's <span class="font-extrabold">Ubuntu Budgie</span>?
+  </h1>
+  <p class="text-gray-700 max-w-3xl mx-auto text-justify hyphens-auto">
+    Ubuntu Budgie is a proud official member of the Ubuntu family. We combine the simplicity and elegance of the Budgie interface to produce a traditional desktop orientated distro with a modern paradigm. Budgie is a desktop environment focused on having a clean and yet a powerful desktop without unnecessary bloat. To learn more about Budgie Desktop visit <a class="text-blue-600 hover:underline" href="#">Budgie Website</a>.
+  </p>
+  <p class="text-gray-700 max-w-3xl mx-auto text-justify hyphens-auto">
+    Fully functional out of the box, we include the best available Linux applications that makes you (our community) productive immediately. Backed by the powerful Debian derived Ubuntu repositories, customisation is just a 'point &amp; click' away from allowing you to tailor the desktop to your way of working. Ubuntu Budgie comes with a collection of apps that enables you to work on everyday tasks and be productive.
+  </p>
+  <p class="text-gray-700 max-w-3xl mx-auto text-justify hyphens-auto">
+    Ready to take the challenge?
+  </p>
+</section>
+    <h2 class="mb-12 text-center text-2xl md:text-3xl font-semibold">
+      This is why you'll love Ubuntu Budgie
+    </h2>
+
+<section class="max-w-6xl mx-auto px-4 py-12">
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- Box 1 -->
+    <div class="group cursor-pointer rounded-xl border border-gray-200 p-6 shadow hover:shadow-lg hover:border-transparent hover:bg-white transition-all duration-300 ease-in-out hover:scale-[1.03]">
+      <div class="flex flex-col items-center justify-center space-y-4">
+        <img src="/public/firefox.png" alt="Firefox" class="w-12 h-12" />
+        <h3 class="font-semibold text-lg">Firefox</h3>
+        <p class="text-center text-gray-600 text-sm">
+          Safe & easy web browser that protects your privacy.
+        </p>
+      </div>
+    </div>
+    <!-- Box 2 -->
+    <div class="group cursor-pointer rounded-xl border border-gray-200 p-6 shadow hover:shadow-lg hover:border-transparent hover:bg-white transition-all duration-300 ease-in-out hover:scale-[1.03]">
+      <div class="flex flex-col items-center justify-center space-y-4">
+        <img src="/icons/rhythmbox-icon.png" alt="Rhythmbox" class="w-12 h-12" />
+        <h3 class="font-semibold text-lg">Rhythmbox</h3>
+        <p class="text-center text-gray-600 text-sm">
+          Music player & organiser.
+        </p>
+      </div>
+    </div>
+    <!-- Box 3 -->
+    <div class="group cursor-pointer rounded-xl border border-gray-200 p-6 shadow hover:shadow-lg hover:border-transparent hover:bg-white transition-all duration-300 ease-in-out hover:scale-[1.03]">
+      <div class="flex flex-col items-center justify-center space-y-4">
+        <img src="/icons/thunderbird.svg" alt="Thunderbird" class="w-12 h-12" />
+        <h3 class="font-semibold text-lg">Thunderbird</h3>
+        <p class="text-center text-gray-600 text-sm">
+          Email app that's easy to set up & customize — packed with features!
+        </p>
+      </div>
+    </div>
+    <!-- Box 4 -->
+    <div class="group cursor-pointer rounded-xl border border-gray-200 p-6 shadow hover:shadow-lg hover:border-transparent hover:bg-white transition-all duration-300 ease-in-out hover:scale-[1.03]">
+      <div class="flex flex-col items-center justify-center space-y-4">
+        <img src="/icons/libreoffice.svg" alt="LibreOffice" class="w-12 h-12" />
+        <h3 class="font-semibold text-lg">LibreOffice</h3>
+        <p class="text-center text-gray-600 text-sm">
+          Full-featured office suite with Microsoft Office compatibility.
+        </p>
+      </div>
+    </div>
+    <!-- Box 5 -->
+    <div class="group cursor-pointer rounded-xl border border-gray-200 p-6 shadow hover:shadow-lg hover:border-transparent hover:bg-white transition-all duration-300 ease-in-out hover:scale-[1.03]">
+      <div class="flex flex-col items-center justify-center space-y-4">
+        <img src="/icons/ubwc.svg" alt="Budgie Welcome Center" class="w-12 h-12" />
+        <h3 class="font-semibold text-lg">Budgie Welcome Center</h3>
+        <p class="text-center text-gray-600 text-sm">
+          Ubuntu Budgie’s Welcome Center – Learn and control your OS.
+        </p>
+      </div>
+    </div>
+    <!-- Box 6 -->
+    <div class="group cursor-pointer rounded-xl border border-gray-200 p-6 shadow hover:shadow-lg hover:border-transparent hover:bg-white transition-all duration-300 ease-in-out hover:scale-[1.03]">
+      <div class="flex flex-col items-center justify-center space-y-4">
+        <img src="/icons/celluloid.svg" alt="Launch quicker" class="w-12 h-12" />
+        <h3 class="font-semibold text-lg">Launch quicker</h3>
+        <p class="text-center text-gray-600 text-sm">
+          Free, open source & cross-platform media player.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-y-16 gap-x-8 lg:grid-cols-2 lg:items-center">
+      
+      <!-- Left Side: Image -->
+      <div>
+        <img
+          src="/screens/ubw.png"
+          alt="Product screenshot"        />
+      </div>
+
+      <!-- Right Side: Text Content -->
+      <div class="lg:pl-8">
+        <div class="lg:max-w-lg">
+          <h2 class="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
+          <p class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+Pre-Configured          </p>
+          <p class="mt-6 text-lg leading-8 text-gray-700">
+Ubuntu Budgie includes carefully curated default applications and beautiful Budgie applets. It is ready to go right out of the box.          </p>
+          <dl class="mt-10 space-y-8 text-base leading-7 text-gray-600">
+            
+
+
+          </dl>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-y-16 gap-x-8 lg:grid-cols-2 lg:items-center">
+      
+      <!-- Left Side: Text Content -->
+      <div class="lg:pr-8">
+        <div class="lg:max-w-lg">
+          <h2 class="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
+          <p class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+            Built-in Security
+          </p>
+          <p class="mt-6 text-lg leading-8 text-gray-700">
+Security is taken seriously, with Ubuntu’s built-in security features like automatic updates and AppArmor profiles to always keep you safe.          </p>
+          <dl class="mt-10 space-y-8 text-base leading-7 text-gray-600">
+          
+
+          </dl>
+        </div>
+      </div>
+
+      <!-- Right Side: Image -->
+      <div>
+        <img
+          src="/screens/sec.png"
+          alt="Product screenshot"
+          class="w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-y-16 gap-x-8 lg:grid-cols-2 lg:items-center">
+      
+      <!-- Left Side: Image -->
+      <div>
+        <img
+          src="/screens/budgie-desktop-settings.jpg"
+          alt="Product screenshot"
+          class="w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
+        />
+      </div>
+
+      <!-- Right Side: Text Content -->
+      <div class="lg:pl-8">
+        <div class="lg:max-w-lg">
+          <h2 class="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
+          <p class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+           Powerful applications
+          </p>
+          <p class="mt-6 text-lg leading-8 text-gray-700">
+While Budgie Desktop provides the essential user interface to control and use a computer, Ubuntu Budgie adds a collection of additional applications to turn your computer into a truly powerful workstation: from productivity to entertainment!
+
+          </p>
+          <dl class="mt-10 space-y-8 text-base leading-7 text-gray-600">
+            
+            
+          </dl>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-y-16 gap-x-8 lg:grid-cols-2 lg:items-center">
+      
+      <!-- Left Side: Text Content -->
+      <div class="lg:pr-8">
+        <div class="lg:max-w-lg">
+          <h2 class="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
+          <p class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+            Gaming
+          </p>
+          <p class="mt-6 text-lg leading-8 text-gray-700">
+In the last couple of years Linux has become a first class gaming platform thanks to the arrival of the Steam Platform on Linux. At the time of writing Steam has more than 2000 high quality indie and AAA titles ready for Ubuntu Budgie. While Steam is a major step forward for gaming on Linux, there are also many high quality and enjoyable Open Source games titles available for Ubuntu Budgie. It doesn’t matter if you like flight simulators, motor racing, first person shooters, jump and run or card games, you’ll find something to keep you entertained.
+
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Side: Image -->
+      <div>
+        <img
+          src="/screens/steam.jpg"
+          alt="Product screenshot"
+          class="w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-y-16 gap-x-8 lg:grid-cols-2 lg:items-center">
+      
+      <!-- Left Side: Image -->
+      <div>
+        <img
+          src="/screens/appmenu.jpg"
+          alt="Product screenshot"
+          class="w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
+        />
+      </div>
+
+      <!-- Right Side: Text Content -->
+      <div class="lg:pl-8">
+        <div class="lg:max-w-lg">
+          <h2 class="text-base font-semibold leading-7 text-indigo-600">You’ll feel quite at home
+</h2>
+          <p class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+           Easy Migrations
+          </p>
+          <p class="mt-6 text-lg leading-8 text-gray-700">
+Connect your accounts, sync your calendars and download your favorite apps. Ubuntu Budgie is your very own Operating System!
+
+          </p>
+          <dl class="mt-10 space-y-8 text-base leading-7 text-gray-600">
+            
+
+          </dl>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  
+    <div class="mt-12 text-center">
+      <a href="/download" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition">
+        Download Ubuntu Budgie
+      </a>
+    </div>
+  </section>
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"></div>
+
+
+</BaseLayout>

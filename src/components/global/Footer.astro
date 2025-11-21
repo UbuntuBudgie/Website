@@ -1,0 +1,101 @@
+---
+const sections = [
+  {
+    title: "All pages",
+    links: [
+      { name: "Home", href: "/" },
+      { name: "FAQ", href: "/faq" },
+      { name: "Terms", href: "/terms" },
+      { name: "Privacy", href: "/privacy" },
+      { name: "Sign up", href: "/signup" },
+      { name: "Sign In", href: "/signup" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      {
+        name: "GitHub repo",
+        href: "https://github.com/michael-andreuzza/astrosaas",
+      },
+    ],
+  },
+  {
+    title: "More themes",
+    links: [
+      {
+        name: "Lexington Themes",
+        href: "https://lexingtonthemes.com/",
+      },
+    ],
+  },
+  {
+    title: "Socials",
+    links: [
+      {
+        name: "@lexingtonthemes",
+        href: "https://x.com/lexingtonthemes",
+      },
+      {
+        name: "@Mike_Andreuzza",
+        href: "https://x.com/Mike_Andreuzza",
+      },
+    ],
+  },
+];
+---
+
+<footer class="bg-[#1f2229]">
+  <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+    
+    <!-- Social Icons -->
+    <div class="flex justify-center space-x-4">
+      <a href="#" class="text-white hover:text-gray-300">
+        <span class="sr-only">Discourse</span>
+        <!-- Discourse Icon SVG -->
+        <svg class="h-10 w-10 p-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 5.58 2 10.15c0 2.24.9 4.29 2.39 5.86l-1.6 4.79a.5.5 0 00.61.61l4.79-1.6C9.71 20.1 10.84 20.3 12 20.3c5.52 0 10-3.58 10-8.15C22 5.58 17.52 2 12 2zm-8 8.15c0-3.5 3.58-6.15 8-6.15s8 2.65 8 6.15-3.58 6.15-8 6.15-8-2.65-8-6.15z"/>
+        </svg>
+      </a>
+      <a href="#" class="bg-black text-white rounded-full h-10 w-10 flex items-center justify-center hover:bg-gray-800">
+        <span class="sr-only">X (formerly Twitter)</span>
+        <!-- X Icon SVG -->
+        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 300 300" aria-hidden="true">
+          <path d="M178.57 127.15 290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.94L0 300.25h26.46l102.4-116.59 81.8 116.59h89.34L178.57 127.15Zm-20.75 22.79-6.48-9.22-90.1-128.32h40.62l73.57 104.78 6.48 9.22 93.53 133.24h-40.62l-76.9-109.48Z"/>
+        </svg>
+      </a>
+      <a href="#" class="bg-blue-500 text-white rounded-full h-10 w-10 flex items-center justify-center hover:bg-blue-600">
+        <span class="sr-only">Mastodon</span>
+        <!-- Mastodon Icon SVG -->
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M23.193 7.879c0-5.206-3.411-6.732-3.411-6.732C18.062.357 15.108.025 12.041 0h-.076c-3.068.025-6.02.357-7.74 1.147 0 0-3.411 1.526-3.411 6.732 0 1.192-.023 2.618.015 4.129.124 5.092.934 10.109 5.641 11.355 2.17.574 4.034.695 5.535.612 2.722-.15 4.25-.972 4.25-.972l-.09-1.975s-1.945.613-4.129.539c-2.165-.074-4.449-.233-4.799-2.891a5.499 5.499 0 0 1-.048-.745s2.125.52 4.817.643c1.646.075 3.19-.097 4.758-.283 3.007-.359 5.625-2.212 5.954-3.905.517-2.665.475-6.507.475-6.507zm-4.024 6.709h-2.497V8.469c0-1.29-.543-1.944-1.628-1.944-1.2 0-1.802.776-1.802 2.312v3.349h-2.483v-3.35c0-1.536-.602-2.312-1.802-2.312-1.085 0-1.628.655-1.628 1.944v6.119H4.832V8.284c0-1.289.328-2.313.987-3.07.68-.758 1.569-1.146 2.674-1.146 1.278 0 2.246.491 2.886 1.474L12 6.585l.622-1.043c.64-.983 1.608-1.474 2.886-1.474 1.104 0 1.994.388 2.674 1.146.658.757.986 1.781.986 3.07v6.304z">        </svg>
+      </a>
+      <a href="#" class="bg-blue-500 text-white rounded-full h-10 w-10 flex items-center justify-center hover:bg-blue-600">
+        <span class="sr-only">Facebook</span>
+        <!-- Facebook Icon SVG -->
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
+        </svg>
+      </a>
+      <a href="#" class="bg-black text-white rounded-full h-10 w-10 flex items-center justify-center hover:bg-gray-800">
+        <span class="sr-only">GitHub</span>
+        <!-- GitHub Icon SVG -->
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Divider -->
+    <div class="mt-16 border-t border-dashed border-gray-700/50"></div>
+
+    <!-- Copyright Text -->
+    <div class="mt-16 text-center text-sm text-gray-400 leading-relaxed">
+      <p>&copy; 2025 Ubuntu Budgie - Simplicity and Elegance</p>
+      <p class="mt-4 text-xs text-gray-500">
+        Ubuntu is a trademark of Canonical Ltd. ubuntubudgie.org is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License. Budgie Desktop is Copyright &copy; 2022 by Buddies of Budgie
+      </p>
+    </div>
+  </div>
+</footer>
+

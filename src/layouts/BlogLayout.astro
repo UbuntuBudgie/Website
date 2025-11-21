@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from "astro:content";
+// We DO NOT import Astro's <Image /> component here.
+
+const { post, author } = Astro.props as {
+  post: CollectionEntry<"blog">;
+  author: CollectionEntry<"authors">;
+};
+
+const { title, description, pubDate, image, category } = post.data;
+const { name: authorName, image: authorImage } = author.data;
+---
+
+<article class="bg-white shadow-sm rounded-xl overflow-hidden">
+  
+  {/* Cover Image Section */}
+  {image && (
+    <div class="w-full">
+      {/* Use a standard <img> tag. It works perfectly with URLs and local public paths. */}
+      <img src={image} alt={title} class="w-full h-96 object-cover" />
+    </div>
+  )}
+
+  <div class="px-6 py-10 lg:px-12">
+    
+    {category && <span class="text-sm font-semibold text-indigo-600">{category}</span>}
+
+    <h1 class="mt-2 text-4xl font-bold tracking-tight text-gray-900">{title}</h1>
+
+    {description && (
+      <p class="mt-4 text-lg text-gray-600">{description}</p>
+    )}
+
+    {/* Author + Date Section */}
+    <div class="mt-6 flex items-center gap-x-4">
+      {/* Use a standard <img> tag for the author image. */}
+      <img src={authorImage} alt={authorName} class="h-12 w-12 rounded-full bg-gray-100 object-cover" />
+      <div>
+        <p class="font-semibold text-gray-900">{authorName}</p>
+        <time datetime={pubDate.toISOString()} class="text-sm text-gray-500">
+          {pubDate.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}
+        </time>
+      </div>
+    </div>
+
+    {/* Post Content Slot */}
+    <div class="prose prose-lg max-w-none mt-10">
+      <slot />
+    </div>
+  </div>
+</article>

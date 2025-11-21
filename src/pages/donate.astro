@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+
+---
+
+
+
+<BaseLayout>
+
+<body class="bg-white">
+
+<!-- Changed max-w-4xl to max-w-7xl -->
+<div class="py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Main Header -->
+    <div class="text-center">
+      <h1 class="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+        Donate
+      </h1>
+    </div>
+
+    <!-- Open Collective Section -->
+    <section class="mt-12 text-center">
+      <img src="icons/oc.svg" alt="Open Collective Logo" class="h-64 w-auto mx-auto">
+      <p class="mt-6 max-w-3xl mx-auto text-lg leading-8 text-gray-700">
+        Open Collective is the preferred way for donating to Ubuntu Budgie. By using Open Collective you have an even better view and transparency on how donated money is spent and on what. Open Collective ensures full transparency on Ubuntu Budgie's financial status, including received donations, paid expenses, and more.
+      </p>
+      <div class="mt-8">
+        <a href="#" class="inline-block rounded-lg bg-blue-600 px-8 py-3 text-lg font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+          Donate to our Collective
+        </a>
+      </div>
+    </section>
+
+    <!-- Donation Options -->
+    <section class="mt-16 text-center">
+      <p class="text-gray-700">
+        Recurring donations and custom, one-time donations are both available.
+        <br>
+        Special thanks to our fiscal host, accountable <a href="#" class="text-blue-600 underline">https://opencollective.com/the-social-change-nest</a>
+      </p>
+      
+      <hr class="my-8 border-gray-300 max-w-md mx-auto">
+
+      <p class="max-w-3xl mx-auto text-gray-700">
+        Paypal and Patreon are still active, but we would like to encourage our supporters to use Open Collective. Open Collective ensures lower commission fees, therefore maximum impact of your donation.
+      </p>
+
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+        <!-- Patreon -->
+        <div class="flex flex-col items-center">
+          <h3 class="font-semibold text-gray-800">Recurring donation</h3>
+          <a href="#" class="mt-2 inline-flex items-center justify-center rounded-md bg-[#F96854] px-5 py-2.5 font-semibold text-white shadow-sm hover:bg-opacity-90">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15.385 1.015c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zM.985 23V1.015h3V23h-3z"/>
+            </svg>
+            Support on Patreon
+          </a>
+        </div>
+        <!-- PayPal -->
+        <div class="flex flex-col items-center">
+          <h3 class="font-semibold text-gray-800">One Time or Monthly donations</h3>
+          <a href="#" class="mt-2 inline-flex items-center justify-center rounded-md bg-[#0070BA] px-5 py-2.5 font-semibold text-white shadow-sm hover:bg-opacity-90">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.657 21.327h2.613c.484 0 .872-.388.872-.872v-8.13c0-.484-.388-.872-.872-.872H7.657c-.484 0-.872.388-.872.872v8.13c0 .484.388.872.872.872zm14.4-9.002c0-.484-.388-.872-.872-.872h-2.613c-.484 0-.872.388-.872.872v8.13c0 .484.388.872.872.872h2.613c.484 0 .872-.388.872-.872v-8.13zm-7.2 0c0-.484-.388-.872-.872-.872h-2.613c-.484 0-.872.388-.872.872v8.13c0 .484.388.872.872.872h2.613c.484 0 .872-.388.872-.872v-8.13zM0 3.545c0-.484.388-.872.872-.872h2.613c.484 0 .872.388.872.872v16.91c0 .484-.388.872-.872.872H.872c-.484 0-.872-.388-.872-.872V3.545z"/>
+            </svg>
+            Support on PayPal
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donors and Goals -->
+    <section class="mt-16">
+      <article class="prose lg:prose-xl max-w-none text-gray-800">
+        <h2>DONORS AND GOALS</h2>
+        <p>We support opensource and any money raised will go towards opensource developers as well as Ubuntu Budgie itself.</p>
+        <p>Full Transparency is our goal! Patreon donations will be made visible on confirmation of the donation received at the beginning of the next month. Paypal donations will appear ASAP after the donation is received.</p>
+        <p>We mainly invest your donations to provide you a better product. We also would love to give back something to our loyal developers and pay bills, of course. Ubuntu Budgie puts you, our community, in the spotlight.</p>
+        
+        <!-- Added text-center to this div -->
+        <div class="my-6 text-center">
+          <span class="inline-block bg-red-500 text-white font-semibold px-6 py-2 rounded-md">Thank you</span>
+        </div>
+        
+        <p>To Date your donations have helped to fund the following:</p>
+        <ul>
+          <li>Purchase of the budgie-remix.org URL for one year (2016)</li>
+          <li>Purchase of the ubuntubudgie.org URL for four years (2016-2020)</li>
+          <li>budgie-remix.org three year extension (2017-2020)</li>
+          <li>Transfer of budgie-remix.org from WordPress to Godaddy (2017-2020) - fully funded</li>
+        </ul>
+        <p>Server fees for ubuntubudgie.org 2017 & 2018 - fully funded by our sponsor <strong>DigitalOcean</strong></p>
+        <p>Server fees for ubuntubudgie.org 2019 – pending sponsorship</p>
+        <p><strong>Longterm Goal:</strong> LTS Status. From 18.04 Long-term-support is an option that Ubuntu Budgie would love to provide to all of its users. To be able to do this we need to commit to a financially sound 3 year model for each LTS release - that is - be able to commit to support for three years or more.</p>
+        <ul>
+          <li>Expected costs for 2018 – 2020 fully funded(18.04 LTS)</li>
+          <li>Expected costs for 2021 – 2022 fully funded (20.04 LTS)</li>
+          <li>Expected costs for 2023 – not funded (22.04 LTS)</li>
+        </ul>
+        <p>Ubuntu Budgie puts you – our community - front and center in everything we do.You can also support Ubuntu Budgie by buying Ubuntu Budgie merchandise from our official store available on Zazzle. <a href="#">Ubuntu Budgie Store</a></p>
+      </article>
+    </section>
+    
+  </div>
+</div>
+</body>
+
+</BaseLayout>

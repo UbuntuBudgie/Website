@@ -1,0 +1,68 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import PostCard from "../../../components/PostCard.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+// This function tells Astro which pages to build.
+// It must contain all the logic and constants needed to figure that out.
+export async function getStaticPaths() {
+  // --- THIS IS THE FIX ---
+  // We move the constant INSIDE this function.
+  const POSTS_PER_PAGE = 5;
+  // --- END OF FIX ---
+
+  const allPosts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+  );
+
+  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+
+  return Array.from({ length: totalPages }, (_, i) => ({
+    params: { page: String(i + 1) },
+    props: {
+      page: i + 1,
+      totalPages,
+      posts: allPosts.slice(i * POSTS_PER_PAGE, (i + 1) * POSTS_PER_PAGE),
+    },
+  }));
+}
+
+// This part of the script runs for each individual page.
+// It receives its data from the `props` we defined above.
+const { page, totalPages, posts } = Astro.props;
+
+// Now, we fetch the authors ONLY for the posts on this specific page.
+const postsWithAuthors = await Promise.all(
+  posts.map(async (post) => {
+    const cleanedSlug = post.data.author.trim().toLowerCase();
+    const author = await getEntry('authors', cleanedSlug);
+    if (!author) {
+      throw new Error(`[Blog Page ${page}] Author not found for slug: "${cleanedSlug}" in post "${post.slug}".`);
+    }
+    return { post, author };
+  })
+);
+---
+<BaseLayout title={`Blog - Page ${page}`} description="Latest news and updates.">
+  <section class="py-16 sm:py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+        {postsWithAuthors.map(({ post, author }) => (
+          <PostCard post={post} author={author} />
+        ))}
+      </div>
+      <nav class="mt-16 flex justify-center gap-4">
+        {page > 1 && (
+          <a href={page === 2 ? "/blog/" : `/blog/page/${page - 1}/`} class="inline-block rounded-lg border border-gray-300 bg-white px-6 py-2 font-semibold text-gray-800 shadow-sm transition-colors hover:bg-gray-100">
+            ← Previous
+          </a>
+        )}
+        {page < totalPages && (
+          <a href={`/blog/page/${page + 1}/`} class="inline-block rounded-lg border border-gray-300 bg-white px-6 py-2 font-semibold text-gray-800 shadow-sm transition-colors hover:bg-gray-100">
+            Next →
+          </a>
+        )}
+      </nav>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,58 @@
+---
+import "../styles/global.css";
+
+const { 
+  title, 
+  description = "The official website for Ubuntu Budgie, a community-developed distribution integrating the Budgie Desktop Environment with Ubuntu at its core.",
+  image = "/og-image.png"
+} = Astro.props;
+
+const siteName = "Ubuntu Budgie";
+
+// Logic: If a specific title is provided, format it as "Site Name | Page Title".
+// If no title is provided (e.g. homepage), just use the Site Name.
+const fullTitle = title ? `${siteName} | ${title}` : siteName;
+
+const siteUrl = Astro.site;
+const pageUrl = new URL(Astro.url.pathname, siteUrl);
+const imageUrl = new URL(image, siteUrl);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Dynamic Title -->
+<title>{fullTitle}</title>
+
+<!-- Meta Description -->
+<meta name="description" content={description} />
+<meta name="keywords" content="Ubuntu, Budgie, Linux, OS, open source, desktop environment" />
+<meta name="author" content="Ubuntu Budgie Team" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={pageUrl} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={pageUrl} />
+<meta property="twitter:title" content={fullTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={imageUrl} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={pageUrl} />
+
+<!-- Rest of your head tags (Favicons, Fonts, Scripts)... -->
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" href="/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="theme-color" content="#ffffff" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="preconnect" href="https://rsms.me/" />
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+<script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>

@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from "astro:content";
+// We DO NOT import Astro's <Image /> component here.
+
+const { post, author } = Astro.props as {
+  post: CollectionEntry<"blog">;
+  author: CollectionEntry<"authors">;
+};
+
+const { slug } = post;
+const { title, description, pubDate, image, category } = post.data;
+const { name: authorName, image: authorImage } = author.data;
+---
+
+<article class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+  
+  {image && (
+    <a href={`${slug}/`} class="block aspect-video">
+      {/* Use a standard <img> tag. */}
+      <img src={image} alt={title} class="h-full w-full object-cover" />
+    </a>
+  )}
+
+  <div class="flex flex-grow flex-col p-6">
+    <div>
+      {category && <span class="text-sm font-semibold text-indigo-600">{category}</span>}
+      <a href={`/blog/${slug}/`} class="mt-2 block">
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900 transition-colors hover:text-indigo-700">{title}</h2>
+      </a>
+      <p class="mt-4 text-base leading-7 text-gray-600 line-clamp-3">{description}</p>
+    </div>
+
+    <footer class="mt-auto pt-6 flex items-center gap-x-4">
+      {/* Use a standard <img> tag. */}
+      <img src={authorImage} alt={authorName} class="h-10 w-10 rounded-full bg-gray-100 object-cover" />
+      <div>
+        <p class="font-semibold text-gray-900">{authorName}</p>
+        <time datetime={pubDate.toISOString()} class="text-sm text-gray-500">
+          {pubDate.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}
+        </time>
+      </div>
+    </footer>
+  </div>
+</article>

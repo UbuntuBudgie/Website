@@ -1,0 +1,31 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as { post: CollectionEntry<"blog"> };
+const { Content } = await post.render();
+
+const cleanedSlug = post.data.author.trim().toLowerCase();
+const author = await getEntry('authors', cleanedSlug);
+
+if (!author) {
+  throw new Error(`[${post.slug}] Author not found for slug: "${cleanedSlug}". Check the 'author' frontmatter.`);
+}
+---
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <div class="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8">
+    <BlogLayout post={post} author={author}>
+      <Content />
+    </BlogLayout>
+  </div>
+</BaseLayout>

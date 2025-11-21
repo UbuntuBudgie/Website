@@ -1,0 +1,400 @@
+<section>
+  <div class="px-8 py-32 mx-auto md:px-12 lg:px-24 max-w-7xl">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12">
+      <div class="text-center lg:text-left">
+       
+        <p
+          class="text-xl leading-tight tracking-tight sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-base-900 lg:text-balance"
+        >
+          Frequently asked questions
+        </p>
+        <p class="text-base leading-normal mt-4 text-base-500 font-medium">
+          Answers to commonly asked questions about our platform
+        </p>
+      </div>
+      <div
+        x-data="{
+  activeAccordion: '',
+  setActiveAccordion(id) {
+  this.activeAccordion = (this.activeAccordion == id) ? '' : id
+  }
+  }"
+        class="relative w-full mx-auto font-normal lg:col-span-2"
+      >
+        <div
+          x-data="{ id: $id('accordion') }"
+          :class="{ 'text-black': activeAccordion==id, 'text-zinc-600 hover:text-accent-500': activeAccordion!=id }"
+          class="cursor-pointer group text-black"
+        >
+          <button
+            @click="setActiveAccordion(id)"
+            class="flex items-center justify-between w-full p-4 pb-1 text-left font-medium select-none"
+          >
+            <span>How does end-to-end encryption work?</span>
+            <svg
+              class="size-5 duration-300 ease-out text-accent-500 -rotate-[45deg]"
+              :class="{ '-rotate-[45deg]': activeAccordion==id }"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v12m6-6H6"></path></svg
+            >
+          </button>
+          <div x-show="activeAccordion==id" x-collapse="">
+            <div class="p-4 pt-2 text-zinc-500">
+              End-to-end encryption ensures that only the sender and recipient
+              can access the content of a message. The information is encrypted
+              on the sender's device and can only be decrypted by the intended
+              recipient, preventing any intermediaries, including the platform
+              provider, from accessing the data.
+            </div>
+          </div>
+        </div>
+        <div
+          x-data="{ id: $id('accordion') }"
+          :class="{ 'text-black': activeAccordion==id, 'text-zinc-600 hover:text-accent-500': activeAccordion!=id }"
+          class="cursor-pointer group text-zinc-600 hover:text-accent-500"
+        >
+          <button
+            @click="setActiveAccordion(id)"
+            class="flex items-center justify-between w-full p-4 pb-1 text-left font-medium select-none"
+          >
+            <span
+              >Can I access my encrypted data if I forget my encryption key?</span
+            >
+            <svg
+              class="w-5 h-5 duration-300 ease-out text-accent-500"
+              :class="{ '-rotate-[45deg]': activeAccordion==id }"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v12m6-6H6"></path></svg
+            >
+          </button>
+          <div
+            x-show="activeAccordion==id"
+            x-collapse=""
+            style="display: none;"
+          >
+            <div class="p-4 pt-2 text-zinc-500">
+              No, forgetting or losing your encryption key means that your
+              encrypted data cannot be accessed. This is a crucial security
+              measure to ensure that even if someone gains unauthorized access
+              to your account, they won't be able to decrypt and view your
+              messages or files.
+            </div>
+          </div>
+        </div>
+        <div
+          x-data="{ id: $id('accordion') }"
+          :class="{ 'text-black': activeAccordion==id, 'text-zinc-600 hover:text-accent-500': activeAccordion!=id }"
+          class="cursor-pointer group text-zinc-600 hover:text-accent-500"
+        >
+          <button
+            @click="setActiveAccordion(id)"
+            class="flex items-center justify-between w-full p-4 pb-1 text-left font-medium select-none"
+          >
+            <span
+              >Are there any limitations to the self-destructing messages
+              feature?</span
+            >
+            <svg
+              class="w-5 h-5 duration-300 ease-out text-accent-500"
+              :class="{ '-rotate-[45deg]': activeAccordion==id }"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v12m6-6H6"></path></svg
+            >
+          </button>
+          <div
+            x-show="activeAccordion==id"
+            x-collapse=""
+            style="display: none;"
+          >
+            <div class="p-4 pt-2 text-zinc-500">
+              Self-destructing messages are designed to automatically delete
+              themselves after a specific period or upon being read by the
+              recipient. However, it's important to note that the feature only
+              removes the message from the devices involved in the conversation.
+              Recipients may take screenshots or use other means to capture the
+              content, which is beyond the platform's control.
+            </div>
+          </div>
+        </div>
+        <div
+          x-data="{ id: $id('accordion') }"
+          :class="{ 'text-black': activeAccordion==id, 'text-zinc-600 hover:text-accent-500': activeAccordion!=id }"
+          class="cursor-pointer group text-zinc-600 hover:text-accent-500"
+        >
+          <button
+            @click="setActiveAccordion(id)"
+            class="flex items-center justify-between w-full p-4 pb-1 text-left font-medium select-none"
+          >
+            <span
+              >What happens if I enable two-factor authentication and lose my
+              device?</span
+            >
+            <svg
+              class="w-5 h-5 duration-300 ease-out text-accent-500"
+              :class="{ '-rotate-[45deg]': activeAccordion==id }"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v12m6-6H6"></path></svg
+            >
+          </button>
+          <div
+            x-show="activeAccordion==id"
+            x-collapse=""
+            style="display: none;"
+          >
+            <div class="p-4 pt-2 text-zinc-500">
+              Losing your device doesn't automatically compromise your account's
+              security. It's recommended to contact our support team as soon as
+              possible to disable the two-factor authentication on your lost
+              device and set up the authentication on your new device. This
+              process will help protect your account from unauthorized access
+              while ensuring you can regain access to it.
+            </div>
+          </div>
+        </div>
+        <div
+          x-data="{ id: $id('accordion') }"
+          :class="{ 'text-black': activeAccordion==id, 'text-zinc-600 hover:text-accent-500': activeAccordion!=id }"
+          class="cursor-pointer group text-zinc-600 hover:text-accent-500"
+        >
+          <button
+            @click="setActiveAccordion(id)"
+            class="flex items-center justify-between w-full p-4 pb-1 text-left font-medium select-none"
+          >
+            <span
+              >Is my personal information shared or sold to third parties?</span
+            >
+            <svg
+              class="w-5 h-5 duration-300 ease-out text-accent-500"
+              :class="{ '-rotate-[45deg]': activeAccordion==id }"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v12m6-6H6"></path></svg
+            >
+          </button>
+          <div
+            x-show="activeAccordion==id"
+            x-collapse=""
+            style="display: none;"
+          >
+            <div class="p-4 pt-2 text-zinc-500">
+              No, we strictly adhere to a privacy-centric approach. Your
+              personal information is never shared, sold, or monetized. We
+              prioritize your privacy and ensure that your data remains
+              confidential and only accessible to you.
+            </div>
+          </div>
+        </div>
+        <div
+          x-data="{ id: $id('accordion') }"
+          :class="{ 'text-black': activeAccordion==id, 'text-zinc-600 hover:text-accent-500': activeAccordion!=id }"
+          class="cursor-pointer group text-zinc-600 hover:text-accent-500"
+        >
+          <button
+            @click="setActiveAccordion(id)"
+            class="flex items-center justify-between w-full p-4 pb-1 text-left font-medium select-none"
+          >
+            <span>Can I use this platform on multiple devices?</span>
+            <svg
+              class="w-5 h-5 duration-300 ease-out text-accent-500"
+              :class="{ '-rotate-[45deg]': activeAccordion==id }"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v12m6-6H6"></path></svg
+            >
+          </button>
+          <div
+            x-show="activeAccordion==id"
+            x-collapse=""
+            style="display: none;"
+          >
+            <div class="p-4 pt-2 text-zinc-500">
+              Yes, you can access our platform on multiple devices. Your
+              encrypted data remains synced across all devices, allowing you to
+              seamlessly communicate and access your files and messages from
+              anywhere.
+            </div>
+          </div>
+        </div>
+        <div
+          x-data="{ id: $id('accordion') }"
+          :class="{ 'text-black': activeAccordion==id, 'text-zinc-600 hover:text-accent-500': activeAccordion!=id }"
+          class="cursor-pointer group text-zinc-600 hover:text-accent-500"
+        >
+          <button
+            @click="setActiveAccordion(id)"
+            class="flex items-center justify-between w-full p-4 pb-1 text-left font-medium select-none"
+          >
+            <span
+              >Are there any storage limitations for files and documents?</span
+            >
+            <svg
+              class="w-5 h-5 duration-300 ease-out text-accent-500"
+              :class="{ '-rotate-[45deg]': activeAccordion==id }"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v12m6-6H6"></path></svg
+            >
+          </button>
+          <div
+            x-show="activeAccordion==id"
+            x-collapse=""
+            style="display: none;"
+          >
+            <div class="p-4 pt-2 text-zinc-500">
+              Our platform provides ample storage space for your files and
+              documents. However, there may be storage limitations based on the
+              pricing plan you choose. We offer flexible plans to suit your
+              needs and provide options to upgrade if you require additional
+              storage capacity.
+            </div>
+          </div>
+        </div>
+        <div
+          x-data="{ id: $id('accordion') }"
+          :class="{ 'text-black': activeAccordion==id, 'text-zinc-600 hover:text-accent-500': activeAccordion!=id }"
+          class="cursor-pointer group text-zinc-600 hover:text-accent-500"
+        >
+          <button
+            @click="setActiveAccordion(id)"
+            class="flex items-center justify-between w-full p-4 pb-1 text-left font-medium select-none"
+          >
+            <span>Is it possible to export my data from the platform?</span>
+            <svg
+              class="w-5 h-5 duration-300 ease-out text-accent-500"
+              :class="{ '-rotate-[45deg]': activeAccordion==id }"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v12m6-6H6"></path></svg
+            >
+          </button>
+          <div
+            x-show="activeAccordion==id"
+            x-collapse=""
+            style="display: none;"
+          >
+            <div class="p-4 pt-2 text-zinc-500">
+              Yes, you can export your data from the platform. We offer export
+              features that allow you to download your messages, files, and
+              documents, ensuring you have a local copy for backup or migration
+              purposes. It provides you with greater control and flexibility
+              over your data.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Icon Blocks -->
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-6">
+    <!-- Card -->
+    <a class="group flex gap-y-6 size-full hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 rounded-lg p-5 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" href="#">
+      <svg class="shrink-0 size-8 text-gray-800 mt-0.5 me-6 dark:text-neutral-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+
+      <div>
+        <div>
+          <h3 class="block font-bold text-gray-800 dark:text-white">Build your portfolio</h3>
+          <p class="text-gray-600 dark:text-neutral-400">The simplest way to keep your portfolio always up-to-date.</p>
+        </div>
+
+        <p class="mt-3 inline-flex items-center gap-x-1 text-sm font-semibold text-gray-800 dark:text-neutral-200">
+          Learn more
+          <svg class="shrink-0 size-4 transition ease-in-out group-hover:translate-x-1 group-focus:translate-x-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </p>
+      </div>
+    </a>
+    <!-- End Card -->
+
+    <!-- Card -->
+    <a class="group flex gap-y-6 size-full hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 rounded-lg p-5 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" href="#">
+      <svg class="shrink-0 size-8 text-gray-800 mt-0.5 me-6 dark:text-neutral-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></svg>
+
+      <div>
+        <div>
+          <h3 class="block font-bold text-gray-800 dark:text-white">Get freelance work</h3>
+          <p class="text-gray-600 dark:text-neutral-400">New design projects delivered to your inbox each morning.</p>
+        </div>
+
+        <p class="mt-3 inline-flex items-center gap-x-1 text-sm font-semibold text-gray-800 dark:text-neutral-200">
+          Learn more
+          <svg class="shrink-0 size-4 transition ease-in-out group-hover:translate-x-1 group-focus:translate-x-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </p>
+      </div>
+    </a>
+    <!-- End Card -->
+
+    <!-- Card -->
+    <a class="group flex gap-y-6 size-full hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 rounded-lg p-5 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" href="#">
+      <svg class="shrink-0 size-8 text-gray-800 mt-0.5 me-6 dark:text-neutral-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"/></svg>
+
+      <div>
+        <div>
+          <h3 class="block font-bold text-gray-800 dark:text-white">Sell your goods</h3>
+          <p class="text-gray-600 dark:text-neutral-400">Get your goods in front of millions of potential customers with ease.</p>
+        </div>
+
+        <p class="mt-3 inline-flex items-center gap-x-1 text-sm font-semibold text-gray-800 dark:text-neutral-200">
+          Learn more
+          <svg class="shrink-0 size-4 transition ease-in-out group-hover:translate-x-1 group-focus:translate-x-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </p>
+      </div>
+    </a>
+    <!-- End Card -->
+  </div>
+</div>
+<!-- End Icon Blocks -->>
+</section>

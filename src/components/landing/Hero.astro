@@ -1,0 +1,72 @@
+---
+const featuresList = [
+  {
+    title: "Astro, Tailwind CSS and Alpine.js",
+    description: "These are the popular technologies behind Astrosaas.",
+  },
+  {
+    title: "Includes 6 pages",
+    description:
+      "You will find this landing, FAQ, terms, privacy, sign up, and sign in pages.",
+  },
+  {
+    title: "Different sections",
+    description:
+      "The starter includes different feature sections, a pricing table, testimonial, CTA, and full forms.",
+  },
+];
+---
+
+<section class="overflow-hidden">
+  <div class="px-8 pt-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
+    <div class="max-w-2xl text-center mx-auto lg:text-balance">
+      <p class="text-sm leading-normal font-bold uppercase text-accent-600">
+        Tagline
+      </p>
+      <h2
+        class="text-xl leading-tight tracking-tight sm:text-2xl md:text-3xl lg:text-4xl mt-4 font-semibold text-base-900"
+      >
+        A starter template built with Astro and Tailwind CSS for your next
+        project
+      </h2>
+      <p class="text-base leading-normal mt-4 text-base-500 font-medium">
+        The fastest method for working together on staging and temporary
+        environments.
+      </p>
+      <div
+        class="flex flex-wrap items-center gap-2 justify-center mx-auto mt-12"
+      >
+        <a
+          href="https://github.com/michael-andreuzza/astrosaas"
+          class="flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-base-500 bg-white hover:text-accent-500 ring-1 ring-base-200 focus:ring-accent-500 h-9 px-4 py-2 text-sm font-medium rounded-md"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://lexingtonthemes.com"
+          class="flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-white bg-accent-600 hover:bg-accent-700 focus:ring-accent-500/50 h-9 px-4 py-2 text-sm font-medium rounded-md"
+        >
+          More themes
+        </a>
+      </div>
+    </div>
+    <dl
+      class="lg:gap-x-8 lg:grid-cols-3 max-w-4xl mt-8 mx-auto sm:gap-x-6 sm:gap-y-12 sm:grid sm:grid-cols-2 sm:space-y-0 space-y-6 text-center text-sm items-start"
+    >
+      {
+        featuresList.map(({ title, description }) => (
+          <div class="text-base-500 lg:text-balance">
+            <strong class="text-base-700">{title}</strong> ━ {description}
+          </div>
+        ))
+      }
+    </dl>
+    <div class="relative w-full mx-auto max-w-7xl items-center py-12 pb-12">
+      <img
+        alt="#_"
+        class="relative w-full ring-4 ring-base-50 border border-base-200 lg:rounded-2xl object-cover rounded"
+        src="https://oxbowui.com/images/dashboardLight.svg"
+      />
+    </div>
+  </div>
+</section>

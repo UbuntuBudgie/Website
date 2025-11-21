@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactForm from "../components/Forms/ContactForm.astro";
+
+const pageTitle = "Contact Us";
+const pageDescription = "Reach out to the Ubuntu Budgie team for media inquiries, partnership opportunities, or general feedback.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+    <div class="max-w-7xl mx-auto px-4 py-16 text-center space-y-6">
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-base-900">
+            Contact <span class="text-accent-600">The Team</span>
+        </h1>
+        <p class="text-lg text-base-500 max-w-2xl mx-auto">
+            We are always happy to hear from our community. Select the best method to reach us based on your needs.
+        </p>
+    </div>
+    
+    <ContactForm />
+</BaseLayout>

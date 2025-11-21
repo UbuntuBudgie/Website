@@ -1,0 +1,227 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Faq from "../components/infopages/Faq.astro";
+const pageTitle = "Downloads";
+
+
+---
+
+
+
+<BaseLayout>
+
+<div class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-4xl px-6 lg:px-8">
+    <div class="mx-auto text-center">
+      <h1 class="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+        Downloads
+      </h1>
+    </div>
+    
+    <div class="mt-16 text-lg text-gray-800">
+      <p class="font-semibold">We offer two stable releases:</p>
+      <ul class="mt-4 list-disc list-inside space-y-3">
+        <li>
+          <strong>24.04.3</strong> is a Long Term Support (LTS) release and is supported from Apr 2024 to Apr 2027
+        </li>
+        <li>
+          <strong>25.04</strong> is a standard release and is supported from April 2025 to Jan 2026
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="bg-[#2a2d34] py-16 sm:py-24">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    
+    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-2">
+
+      <!-- LTS Release Card -->
+      <div class="flex flex-col rounded-lg bg-[#3c3f4c] p-8 text-white">
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-gray-300">LTS Release</h3>
+        
+        <div class="mt-4 flex items-center justify-between gap-x-4">
+
+            <!-- Budgie Icon SVG -->
+   <img src="icons/ubuntu-w.svg"/>
+          </h4>
+          <span class="text-2xl font-semibold">24.04.3</span>
+        </div>
+
+        <p class="mt-4 text-sm leading-6 text-gray-300">
+          Ideal for computers with: 4GB or more of RAM, 64-bit capable Intel and AMD processors, UEFI PCs booting in CSM mode, Modern Intel-based Apple Macs
+        </p>
+
+        <div class="mt-8 flex flex-col gap-y-4">
+          <a href="#" class="rounded-lg bg-cyan-600 px-6 py-3 text-center font-semibold hover:bg-cyan-700">Download →</a>
+          <a href="#" class="rounded-lg bg-green-600 px-6 py-3 text-center font-semibold hover:bg-green-700">Torrent Download →</a>
+          <a href="#" class="rounded-lg bg-[#535768] px-6 py-3 text-center font-semibold hover:bg-opacity-80">Readme</a>
+          <a href="#" class="mt-4 self-center rounded-lg bg-black/50 px-6 py-3 text-center font-semibold hover:bg-black/70">Buy Ubuntu Budgie USB</a>
+        </div>
+        
+        <div class="mt-auto pt-8">
+            <h5 class="font-semibold text-gray-300">Checksum:</h5>
+            <p class="mt-2 text-sm font-semibold text-gray-300">sha256sum hash amd64.iso:</p>
+            <code class="mt-2 block break-all text-xs text-gray-400">
+              7acb4d56ea3edd79d6e8023d5bdcdf2bd04e1180e3a47f5355218e3bd11198d
+            </code>
+        </div>
+      </div>
+
+      <!-- Regular Release Card -->
+      <div class="flex flex-col rounded-lg bg-[#3c3f4c] p-8 text-white">
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-gray-300">Regular release</h3>
+        
+        <div class="mt-4 flex items-center justify-between gap-x-4">
+
+            <!-- Budgie Icon SVG -->
+      <img src="icons/ubuntu-w.svg"/>
+
+          </h4>
+          <span class="text-2xl font-semibold">25.04</span>
+        </div>
+        
+        <p class="mt-4 text-sm leading-6 text-gray-300">
+          Ideal for computers with: 4GB or more of RAM, 64-bit capable Intel and AMD processors, UEFI PCs booting in CSM mode, Modern Intel-based Apple Macs
+        </p>
+
+        <div class="mt-8 flex flex-col gap-y-4">
+          <a href="#" class="rounded-lg bg-cyan-600 px-6 py-3 text-center font-semibold hover:bg-cyan-700">Download →</a>
+          <a href="#" class="rounded-lg bg-green-600 px-6 py-3 text-center font-semibold hover:bg-green-700">Torrent Download →</a>
+          <a href="#" class="rounded-lg bg-[#535768] px-6 py-3 text-center font-semibold hover:bg-opacity-80">Readme</a>
+        </div>
+        
+        <div class="mt-auto pt-8">
+            <h5 class="font-semibold text-gray-300">Checksums:</h5>
+            <p class="mt-2 text-sm font-semibold text-gray-300">sha256sum hash amd64.iso:</p>
+            <code class="mt-2 block break-all text-xs text-gray-400">
+              dcc74c1c9b9bf00abab35385c21ec5a207f68ebf59ef57689c13d591b945f7962
+            </code>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="bg-white py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto">
+    
+    <!-- Preline Accordion Group with Border -->
+    <div class="hs-accordion-group divide-y divide-gray-200 border border-gray-200 rounded-xl">
+      <div class="hs-accordion" id="hs-installation-instructions">
+        <button class="hs-accordion-toggle group p-6 inline-flex items-center justify-between gap-x-3 w-full font-semibold text-start text-gray-800 transition hover:text-gray-500" aria-controls="hs-installation-instructions-content">
+          <span class="text-lg">Installation instructions for x86 (click to expand)</span>
+          <!-- Up/Down Chevron Icons -->
+          <svg class="hs-accordion-active:hidden block w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          <svg class="hs-accordion-active:block hidden w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+        </button>
+
+        <div id="hs-installation-instructions-content" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-installation-instructions">
+          <div class="px-6 pb-6">
+            
+            <article class="prose lg:prose-lg max-w-none">
+                <h1>Installation Instructions</h1>
+                
+                <p>Thank you for choosing Ubuntu Budgie for your new operating system. Ubuntu Budgie is a Ubuntu flavor using a desktop environment called Budgie. Budgie is a desktop environment focused on having a clean and yet powerful desktop without unnecessary bloat. Before installing, check the minimum specified hardware, so that you can have a flawless experience. Here are the minimum specs for running Ubuntu Budgie:</p>
+                
+                <h2>System Requirements</h2>
+                <ul>
+                  <li>Processor speed: 2.4Ghz</li>
+                  <li>Memory: 4GB of RAM</li>
+                  <li>Hard Disk space: 60GB</li>
+                </ul>
+                
+                <img src="screens/welcome.webp" alt="Welcome to Ubuntu Budgie splash screen." class="rounded-lg shadow-md mx-auto">
+                
+                <p><strong>Note:</strong> In 90% of cases you are good to go with those and specs above. However, some machines have specific hardware that requires you to check the driver before installation which is usually related to Broadcom Network cards found in laptops.</p>
+
+                <p>Before installation prepare the installation medium. You can choose either CD or DVD or use USB to serve as one. If you are using CD or DVD, use your favorite CD/DVD writer app to write the image to it. Windows users can use ImgBurn or Nero Burner and other similar burner apps. Mac users can use Etcher. If you are using USB as your installation medium you can use UNetbootin to make a bootable USB installation drive. Here are some tools that you can use to make a bootable USB:</p>
+
+                <h2>USB Tools</h2>
+                <ol>
+                  <li>Rufus - Windows only</li>
+                  <li>Universal USB Installer</li>
+                  <li>UnetBootin</li>
+                  <li>Ubuntu Startup Disk Creator</li>
+                  <li>RMPrepUSB</li>
+                  <li>Etcher – Multi-platform - Recommended for new users</li>
+                  <li>WinSetupFromUSB</li>
+                  <li>RMPrepUSB</li>
+                </ol>
+                
+                <img src="screens/rufus.jpg" alt="Rufus application screenshot showing settings for creating a bootable USB." class="rounded-lg shadow-md mx-auto">
+
+                <p>Since there is not yet Ubuntu Budgie as an option you must select Diskimage option, and then specify path to where you’ve downloaded iso. (Usually Downloads folder) Choose your USB drive and click ok. Note: When using Windows, be sure to check if UNetBootin has selected the correct drive letter. Failure to do so may result in loss of data. After you click ok, UNetBootin will start extracting ISO to USB. Congratulation, if everything went right you’ve made your bootable installation USB drive.</p>
+                
+                <p>After you’re done with making a bootable medium, restart your computer and choose to boot from the bootable USB drive. To boot from a bootable USB drive press F8 and select your USB which will be presented alongside other HDD and CD-DVD drives. Note: Some computers and laptops, depending on the Motherboard have different function key assigned to access the bootable menu. Some will show how to access boot options while booting, while others will require you to check each button by doing trial and error until you find the right one. If any of the buttons doesn’t have that function, head over to BIOS settings by pressing DEL button while booting, and go to Boot Device settings. Depending on your motherboard and BIOS software, this may be called something different. After you load the live version of Ubuntu Budgie, you can choose to load the operating system for testing and preview by pressing “Try Ubuntu Budgie without installing”, or press “Install Ubuntu Budgie” to go straight for installation. If you’ve chosen the first option, you will be still able to install the UB by using the Install Ubuntu Budgie icon located on the desktop.</p>
+                
+                <h2>STEP 2</h2>
+                <p>After you’ve setup your location, keyboard, and language settings, up next is drive partitioning. You have few different options. Depending on free space on HDD and how many HDD’s you have you can setup 2 system on same HDD or each on separate drive. Linux based systems use GRUB loader to boot. If you install it alongside other OS on same drive Grub will replace default bootloader, adding both newly installed Linux OS and old system on boot list to choose which to boot into. For new users it is recommended to choose install alongside currently installed system. If you want to replace your OS with Ubuntu Budgie you can also choose that option. Something else option is for more advanced users. If you choose it be sure to make following mounting drives. / - which is root space where all software required for OS is stored. /home – partition used for most of the software you install and storing everyday files. /boot partition – where boot files will be stored. /swap – partition used for accessing and using hard disk space as additional memory when using near 99% of your RAM.</p>
+                
+                <h2>SIZES:</h2>
+                <ul>
+                  <li><code class="text-sm">/</code> - 30GB or more</li>
+                  <li><code class="text-sm">/swap</code> - should be the same as your ram size – Note: Starting from 17.04 Ubuntu doesn’t use swap partition and instead uses swap files, so you don’t need to create swap partition.</li>
+                  <li><code class="text-sm">/boot</code> - 500MB</li>
+                  <li><code class="text-sm">/home</code> - rest of your hard disk space.</li>
+                </ul>
+
+                <p>If you don’t choose manual partitioning, (something else option), installer will automatically partition your drive for installation. Each partition should be formatted to ext4. To make them erase NTFS drive and then make 4 partitions with those mounting points. Swap partition needs to be set as swap partition type instead of ext4. Installer will ask you if you are sure before proceeding to installation. Note: If you have more than 2 HDD pay attention to where the bootloader is going to be installed since it could potentially mess your install. Next, you can choose username PC name and password. If you choose you can also encrypt your home partition for additional security.</p>
+                
+                <p>Note: Make sure you’ve chosen additional media that contains codes so that you could play your media files right after installation. Sit back and relax, the installation will also download updates if you choose that option and it could extend install time by few minutes depending on your Internet connection speed. When done, you can restart into newly installed Ubuntu Budgie.</p>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="bg-white py-16 sm:py-24">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+    <!-- Tip Section -->
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-xl font-bold text-gray-900">A little bit goes a long way.</h2>
+      <p class="mt-2 text-lg text-gray-700">
+        If everyone who downloaded Ubuntu Budgie donated £5 it would fund the continued development of Ubuntu Budgie. Please help the project flourish by showing your support with a tip.
+      </p>
+      
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="#" class="inline-block rounded-md bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-blue-700">
+          Tip £5
+        </a>
+        <a href="#" class="inline-block rounded-md bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-blue-700">
+          Tip £10
+        </a>
+        <a href="#" class="inline-block rounded-md bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-blue-700">
+          Tip £20
+        </a>
+        <a href="#" class="inline-block rounded-md bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-blue-700">
+          Tip £100
+        </a>
+      </div>
+    </div>
+
+    <!-- Custom USB Section -->
+    <div class="mt-16 max-w-2xl mx-auto">
+      <p class="text-lg text-gray-700">
+        Have you ever wanted to get your custom USB with Ubuntu Budgie preloaded? Now you can - we have partnered with TheLinuxShop to bring you custom USB drives preloaded with Ubuntu Budgie releases. For each USB bought, the percentage of the price, goes back to Ubuntu Budgie for funding development and other costs.
+      </p>
+      <div class="mt-8">
+        <a href="#" class="inline-block rounded-md bg-gray-800 px-8 py-3 text-base font-semibold text-white shadow-sm hover:bg-gray-700">
+          Buy Ubuntu Budgie USB
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</BaseLayout>
