@@ -1,11 +1,11 @@
 ---
-title: "budgie-remix 16.04 - end of support date"
-description: "End of support"
+title: budgie-remix 16.04 - end of support date
+description: End of support
 pubDate: 2018-05-22
 author: david
-category: "News"
+image: /files/media/budgie-codename-with-logo-744x251.jpg
+draft: false
 ---
-
 ![Budgie remix](images/budgie-remix.png)
 
 With a heavy heart the Ubuntu Budgie team today announce the end-of-support for our 16.04 budgie-remix edition from the beginning of August 2018.
