@@ -4,7 +4,7 @@ description: "New release available"
 pubDate: 2018-04-27
 category: "News"
 author: david
-image: "/2018/05/images/ubuntu_budgie_18.04-final.jpg"
+image: "/2018/04/images/ubuntu_budgie_18.04-final.jpg"
 ---
 
 We are pleased to announce the \*\*release\*\* of the next version of our distro, the third as an official flavor of the \*\*Ubuntu\*\* family and our very first LTS.

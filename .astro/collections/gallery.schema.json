@@ -1,13 +1,22 @@
 {
-  "$ref": "#/definitions/blog",
+  "$ref": "#/definitions/gallery",
   "definitions": {
-    "blog": {
+    "gallery": {
       "type": "object",
       "properties": {
         "title": {
           "type": "string"
         },
-        "pubDate": {
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "date": {
           "anyOf": [
             {
               "type": "string",
@@ -23,34 +32,14 @@
             }
           ]
         },
-        "author": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "image": {
-          "type": "string"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "draft": {
-          "type": "boolean",
-          "default": false
-        },
         "$schema": {
           "type": "string"
         }
       },
       "required": [
         "title",
-        "pubDate",
-        "author",
-        "description"
+        "image",
+        "date"
       ],
       "additionalProperties": false
     }

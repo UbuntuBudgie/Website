@@ -1,13 +1,19 @@
 {
-  "$ref": "#/definitions/blog",
+  "$ref": "#/definitions/downloads",
   "definitions": {
-    "blog": {
+    "downloads": {
       "type": "object",
       "properties": {
         "title": {
           "type": "string"
         },
-        "pubDate": {
+        "description": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "releaseDate": {
           "anyOf": [
             {
               "type": "string",
@@ -23,24 +29,15 @@
             }
           ]
         },
-        "author": {
+        "file": {
           "type": "string"
         },
-        "description": {
+        "fileSize": {
           "type": "string"
         },
-        "image": {
-          "type": "string"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "draft": {
-          "type": "boolean",
-          "default": false
+        "downloadCount": {
+          "type": "number",
+          "default": 0
         },
         "$schema": {
           "type": "string"
@@ -48,9 +45,10 @@
       },
       "required": [
         "title",
-        "pubDate",
-        "author",
-        "description"
+        "description",
+        "version",
+        "releaseDate",
+        "file"
       ],
       "additionalProperties": false
     }

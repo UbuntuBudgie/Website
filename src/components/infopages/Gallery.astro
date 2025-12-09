@@ -2,6 +2,8 @@
 // --- Gallery Image Data Structure ---
 // NOTE: You must place your screenshots in the /public/gallery/ directory
 // and update these file names and captions accordingly.
+import { getCollection, getEntry } from "astro:content";
+
 const galleryImages = [
   {
     src: '/screens/mainscreen.jpg',
@@ -172,7 +174,9 @@ const galleryImages = [
                                               
 ];
 
-
+const allImages = (await getCollection("gallery")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
 // Calculate grid columns dynamically (max 4 columns)
 const numImages = galleryImages.length;
 let gridCols = "grid-cols-2 sm:grid-cols-3";
@@ -216,17 +220,16 @@ if (numImages > 3) {
     <div class={`grid ${gridCols} gap-4`}>
       <>
         {
-          galleryImages.map((image) => (
+          allImages.map((image) => (
             <div 
               class="group block relative overflow-hidden rounded-lg cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
-              @click={`openModal('${image.src}', '${image.alt}')`} 
+              
               role="button"
               tabindex="0"
             >
               <img
-                class="w-full h-40 sm:h-48 object-cover bg-gray-100 rounded-lg transition-transform duration-300"
-                src={image.src}
-                alt={image.alt}
+               src={image.data.image} alt={image.data.title} 
+               class="w-full h-40 sm:h-48 object-cover bg-gray-100 rounded-lg transition-transform duration-300" 
                 loading="lazy"
               />
               
@@ -240,7 +243,7 @@ if (numImages > 3) {
               
               <!-- Caption/Alt Text at the bottom -->
               <div class="absolute bottom-0 inset-x-0 p-3 bg-white/90 rounded-b-lg border-t border-gray-200">
-                <p class="text-xs text-gray-700 font-medium">{image.alt}</p>
+                <p class="text-xs text-gray-700 font-medium">{image.data.description}</p>
               </div>
               
             </div>

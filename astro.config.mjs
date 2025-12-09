@@ -5,6 +5,11 @@ import tailwindcss from "@tailwindcss/vite";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
+  image: {
+    // Disable image optimization for paths in public folder
+    domains: [],
+    remotePatterns: [],
+  },
   vite: {
     plugins: [
       tailwindcss(),
@@ -12,16 +17,15 @@ export default defineConfig({
       viteStaticCopy({
         targets: [
           {
-            // The source is every 'images' folder inside your blog content
-            src: "src/content/blog/**/images/*",
-            // The destination is the 'blog' folder in your final build
-            dest: "blog",
+            // Copy images to match the URL structure (e.g., /2016/05/images/)
+            src: "src/content/blog",
+            dest: ".",
           },
         ],
       }),
     ],
   },
-  trailingSlash: "never",
+  trailingSlash: "ignore",
   output: "static",
   site: "https://yoursite.com",
   integrations: [sitemap()],
