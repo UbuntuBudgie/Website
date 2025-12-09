@@ -66,7 +66,7 @@ const galleryCollection = defineCollection({
     z.object({
       title: z.string(),
       description: z.string().optional(),
-      image: image(), // Required image field
+      image: z.string(), // Changed from image() to z.string() for static paths
       category: z.string().optional(),
       date: z.date(),
     }),
