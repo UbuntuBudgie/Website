@@ -1,0 +1,156 @@
+media:
+  input: files/media
+  output: /files/media
+
+content:
+  - name: blog
+    label: Blog
+    path: src/content/blog
+    type: collection
+    fields:
+      - name: title
+        type: string
+        label: Title
+        required: true
+
+      - name: description
+        type: string
+        label: Description
+        required: true
+
+      - name: pubDate
+        type: date
+        label: Publication Date
+        required: true
+
+      - name: author
+        type: string
+        label: Author
+        required: true
+
+      - name: image
+        type: image
+        label: Featured Image
+
+      - name: tags
+        type: string
+        label: Tags
+        list: true
+
+      - name: draft
+        type: boolean
+        label: Draft
+        default: false
+
+      - name: body
+        type: rich-text
+        label: Content
+        required: true
+
+  - name: gallery
+    label: Gallery
+    path: src/content/gallery
+    type: collection
+    fields:
+      - name: title
+        type: string
+        label: Title
+        required: true
+
+      - name: description
+        type: string
+        label: Description
+
+      - name: image
+        type: image
+        label: Image
+        required: true
+
+      - name: category
+        type: string
+        label: Category
+
+      - name: date
+        type: date
+        label: Date
+        required: true
+
+  - name: team
+    label: Team
+    path: src/content/team
+    type: collection
+    fields:
+      - name: name
+        type: string
+        label: Name
+        required: true
+
+      - name: role
+        type: string
+        label: Role
+        required: true
+
+      - name: bio
+        type: text
+        label: Biography
+
+      - name: avatar
+        type: image
+        label: Avatar
+
+      - name: email
+        type: string
+        label: Email
+
+      - name: social
+        type: object
+        label: Social Links
+        fields:
+          - name: twitter
+            type: string
+            label: Twitter
+          - name: github
+            type: string
+            label: GitHub
+          - name: linkedin
+            type: string
+            label: LinkedIn
+
+  - name: downloads
+    label: Downloads
+    path: src/content/downloads
+    type: collection
+    fields:
+      - name: title
+        type: string
+        label: Title
+        required: true
+
+      - name: description
+        type: string
+        label: Description
+        required: true
+
+      - name: version
+        type: string
+        label: Version
+        required: true
+
+      - name: releaseDate
+        type: date
+        label: Release Date
+        required: true
+
+      - name: file
+        type: file
+        label: Download File
+        required: true
+
+      - name: fileSize
+        type: string
+        label: File Size
+
+      - name: downloadCount
+        type: number
+        label: Download Count
+        default: 0
