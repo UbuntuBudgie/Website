@@ -222,8 +222,9 @@ if (numImages > 3) {
         {
           allImages.map((image) => (
             <div 
-              class="group block relative overflow-hidden rounded-lg cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
-              
+                class="group block relative overflow-hidden rounded-lg cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
+                @click={`openModal('${image.data.image}', '${image.data.description || image.data.title}')`}
+                @keydown.enter={`openModal('${image.data.image}', '${image.data.description || image.data.title}')`}
               role="button"
               tabindex="0"
             >
