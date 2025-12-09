@@ -1,8 +1,8 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 // 1. Import the plugin
-import { viteStaticCopy } from 'vite-plugin-static-copy';
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
   vite: {
@@ -13,16 +13,16 @@ export default defineConfig({
         targets: [
           {
             // The source is every 'images' folder inside your blog content
-            src: 'src/content/blog/**/images/*',
+            src: "src/content/blog/**/images/*",
             // The destination is the 'blog' folder in your final build
-            dest: 'blog'
-          }
-        ]
-      })
+            dest: "blog",
+          },
+        ],
+      }),
     ],
   },
-  trailingSlash: 'always',
-  output: 'static', 
-  site: 'https://yoursite.com',
-  integrations: [sitemap()]
+  trailingSlash: "never",
+  output: "static",
+  site: "https://yoursite.com",
+  integrations: [sitemap()],
 });
