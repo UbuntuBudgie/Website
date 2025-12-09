@@ -1,6 +1,6 @@
 media:
   input: public
-  output: /public # Added leading slash for standard web output path
+  output: public
 
 content:
   - name: blog

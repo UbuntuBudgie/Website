@@ -1,12 +1,11 @@
 ---
-title: "Ubuntu Budgie 25.04 release notes"
-description: "Release notes"
+title: Ubuntu Budgie 25.04 release notes
+description: Release notes
 pubDate: 2025-04-15
-category: "Other"
 author: david
-image: "/2025/04/images/budgie-codename-with-logo.jpg"
+image: public/2025/04/images/budgie-codename-with-logo.jpg
+draft: false
 ---
-
 ![](images/budgie-codename-with-logo-744x251.jpg)
 
 # Introduction and overview
@@ -17,12 +16,12 @@ These release notes showcase the key takeaways for 24.10 upgraders to 25.04. Ple
 
 In these release notes the areas covered are:
 
-- New features and enhancements released since 24.10
-- Upgrading from 24.10 Ubuntu Budgie
-- Fixed Issues
-- Known Issues when upgrading
-- Support arrangements for our distro
-- Where to download Ubuntu Budgie
+*   New features and enhancements released since 24.10
+*   Upgrading from 24.10 Ubuntu Budgie
+*   Fixed Issues
+*   Known Issues when upgrading
+*   Support arrangements for our distro
+*   Where to download Ubuntu Budgie
 
 ## New Features and Enhancements
 
@@ -68,23 +67,23 @@ The Ubuntu release notes are to be found [here](https://discourse.ubuntu.com/t/p
 
 Whilst not immediately obvious, various packages that we maintain need to be updated for a number of reasons, so this section lists what updates have been made.
 
-- gnome-online-accounts-gtk - this is the very latest upstream version
-- lightdm-settings
-- slick-greeter.
+*   gnome-online-accounts-gtk - this is the very latest upstream version
+*   lightdm-settings
+*   slick-greeter.
 
 Team member Sam has been busy packaging and testing the following for noble, oracular & plucky!
 
-- colloid-icon-theme
-- fluent-icon-theme
-- nemo-terminal
-- orchis-gtk-theme
-- tela-circle-icon-theme
-- vimix-gtk-themes
-- whitesur-icon-theme
-- colloid-gtk-theme
-- mojave-gtk-theme
-- fluent-gtk-theme
-- whitesur-gtk-theme
+*   colloid-icon-theme
+*   fluent-icon-theme
+*   nemo-terminal
+*   orchis-gtk-theme
+*   tela-circle-icon-theme
+*   vimix-gtk-themes
+*   whitesur-icon-theme
+*   colloid-gtk-theme
+*   mojave-gtk-theme
+*   fluent-gtk-theme
+*   whitesur-gtk-theme
 
 We also now maintain a brand-new app called waycheck - a must for all new & existing wayland developer to see what wayland protocols are supported by your choice of wayland compositor. Do check it out.
 
@@ -98,12 +97,12 @@ IMPORTANT: remember to double-check you have the following vital package before 
 sudo apt install ubuntu-budgie-desktop
 ```
 
-- Backup your data.
-- Install all available updates and reboot.
-- It is always a good idea to run either a full system snapshot with Timeshift, to a secondary drive, or a full system image using Clonezilla.
-- If you have PPAs that come with updated kernel, mesa, GPU drivers, it is better to purge those PPAs and reboot before attempting release upgrade.
-- Once release upgrade starts, all your PPAs will be disabled. If you rely on important software from PPAs, it is better to manually check if those are updated for upcoming release of Ubuntu.
-- After upgrade is completed, remember to go to software sources, change release name on your PPAs, enable them and refresh package cache.
+*   Backup your data.
+*   Install all available updates and reboot.
+*   It is always a good idea to run either a full system snapshot with Timeshift, to a secondary drive, or a full system image using Clonezilla.
+*   If you have PPAs that come with updated kernel, mesa, GPU drivers, it is better to purge those PPAs and reboot before attempting release upgrade.
+*   Once release upgrade starts, all your PPAs will be disabled. If you rely on important software from PPAs, it is better to manually check if those are updated for upcoming release of Ubuntu.
+*   After upgrade is completed, remember to go to software sources, change release name on your PPAs, enable them and refresh package cache.
 
 ### Scheduled upgrade from 24.04 LTS
 
@@ -137,7 +136,7 @@ Links to download final releases, as well as installation instructions, will be 
 
 ## Known Issues
 
-1. Setting/changing the session language. We noticed that Menu - Language Support sometimes doesn't actually set the language for the session. The current workaround is as follows. In a terminal run
+1.  Setting/changing the session language. We noticed that Menu - Language Support sometimes doesn't actually set the language for the session. The current workaround is as follows. In a terminal run
     
     ```
     localectl list-locales
@@ -157,7 +156,7 @@ Links to download final releases, as well as installation instructions, will be 
     
     Reboot
     
-2. On first install and logon, using budgie-welcome to access web-based installs such as Chrome will open gedit not firefox. The workaround is to launch firefox first. Logout and login and open Budgie Welcome again
+2.  On first install and logon, using budgie-welcome to access web-based installs such as Chrome will open gedit not firefox. The workaround is to launch firefox first. Logout and login and open Budgie Welcome again
     
 
 ## Infrastructure Sponsors

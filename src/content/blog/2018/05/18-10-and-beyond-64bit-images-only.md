@@ -1,11 +1,11 @@
 ---
-title: "18.10 and beyond - 64bit images only"
-description: "Next itteration to come as 64bit only"
+title: 18.10 and beyond - 64bit images only
+description: Next itteration to come as 64bit only
 pubDate: 2018-05-04
 author: david
-category: "News"
+image: /files/media/budgie-codename-with-logo-744x251-1.jpg
+draft: false
 ---
-
 We have had a successful release of Ubuntu Budgie 18.04 LTS and we now are in full planning mode for 18.10.
 
 Similar to the decision made by Ubuntu themselves at 17.10, we have decided to concentrate all our efforts on producing a really good image based on the hardware almost all of you actually use now.
