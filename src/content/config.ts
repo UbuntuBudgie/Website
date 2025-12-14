@@ -14,6 +14,15 @@ const blogCollection = defineCollection({
     }),
 });
 
+const pagesCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    showFaq: z.boolean().default(false),
+  }),
+});
+
 // Renamed from authorsCollection to teamCollection for clarity
 const authorsCollection = defineCollection({
   type: "content",
@@ -74,6 +83,7 @@ const galleryCollection = defineCollection({
 export const collections = {
   blog: blogCollection,
   authors: authorsCollection,
+  pages: pagesCollection, 
   team: teamCollection,
   downloads: downloadsCollection,
   gallery: galleryCollection,
