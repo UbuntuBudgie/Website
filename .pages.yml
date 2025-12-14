@@ -115,7 +115,7 @@ content:
 
   - name: downloads
     label: Downloads
-    path: src/content/downloads
+    path: src/pages/downloads
     type: file
     fields:
       - name: title
