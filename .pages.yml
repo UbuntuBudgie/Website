@@ -115,7 +115,7 @@ content:
 
   - name: downloads
     label: Downloads
-    path: src/pages/downloads.md
+    path: src/pages/downloads.mdx
     type: file
     fields:
       - name: title
