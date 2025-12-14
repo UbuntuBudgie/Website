@@ -116,7 +116,7 @@ content:
   - name: downloads
     label: Downloads
     path: src/pages/downloads.astro
-    type: file
+    type: collection
     fields:
       - name: title
         type: string
