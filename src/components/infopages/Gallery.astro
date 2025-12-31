@@ -1,188 +1,41 @@
 ---
-// --- Gallery Image Data Structure ---
-// NOTE: You must place your screenshots in the /public/gallery/ directory
-// and update these file names and captions accordingly.
-import { getCollection, getEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
 const galleryImages = [
-  {
-    src: '/screens/mainscreen.jpg',
-    alt: 'Ubuntu Budgie desktop showing a dark theme with a calendar app.',
-    caption: 'The clean and intuitive Budgie desktop environment.',
-  },
-  {
-    src: '/gallery/fullscreenmenu.webp',
-    alt: 'App menu launcher displaying various applications in a grid view.',
-    caption: 'Finding your favorite applications is fast and easy.',
-  },
-  {
-    src: '/gallery/quicknote.jpg',
-    alt: 'Screenshot of quick note applet.',
-    caption: 'Quick Note applet allows you to paste anything you may need soon',
-  },
-  {
-    src: '/gallery/sidebar.png',
-    alt: 'A detailed shot of the Raven sidebar notification center.',
-    caption: 'Raven sidebar for notifications and quick settings.',
-  },
-  {
-    src: '/gallery/installer.jpg',
-    alt: 'Ubuntu Budgie Installer',
-    caption: 'Easily install Ubuntu Budgie via GUI installer.',
-  },
-    {
-    src: '/gallery/power.png',
-    alt: 'Power settings to manage system power usage.',
-    caption: 'Power settings',
-  },
-      {
-    src: '/gallery/greeter.png',
-    alt: 'Visual pleasing Login Screen.',
-    caption: 'Simple to login',
-  },
-       {
-    src: '/gallery/classicmenu.png',
-    alt: 'Classical Start Menu in Budgie',
-    caption: 'Classic Start Menu',
-  },
-         {
-    src: '/gallery/fluent-lightdark.jpg',
-    alt: 'Fluent Light and Dark Theme Look',
-    caption: 'Fluent Light and Dark Theme',
-  },
-           {
-    src: '/gallery/systemoverview.png',
-    alt: 'System Overview Information Panel',
-    caption: 'System Overview',
-  },
-             {
-    src: '/gallery/arm.png',
-    alt: 'Budgie ARM TweakTool Customization',
-    caption: 'Budgie ARM TweakTool Overview',
-  },
-              {
-    src: '/gallery/action.png',
-    alt: 'Quick Action Menu',
-    caption: 'Quick Action Menu',
-  },
-                {
-    src: '/gallery/rclock.png',
-    alt: 'Raven Clock Widget',
-    caption: 'Raven Clock',
-  },
-                  {
-    src: '/gallery/hotcorner.png',
-    alt: 'Hot Corner Menu Settings',
-    caption: 'HOt Corner Menu',
-  },
-                 {
-    src: '/gallery/wal.png',
-    alt: 'Weather Applet Light Theme',
-    caption: 'Weather Applet Light',
-  },
-{
-      src: '/gallery/wad.png',
-    alt: 'Weather Applet Dark Theme',
-    caption: 'Weather Applet Dark',
-  },
-  {
-      src: '/gallery/hca.png',
-    alt: 'Hot Corner Applet',
-    caption: 'Hot Corner Applet',
-  },
-   {
-      src: '/gallery/settings.png',
-    alt: 'Budgie Settings',
-    caption: 'Budgie Theme Settings',
-  },
-     {
-      src: '/gallery/screenshot.png',
-    alt: 'Screenshot Applet',
-    caption: 'Screenshot Applet Settings',
-  },
-       {
-      src: '/gallery/ssas.png',
-    alt: 'Screenshot Applet Settings',
-    caption: 'Screenshoot Applet Image Settings',
-  },     
-       {
-      src: '/gallery/ssas.png',
-    alt: 'Screenshot Applet Settings',
-    caption: 'Screenshoot Applet Image Settings',
-  },
-         {
-      src: '/gallery/tal.png',
-    alt: 'Ubuntu Budgie Welcome Themes and Layouts',
-    caption: 'Themes and Layouts',
-  }, 
-         {
-      src: '/gallery/bw.jpg',
-    alt: 'Ubuntu Budgie Welcome',
-    caption: 'Ubuntu Budgie Welcome',
-  },
-           {
-      src: '/gallery/bw.jpg',
-    alt: 'Ubuntu Budgie Welcome',
-    caption: 'Ubuntu Budgie Welcome',
-  },    
-             {
-      src: '/gallery/ubg.jpg',
-    alt: 'Ubuntu Budgie Welcome Gaming Section',
-    caption: 'Ubuntu Budgie Welcome - Gaming',
-  },  
-               {
-      src: '/gallery/extras.jpg',
-    alt: 'Ubuntu Budgie Welcome Extras Section',
-    caption: 'Ubuntu Budgie Welcome - Extras',
-  },  
-                 {
-      src: '/gallery/exmenu.png',
-    alt: 'Ubuntu Budgie Extended Menu',
-    caption: 'Extended Menu',
-  },
-                 {
-      src: '/gallery/bsettings.png',
-    alt: 'Ubuntu Budgie Settings',
-    caption: 'Settings',
-  },
-                   {
-      src: '/gallery/hotcorners.webp',
-    alt: 'Hotcorners Applet Actions',
-    caption: 'Hotcorners Actions',
-  },
-                   {
-      src: '/gallery/shuffler.png',
-    alt: 'Shuffler Applet',
-    caption: 'Shuffler Applet',
-  },
-                     {
-      src: '/gallery/fullscreenmenu.webp',
-    alt: 'Fullscreen Applet',
-    caption: 'Fullscreen Menu Applet',
-  },
-                     {
-      src: '/gallery/backup.png',
-    alt: 'Backup Application',
-    caption: 'Backup Application',
-  },
-                       {
-      src: '/gallery/exmenu.jpg',
-    alt: 'Extended Menu Applet',
-    caption: 'Extended Menu 2',
-  },
-         
-                                              
+  { src: '/screens/mainscreen.jpg', alt: 'Ubuntu Budgie desktop showing a dark theme with a calendar app.', caption: 'The clean and intuitive Budgie desktop environment.' },
+  { src: '/gallery/fullscreenmenu.webp', alt: 'App menu launcher displaying various applications in a grid view.', caption: 'Finding your favorite applications is fast and easy.' },
+  { src: '/gallery/quicknote.jpg', alt: 'Screenshot of quick note applet.', caption: 'Quick Note applet allows you to paste anything you may need soon' },
+  { src: '/gallery/sidebar.png', alt: 'A detailed shot of the Raven sidebar notification center.', caption: 'Raven sidebar for notifications and quick settings.' },
+  { src: '/gallery/installer.jpg', alt: 'Ubuntu Budgie Installer', caption: 'Easily install Ubuntu Budgie via GUI installer.' },
+  { src: '/gallery/power.png', alt: 'Power settings to manage system power usage.', caption: 'Power settings' },
+  { src: '/gallery/greeter.png', alt: 'Visual pleasing Login Screen.', caption: 'Simple to login' },
+  { src: '/gallery/classicmenu.png', alt: 'Classical Start Menu in Budgie', caption: 'Classic Start Menu' },
+  { src: '/gallery/fluent-lightdark.jpg', alt: 'Fluent Light and Dark Theme Look', caption: 'Fluent Light and Dark Theme' },
+  { src: '/gallery/systemoverview.png', alt: 'System Overview Information Panel', caption: 'System Overview' },
+  { src: '/gallery/arm.png', alt: 'Budgie ARM TweakTool Customization', caption: 'Budgie ARM TweakTool Overview' },
+  { src: '/gallery/action.png', alt: 'Quick Action Menu', caption: 'Quick Action Menu' },
+  { src: '/gallery/rclock.png', alt: 'Raven Clock Widget', caption: 'Raven Clock' },
+  { src: '/gallery/hotcorner.png', alt: 'Hot Corner Menu Settings', caption: 'Hot Corner Menu' },
+  { src: '/gallery/wal.png', alt: 'Weather Applet Light Theme', caption: 'Weather Applet Light' },
+  { src: '/gallery/wad.png', alt: 'Weather Applet Dark Theme', caption: 'Weather Applet Dark' },
+  { src: '/gallery/hca.png', alt: 'Hot Corner Applet', caption: 'Hot Corner Applet' },
+  { src: '/gallery/settings.png', alt: 'Budgie Settings', caption: 'Budgie Theme Settings' },
+  { src: '/gallery/screenshot.png', alt: 'Screenshot Applet', caption: 'Screenshot Applet Settings' },
+  { src: '/gallery/ssas.png', alt: 'Screenshot Applet Settings', caption: 'Screenshot Applet Image Settings' },
+  { src: '/gallery/tal.png', alt: 'Ubuntu Budgie Welcome Themes and Layouts', caption: 'Themes and Layouts' },
+  { src: '/gallery/bw.jpg', alt: 'Ubuntu Budgie Welcome', caption: 'Ubuntu Budgie Welcome' },
+  { src: '/gallery/ubg.jpg', alt: 'Ubuntu Budgie Welcome Gaming Section', caption: 'Ubuntu Budgie Welcome - Gaming' },
+  { src: '/gallery/extras.jpg', alt: 'Ubuntu Budgie Welcome Extras Section', caption: 'Ubuntu Budgie Welcome - Extras' },
+  { src: '/gallery/exmenu.png', alt: 'Ubuntu Budgie Extended Menu', caption: 'Extended Menu' },
+  { src: '/gallery/bsettings.png', alt: 'Ubuntu Budgie Settings', caption: 'Settings' },
+  { src: '/gallery/hotcorners.webp', alt: 'Hotcorners Applet Actions', caption: 'Hotcorners Actions' },
+  { src: '/gallery/shuffler.png', alt: 'Shuffler Applet', caption: 'Shuffler Applet' },
+  { src: '/gallery/backup.png', alt: 'Backup Application', caption: 'Backup Application' },
 ];
 
-const allImages = (await getCollection("gallery")).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
-// Calculate grid columns dynamically (max 4 columns)
 const numImages = galleryImages.length;
 let gridCols = "grid-cols-2 sm:grid-cols-3";
-if (numImages > 3) {
-    gridCols = "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4";
-}
+if (numImages > 3) gridCols = "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4";
 ---
 
 <div
@@ -190,16 +43,8 @@ if (numImages > 3) {
     isModalOpen: false, 
     currentImage: '', 
     currentAlt: '',
-    openModal(src, alt) {
-      this.currentImage = src;
-      this.currentAlt = alt;
-      this.isModalOpen = true;
-    },
-    closeModal() {
-      this.isModalOpen = false;
-      this.currentImage = '';
-      this.currentAlt = '';
-    }
+    openModal(src, alt) { this.currentImage = src; this.currentAlt = alt; this.isModalOpen = true; },
+    closeModal() { this.isModalOpen = false; this.currentImage = ''; this.currentAlt = ''; }
   }"
   @keydown.escape.window="closeModal()"
   class="py-20 lg:py-32"
@@ -218,106 +63,30 @@ if (numImages > 3) {
 
     <!-- Gallery Grid -->
     <div class={`grid ${gridCols} gap-4`}>
-      <>
-        {
-          allImages.map((image) => (
-            <div 
-                class="group block relative overflow-hidden rounded-lg cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
-                @click={`openModal('${image.data.image}', '${image.data.description || image.data.title}')`}
-                @keydown.enter={`openModal('${image.data.image}', '${image.data.description || image.data.title}')`}
-              role="button"
-              tabindex="0"
-            >
-              <img
-               src={image.data.image} alt={image.data.title} 
-               class="w-full h-40 sm:h-48 object-cover bg-gray-100 rounded-lg transition-transform duration-300" 
-                loading="lazy"
-              />
-              
-              <!-- View button (Top Right) -->
-              <div class="absolute top-2 end-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div class="flex items-center gap-x-1.5 py-1.5 px-2.5 bg-white/90 border border-gray-200 text-gray-800 rounded-lg shadow-sm">
-                  <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                  <span class="text-xs font-medium">View</span>
-                </div>
-              </div>
-              
-              <!-- Caption/Alt Text at the bottom -->
-              <div class="absolute bottom-0 inset-x-0 p-3 bg-white/90 rounded-b-lg border-t border-gray-200">
-                <p class="text-xs text-gray-700 font-medium">{image.data.description}</p>
-              </div>
-              
-            </div>
-          ))
-        }
-      </>
-    </div>
-
-    <!-- Call to Action -->
-    <div class="mt-20 text-center">
-      <h2 class="text-2xl font-bold text-base-900">Ready to try it yourself?</h2>
-      <a href="/download" 
-         class="inline-block mt-6 rounded-md bg-accent-600 px-8 py-4 text-lg font-semibold text-white shadow-md hover:bg-accent-700 transition transform hover:scale-105"
-      >
-        Download Ubuntu Budgie
-      </a>
+      {galleryImages.map(image => (
+        <div 
+          class="group block relative overflow-hidden rounded-lg cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
+          @click={`openModal('${image.src}', '${image.caption}')`}
+          @keydown.enter={`openModal('${image.src}', '${image.caption}')`}
+          role="button"
+          tabindex="0"
+        >
+          <img src={image.src} alt={image.alt} class="w-full h-40 sm:h-48 object-cover bg-gray-100 rounded-lg transition-transform duration-300" loading="lazy"/>
+          
+          <!-- Caption -->
+          <div class="absolute bottom-0 inset-x-0 p-3 bg-white/90 rounded-b-lg border-t border-gray-200">
+            <p class="text-xs text-gray-700 font-medium">{image.caption}</p>
+          </div>
+        </div>
+      ))}
     </div>
 
   </div>
 
-  <!-- Alpine.js Lightbox Modal (Unchanged) -->
+  <!-- Modal Lightbox -->
   <template x-teleport="body">
-    <div 
-      x-show="isModalOpen" 
-      x-transition:enter="ease-out duration-300"
-      x-transition:enter-start="opacity-0"
-      x-transition:enter-end="opacity-100"
-      x-transition:leave="ease-in duration-200"
-      x-transition:leave-start="opacity-100"
-      x-transition:leave-end="opacity-0"
-      class="fixed inset-0 z-[9999] overflow-y-auto"
-      aria-labelledby="modal-title" 
-      role="dialog" 
-      aria-modal="true"
-    >
-      <!-- Modal Overlay -->
-      <div 
-        @click="closeModal()" 
-        class="fixed inset-0 bg-base-950 bg-opacity-90 transition-opacity"
-      ></div>
-
-      <!-- Modal Container -->
-      <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
-        <div 
-          x-show="isModalOpen"
-          x-transition:enter="ease-out duration-300"
-          x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-          x-transition:leave="ease-in duration-200"
-          x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-          x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          class="relative transform overflow-hidden rounded-lg shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-7xl"
-        >
-          <div class="bg-base-950 p-2 sm:p-4">
-            <div class="relative">
-                <!-- Image -->
-                <img :src="currentImage" :alt="currentAlt" class="w-full h-auto rounded-lg max-h-[90vh] object-contain">
-
-                <!-- Close Button -->
-                <button 
-                    @click="closeModal()" 
-                    class="absolute top-2 right-2 bg-base-900/50 hover:bg-base-900/80 text-white p-2 rounded-full transition focus:outline-none"
-                    aria-label="Close image viewer"
-                >
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                </button>
-            </div>
-          </div>
-          <div class="bg-base-950 px-4 py-3 sm:px-6">
-            <p class="text-sm text-base-300 text-center" x-text="currentAlt"></p>
-          </div>
-        </div>
-      </div>
+    <div x-show="isModalOpen" class="fixed inset-0 z-9999 flex items-center justify-center p-4 bg-base-950 bg-opacity-90" @click.self="closeModal()">
+      <img :src="currentImage" :alt="currentAlt" class="max-h-[90vh] object-contain rounded-lg shadow-lg"/>
     </div>
   </template>
 </div>
