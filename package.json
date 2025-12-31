@@ -15,6 +15,7 @@
     "@tailwindcss/typography": "^0.5.15",
     "@tailwindcss/vite": "^4.0.0-alpha.23",
     "astro": "^5.14.6",
+    "esbuild": "^0.27.2",
     "tailwindcss": "^4.0.0-alpha.23",
     "vite-plugin-static-copy": "^3.1.2"
   },
