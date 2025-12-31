@@ -73,6 +73,14 @@ if (numImages > 3) gridCols = "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4";
         >
           <img src={image.src} alt={image.alt} class="w-full h-40 sm:h-48 object-cover bg-gray-100 rounded-lg transition-transform duration-300" loading="lazy"/>
           
+          <!-- View overlay -->
+          <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="flex items-center gap-x-1.5 py-1.5 px-2.5 bg-white/90 border border-gray-200 text-gray-800 rounded-lg shadow-sm">
+              <svg class="shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+              <span class="text-xs font-medium">View</span>
+            </div>
+          </div>
+
           <!-- Caption -->
           <div class="absolute bottom-0 inset-x-0 p-3 bg-white/90 rounded-b-lg border-t border-gray-200">
             <p class="text-xs text-gray-700 font-medium">{image.caption}</p>
@@ -83,10 +91,29 @@ if (numImages > 3) gridCols = "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4";
 
   </div>
 
-  <!-- Modal Lightbox -->
+  <!-- Alpine.js Lightbox Modal -->
   <template x-teleport="body">
-    <div x-show="isModalOpen" class="fixed inset-0 z-9999 flex items-center justify-center p-4 bg-base-950 bg-opacity-90" @click.self="closeModal()">
-      <img :src="currentImage" :alt="currentAlt" class="max-h-[90vh] object-contain rounded-lg shadow-lg"/>
+    <div 
+      x-show="isModalOpen"
+      x-transition:enter="ease-out duration-300"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="ease-in duration-200"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="fixed inset-0 z-9999 flex items-center justify-center p-4 overflow-y-auto bg-base-950 bg-opacity-90"
+      aria-labelledby="modal-title" 
+      role="dialog" 
+      aria-modal="true"
+    >
+      <!-- Modal Container -->
+      <div class="relative w-full max-w-4xl">
+        <img :src="currentImage" :alt="currentAlt" class="w-full h-auto rounded-lg object-contain max-h-[90vh] shadow-lg"/>
+        <button @click="closeModal()" class="absolute top-2 right-2 bg-base-900/50 hover:bg-base-900/80 text-white p-2 rounded-full transition focus:outline-none" aria-label="Close image viewer">
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+        <p class="mt-2 text-center text-sm text-base-300">{/* Alpine will update text */}<span x-text="currentAlt"></span></p>
+      </div>
     </div>
   </template>
 </div>
