@@ -1,7 +1,7 @@
-// Copyright 2013 Lovell Fuller and others.
-// SPDX-License-Identifier: Apache-2.0
-
-'use strict';
+/*!
+  Copyright 2013 Lovell Fuller and others.
+  SPDX-License-Identifier: Apache-2.0
+*/
 
 const is = require('./is');
 
@@ -579,7 +579,7 @@ function trim (options) {
  * @module Sharp
  * @private
  */
-module.exports = function (Sharp) {
+module.exports = (Sharp) => {
   Object.assign(Sharp.prototype, {
     resize,
     extend,

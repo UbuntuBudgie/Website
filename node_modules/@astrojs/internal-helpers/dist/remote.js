@@ -17,8 +17,11 @@ function matchHostname(url, hostname, allowWildcard = false) {
     return slicedHostname !== url.hostname && url.hostname.endsWith(slicedHostname);
   } else if (hostname.startsWith("*.")) {
     const slicedHostname = hostname.slice(1);
-    const additionalSubdomains = url.hostname.replace(slicedHostname, "").split(".").filter(Boolean);
-    return additionalSubdomains.length === 1;
+    if (!url.hostname.endsWith(slicedHostname)) {
+      return false;
+    }
+    const subdomainWithDot = url.hostname.slice(0, -(slicedHostname.length - 1));
+    return subdomainWithDot.endsWith(".") && !subdomainWithDot.slice(0, -1).includes(".");
   }
   return false;
 }
@@ -45,10 +48,7 @@ function isRemoteAllowed(src, {
     return false;
   }
   const url = new URL(src);
-  if (url.protocol === "data:") {
-    return true;
-  }
-  if (!["http:", "https:"].includes(url.protocol)) {
+  if (!["http:", "https:", "data:"].includes(url.protocol)) {
     return false;
   }
   return domains.some((domain) => matchHostname(url, domain)) || remotePatterns.some((remotePattern) => matchPattern(url, remotePattern));

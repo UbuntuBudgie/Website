@@ -1,26 +1,20 @@
 /**
- * @typedef {import('hast').Comment} Comment
- * @typedef {import('hast').Doctype} Doctype
- * @typedef {import('hast').Element} Element
- * @typedef {import('hast').Nodes} Nodes
- * @typedef {import('hast').Root} Root
- * @typedef {import('hast').RootContent} RootContent
- * @typedef {import('hast').Text} Text
- *
- * @typedef {import('parse5').DefaultTreeAdapterMap['document']} Parse5Document
- * @typedef {import('parse5').DefaultTreeAdapterMap['documentFragment']} Parse5Fragment
- * @typedef {import('parse5').DefaultTreeAdapterMap['element']} Parse5Element
- * @typedef {import('parse5').DefaultTreeAdapterMap['node']} Parse5Nodes
- * @typedef {import('parse5').DefaultTreeAdapterMap['documentType']} Parse5Doctype
- * @typedef {import('parse5').DefaultTreeAdapterMap['commentNode']} Parse5Comment
- * @typedef {import('parse5').DefaultTreeAdapterMap['textNode']} Parse5Text
- * @typedef {import('parse5').DefaultTreeAdapterMap['parentNode']} Parse5Parent
- * @typedef {import('parse5').Token.Attribute} Parse5Attribute
- *
- * @typedef {import('property-information').Schema} Schema
+ * @import {Comment, Doctype, Element, Nodes, RootContent, Root, Text} from 'hast'
+ * @import {DefaultTreeAdapterMap, Token} from 'parse5'
+ * @import {Schema} from 'property-information'
  */
 
 /**
+ * @typedef {DefaultTreeAdapterMap['document']} Parse5Document
+ * @typedef {DefaultTreeAdapterMap['documentFragment']} Parse5Fragment
+ * @typedef {DefaultTreeAdapterMap['element']} Parse5Element
+ * @typedef {DefaultTreeAdapterMap['node']} Parse5Nodes
+ * @typedef {DefaultTreeAdapterMap['documentType']} Parse5Doctype
+ * @typedef {DefaultTreeAdapterMap['commentNode']} Parse5Comment
+ * @typedef {DefaultTreeAdapterMap['textNode']} Parse5Text
+ * @typedef {DefaultTreeAdapterMap['parentNode']} Parse5Parent
+ * @typedef {Token.Attribute} Parse5Attribute
+ *
  * @typedef Options
  *   Configuration.
  * @property {Space | null | undefined} [space='html']

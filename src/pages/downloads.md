@@ -50,7 +50,7 @@ Thank you for choosing Ubuntu Budgie for your new operating system. Ubuntu Budgi
 - Memory: 4GB RAM  
 - Hard Disk space: 60GB  
 
-![Welcome screen](screens/welcome.webp)
+![Welcome screen](/public/screens/welcome.webp)
 
 **Note:** Some machines require checking drivers, usually Broadcom network cards.
 
@@ -67,7 +67,7 @@ You can use CD, DVD, or USB. Tools:
 7. WinSetupFromUSB  
 8. RMPrepUSB
 
-![Rufus screenshot](screens/rufus.jpg)
+![Rufus screenshot](/public/screens/rufus.jpg)
 
 **Bootable USB instructions**: Select Diskimage option, choose ISO, select USB drive, start extraction. After, restart and boot from USB.
 

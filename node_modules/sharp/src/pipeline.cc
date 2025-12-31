@@ -1,9 +1,11 @@
-// Copyright 2013 Lovell Fuller and others.
-// SPDX-License-Identifier: Apache-2.0
+/*!
+  Copyright 2013 Lovell Fuller and others.
+  SPDX-License-Identifier: Apache-2.0
+*/
 
 #include <algorithm>
 #include <cmath>
-#include <filesystem>
+#include <filesystem>  // NOLINT(build/c++17)
 #include <map>
 #include <memory>
 #include <numeric>
@@ -17,9 +19,9 @@
 #include <vips/vips8>
 #include <napi.h>
 
-#include "common.h"
-#include "operations.h"
-#include "pipeline.h"
+#include "./common.h"
+#include "./operations.h"
+#include "./pipeline.h"
 
 class PipelineWorker : public Napi::AsyncWorker {
  public:
@@ -453,12 +455,10 @@ class PipelineWorker : public Napi::AsyncWorker {
           std::tie(image, background) = sharp::ApplyAlpha(image, baton->resizeBackground, shouldPremultiplyAlpha);
 
           // Embed
-          int left;
-          int top;
-          std::tie(left, top) = sharp::CalculateEmbedPosition(
+          const auto& [left, top] = sharp::CalculateEmbedPosition(
             inputWidth, inputHeight, baton->width, baton->height, baton->position);
-          int width = std::max(inputWidth, baton->width);
-          int height = std::max(inputHeight, baton->height);
+          const int width = std::max(inputWidth, baton->width);
+          const int height = std::max(inputHeight, baton->height);
 
           image = nPages > 1
             ? sharp::EmbedMultiPage(image,
@@ -477,13 +477,10 @@ class PipelineWorker : public Napi::AsyncWorker {
           // Crop
           if (baton->position < 9) {
             // Gravity-based crop
-            int left;
-            int top;
-
-            std::tie(left, top) = sharp::CalculateCrop(
+            const auto& [left, top] = sharp::CalculateCrop(
               inputWidth, inputHeight, baton->width, baton->height, baton->position);
-            int width = std::min(inputWidth, baton->width);
-            int height = std::min(inputHeight, baton->height);
+            const int width = std::min(inputWidth, baton->width);
+            const int height = std::min(inputHeight, baton->height);
 
             image = nPages > 1
               ? sharp::CropMultiPage(image,
@@ -795,20 +792,14 @@ class PipelineWorker : public Napi::AsyncWorker {
         image = sharp::EnsureAlpha(image, baton->ensureAlpha);
       }
 
-      // Convert image to sRGB, if not already
+      // Ensure output colour space
       if (sharp::Is16Bit(image.interpretation())) {
         image = image.cast(VIPS_FORMAT_USHORT);
       }
       if (image.interpretation() != baton->colourspace) {
-        // Convert colourspace, pass the current known interpretation so libvips doesn't have to guess
         image = image.colourspace(baton->colourspace, VImage::option()->set("source_space", image.interpretation()));
-        // Transform colours from embedded profile to output profile
-        if ((baton->keepMetadata & VIPS_FOREIGN_KEEP_ICC) && baton->colourspacePipeline != VIPS_INTERPRETATION_CMYK &&
-          baton->withIccProfile.empty() && sharp::HasProfile(image)) {
-          image = image.icc_transform(processingProfile, VImage::option()
-            ->set("embedded", true)
-            ->set("depth", sharp::Is16Bit(image.interpretation()) ? 16 : 8)
-            ->set("intent", VIPS_INTENT_PERCEPTUAL));
+        if (inputProfile.first != nullptr && baton->withIccProfile.empty()) {
+          image = sharp::SetProfile(image, inputProfile);
         }
       }
 
@@ -843,8 +834,6 @@ class PipelineWorker : public Napi::AsyncWorker {
         } catch(...) {
           sharp::VipsWarningCallback(nullptr, G_LOG_LEVEL_WARNING, "Invalid profile", nullptr);
         }
-      } else if (baton->keepMetadata & VIPS_FOREIGN_KEEP_ICC) {
-        image = sharp::SetProfile(image, inputProfile);
       }
 
       // Negate the colours in the image
@@ -866,8 +855,8 @@ class PipelineWorker : public Napi::AsyncWorker {
         if (!baton->withExifMerge) {
           image = sharp::RemoveExif(image);
         }
-        for (const auto& s : baton->withExif) {
-          image.set(s.first.data(), s.second.data());
+        for (const auto& [key, value] : baton->withExif) {
+          image.set(key.c_str(), value.c_str());
         }
       }
       // XMP buffer
@@ -1009,6 +998,7 @@ class PipelineWorker : public Napi::AsyncWorker {
             ->set("Q", baton->tiffQuality)
             ->set("bitdepth", baton->tiffBitdepth)
             ->set("compression", baton->tiffCompression)
+            ->set("bigtiff", baton->tiffBigtiff)
             ->set("miniswhite", baton->tiffMiniswhite)
             ->set("predictor", baton->tiffPredictor)
             ->set("pyramid", baton->tiffPyramid)
@@ -1211,6 +1201,7 @@ class PipelineWorker : public Napi::AsyncWorker {
             ->set("Q", baton->tiffQuality)
             ->set("bitdepth", baton->tiffBitdepth)
             ->set("compression", baton->tiffCompression)
+            ->set("bigtiff", baton->tiffBigtiff)
             ->set("miniswhite", baton->tiffMiniswhite)
             ->set("predictor", baton->tiffPredictor)
             ->set("pyramid", baton->tiffPyramid)
@@ -1276,7 +1267,12 @@ class PipelineWorker : public Napi::AsyncWorker {
       if (what && what[0]) {
         (baton->err).append(what);
       } else {
-        (baton->err).append("Unknown error");
+        if (baton->input->failOn == VIPS_FAIL_ON_WARNING) {
+          (baton->err).append("Warning treated as error due to failOn setting");
+          baton->errUseWarning = true;
+        } else {
+          (baton->err).append("Unknown error");
+        }
       }
     }
     // Clean up libvips' per-request data and threads
@@ -1291,7 +1287,11 @@ class PipelineWorker : public Napi::AsyncWorker {
     // Handle warnings
     std::string warning = sharp::VipsWarningPop();
     while (!warning.empty()) {
-      debuglog.Call(Receiver().Value(), { Napi::String::New(env, warning) });
+      if (baton->errUseWarning) {
+        (baton->err).append("\n").append(warning);
+      } else {
+        debuglog.Call(Receiver().Value(), { Napi::String::New(env, warning) });
+      }
       warning = sharp::VipsWarningPop();
     }
 
@@ -1435,11 +1435,11 @@ class PipelineWorker : public Napi::AsyncWorker {
   std::string
   AssembleSuffixString(std::string extname, std::vector<std::pair<std::string, std::string>> options) {
     std::string argument;
-    for (auto const &option : options) {
+    for (const auto& [key, value] : options) {
       if (!argument.empty()) {
         argument += ",";
       }
-      argument += option.first + "=" + option.second;
+      argument += key + "=" + value;
     }
     return extname + "[" + argument + "]";
   }
@@ -1750,6 +1750,7 @@ Napi::Value pipeline(const Napi::CallbackInfo& info) {
   baton->gifReuse = sharp::AttrAsBool(options, "gifReuse");
   baton->gifProgressive = sharp::AttrAsBool(options, "gifProgressive");
   baton->tiffQuality = sharp::AttrAsUint32(options, "tiffQuality");
+  baton->tiffBigtiff = sharp::AttrAsBool(options, "tiffBigtiff");
   baton->tiffPyramid = sharp::AttrAsBool(options, "tiffPyramid");
   baton->tiffMiniswhite = sharp::AttrAsBool(options, "tiffMiniswhite");
   baton->tiffBitdepth = sharp::AttrAsUint32(options, "tiffBitdepth");

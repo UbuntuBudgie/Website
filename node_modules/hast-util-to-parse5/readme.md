@@ -12,20 +12,20 @@
 
 ## Contents
 
-*   [What is this?](#what-is-this)
-*   [When should I use this?](#when-should-i-use-this)
-*   [Install](#install)
-*   [Use](#use)
-*   [API](#api)
-    *   [`toParse5(tree[, options])`](#toparse5tree-options)
-    *   [`Options`](#options)
-    *   [`Space`](#space)
-*   [Types](#types)
-*   [Compatibility](#compatibility)
-*   [Security](#security)
-*   [Related](#related)
-*   [Contribute](#contribute)
-*   [License](#license)
+* [What is this?](#what-is-this)
+* [When should I use this?](#when-should-i-use-this)
+* [Install](#install)
+* [Use](#use)
+* [API](#api)
+  * [`toParse5(tree[, options])`](#toparse5tree-options)
+  * [`Options`](#options)
+  * [`Space`](#space)
+* [Types](#types)
+* [Compatibility](#compatibility)
+* [Security](#security)
+* [Related](#related)
+* [Contribute](#contribute)
+* [License](#license)
 
 ## What is this?
 
@@ -99,10 +99,10 @@ Transform a hast tree to a `parse5` AST.
 
 ###### Parameters
 
-*   `tree` ([`HastNode`][hast-node])
-    — tree to transform
-*   `options` ([`Options`][api-options], optional)
-    — configuration
+* `tree` ([`HastNode`][hast-node])
+  — tree to transform
+* `options` ([`Options`][api-options], optional)
+  — configuration
 
 ###### Returns
 
@@ -114,8 +114,8 @@ Configuration (TypeScript type).
 
 ###### Fields
 
-*   `space` ([`Space`][api-space], optional)
-    — which space the document is in
+* `space` ([`Space`][api-space], optional)
+  — which space the document is in
 
 ### `Space`
 
@@ -150,18 +150,18 @@ Use of `hast-util-to-parse5` can open you up to a
 
 ## Related
 
-*   [`hast-util-from-parse5`](https://github.com/syntax-tree/hast-util-from-parse5)
-    — transform from Parse5’s AST to hast
-*   [`hast-util-to-nlcst`](https://github.com/syntax-tree/hast-util-to-nlcst)
-    — transform hast to nlcst
-*   [`hast-util-to-mdast`](https://github.com/syntax-tree/hast-util-to-mdast)
-    — transform hast to mdast
-*   [`hast-util-to-xast`](https://github.com/syntax-tree/hast-util-to-xast)
-    — transform hast to xast
-*   [`mdast-util-to-hast`](https://github.com/syntax-tree/mdast-util-to-hast)
-    — transform mdast to hast
-*   [`mdast-util-to-nlcst`](https://github.com/syntax-tree/mdast-util-to-nlcst)
-    — transform mdast to nlcst
+* [`hast-util-from-parse5`](https://github.com/syntax-tree/hast-util-from-parse5)
+  — transform from Parse5’s AST to hast
+* [`hast-util-to-nlcst`](https://github.com/syntax-tree/hast-util-to-nlcst)
+  — transform hast to nlcst
+* [`hast-util-to-mdast`](https://github.com/syntax-tree/hast-util-to-mdast)
+  — transform hast to mdast
+* [`hast-util-to-xast`](https://github.com/syntax-tree/hast-util-to-xast)
+  — transform hast to xast
+* [`mdast-util-to-hast`](https://github.com/syntax-tree/mdast-util-to-hast)
+  — transform mdast to hast
+* [`mdast-util-to-nlcst`](https://github.com/syntax-tree/mdast-util-to-nlcst)
+  — transform mdast to nlcst
 
 ## Contribute
 
