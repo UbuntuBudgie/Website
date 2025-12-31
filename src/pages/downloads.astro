@@ -1,14 +1,12 @@
 ---
-const title = "Downloads";
-const description = "Download Ubuntu Budgie and related resources";
-const showFaq = true;
-
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Faq from "../components/infopages/Faq.astro";
 
+const pageTitle = "Downloads";
+const pageDescription = "Download Ubuntu Budgie and related resources.";
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={pageTitle} description={pageDescription}>
+  
 ## Stable Releases
 
 We offer two stable releases:
@@ -55,7 +53,7 @@ Thank you for choosing Ubuntu Budgie for your new operating system. Ubuntu Budgi
 - Memory: 4GB RAM  
 - Hard Disk space: 60GB  
 
-![Welcome screen](/public/screens/welcome.webp)
+![Welcome screen](/screens/welcome.webp)
 
 **Note:** Some machines require checking drivers, usually Broadcom network cards.
 
@@ -69,10 +67,9 @@ You can use CD, DVD, or USB. Tools:
 4. Ubuntu Startup Disk Creator  
 5. RMPrepUSB  
 6. Etcher – Multi-platform, recommended  
-7. WinSetupFromUSB  
-8. RMPrepUSB
+7. WinSetupFromUSB
 
-![Rufus screenshot](/public/screens/rufus.jpg)
+![Rufus screenshot](/screens/rufus.jpg)
 
 **Bootable USB instructions**: Select Diskimage option, choose ISO, select USB drive, start extraction. After, restart and boot from USB.
 
@@ -105,4 +102,5 @@ A little bit goes a long way. If everyone donated £5, it would fund development
 Custom USB drives preloaded with Ubuntu Budgie are available. A percentage goes back to funding development.
 
 [Buy Ubuntu Budgie USB](#)
+
 </BaseLayout>
