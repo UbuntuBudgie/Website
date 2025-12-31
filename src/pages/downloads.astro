@@ -1,16 +1,108 @@
 ---
-title: Downloads
-description: Download Ubuntu Budgie and related resources
-showFaq: true
+const title = "Downloads";
+const description = "Download Ubuntu Budgie and related resources";
+const showFaq = true;
+
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Faq from "../components/infopages/Faq.astro";
-import { getEntry } from "astro:content";
-import { Markdown } from "astro/components";
 
-const page = await getEntry("pages", "downloads");
 ---
 
 <BaseLayout title={title} description={description}>
-  <Markdown content={page.body} />
-  {showFaq && <Faq />}
+## Stable Releases
+
+We offer two stable releases:
+
+- **24.04.3** – Long Term Support (LTS), supported Apr 2024 to Apr 2027
+- **25.04** – Standard release, supported Apr 2025 to Jan 2026
+
+### LTS Release – 24.04.3
+
+Ideal for computers with: 4GB or more of RAM, 64-bit capable Intel and AMD processors, UEFI PCs booting in CSM mode, Modern Intel-based Apple Macs.
+
+**Links:**
+
+- [Download →](#)
+- [Torrent Download →](#)
+- [Readme](#)
+- [Buy Ubuntu Budgie USB](#)
+
+**Checksum:**  
+`sha256sum hash amd64.iso: 7acb4d56ea3edd79d6e8023d5bdcdf2bd04e1180e3a47f5355218e3bd11198d`
+
+### Regular Release – 25.04
+
+Ideal for computers with: 4GB or more of RAM, 64-bit capable Intel and AMD processors, UEFI PCs booting in CSM mode, Modern Intel-based Apple Macs.
+
+**Links:**
+
+- [Download →](#)
+- [Torrent Download →](#)
+- [Readme](#)
+
+**Checksums:**  
+`sha256sum hash amd64.iso: dcc74c1c9b9bf00abab35385c21ec5a207f68ebf59ef57689c13d591b945f7962`
+
+---
+
+## Installation Instructions for x86
+
+Thank you for choosing Ubuntu Budgie for your new operating system. Ubuntu Budgie uses a desktop environment called Budgie, focused on a clean and powerful desktop. Check minimum hardware for a flawless experience:
+
+### System Requirements
+
+- Processor speed: 2.4Ghz  
+- Memory: 4GB RAM  
+- Hard Disk space: 60GB  
+
+![Welcome screen](/public/screens/welcome.webp)
+
+**Note:** Some machines require checking drivers, usually Broadcom network cards.
+
+### Preparing Installation Media
+
+You can use CD, DVD, or USB. Tools:
+
+1. Rufus – Windows  
+2. Universal USB Installer  
+3. UNetBootin  
+4. Ubuntu Startup Disk Creator  
+5. RMPrepUSB  
+6. Etcher – Multi-platform, recommended  
+7. WinSetupFromUSB  
+8. RMPrepUSB
+
+![Rufus screenshot](/public/screens/rufus.jpg)
+
+**Bootable USB instructions**: Select Diskimage option, choose ISO, select USB drive, start extraction. After, restart and boot from USB.
+
+### Step 2 – Partitioning
+
+- / – root space: 30GB+  
+- /swap – size same as RAM (swap files used from 17.04 onward)  
+- /boot – 500MB  
+- /home – rest of HDD  
+
+**Notes:** Installer auto-partitions if manual partition not chosen. Choose username, PC name, and password. Optionally encrypt home partition.
+
+### Media & Updates
+
+Select additional media for codecs. Installation may download updates depending on internet speed.
+
+---
+
+## Support Tips
+
+A little bit goes a long way. If everyone donated £5, it would fund development. Please help:
+
+- Tip £5  
+- Tip £10  
+- Tip £20  
+- Tip £100  
+
+## Custom USB
+
+Custom USB drives preloaded with Ubuntu Budgie are available. A percentage goes back to funding development.
+
+[Buy Ubuntu Budgie USB](#)
 </BaseLayout>
