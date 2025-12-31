@@ -39,14 +39,51 @@ if (numImages > 3) gridCols = "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4";
 ---
 
 <div
-  x-data="{ 
+  x-data={`{ 
     isModalOpen: false, 
-    currentImage: '', 
-    currentAlt: '',
-    openModal(src, alt) { this.currentImage = src; this.currentAlt = alt; this.isModalOpen = true; },
-    closeModal() { this.isModalOpen = false; this.currentImage = ''; this.currentAlt = ''; }
-  }"
+    currentIndex: 0,
+    images: ${JSON.stringify(galleryImages)},
+    touchStartX: 0,
+    touchEndX: 0,
+    
+    openModal(index) { 
+        this.currentIndex = index; 
+        this.isModalOpen = true; 
+    },
+    
+    closeModal() { 
+        this.isModalOpen = false; 
+    },
+    
+    next() {
+        this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    },
+    
+    prev() {
+        this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+    },
+
+    handleTouchStart(e) {
+        this.touchStartX = e.changedTouches[0].screenX;
+    },
+
+    handleTouchEnd(e) {
+        this.touchEndX = e.changedTouches[0].screenX;
+        this.handleSwipe();
+    },
+
+    handleSwipe() {
+        if (this.touchEndX < this.touchStartX - 50) {
+            this.next(); // Swipe Left to go Next
+        }
+        if (this.touchEndX > this.touchStartX + 50) {
+            this.prev(); // Swipe Right to go Prev
+        }
+    }
+  }`}
   @keydown.escape.window="closeModal()"
+  @keydown.right.window="if(isModalOpen) next()"
+  @keydown.left.window="if(isModalOpen) prev()"
   class="py-20 lg:py-32"
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -63,15 +100,21 @@ if (numImages > 3) gridCols = "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4";
 
     <!-- Gallery Grid -->
     <div class={`grid ${gridCols} gap-4`}>
-      {galleryImages.map(image => (
+      {galleryImages.map((image, index) => (
         <div 
           class="group block relative overflow-hidden rounded-lg cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
-          @click={`openModal('${image.src}', '${image.caption}')`}
-          @keydown.enter={`openModal('${image.src}', '${image.caption}')`}
+          @click={`openModal(${index})`}
+          @keydown.enter={`openModal(${index})`}
           role="button"
           tabindex="0"
+          aria-label={`View ${image.caption}`}
         >
-          <img src={image.src} alt={image.alt} class="w-full h-40 sm:h-48 object-cover bg-gray-100 rounded-lg transition-transform duration-300" loading="lazy"/>
+          <img 
+            src={image.src} 
+            alt={image.alt} 
+            class="w-full h-40 sm:h-48 object-cover bg-gray-100 rounded-lg transition-transform duration-300 transform group-hover:scale-105" 
+            loading="lazy"
+          />
           
           <!-- View overlay -->
           <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -83,7 +126,7 @@ if (numImages > 3) gridCols = "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4";
 
           <!-- Caption -->
           <div class="absolute bottom-0 inset-x-0 p-3 bg-white/90 rounded-b-lg border-t border-gray-200">
-            <p class="text-xs text-gray-700 font-medium">{image.caption}</p>
+            <p class="text-xs text-gray-700 font-medium truncate">{image.caption}</p>
           </div>
         </div>
       ))}
@@ -101,18 +144,65 @@ if (numImages > 3) gridCols = "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4";
       x-transition:leave="ease-in duration-200"
       x-transition:leave-start="opacity-100"
       x-transition:leave-end="opacity-0"
-      class="fixed inset-0 z-9999 flex items-center justify-center p-4 overflow-y-auto bg-base-950 bg-opacity-90"
+      class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
       aria-labelledby="modal-title" 
       role="dialog" 
       aria-modal="true"
+      @touchstart="handleTouchStart"
+      @touchend="handleTouchEnd"
     >
-      <!-- Modal Container -->
-      <div class="relative w-full max-w-4xl">
-        <img :src="currentImage" :alt="currentAlt" class="w-full h-auto rounded-lg object-contain max-h-[90vh] shadow-lg"/>
-        <button @click="closeModal()" class="absolute top-2 right-2 bg-base-900/50 hover:bg-base-900/80 text-white p-2 rounded-full transition focus:outline-none" aria-label="Close image viewer">
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-        </button>
-        <p class="mt-2 text-center text-sm text-base-300">{/* Alpine will update text */}<span x-text="currentAlt"></span></p>
+      <!-- Close Button (Top Right) -->
+      <button 
+        @click="closeModal()" 
+        class="absolute top-4 right-4 z-50 text-white/70 hover:text-white bg-black/50 hover:bg-black/80 rounded-full p-2 transition focus:outline-none"
+        aria-label="Close gallery"
+      >
+        <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+
+      <!-- Previous Button (Left) -->
+      <button 
+        @click.stop="prev()" 
+        class="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 z-50 p-3 text-white/70 hover:text-white bg-black/30 hover:bg-black/60 rounded-full transition focus:outline-none hidden sm:block"
+        aria-label="Previous image"
+      >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+      </button>
+
+      <!-- Next Button (Right) -->
+      <button 
+        @click.stop="next()" 
+        class="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 z-50 p-3 text-white/70 hover:text-white bg-black/30 hover:bg-black/60 rounded-full transition focus:outline-none hidden sm:block"
+        aria-label="Next image"
+      >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+      </button>
+
+      <!-- Modal Content Container -->
+      <div 
+        class="relative w-full max-w-5xl h-full flex flex-col justify-center items-center"
+        @click.outside="closeModal()"
+      >
+        <!-- Image with subtle transition -->
+        <div class="relative w-full max-h-[85vh] flex justify-center items-center overflow-hidden">
+            <img 
+                :key="currentIndex"
+                :src="images[currentIndex].src" 
+                :alt="images[currentIndex].alt"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-50 scale-95"
+                x-transition:enter-end="opacity-100 scale-100"
+                class="max-w-full max-h-[80vh] sm:max-h-[85vh] object-contain rounded shadow-2xl select-none"
+            />
+        </div>
+        
+        <!-- Caption -->
+        <div class="mt-4 text-center px-4">
+            <p class="text-white text-lg font-medium tracking-wide" x-text="images[currentIndex].caption"></p>
+            <p class="text-gray-400 text-sm mt-1">
+                <span x-text="currentIndex + 1"></span> / <span x-text="images.length"></span>
+            </p>
+        </div>
       </div>
     </div>
   </template>
