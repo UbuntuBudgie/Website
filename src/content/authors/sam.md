@@ -1,3 +1,3 @@
 ---
-name: Sam Lake
+name: Sam Lane
 ---
