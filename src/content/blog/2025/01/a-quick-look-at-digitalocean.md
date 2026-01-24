@@ -2,7 +2,7 @@
 title: A Quick Look at DigitalOcean
 description: How we use DigitalOcean
 pubDate: 2025-01-19
-author: Sam Lane
+author: sam
 draft: false
 ---
 For several years, DigitalOcean has been an important sponsor of Ubuntu Budgie. They provide the infrastructure we need to host our website at [https://ubuntubudgie.org](https://ubuntubudgie.org) and our Discourse community forum at [https://discourse.ubuntubudgie.org](https://discourse.ubuntubudgie.org). Maybe you are familiar with them. Maybe you use them in your personal or professional life. Or maybe, like me, you didn't really see how they would benefit you.
