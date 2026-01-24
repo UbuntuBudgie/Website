@@ -28,10 +28,10 @@ const postsWithAuthors = await Promise.all(
 
 const totalPages = Math.ceil(postsWithAuthors.length / POSTS_PER_PAGE);
 const paginatedPosts = postsWithAuthors.slice(0, POSTS_PER_PAGE);
+const currentPage = 1; // This is always page 1
 ---
 
 <BaseLayout title="Our Blog" description="Latest news and updates.">
-  {/* Your HTML remains the same */}
   <section class="py-16 sm:py-24">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-2">
@@ -39,7 +39,33 @@ const paginatedPosts = postsWithAuthors.slice(0, POSTS_PER_PAGE);
           <PostCard post={post} author={author} />
         ))}
       </div>
-       {/* ... Pagination code ... */}
+      
+      {/* Pagination Navigation */}
+      <nav class="mt-16 flex justify-center gap-4" aria-label="Pagination">
+        {/* Previous button - always disabled on page 1 */}
+        <span class="inline-block rounded-lg border border-gray-200 bg-gray-100 px-6 py-2 font-semibold text-gray-400 cursor-not-allowed">
+          ← Previous
+        </span>
+        
+        {/* Page indicator */}
+        <span class="inline-flex items-center px-4 py-2 text-sm text-gray-600">
+          Page {currentPage} of {totalPages}
+        </span>
+        
+        {/* Next button - only show if there are more pages */}
+        {totalPages > 1 ? (
+          <a 
+            href="/blog/page/2/" 
+            class="inline-block rounded-lg border border-gray-300 bg-white px-6 py-2 font-semibold text-gray-800 shadow-sm transition-colors hover:bg-gray-100"
+          >
+            Next →
+          </a>
+        ) : (
+          <span class="inline-block rounded-lg border border-gray-200 bg-gray-100 px-6 py-2 font-semibold text-gray-400 cursor-not-allowed">
+            Next →
+          </span>
+        )}
+      </nav>
     </div>
   </section>
 </BaseLayout>
