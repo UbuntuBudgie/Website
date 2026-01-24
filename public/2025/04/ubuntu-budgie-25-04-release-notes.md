@@ -3,7 +3,7 @@ title: "Ubuntu Budgie 25.04 release notes"
 date: 2025-04-15
 categories: 
   - "other"
-coverImage: "budgie-codename-with-logo.jpg"
+coverImage: "/2025/04/budgie-codename-with-logo.jpg"
 ---
 
 ![](images/budgie-codename-with-logo-744x251.jpg)
