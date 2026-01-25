@@ -115,34 +115,39 @@ content:
             label: LinkedIn
 
   - name: downloads
-    label: Downloads
-    path: src/pages/downloads.md
-    type: file
+    label: Download Releases
+    path: src/content/downloads
+    type: collection
     fields:
-      - name: title
-        type: string
-        label: Title
-        required: true
-      - name: description
-        type: string
-        label: Description
-        required: true
-      - name: version
-        type: string
-        label: Version
-        required: true
-      - name: releaseDate
-        type: date
-        label: Release Date
-        required: true
-      - name: file
-        type: file
-        label: Download File
-        required: true
-      - name: fileSize
-        type: string
-        label: File Size
-      - name: downloadCount
-        type: number
-        label: Download Count
-        default: 0
+    - name: version
+      type: string
+      label: Version Number
+      required: true
+    - name: releaseType
+      type: string
+      label: Release Type
+      required: true
+    - name: supportPeriod
+      type: string
+      label: Support Period
+    - name: description
+      type: text
+      label: Description
+    - name: downloadUrl
+      type: string
+      label: Download URL
+    - name: torrentUrl
+      type: string
+      label: Torrent URL
+    - name: readmeUrl
+      type: string
+      label: Readme URL
+    - name: usbBuyUrl
+      type: string
+      label: USB Buy URL (optional)
+    - name: checksum
+      type: string
+      label: SHA256 Checksum
+    - name: order
+      type: number
+      label: Display Order
