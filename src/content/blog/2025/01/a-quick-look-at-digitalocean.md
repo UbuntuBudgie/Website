@@ -1,18 +1,17 @@
 ---
-title: "A Quick Look at DigitalOcean"
-description: "How we use DigitalOcean"
+title: A Quick Look at DigitalOcean
+description: How we use DigitalOcean
 pubDate: 2025-01-19
 author: sam
-category: "Other"
+draft: false
 ---
-
 For several years, DigitalOcean has been an important sponsor of Ubuntu Budgie. They provide the infrastructure we need to host our website at [https://ubuntubudgie.org](https://ubuntubudgie.org) and our Discourse community forum at [https://discourse.ubuntubudgie.org](https://discourse.ubuntubudgie.org). Maybe you are familiar with them. Maybe you use them in your personal or professional life. Or maybe, like me, you didn't really see how they would benefit you.
 
 Since I don't run servers or use cloud computing professionally, I overlooked DigitalOcean. However, a few years ago, I started to create a Twitch bot for a friend. Though it was far from a critical service, I wanted a place to host it, instead of locally for several reasons:
 
-- My internet was spotty at times back then. Who wants a bot that stops working randomly.
-- Instead of having it on my home network, I could avoid possible security concerns by running it on a remote server.
-- If there are issues, I don't need to be at home to fix them.
+*   My internet was spotty at times back then. Who wants a bot that stops working randomly.
+*   Instead of having it on my home network, I could avoid possible security concerns by running it on a remote server.
+*   If there are issues, I don't need to be at home to fix them.
 
 I had seen a post on Ubuntu Budgie Discourse in which Project Leader David (fossfreedom) recommended DigitalOcean to another user as a place to host bots. So I started there. I won't lie, I also tested out a few other providers, but ultimately, I chose DigitalOcean. They had a very straight-forward, intuitive website. The price was right. And they just made it so fast and easy to spin up a server. I created an Droplet - basically a Linux-based virtual machine, and put the bot on it.
 

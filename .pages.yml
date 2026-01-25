@@ -76,6 +76,7 @@ content:
       - name: image
         type: image
         label: Featured Image
+        path: public/team
 
   - name: team
     label: Team
