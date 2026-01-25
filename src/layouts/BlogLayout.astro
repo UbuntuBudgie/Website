@@ -9,6 +9,9 @@ const { post, author } = Astro.props as {
 
 const { title, description, pubDate, image, category } = post.data;
 const { name: authorName, image: authorImage } = author.data;
+
+// Fix the author image path by removing 'public' prefix
+const fixedAuthorImage = authorImage.replace(/^public/, '');
 ---
 
 <article class="bg-white shadow-sm rounded-xl overflow-hidden">
@@ -34,7 +37,7 @@ const { name: authorName, image: authorImage } = author.data;
     {/* Author + Date Section */}
     <div class="mt-6 flex items-center gap-x-4">
       {/* Use a standard <img> tag for the author image. */}
-      <img src={authorImage} alt={authorName} class="h-12 w-12 rounded-full bg-gray-100 object-cover" />
+      <img src={fixedAuthorImage} alt={authorName} class="h-12 w-12 rounded-full bg-gray-100 object-cover" />
       <div>
         <p class="font-semibold text-gray-900">{authorName}</p>
         <time datetime={pubDate.toISOString()} class="text-sm text-gray-500">
