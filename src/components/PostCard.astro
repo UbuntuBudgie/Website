@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from "astro:content";
-// We DO NOT import Astro's <Image /> component here.
 
 const { post, author } = Astro.props as {
   post: CollectionEntry<"blog">;
@@ -10,6 +9,9 @@ const { post, author } = Astro.props as {
 const { slug } = post;
 const { title, description, pubDate, image, category } = post.data;
 const { name: authorName, image: authorImage } = author.data;
+
+// Fix the author image path by removing 'public' prefix
+const fixedAuthorImage = authorImage.replace(/^public/, '');
 ---
 
 <article class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
@@ -32,7 +34,7 @@ const { name: authorName, image: authorImage } = author.data;
 
     <footer class="mt-auto pt-6 flex items-center gap-x-4">
       {/* Use a standard <img> tag. */}
-      <img src={authorImage} alt={authorName} class="h-10 w-10 rounded-full bg-gray-100 object-cover" />
+      <img src={fixedAuthorImage} alt={authorName} class="h-10 w-10 rounded-full bg-gray-100 object-cover" />
       <div>
         <p class="font-semibold text-gray-900">{authorName}</p>
         <time datetime={pubDate.toISOString()} class="text-sm text-gray-500">
