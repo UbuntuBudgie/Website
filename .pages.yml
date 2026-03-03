@@ -151,3 +151,54 @@ content:
     - name: order
       type: number
       label: Display Order
+
+  - name: downloads-settings
+    label: Downloads Page Settings
+    path: src/content/downloads-settings.json
+    type: file
+    fields:
+    - name: donationTitle
+      type: string
+      label: Donation Section Title
+    - name: donationDescription
+      type: text
+      label: Donation Description
+    - name: tip1Label
+      type: string
+      label: Tip Button 1 Label
+    - name: tip1Url
+      type: string
+      label: Tip Button 1 URL
+    - name: tip2Label
+      type: string
+      label: Tip Button 2 Label
+    - name: tip2Url
+      type: string
+      label: Tip Button 2 URL
+    - name: tip3Label
+      type: string
+      label: Tip Button 3 Label
+    - name: tip3Url
+      type: string
+      label: Tip Button 3 URL
+    - name: tip4Label
+      type: string
+      label: Tip Button 4 Label
+    - name: tip4Url
+      type: string
+      label: Tip Button 4 URL
+    - name: usbDescription
+      type: text
+      label: USB Section Description
+    - name: usbButtonText
+      type: string
+      label: USB Button Text
+    - name: usbButtonUrl
+      type: string
+      label: USB Button URL
+    - name: installationTitle
+      type: string
+      label: Accordion Title
+    - name: installationContent
+      type: rich-text
+      label: Installation Instructions
