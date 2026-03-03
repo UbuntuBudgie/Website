@@ -154,7 +154,7 @@ content:
 
   - name: downloads-settings
     label: Downloads Page Settings
-    path: src/content/downloads-settings.json
+    path: src/content/downloads-settings/downloads-settings.json
     type: file
     fields:
     - name: donationTitle
