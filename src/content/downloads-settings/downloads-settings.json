@@ -1,0 +1,17 @@
+{
+  "donationTitle": "A little bit goes a long way.",
+  "donationDescription": "If everyone who downloaded Ubuntu Budgie donated £5 it would fund the continued development of Ubuntu Budgie. Please help the project flourish by showing your support with a tip.",
+  "tip1Label": "Tip £5",
+  "tip1Url": "#",
+  "tip2Label": "Tip £10",
+  "tip2Url": "#",
+  "tip3Label": "Tip £20",
+  "tip3Url": "#",
+  "tip4Label": "Tip £100",
+  "tip4Url": "#",
+  "usbDescription": "Have you ever wanted to get your custom USB with Ubuntu Budgie preloaded? Now you can - we have partnered with TheLinuxShop to bring you custom USB drives preloaded with Ubuntu Budgie releases. For each USB bought, the percentage of the price, goes back to Ubuntu Budgie for funding development and other costs.",
+  "usbButtonText": "Buy Ubuntu Budgie USB",
+  "usbButtonUrl": "#",
+  "installationTitle": "Installation instructions for x86 (click to expand)",
+  "installationContent": ""
+}

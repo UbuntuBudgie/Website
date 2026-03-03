@@ -4,51 +4,53 @@
     "downloads": {
       "type": "object",
       "properties": {
-        "title": {
+        "version": {
+          "type": "string"
+        },
+        "releaseType": {
+          "type": "string"
+        },
+        "supportPeriod": {
           "type": "string"
         },
         "description": {
           "type": "string"
         },
-        "version": {
+        "downloadUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "torrentUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "readmeUrl": {
           "type": "string"
         },
-        "releaseDate": {
-          "anyOf": [
-            {
-              "type": "string",
-              "format": "date-time"
-            },
-            {
-              "type": "string",
-              "format": "date"
-            },
-            {
-              "type": "integer",
-              "format": "unix-time"
-            }
-          ]
+        "usbBuyUrl": {
+          "type": "string",
+          "format": "uri"
         },
-        "file": {
+        "checksum": {
           "type": "string"
         },
-        "fileSize": {
-          "type": "string"
-        },
-        "downloadCount": {
-          "type": "number",
-          "default": 0
+        "order": {
+          "type": "number"
         },
         "$schema": {
           "type": "string"
         }
       },
       "required": [
-        "title",
-        "description",
         "version",
-        "releaseDate",
-        "file"
+        "releaseType",
+        "supportPeriod",
+        "description",
+        "downloadUrl",
+        "torrentUrl",
+        "readmeUrl",
+        "checksum",
+        "order"
       ],
       "additionalProperties": false
     }
