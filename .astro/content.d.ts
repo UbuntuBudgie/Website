@@ -192,6 +192,14 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
+"downloads-settings": Record<string, {
+  id: string;
+  body?: string;
+  collection: "downloads-settings";
+  data: InferEntrySchema<"downloads-settings">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
 "gallery": Record<string, {
   id: string;
   render(): Render[".md"];
@@ -254,6 +262,6 @@ declare module 'astro:content' {
 		LiveContentConfig['collections'][C]['loader']
 	>;
 
-	export type ContentConfig = typeof import("../src/content/config.js");
+	export type ContentConfig = typeof import("./../src/content/config.js");
 	export type LiveContentConfig = never;
 }

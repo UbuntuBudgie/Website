@@ -2,275 +2,476 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Faq from "../components/infopages/Faq.astro";
 const pageTitle = "About Us";
-
-
 ---
 
+<style>
+  :root {
+    --apple-bg: #f5f5f7;
+    --apple-white: #ffffff;
+    --apple-ink: #1d1d1f;
+    --apple-secondary: #6e6e73;
+    --apple-tertiary: #86868b;
+    --apple-blue: #0071e3;
+    --apple-blue-hover: #0077ed;
+    --apple-border: rgba(0,0,0,0.08);
+    --section-padding: clamp(5rem, 10vw, 9rem);
+  }
 
+  * { box-sizing: border-box; }
+
+  .about-page {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: var(--apple-ink);
+    background: var(--apple-white);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ─────────────────────────────────────────────────── */
+  .hero {
+    background: var(--apple-white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 1.5rem;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--apple-blue);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 4.5vw, 3.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: var(--apple-ink);
+    max-width: 820px;
+    margin: 0 auto 2rem;
+  }
+
+  .hero-body {
+    max-width: 1200px;
+    margin: 0 auto;
+    color: var(--apple-secondary);
+    font-size: clamp(1rem, 1.8vw, 1.175rem);
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  .hero-body p + p { margin-top: 1.25rem; }
+
+  .hero-body a {
+    color: var(--apple-blue);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .hero-body a:hover { text-decoration: underline; }
+
+  .hero-tagline {
+    margin-top: 2rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--apple-ink);
+    letter-spacing: -0.01em;
+  }
+
+  /* ── APPS GRID ─────────────────────────────────────────────── */
+  .apps-section {
+    background: var(--apple-bg);
+    padding: var(--section-padding) 1.5rem;
+  }
+
+  .section-label {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-label h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--apple-ink);
+    margin: 0;
+  }
+
+  .section-label p {
+    color: var(--apple-secondary);
+    font-size: 1.05rem;
+    margin-top: 0.75rem;
+  }
+
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .app-card {
+    background: var(--apple-white);
+    border-radius: 20px;
+    border: 1px solid var(--apple-border);
+    padding: 2.25rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .app-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.10);
+  }
+
+  .app-card img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+  }
+
+  .app-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--apple-ink);
+    margin: 0;
+  }
+
+  .app-card p {
+    font-size: 0.875rem;
+    color: var(--apple-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── FEATURE ROWS ──────────────────────────────────────────── */
+  .feature-section {
+    padding: var(--section-padding) 1.5rem;
+  }
+
+  .feature-section.alt {
+    background: var(--apple-bg);
+  }
+
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(3rem, 6vw, 7rem);
+    align-items: center;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 860px) {
+    .feature-row {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .feature-row.reverse > .feature-text { order: -1; }
+  }
+
+  .feature-text {}
+
+  .feature-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--apple-blue);
+    display: block;
+    margin-bottom: 0.85rem;
+  }
+
+  .feature-text h2 {
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: var(--apple-ink);
+    margin: 0 0 1.5rem;
+  }
+
+  .feature-text p {
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    color: var(--apple-secondary);
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .feature-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.12);
+    display: block;
+  }
+
+  .feature-image.plain img {
+    box-shadow: none;
+    border-radius: 16px;
+  }
+
+  /* ── DIVIDER ───────────────────────────────────────────────── */
+  .divider {
+    height: 1px;
+    background: var(--apple-border);
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  /* ── CTA ───────────────────────────────────────────────────── */
+  .cta-section {
+    background: var(--apple-bg);
+    padding: clamp(4rem, 8vw, 7rem) 1.5rem;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--apple-ink);
+    margin: 0 0 2rem;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--apple-blue);
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.875rem 2.25rem;
+    border-radius: 980px;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .cta-btn:hover {
+    background: var(--apple-blue-hover);
+    transform: scale(1.02);
+  }
+
+  /* ── FADE-IN ANIMATIONS ────────────────────────────────────── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.22s; }
+  .delay-3 { animation-delay: 0.34s; }
+  .delay-4 { animation-delay: 0.46s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
 
 <BaseLayout title={pageTitle}>
+<div class="about-page">
 
-<section class="max-w-4xl mx-auto px-4 py-16 text-center space-y-6">
-  <p class="uppercase text-xs tracking-wide text-gray-500">
-    Built For The Future
-  </p>
-  <h1 class="text-3xl md:text-5xl font-bold">
-    What's <span class="font-extrabold">Ubuntu Budgie</span>?
-  </h1>
-  <p class="text-gray-700 max-w-3xl mx-auto text-justify hyphens-auto">
-    Ubuntu Budgie is a proud official member of the Ubuntu family. We combine the simplicity and elegance of the Budgie interface to produce a traditional desktop orientated distro with a modern paradigm. Budgie is a desktop environment focused on having a clean and yet a powerful desktop without unnecessary bloat. To learn more about Budgie Desktop visit <a class="text-blue-600 hover:underline" href="#">Budgie Website</a>.
-  </p>
-  <p class="text-gray-700 max-w-3xl mx-auto text-justify hyphens-auto">
-    Fully functional out of the box, we include the best available Linux applications that makes you (our community) productive immediately. Backed by the powerful Debian derived Ubuntu repositories, customisation is just a 'point &amp; click' away from allowing you to tailor the desktop to your way of working. Ubuntu Budgie comes with a collection of apps that enables you to work on everyday tasks and be productive.
-  </p>
-  <p class="text-gray-700 max-w-3xl mx-auto text-justify hyphens-auto">
-    Ready to take the challenge?
-  </p>
-</section>
-    <h2 class="mb-12 text-center text-2xl md:text-3xl font-semibold">
-      This is why you'll love Ubuntu Budgie
-    </h2>
-
-<section class="max-w-6xl mx-auto px-4 py-12">
-  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    <!-- Box 1 -->
-    <div class="group cursor-pointer rounded-xl border border-gray-200 p-6 shadow hover:shadow-lg hover:border-transparent hover:bg-white transition-all duration-300 ease-in-out hover:scale-[1.03]">
-      <div class="flex flex-col items-center justify-center space-y-4">
-        <img src="/public/firefox.png" alt="Firefox" class="w-12 h-12" />
-        <h3 class="font-semibold text-lg">Firefox</h3>
-        <p class="text-center text-gray-600 text-sm">
-          Safe & easy web browser that protects your privacy.
-        </p>
-      </div>
-    </div>
-    <!-- Box 2 -->
-    <div class="group cursor-pointer rounded-xl border border-gray-200 p-6 shadow hover:shadow-lg hover:border-transparent hover:bg-white transition-all duration-300 ease-in-out hover:scale-[1.03]">
-      <div class="flex flex-col items-center justify-center space-y-4">
-        <img src="/icons/rhythmbox-icon.png" alt="Rhythmbox" class="w-12 h-12" />
-        <h3 class="font-semibold text-lg">Rhythmbox</h3>
-        <p class="text-center text-gray-600 text-sm">
-          Music player & organiser.
-        </p>
-      </div>
-    </div>
-    <!-- Box 3 -->
-    <div class="group cursor-pointer rounded-xl border border-gray-200 p-6 shadow hover:shadow-lg hover:border-transparent hover:bg-white transition-all duration-300 ease-in-out hover:scale-[1.03]">
-      <div class="flex flex-col items-center justify-center space-y-4">
-        <img src="/icons/thunderbird.svg" alt="Thunderbird" class="w-12 h-12" />
-        <h3 class="font-semibold text-lg">Thunderbird</h3>
-        <p class="text-center text-gray-600 text-sm">
-          Email app that's easy to set up & customize — packed with features!
-        </p>
-      </div>
-    </div>
-    <!-- Box 4 -->
-    <div class="group cursor-pointer rounded-xl border border-gray-200 p-6 shadow hover:shadow-lg hover:border-transparent hover:bg-white transition-all duration-300 ease-in-out hover:scale-[1.03]">
-      <div class="flex flex-col items-center justify-center space-y-4">
-        <img src="/icons/libreoffice.svg" alt="LibreOffice" class="w-12 h-12" />
-        <h3 class="font-semibold text-lg">LibreOffice</h3>
-        <p class="text-center text-gray-600 text-sm">
-          Full-featured office suite with Microsoft Office compatibility.
-        </p>
-      </div>
-    </div>
-    <!-- Box 5 -->
-    <div class="group cursor-pointer rounded-xl border border-gray-200 p-6 shadow hover:shadow-lg hover:border-transparent hover:bg-white transition-all duration-300 ease-in-out hover:scale-[1.03]">
-      <div class="flex flex-col items-center justify-center space-y-4">
-        <img src="/icons/ubwc.svg" alt="Budgie Welcome Center" class="w-12 h-12" />
-        <h3 class="font-semibold text-lg">Budgie Welcome Center</h3>
-        <p class="text-center text-gray-600 text-sm">
-          Ubuntu Budgie’s Welcome Center – Learn and control your OS.
-        </p>
-      </div>
-    </div>
-    <!-- Box 6 -->
-    <div class="group cursor-pointer rounded-xl border border-gray-200 p-6 shadow hover:shadow-lg hover:border-transparent hover:bg-white transition-all duration-300 ease-in-out hover:scale-[1.03]">
-      <div class="flex flex-col items-center justify-center space-y-4">
-        <img src="/icons/celluloid.svg" alt="Launch quicker" class="w-12 h-12" />
-        <h3 class="font-semibold text-lg">Launch quicker</h3>
-        <p class="text-center text-gray-600 text-sm">
-          Free, open source & cross-platform media player.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-y-16 gap-x-8 lg:grid-cols-2 lg:items-center">
-      
-      <!-- Left Side: Image -->
-      <div>
-        <img
-          src="/screens/ubw.png"
-          alt="Product screenshot"        />
-      </div>
-
-      <!-- Right Side: Text Content -->
-      <div class="lg:pl-8">
-        <div class="lg:max-w-lg">
-          <h2 class="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
-          <p class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-Pre-Configured          </p>
-          <p class="mt-6 text-lg leading-8 text-gray-700">
-Ubuntu Budgie includes carefully curated default applications and beautiful Budgie applets. It is ready to go right out of the box.          </p>
-          <dl class="mt-10 space-y-8 text-base leading-7 text-gray-600">
-            
-
-
-          </dl>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="bg-white py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-y-16 gap-x-8 lg:grid-cols-2 lg:items-center">
-      
-      <!-- Left Side: Text Content -->
-      <div class="lg:pr-8">
-        <div class="lg:max-w-lg">
-          <h2 class="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
-          <p class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            Built-in Security
-          </p>
-          <p class="mt-6 text-lg leading-8 text-gray-700">
-Security is taken seriously, with Ubuntu’s built-in security features like automatic updates and AppArmor profiles to always keep you safe.          </p>
-          <dl class="mt-10 space-y-8 text-base leading-7 text-gray-600">
-          
-
-          </dl>
-        </div>
-      </div>
-
-      <!-- Right Side: Image -->
-      <div>
-        <img
-          src="/screens/sec.png"
-          alt="Product screenshot"
-          class="w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
-        />
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="bg-white py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-y-16 gap-x-8 lg:grid-cols-2 lg:items-center">
-      
-      <!-- Left Side: Image -->
-      <div>
-        <img
-          src="/screens/budgie-desktop-settings.jpg"
-          alt="Product screenshot"
-          class="w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
-        />
-      </div>
-
-      <!-- Right Side: Text Content -->
-      <div class="lg:pl-8">
-        <div class="lg:max-w-lg">
-          <h2 class="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
-          <p class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-           Powerful applications
-          </p>
-          <p class="mt-6 text-lg leading-8 text-gray-700">
-While Budgie Desktop provides the essential user interface to control and use a computer, Ubuntu Budgie adds a collection of additional applications to turn your computer into a truly powerful workstation: from productivity to entertainment!
-
-          </p>
-          <dl class="mt-10 space-y-8 text-base leading-7 text-gray-600">
-            
-            
-          </dl>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<section class="bg-white py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-y-16 gap-x-8 lg:grid-cols-2 lg:items-center">
-      
-      <!-- Left Side: Text Content -->
-      <div class="lg:pr-8">
-        <div class="lg:max-w-lg">
-          <h2 class="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
-          <p class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            Gaming
-          </p>
-          <p class="mt-6 text-lg leading-8 text-gray-700">
-In the last couple of years Linux has become a first class gaming platform thanks to the arrival of the Steam Platform on Linux. At the time of writing Steam has more than 2000 high quality indie and AAA titles ready for Ubuntu Budgie. While Steam is a major step forward for gaming on Linux, there are also many high quality and enjoyable Open Source games titles available for Ubuntu Budgie. It doesn’t matter if you like flight simulators, motor racing, first person shooters, jump and run or card games, you’ll find something to keep you entertained.
-
-          </p>
-        </div>
-      </div>
-
-      <!-- Right Side: Image -->
-      <div>
-        <img
-          src="/screens/steam.jpg"
-          alt="Product screenshot"
-          class="w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
-        />
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="bg-white py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-y-16 gap-x-8 lg:grid-cols-2 lg:items-center">
-      
-      <!-- Left Side: Image -->
-      <div>
-        <img
-          src="/screens/appmenu.jpg"
-          alt="Product screenshot"
-          class="w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
-        />
-      </div>
-
-      <!-- Right Side: Text Content -->
-      <div class="lg:pl-8">
-        <div class="lg:max-w-lg">
-          <h2 class="text-base font-semibold leading-7 text-indigo-600">You’ll feel quite at home
-</h2>
-          <p class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-           Easy Migrations
-          </p>
-          <p class="mt-6 text-lg leading-8 text-gray-700">
-Connect your accounts, sync your calendars and download your favorite apps. Ubuntu Budgie is your very own Operating System!
-
-          </p>
-          <dl class="mt-10 space-y-8 text-base leading-7 text-gray-600">
-            
-
-          </dl>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-  
-    <div class="mt-12 text-center">
-      <a href="/download" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition">
-        Download Ubuntu Budgie
-      </a>
+  <!-- ── HERO ───────────────────────────────────────────────── -->
+  <section class="hero">
+    <span class="hero-eyebrow fade-up">Built For The Future</span>
+    <h1 class="fade-up delay-1">
+      What's <span>Ubuntu Budgie</span>?
+    </h1>
+    <div class="hero-body fade-up delay-2">
+      <p>
+        Ubuntu Budgie is a proud official member of the Ubuntu family. We combine
+        the simplicity and elegance of the Budgie interface to produce a traditional
+        desktop orientated distro with a modern paradigm. Budgie is a desktop
+        environment focused on having a clean and yet powerful desktop without
+        unnecessary bloat. To learn more, visit the
+        <a href="#">Budgie Website</a>.
+      </p>
+      <p>
+        Fully functional out of the box, we include the best available Linux
+        applications that makes you productive immediately. Backed by the powerful
+        Debian-derived Ubuntu repositories, customisation is just a 'point &amp;
+        click' away.
+      </p>
+      <p class="hero-tagline">Ready to take the challenge?</p>
     </div>
   </section>
-<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"></div>
-</br>
 
+  <!-- ── APPS GRID ─────────────────────────────────────────── -->
+  <section class="apps-section">
+    <div class="section-label fade-up">
+      <h2>This is why you'll love Ubuntu Budgie</h2>
+      <p>Everything you need, included from day one.</p>
+    </div>
+
+    <div class="apps-grid">
+      <div class="app-card fade-up delay-1">
+        <img src="/public/firefox.png" alt="Firefox" />
+        <h3>Firefox</h3>
+        <p>Safe &amp; easy web browser that protects your privacy.</p>
+      </div>
+      <div class="app-card fade-up delay-2">
+        <img src="/icons/rhythmbox-icon.png" alt="Rhythmbox" />
+        <h3>Rhythmbox</h3>
+        <p>Music player &amp; organiser.</p>
+      </div>
+      <div class="app-card fade-up delay-3">
+        <img src="/icons/thunderbird.svg" alt="Thunderbird" />
+        <h3>Thunderbird</h3>
+        <p>Email app that's easy to set up &amp; customise — packed with features!</p>
+      </div>
+      <div class="app-card fade-up delay-1">
+        <img src="/icons/libreoffice.svg" alt="LibreOffice" />
+        <h3>LibreOffice</h3>
+        <p>Full-featured office suite with Microsoft Office compatibility.</p>
+      </div>
+      <div class="app-card fade-up delay-2">
+        <img src="/icons/ubwc.svg" alt="Budgie Welcome Center" />
+        <h3>Budgie Welcome Center</h3>
+        <p>Learn and control your OS from the moment you log in.</p>
+      </div>
+      <div class="app-card fade-up delay-3">
+        <img src="/icons/celluloid.svg" alt="Celluloid" />
+        <h3>Celluloid</h3>
+        <p>Free, open source &amp; cross-platform media player.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── FEATURE 1: Pre-Configured ────────────────────────── -->
+  <section class="feature-section">
+    <div class="feature-row">
+      <div class="feature-image plain fade-up">
+        <img src="/screens/ubw.png" alt="Ubuntu Budgie pre-configured desktop" />
+      </div>
+      <div class="feature-text fade-up delay-2">
+        <span class="feature-eyebrow">Ready on arrival</span>
+        <h2>Pre-Configured</h2>
+        <p>
+          Ubuntu Budgie includes carefully curated default applications and
+          beautiful Budgie applets. It is ready to go right out of the box —
+          no setup headaches, no missing pieces.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── FEATURE 2: Security ──────────────────────────────── -->
+  <section class="feature-section alt">
+    <div class="feature-row reverse">
+      <div class="feature-text fade-up">
+        <span class="feature-eyebrow">Always protected</span>
+        <h2>Built-in Security</h2>
+        <p>
+          Security is taken seriously. Ubuntu's built-in security features —
+          automatic updates and AppArmor profiles — keep you protected around
+          the clock, quietly working in the background.
+        </p>
+      </div>
+      <div class="feature-image fade-up delay-2">
+        <img
+          src="/screens/sec.png"
+          alt="Ubuntu Budgie security features"
+        />
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── FEATURE 3: Powerful Apps ─────────────────────────── -->
+  <section class="feature-section">
+    <div class="feature-row">
+      <div class="feature-image fade-up">
+        <img
+          src="/screens/budgie-desktop-settings.jpg"
+          alt="Budgie Desktop Settings"
+        />
+      </div>
+      <div class="feature-text fade-up delay-2">
+        <span class="feature-eyebrow">Your workstation, elevated</span>
+        <h2>Powerful Applications</h2>
+        <p>
+          While Budgie Desktop provides the essential interface, Ubuntu Budgie
+          adds a curated collection of applications — from productivity to
+          entertainment — turning your machine into a truly capable workstation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── FEATURE 4: Gaming ────────────────────────────────── -->
+  <section class="feature-section alt">
+    <div class="feature-row reverse">
+      <div class="feature-text fade-up">
+        <span class="feature-eyebrow">Play without limits</span>
+        <h2>Gaming</h2>
+        <p>
+          Linux has become a first-class gaming platform. Steam alone offers
+          over 2,000 indie and AAA titles ready for Ubuntu Budgie — plus a
+          rich library of high-quality open source games covering every genre
+          imaginable.
+        </p>
+      </div>
+      <div class="feature-image fade-up delay-2">
+        <img
+          src="/screens/steam.jpg"
+          alt="Steam on Ubuntu Budgie"
+        />
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── FEATURE 5: Easy Migrations ───────────────────────── -->
+  <section class="feature-section">
+    <div class="feature-row">
+      <div class="feature-image fade-up">
+        <img
+          src="/screens/appmenu.jpg"
+          alt="Ubuntu Budgie App Menu"
+        />
+      </div>
+      <div class="feature-text fade-up delay-2">
+        <span class="feature-eyebrow">You'll feel quite at home</span>
+        <h2>Easy Migrations</h2>
+        <p>
+          Connect your accounts, sync your calendars and download your
+          favourite apps. Ubuntu Budgie adapts to the way you work — making
+          switching platforms feel effortless.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ───────────────────────────────────────────────── -->
+  <section class="cta-section">
+    <h2 class="fade-up">Ready to experience Ubuntu Budgie?</h2>
+    <a href="/download" class="cta-btn fade-up delay-1">
+      Download Ubuntu Budgie
+    </a>
+  </section>
+
+</div>
 </BaseLayout>

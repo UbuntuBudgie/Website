@@ -1,0 +1,60 @@
+{
+  "$ref": "#/definitions/downloads-settings",
+  "definitions": {
+    "downloads-settings": {
+      "type": "object",
+      "properties": {
+        "donationTitle": {
+          "type": "string"
+        },
+        "donationDescription": {
+          "type": "string"
+        },
+        "tip1Label": {
+          "type": "string"
+        },
+        "tip1Url": {
+          "type": "string"
+        },
+        "tip2Label": {
+          "type": "string"
+        },
+        "tip2Url": {
+          "type": "string"
+        },
+        "tip3Label": {
+          "type": "string"
+        },
+        "tip3Url": {
+          "type": "string"
+        },
+        "tip4Label": {
+          "type": "string"
+        },
+        "tip4Url": {
+          "type": "string"
+        },
+        "usbDescription": {
+          "type": "string"
+        },
+        "usbButtonText": {
+          "type": "string"
+        },
+        "usbButtonUrl": {
+          "type": "string"
+        },
+        "installationTitle": {
+          "type": "string"
+        },
+        "installationContent": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

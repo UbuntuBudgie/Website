@@ -17,19 +17,16 @@
           "type": "string"
         },
         "downloadUrl": {
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         },
         "torrentUrl": {
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         },
         "readmeUrl": {
           "type": "string"
         },
         "usbBuyUrl": {
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         },
         "checksum": {
           "type": "string"
@@ -43,14 +40,7 @@
       },
       "required": [
         "version",
-        "releaseType",
-        "supportPeriod",
-        "description",
-        "downloadUrl",
-        "torrentUrl",
-        "readmeUrl",
-        "checksum",
-        "order"
+        "releaseType"
       ],
       "additionalProperties": false
     }
