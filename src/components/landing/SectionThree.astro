@@ -1,83 +1,503 @@
-<!-- Full-width Ubuntu Budgie Section -->
-<section class="bg-[#1e1e1e] text-white font-sans mt-20">
-  <!-- Inner content wrapper -->
-  <div class="max-w-7xl mx-auto px-6 py-16">
-    <!-- Intro -->
-    <div class="text-center">
-      <h2 class="text-5xl font-bold mb-4">
-        We’ve made Ubuntu Budgie even better
-      </h2>
-      <p class="text-gray-300 mb-10 max-w-3xl mx-auto">
-        The new 22.04 LTS release is here to stay for next five years on your desktop, bringing the stability of Ubuntu core and power of Budgie desktop environment in one package.
-      </p>
-      <img src="screens/desktop.jpg" 
-           alt="Ubuntu Budgie Screenshot" 
-           class="rounded-lg shadow-lg mx-auto border border-gray-700">
+<style>
+  /* ─────────────────────────────────────────────────────────────
+     BASE
+  ───────────────────────────────────────────────────────────── */
+  .s3 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif;
+    color: #1d1d1f;
+    background: #fff;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     1. HERO INTRO — Dark, cinematic
+  ───────────────────────────────────────────────────────────── */
+  .s3-intro {
+    background:#1a1a2e;
+    color: #f5f5f7;
+    text-align: center;
+    padding: 6rem 1.5rem 3rem;
+  }
+
+  .s3-intro-eyebrow {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #e86c1f;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .s3-intro h2 {
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.30;
+    margin: 0 auto 1.25rem;
+    max-width: 720px;
+    background: linear-gradient(160deg, #ffffff 40%, #999 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .s3-intro p {
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    color: #86868b;
+    max-width: 560px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.75;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     2. FULL-WIDTH DESKTOP SCREENSHOT
+  ───────────────────────────────────────────────────────────── */
+  .s3-screenshot {
+    background: #1a1a2e; 
+    padding: 0 2rem 5rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .s3-screenshot img {
+    width: 100%;
+    max-width: 1400px;
+    height: auto;
+    display: block;
+    border-radius: 14px;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.08),
+      0 40px 80px rgba(0,0,0,0.7);
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     3. JOURNEY SECTION 
+  ───────────────────────────────────────────────────────────── */
+  .s3-journey {
+    background: #1a1a2e;
+    padding: 0 0 5rem;
+  }
+
+  /* Dark centered header matching screenshot */
+  .s3-journey-header {
+    background: #1a1a2e;
+    text-align: center;
+    padding: 5rem 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .s3-journey-header h3 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+    margin: 0 0 1rem;
+    line-height: 1.15;
+  }
+
+  .s3-journey-header p {
+    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+    color: rgba(255,255,255,0.6);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.75;
+  }
+
+  .s3-journey-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 1900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  @media (max-width: 1100px) { .s3-journey-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px)  { .s3-journey-grid { grid-template-columns: 1fr; } }
+
+  /* Card: tall, text at top, image anchored to bottom */
+  .s3-journey-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 460px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+                box-shadow 0.3s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .s3-journey-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 56px rgba(0,0,0,0.11);
+  }
+
+  .s3-journey-card-body {
+    padding: 1.5rem 1.5rem 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .s3-journey-card-body .card-cat {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .s3-journey-card-body h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: #1d1d1f;
+    margin: 0 0 0.55rem;
+  }
+
+  .s3-journey-card-body p {
+    font-size: 15px;
+    color: #6e6e73;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Image fills and anchors to bottom of card */
+  .s3-journey-card-img {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.75rem;
+  }
+
+  .s3-journey-card-img img {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .s3-journey-card:hover .s3-journey-card-img img {
+    transform: scale(1.03);
+  }
+
+  /* "+" button */
+  .s3-journey-card-plus {
+    position: absolute;
+    bottom: 1rem; right: 1rem;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: #1d1d1f;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.25s, transform 0.25s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .s3-journey-card:hover .s3-journey-card-plus {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     4. STICKY FEATURE ROWS
+  ───────────────────────────────────────────────────────────── */
+  .s3-features {
+    background: #fff;
+  }
+
+  .s3-feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(3rem, 6vw, 8rem);
+    align-items: center;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+
+  @media (max-width: 800px) {
+    .s3-feature-row {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .s3-feature-row.flip > .s3-feature-text { order: -1; }
+  }
+
+  .s3-feature-eyebrow {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .s3-feature-text h3 {
+    font-size: clamp(1.75rem, 3vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: #1d1d1f;
+    margin: 0 0 1.25rem;
+  }
+
+  .s3-feature-text p {
+    font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+    color: #6e6e73;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .s3-feature-img {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+  }
+
+  .s3-feature-img img {
+    width: 100%;
+    display: block;
+    border-radius: 18px;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     5. SHUFFLER FULL-BLEED
+  ───────────────────────────────────────────────────────────── */
+  .s3-shuffler {
+    background: linear-gradient(135deg, #1a2f4e 0%, #0f1f38 45%, #1a1a2e 100%);
+    padding: 6rem 1.5rem 5rem;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Subtle radial accent */
+  .s3-shuffler::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,113,227,0.18) 0%, transparent 70%);
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .s3-shuffler-eyebrow {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0071e3;
+    display: block;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .s3-shuffler h2 {
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #f5f5f7;
+    margin: 0 auto 1.25rem;
+    max-width: 680px;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .s3-shuffler p {
+    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+    color: rgba(255,255,255,0.55);
+    max-width: 520px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.75;
+    position: relative;
+    z-index: 1;
+  }
+
+  .s3-shuffler-img-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .s3-shuffler-img-wrap img {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.06),
+      0 40px 80px rgba(0,0,0,0.5);
+    display: block;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     ANIMATIONS
+  ───────────────────────────────────────────────────────────── */
+  @keyframes s3FadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .s3-anim { opacity: 0; }
+  .s3-anim.visible {
+    animation: s3FadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .s3-anim.d1.visible { animation-delay: 0.05s; }
+  .s3-anim.d2.visible { animation-delay: 0.15s; }
+  .s3-anim.d3.visible { animation-delay: 0.25s; }
+  .s3-anim.d4.visible { animation-delay: 0.35s; }
+</style>
+
+<div class="s3">
+
+  <!-- ── 1. INTRO ─────────────────────────────────────────── -->
+  <section class="s3-intro">
+    <span class="s3-intro-eyebrow">What's new</span>
+    <h2>We've made Ubuntu Budgie even better.</h2>
+    <p>The 22.04 LTS release brings five years of stability with the Ubuntu core and the elegance of Budgie desktop in one seamless package.</p>
+  </section>
+
+  <!-- ── 2. DESKTOP SCREENSHOT ────────────────────────────── -->
+  <div class="s3-screenshot">
+    <img src="screens/desktop.png" alt="Ubuntu Budgie Desktop" />
+  </div>
+
+  <!-- ── 3. JOURNEY CARDS ──────────────────────────────────── -->
+  <section class="s3-journey">
+    <div class="s3-journey-header">
+      <h3>Your journey starts here</h3>
+      <p>Budgie Welcome – a portal to getting everything you need – from drivers to new themes and applets that make Ubuntu Budgie what it is today.</p>
     </div>
 
-    <!-- Your Journey -->
-    <div class="mt-16 text-center">
-      <h3 class="text-2xl font-semibold mb-4">
-        Your journey starts here
-      </h3>
-      <p class="text-gray-300 mb-10 max-w-3xl mx-auto">
-        Budgie Welcome – a portal to getting everything you need – from drivers to new themes and applets that make Ubuntu Budgie what it is today.
-      </p>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <img src="screens/welcome.jpg" class="w-full h-96 object-contain bg-[#2a2a2a] rounded-lg shadow-lg border border-gray-700 p-2">
-        <img src="screens/updatesw.jpg" class="w-full h-96 object-contain bg-[#2a2a2a] rounded-lg shadow-lg border border-gray-700 p-2">
-        <img src="screens/applets.jpg" class="w-full h-96 object-contain bg-[#2a2a2a] rounded-lg shadow-lg border border-gray-700 p-2">
-        <img src="screens/themes.jpg" class="w-full h-96 object-contain bg-[#2a2a2a] rounded-lg shadow-lg border border-gray-700 p-2">
-      </div>
-    </div>
+    <div class="s3-journey-grid">
 
-    <!-- Coming from Mac -->
-    <div class="mt-16 grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h4 class="text-sm font-semibold text-gray-400 mb-2 uppercase tracking-wider">Start working</h4>
-        <h3 class="text-2xl font-bold mb-4">Coming from Mac?</h3>
-        <p class="text-gray-300 leading-relaxed">
-          We’ve developed an applet that allows you to have Hot corners function that you used while running OS X. Want to use Exposé? Open specific app? No problem, just put the mouse in the corner.
-        </p>
+      <div class="s3-journey-card s3-anim d1">
+        <div class="s3-journey-card-body">
+          <span class="card-cat">Welcome Center</span>
+          <h4>Get oriented from the very first boot.</h4>
+          <p>Drivers, themes, and applets — all in one place.</p>
+        </div>
+        <div class="s3-journey-card-img">
+          <img src="screens/welcome.jpg" alt="Budgie Welcome" />
+        </div>
+        <div class="s3-journey-card-plus">+</div>
       </div>
-      <img src="screens/hotcorners.webp" 
-           alt="Mac Feature" 
-           class="rounded-lg shadow-lg border border-gray-700">
+
+      <div class="s3-journey-card s3-anim d2">
+        <div class="s3-journey-card-body">
+          <span class="card-cat">Software Updates</span>
+          <h4>Always current, always secure.</h4>
+          <p>One-click updates keep your system fresh.</p>
+        </div>
+        <div class="s3-journey-card-img">
+          <img src="screens/updatesw.jpg" alt="Software Updates" />
+        </div>
+        <div class="s3-journey-card-plus">+</div>
+      </div>
+
+      <div class="s3-journey-card s3-anim d3">
+        <div class="s3-journey-card-body">
+          <span class="card-cat">Applets</span>
+          <h4>Extend your desktop, your way.</h4>
+          <p>A rich library of Budgie applets at your fingertips.</p>
+        </div>
+        <div class="s3-journey-card-img">
+          <img src="screens/applets.jpg" alt="Applets" />
+        </div>
+        <div class="s3-journey-card-plus">+</div>
+      </div>
+
+      <div class="s3-journey-card s3-anim d4">
+        <div class="s3-journey-card-body">
+          <span class="card-cat">Themes</span>
+          <h4>Make it beautifully yours.</h4>
+          <p>Curated themes to match any style or mood.</p>
+        </div>
+        <div class="s3-journey-card-img">
+          <img src="screens/themes.jpg" alt="Themes" />
+        </div>
+        <div class="s3-journey-card-plus">+</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 4. FEATURE ROWS ───────────────────────────────────── -->
+  <section class="s3-features">
+
+    <!-- Mac Migration -->
+    <div class="s3-feature-row">
+      <div class="s3-feature-text s3-anim">
+        <span class="s3-feature-eyebrow">Start working</span>
+        <h3>Coming from Mac?</h3>
+        <p>We've built an applet that brings Hot Corners to your desktop — just like Exposé on OS X. Pop the mouse into a corner to reveal apps, trigger actions, or launch shortcuts. Zero learning curve.</p>
+      </div>
+      <div class="s3-feature-img s3-anim d2">
+        <img src="screens/hotcorners.webp" alt="Hot Corners on Ubuntu Budgie" />
+      </div>
     </div>
 
     <!-- Weather -->
-    <div class="mt-16 grid md:grid-cols-2 gap-12 items-center">
-      <img src="screens/weather.png" 
-           alt="Weather Widget" 
-           class="rounded-lg shadow-lg border border-gray-700">
-      <div>
-        <h3 class="text-2xl font-bold mb-4">Get me some weather!</h3>
-        <p class="text-gray-300 leading-relaxed">
-          Do you need to carry that umbrella? Going out in a bit? Cloudy with chance of falling frogs? Have a quick look on your desktop and prepare for outside world.
-        </p>
+    <div class="s3-feature-row flip">
+      <div class="s3-feature-img s3-anim">
+        <img src="screens/weather.png" alt="Weather Widget" />
+      </div>
+      <div class="s3-feature-text s3-anim d2">
+        <span class="s3-feature-eyebrow">Stay informed</span>
+        <h3>Weather, right on your desktop.</h3>
+        <p>Umbrella or not? A glance at your desktop tells you. The built-in weather applet keeps conditions front and centre — no browser tab required.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<div class="bg-gradient-to-r from-blue-500 to-purple-500 py-20 px-4 text-center">
-  <!-- Heading -->
-  <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">
-    Need better screen overview?
-  </h2>
+  </section>
 
-  <!-- Description -->
-  <p class="text-lg text-gray-200 max-w-3xl mx-auto mb-12">
-    With the shuffler applet you can arrange open apps by snapping them across
-    the screen manually or via keyboard in any direction.
-  </p>
+  <!-- ── 5. SHUFFLER FULL-BLEED ────────────────────────────── -->
+  <section class="s3-shuffler">
+    <span class="s3-shuffler-eyebrow">Multitasking, redefined</span>
+    <h2>Need a better screen overview?</h2>
+    <p>With the Shuffler applet, snap open apps across your screen in any direction — manually or via keyboard. Every pixel, exactly where you want it.</p>
+    <div class="s3-shuffler-img-wrap s3-anim">
+      <img src="screens/sections.png" alt="Shuffler applet showing window snapping" />
+    </div>
+  </section>
 
-  <!-- Image Grid -->
-<div class="flex justify-center py-10">
-  <img 
-    src="screens/sections.png" 
-    alt="Screen Layout" 
-    class="w-full max-w-4xl h-auto"
-  />
 </div>
-</section>
+
+<script>
+  // ── Intersection observer for fade-up elements ──────────────
+  (function() {
+    const els = document.querySelectorAll('.s3-anim');
+    if (!els.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(el => io.observe(el));
+  })();
+</script>

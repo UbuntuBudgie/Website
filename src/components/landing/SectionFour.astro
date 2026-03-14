@@ -1,225 +1,572 @@
-<section>
-  <div class="bg-white py-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <!-- Subtitle -->
-    <a href="#" class="text-indigo-600 font-medium">Extend your desktop experience</a>
+<style>
+  .s4 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif;
+  }
 
-    <!-- Title -->
-    <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-      Small, but useful
-    </h2>
+  /* ── APPLETS SECTION ─────────────────────────────────────── */
+  .s4-applets {
+    background: #f5f5f7;
+    padding: 6rem 1.5rem 5rem;
+  }
 
-    <!-- Description -->
-    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-      Ubuntu Budgie comes with various applets, that extend the features of Budgie desktop. 
-      More are available from Budgie Welcome.
-    </p>
+  .s4-applets-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
-    <!-- Features Grid -->
-    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Card 1 -->
-      <div class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
-        <img src="screens/dropby.jpg" alt="Drop By" class="w-full h-48 object-cover">
-        <div class="p-6 text-left">
-          <h3 class="font-semibold text-lg text-gray-900">Drop By</h3>
-          <p class="mt-2 text-gray-600 text-sm">
-            Get to your files faster without the need to open Nemo to browse other disks and locations.
-          </p>
+  .s4-applets-header .eyebrow {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0071e3;
+    margin-bottom: 0.75rem;
+  }
+
+  .s4-applets-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #1d1d1f;
+    margin: 0 0 0.75rem;
+    line-height: 1.1;
+  }
+
+  .s4-applets-header p {
+    font-size: 1.05rem;
+    color: #6e6e73;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── BENTO GRID ──────────────────────────────────────────── */
+  .s4-bento {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1rem;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 1024px) { .s4-bento { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 680px)  { .s4-bento { grid-template-columns: repeat(2, 1fr); } }
+
+  .s4-bc {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+                box-shadow 0.3s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .s4-bc:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.10);
+  }
+
+  .s4-bc-2 { grid-column: span 2; }
+  .s4-bc-3 { grid-column: span 3; }
+  .s4-bc-4 { grid-column: span 4; }
+
+  @media (max-width: 1024px) {
+    .s4-bc-3 { grid-column: span 2; }
+    .s4-bc-4 { grid-column: span 4; }
+  }
+  @media (max-width: 680px) {
+    .s4-bc-2, .s4-bc-3, .s4-bc-4 { grid-column: span 2; }
+  }
+
+  .s4-bc-img {
+    width: 100%;
+    flex: 1;
+    min-height: 160px;
+    max-height: 240px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .s4-bc-3 .s4-bc-img,
+  .s4-bc-4 .s4-bc-img { max-height: 280px; }
+
+  .s4-bc-body {
+    padding: 1.1rem 1.25rem 1.25rem;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    flex-shrink: 0;
+  }
+
+  .s4-bc-body h3 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #1d1d1f;
+    margin: 0 0 0.35rem;
+  }
+
+  .s4-bc-body p {
+    font-size: 0.95rem;
+    color: #6e6e73;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .s4-applets-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  .s4-applets-cta a {
+    display: inline-block;
+    background: #0071e3;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 0.8rem 2rem;
+    border-radius: 980px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .s4-applets-cta a:hover { background: #0077ed; transform: scale(1.02); }
+
+  /* ── TESTIMONIALS ────────────────────────────────────────── */
+  .s4-testimonials {
+    background: #f5f5f7;
+    padding: 7rem 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif;
+  }
+
+  .s4-t-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  .s4-t-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  @media (max-width: 700px) {
+    .s4-t-header { flex-direction: column; align-items: flex-start; }
+  }
+
+  .s4-t-eyebrow {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 0.6rem;
+  }
+
+  .s4-t-title {
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: #1d1d1f;
+    margin: 0;
+  }
+
+  .s4-t-sub {
+    font-size: 0.95rem;
+    color: #86868b;
+    line-height: 1.7;
+    max-width: 320px;
+    text-align: right;
+    margin: 0;
+  }
+
+  @media (max-width: 700px) {
+    .s4-t-sub { text-align: left; max-width: 100%; }
+  }
+
+  /* Grid */
+  .s4-t-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(0,0,0,0.07);
+    border-radius: 22px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 700px) { .s4-t-grid { grid-template-columns: 1fr; } }
+
+  /* Card */
+  .s4-t-card {
+    background: #ffffff;
+    padding: 2.75rem 2.5rem 2.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    transition: background 0.25s ease;
+  }
+
+  .s4-t-card:hover { background: #fafafa; }
+
+  /* Opening mark */
+  .s4-t-quote {
+    font-size: clamp(1rem, 1.4vw, 1.1rem);
+    color: #1d1d1f;
+    line-height: 1.75;
+    margin: 0;
+    font-weight: 300;
+    position: relative;
+    padding-top: 2.25rem;
+  }
+
+  .s4-t-quote::before {
+    content: '\201C';
+    position: absolute;
+    top: 0; left: -4px;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: #d2d2d7;
+    font-family: Georgia, serif;
+    font-weight: 400;
+  }
+
+  /* Footer row */
+  .s4-t-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .s4-t-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .s4-t-person {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .s4-t-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1d1d1f;
+    letter-spacing: -0.01em;
+  }
+
+  .s4-t-role {
+    font-size: 0.775rem;
+    color: #86868b;
+  }
+
+  .s4-t-pub {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c7c7cc;
+  }
+
+  /* ── SPONSORS ─────────────────────────────────────────────── */
+  .s4-sponsors {
+    background: #ffffff;
+    padding: 7rem 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif;
+  }
+
+  .s4-sp-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  .s4-sp-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .s4-sp-eyebrow {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 0.75rem;
+  }
+
+  .s4-sp-title {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #1d1d1f;
+    margin: 0 0 0.75rem;
+    line-height: 1.1;
+  }
+
+  .s4-sp-sub {
+    font-size: 0.95rem;
+    color: #86868b;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .s4-sp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 600px) { .s4-sp-grid { grid-template-columns: 1fr; } }
+
+  .s4-sp-card {
+    background: #f5f5f7;
+    border-radius: 20px;
+    padding: 2.5rem 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: background 0.25s ease,
+                box-shadow 0.25s ease;
+  }
+
+  .s4-sp-card:hover {
+    background: #fff;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  }
+
+  .s4-sp-logo {
+    height: 128px;
+    width: auto;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    filter: grayscale(1) opacity(0.55);
+    transition: filter 0.3s ease;
+  }
+
+  .s4-sp-card:hover .s4-sp-logo {
+    filter: grayscale(0) opacity(1);
+  }
+
+  .s4-sp-divider {
+    height: 1px;
+    background: rgba(0,0,0,0.07);
+    margin: 1.5rem 0 1.25rem;
+  }
+
+  .s4-sp-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1d1d1f;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.4rem;
+  }
+
+  .s4-sp-desc {
+    font-size: 0.83rem;
+    color: #86868b;
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>
+
+<div class="s4">
+
+  <!-- ── BENTO APPLETS ──────────────────────────────────────── -->
+  <section class="s4-applets">
+    <div class="s4-applets-header">
+      <span class="eyebrow">Extend your desktop experience</span>
+      <h2>Small, but useful.</h2>
+      <p>Ubuntu Budgie comes with various applets that extend the features of Budgie desktop. More are available from Budgie Welcome.</p>
+    </div>
+
+    <div class="s4-bento">
+      <div class="s4-bc s4-bc-3">
+        <img class="s4-bc-img" src="screens/dropby.jpg" alt="Drop By" />
+        <div class="s4-bc-body">
+          <h3>Drop By</h3>
+          <p>Get to your files faster without opening Nemo — browse disks and locations from the panel.</p>
         </div>
       </div>
 
-      <!-- Card 2 -->
-      <div class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
-        <img src="screens/autoswitch.png" alt="Auto-Switcher" class="w-full h-48 object-cover">
-        <div class="p-6 text-left">
-          <h3 class="font-semibold text-lg text-gray-900">Auto-Switcher</h3>
-          <p class="mt-2 text-gray-600 text-sm">
-            Switch languages easily for each app and desktop, for those that use bilingual keyboards.
-          </p>
+      <div class="s4-bc s4-bc-3">
+        <img class="s4-bc-img" src="screens/autoswitch.png" alt="Auto-Switcher" />
+        <div class="s4-bc-body">
+          <h3>Auto-Switcher</h3>
+          <p>Switch languages easily for each app and desktop, for those that use bilingual keyboards.</p>
         </div>
       </div>
 
-      <!-- Card 3 -->
-      <div class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
-        <img src="screens/stopwatch.png" alt="Workspaces" class="w-full h-48 object-cover">
-        <div class="p-6 text-left">
-          <h3 class="font-semibold text-lg text-gray-900">Workspaces</h3>
-          <p class="mt-2 text-gray-600 text-sm">
-            Control different workspaces and name each individually from the taskbar.
-          </p>
+      <div class="s4-bc s4-bc-2">
+        <img class="s4-bc-img" src="screens/stopwatch.png" alt="Workspaces" />
+        <div class="s4-bc-body">
+          <h3>Workspaces</h3>
+          <p>Control different workspaces and name each individually from the taskbar.</p>
         </div>
       </div>
 
-      <!-- Card 4 -->
-      <div class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
-        <img src="screens/quicknote.jpg" alt="Quick Note" class="w-full h-48 object-cover">
-        <div class="p-6 text-left">
-          <h3 class="font-semibold text-lg text-gray-900">Quick Note</h3>
-          <p class="mt-2 text-gray-600 text-sm">
-            Copy & Paste or write quick notes that you want to get reminded about later.
-          </p>
+      <div class="s4-bc s4-bc-2">
+        <img class="s4-bc-img" src="screens/quicknote.jpg" alt="Quick Note" />
+        <div class="s4-bc-body">
+          <h3>Quick Note</h3>
+          <p>Copy &amp; Paste or write quick notes that you want to get reminded about later.</p>
         </div>
       </div>
 
-      <!-- Card 5 -->
-      <div class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
-        <img src="screens/visualspace.jpg" alt="Activities Overview" class="w-full h-48 object-cover">
-        <div class="p-6 text-left">
-          <h3 class="font-semibold text-lg text-gray-900">Activities Overview</h3>
-          <p class="mt-2 text-gray-600 text-sm">
-            Check what is happening on other desktops, open applications, without switching desktops.
-          </p>
+      <div class="s4-bc s4-bc-2">
+        <img class="s4-bc-img" src="screens/visualspace.jpg" alt="Activities Overview" />
+        <div class="s4-bc-body">
+          <h3>Activities Overview</h3>
+          <p>Check what is happening on other desktops without switching away.</p>
         </div>
       </div>
 
-      <!-- Card 6 -->
-      <div class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
-        <img src="screens/dim.png" alt="Brightness & Backlight controller" class="w-full h-48 object-cover">
-        <div class="p-6 text-left">
-          <h3 class="font-semibold text-lg text-gray-900">Brightness & Backlight controller</h3>
-          <p class="mt-2 text-gray-600 text-sm">
-            Easily control your screen brightness and keyboard backlight from your taskbar.
-          </p>
+      <div class="s4-bc s4-bc-4">
+        <img class="s4-bc-img" src="screens/dim.png" alt="Brightness & Backlight" style="object-position: center top;" />
+        <div class="s4-bc-body">
+          <h3>Brightness &amp; Backlight controller</h3>
+          <p>Easily control your screen brightness and keyboard backlight from your taskbar.</p>
         </div>
       </div>
     </div>
 
-    <!-- Button -->
-    <div class="mt-10">
-      <a href="#" class="inline-block px-6 py-3 bg-blue-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-blue-700 transition">
-        Learn More
-      </a>
+    <div class="s4-applets-cta">
+      <a href="#">Learn More</a>
+    </div>
+  </section>
+
+  <!-- ── GALLERY ───────────────────────────────────────────── -->
+  <div class="bg-gray-900 py-16 px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-10">Make it your own</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-7x2 mx-auto">
+      <img src="screens/sc1.jpeg"  alt="Screenshot 1"  class="w-full h-auto rounded-lg shadow-lg">
+      <img src="screens/sc2.jpeg"  alt="Screenshot 2"  class="w-full h-auto rounded-lg shadow-lg">
+      <img src="screens/sc3.png"   alt="Screenshot 3"  class="w-full h-auto rounded-lg shadow-lg">
+      <img src="screens/sc4.jpeg"  alt="Screenshot 4"  class="w-full h-auto rounded-lg shadow-lg">
+      <img src="screens/sc5.jpeg"  alt="Screenshot 5"  class="w-full h-auto rounded-lg shadow-lg">
+      <img src="screens/sc6.png"   alt="Screenshot 6"  class="w-full h-auto rounded-lg shadow-lg">
+      <img src="screens/sc7.jpeg"  alt="Screenshot 7"  class="w-full h-auto rounded-lg shadow-lg">
+      <img src="screens/sc8.jpeg"  alt="Screenshot 8"  class="w-full h-auto rounded-lg shadow-lg">
+      <img src="screens/sc9.jpeg"  alt="Screenshot 9"  class="w-full h-auto rounded-lg shadow-lg">
+      <img src="screens/sc10.jpeg" alt="Screenshot 10" class="w-full h-auto rounded-lg shadow-lg">
+      <img src="screens/sc11.png"  alt="Screenshot 11" class="w-full h-auto rounded-lg shadow-lg">
+      <img src="screens/sc12.jpeg" alt="Screenshot 12" class="w-full h-auto rounded-lg shadow-lg">
+      <img src="screens/sc13.png"  alt="Screenshot 13" class="w-full h-auto rounded-lg shadow-lg">
+      <img src="screens/sc14.png"  alt="Screenshot 14" class="w-full h-auto rounded-lg shadow-lg">
     </div>
   </div>
+
+  <!-- ── TESTIMONIALS ──────────────────────────────────────── -->
+  <section class="s4-testimonials">
+    <div class="s4-t-inner">
+
+      <div class="s4-t-header">
+        <div>
+          <span class="s4-t-eyebrow">What people say</span>
+          <h2 class="s4-t-title">We love our users.</h2>
+        </div>
+        <p class="s4-t-sub">User happiness is our primary target. If our community isn't happy, we're not succeeding.</p>
+      </div>
+
+      <div class="s4-t-grid">
+
+        <div class="s4-t-card">
+          <p class="s4-t-quote">It's a lightweight OS free of bloat with modest hardware requirements, but still manages to contain everything an average user might need.</p>
+          <div class="s4-t-footer">
+            <img class="s4-t-avatar" src="icons/jason.jpg" alt="Jason Evangelho" />
+            <div class="s4-t-person">
+              <span class="s4-t-name">Jason Evangelho</span>
+              <span class="s4-t-role">Contributor at Forbes</span>
+            </div>
+            <span class="s4-t-pub">Forbes</span>
+          </div>
+        </div>
+
+        <div class="s4-t-card">
+          <p class="s4-t-quote">It provides all the benefits of Ubuntu and its ecosystem, but feathered beneath a clean, modern looking desktop interface.</p>
+          <div class="s4-t-footer">
+            <img class="s4-t-avatar" src="icons/joey.jpg" alt="Joey Sneddon" />
+            <div class="s4-t-person">
+              <span class="s4-t-name">Joey Sneddon</span>
+              <span class="s4-t-role">Editor at OMG! Ubuntu</span>
+            </div>
+            <span class="s4-t-pub">OMG! Ubuntu</span>
+          </div>
+        </div>
+
+        <div class="s4-t-card">
+          <p class="s4-t-quote">After the GNOME-based version, the biggest changes to an Ubuntu flavor come in Ubuntu Budgie.</p>
+          <div class="s4-t-footer">
+            <img class="s4-t-avatar" src="icons/scott.jpg" alt="Scott Gilbertson" />
+            <div class="s4-t-person">
+              <span class="s4-t-name">Scott Gilbertson</span>
+              <span class="s4-t-role">Editor at Ars Technica</span>
+            </div>
+            <span class="s4-t-pub">Ars Technica</span>
+          </div>
+        </div>
+
+        <div class="s4-t-card">
+          <p class="s4-t-quote">The Perfect Blend of Ubuntu and Budgie Desktop. Ubuntu Budgie provides a superior computing experience.</p>
+          <div class="s4-t-footer">
+            <img class="s4-t-avatar" src="icons/aquil.jpg" alt="Aquil Roshan" />
+            <div class="s4-t-person">
+              <span class="s4-t-name">Aquil Roshan</span>
+              <span class="s4-t-role">Writer at ItsFoss</span>
+            </div>
+            <span class="s4-t-pub">ItsFoss</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPONSORS ──────────────────────────────────────────── -->
+  <section class="s4-sponsors">
+    <div class="s4-sp-inner">
+
+      <div class="s4-sp-header">
+        <span class="s4-sp-eyebrow">Infrastructure &amp; partners</span>
+        <h2 class="s4-sp-title">Our sponsors.</h2>
+        <p class="s4-sp-sub">The organisations that power and support Ubuntu Budgie.</p>
+      </div>
+
+      <div class="s4-sp-grid">
+
+        <div class="s4-sp-card">
+          <img class="s4-sp-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg" alt="DigitalOcean" />
+          <div class="s4-sp-divider"></div>
+          <p class="s4-sp-label">Infrastructure</p>
+          <p class="s4-sp-desc">Deployment, management and scaling of our infrastructure.</p>
+        </div>
+
+        <div class="s4-sp-card">
+          <img class="s4-sp-logo" src="icons/discourse.png" alt="Discourse" />
+          <div class="s4-sp-divider"></div>
+          <p class="s4-sp-label">Community Forum</p>
+          <p class="s4-sp-desc">Civilized discussion for our community about Ubuntu Budgie development.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
 </div>
-<div class="bg-gray-900 py-16 px-4">
-  <!-- Title -->
-  <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-10">
-    Make it your own
-  </h2>
-
-  <!-- Image Grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-7xl mx-auto">
-    <img src="screens/sc1.jpeg" alt="Screenshot 1" class="w-full h-auto rounded-lg shadow-lg">
-    <img src="screens/sc2.jpeg" alt="Screenshot 2" class="w-full h-auto rounded-lg shadow-lg">
-    <img src="screens/sc3.png" alt="Screenshot 3" class="w-full h-auto rounded-lg shadow-lg">
-    <img src="screens/sc4.jpeg" alt="Screenshot 4" class="w-full h-auto rounded-lg shadow-lg">
-    <img src="screens/sc5.jpeg" alt="Screenshot 5" class="w-full h-auto rounded-lg shadow-lg">
-    <img src="screens/sc6.png" alt="Screenshot 6" class="w-full h-auto rounded-lg shadow-lg">
-    <img src="screens/sc7.jpeg" alt="Screenshot 7" class="w-full h-auto rounded-lg shadow-lg">
-    <img src="screens/sc8.jpeg" alt="Screenshot 8" class="w-full h-auto rounded-lg shadow-lg">
-    <img src="screens/sc9.jpeg" alt="Screenshot 9" class="w-full h-auto rounded-lg shadow-lg">
-    <img src="screens/sc10.jpeg" alt="Screenshot 10" class="w-full h-auto rounded-lg shadow-lg">
-    <img src="screens/sc11.png" alt="Screenshot 11" class="w-full h-auto rounded-lg shadow-lg">
-    <img src="screens/sc12.jpeg" alt="Screenshot 12" class="w-full h-auto rounded-lg shadow-lg">
-    <img src="screens/sc13.png" alt="Screenshot 13" class="w-full h-auto rounded-lg shadow-lg">
-    <img src="screens/sc14.png" alt="Screenshot 14" class="w-full h-auto rounded-lg shadow-lg">
-  </div>
-</div>
-
-<div class="mx-auto max-w-7xl px-24 lg:px-8 pt-[100px]">
-    <div class="mx-auto max-w-3xl text-center">
-      <h2 class="text-lg font-semibold leading-8 text-purple-600">Testimonials</h2>
-      <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">We love our users</p>
-      <p class="mt-6 text-lg leading-8 text-gray-600">
-        User happiness is our primary target. If our customers aren’t happy we’re not succeeding. See what they’re saying below.
-      </p>
-    </div>
-    
-    <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 text-gray-700 sm:mt-20 md:grid-cols-2 lg:mx-0 lg:max-w-none lg:gap-x-8 lg:gap-y-10">
-      
-      <!-- Testimonial 1 -->
-      <div class="rounded-2xl border border-gray-200 p-8">
-        <figure>
-          <div class="flex items-start justify-between gap-x-6">
-            <blockquote>
-              <p>"It’s a lightweight OS free of bloat with modest hardware requirements, but still manages to contain everything an average user might need."</p>
-            </blockquote>
-            <!-- Placeholder image: replace with actual user avatar -->
-            <img class="h-12 w-12 flex-none rounded-full object-cover" src="icons/jason.jpg" alt="Photo of Jason Evangelho">
-          </div>
-          <figcaption class="mt-6">
-            <div class="font-semibold text-gray-900">Jason Evangelho</div>
-            <div class="text-gray-600">Contributor at Forbes</div>
-          </figcaption>
-        </figure>
-      </div>
-
-      <!-- Testimonial 2 -->
-      <div class="rounded-2xl border border-gray-200 p-8">
-        <figure>
-          <div class="flex items-start justify-between gap-x-6">
-            <blockquote>
-              <p>"It provides all the benefits of Ubuntu and its ecosystem, but feathered beneath a clean, modern looking desktop interface."</p>
-            </blockquote>
-            <!-- Placeholder image: replace with actual user avatar -->
-            <img class="h-12 w-12 flex-none rounded-full object-cover" src="icons/joey.jpg" alt="Photo of Joey Sneddon">
-          </div>
-          <figcaption class="mt-6">
-            <div class="font-semibold text-gray-900">Joey Sneddon</div>
-            <div class="text-gray-600">Editor at OMG!Ubuntu</div>
-          </figcaption>
-        </figure>
-      </div>
-
-      <!-- Testimonial 3 -->
-      <div class="rounded-2xl border border-gray-200 p-8">
-        <figure>
-          <div class="flex items-start justify-between gap-x-6">
-            <blockquote>
-              <p>"After the GNOME-based version, the biggest changes to an Ubuntu flavor come in Ubuntu Budgie."</p>
-            </blockquote>
-            <!-- Placeholder image: replace with actual user avatar -->
-            <img class="h-12 w-12 flex-none rounded-full object-cover" src="icons/scott.jpg" alt="Photo of Scott Gilbertson">
-          </div>
-          <figcaption class="mt-6">
-            <div class="font-semibold text-gray-900">Scott Gilbertson</div>
-            <div class="text-gray-600">Ars Technica Editor</div>
-          </figcaption>
-        </figure>
-      </div>
-
-      <!-- Testimonial 4 -->
-      <div class="rounded-2xl border border-gray-200 p-8">
-        <figure>
-          <div class="flex items-start justify-between gap-x-6">
-            <blockquote>
-              <p>"The Perfect Blend of Ubuntu and Budgie Desktop. Ubuntu Budgie provides a superior computing experience."</p>
-            </blockquote>
-            <!-- Placeholder image: replace with actual user avatar -->
-            <img class="h-12 w-12 flex-none rounded-full object-cover" src="icons/aquil.jpg" alt="Photo of Aquil Roshan">
-          </div>
-          <figcaption class="mt-6">
-            <div class="font-semibold text-gray-900">Aquil Roshan</div>
-            <div class="text-gray-600">Writer at ItsFoss</div>
-          </figcaption>
-        </figure>
-      </div>
-
-    </div>
-  </div>
-<div class="bg-white py-16 sm:py-24 pt[100px]">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <h2 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl text-center">
-      Our Sponsors
-    </h2>
-    <div class="mx-auto mt-12 grid max-w-lg grid-cols-1 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-2 lg:mx-0 lg:max-w-none p-[100px]">
-      <!-- Sponsor 1: DigitalOcean -->
-      <div class="flex flex-col items-center justify-center rounded-lg border border-gray-200 p-8">
-        <img class="max-h-[150px] w-auto" src="https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg" alt="DigitalOcean">
-        <p class="mt-6 text-center text-base leading-7 text-gray-600">
-          Deployment, management and scaling of our Infrastructure
-        </p>
-      </div>
-      <!-- Sponsor 2: Discourse -->
-      <div class="flex flex-col items-center justify-center rounded-lg border border-gray-200 p-8">
-        <img class="max-h-[150px] w-auto" src="icons/discourse.png" alt="Discourse">
-        <p class="mt-6 text-center text-base leading-7 text-gray-600">
-          Civilized discussion for our community about Ubuntu Budgie Development.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-</section>

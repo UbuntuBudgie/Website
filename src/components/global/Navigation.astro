@@ -1,56 +1,371 @@
-<header class="bg-black">
-  <div class="container mx-auto px-4">
-    <div class="flex items-center justify-between py-4">
-      <!-- Logo -->
-      <div class="flex items-center">
-        <a href="/" class="flex items-center text-white mr-12">
-          <img src="https://ubuntubudgie.org/wp-content/uploads/2024/03/UbuntuBudgie-Wordmark-whiteblackalt.svg" alt="Ubuntu Budgie Logo" class="h-8"/>
-        </a>
-      </div>
-      
-      <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-8">
-        <a href="/" class="text-white hover:text-gray-300">Home</a>
-        <a href="/about/" class="text-white hover:text-gray-300">About Us</a>
-        <a href="/downloads" class="text-white hover:text-gray-300">Downloads</a>
-        <a href="/donate" class="text-white hover:text-gray-300">Donate</a>
-        <a href="/blog" class="text-white hover:text-gray-300">Blog</a>
-        <a href="/team" class="text-white hover:text-gray-300">Our Team</a>
-        <a href="/gallery" class="text-white hover:text-gray-300">Gallery</a>
-        <a href="/contact" class="text-white hover:text-gray-300">Contact</a>
-        <a href="https://discourse.ubuntubudgie.org" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-300">Support</a>
-      </nav>
-      
-      <!-- Mobile menu button -->
-      <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+<style>
+  .nav-root * { box-sizing: border-box; }
+
+  /* ── BAR ─────────────────────────────────────────────────── */
+  .nav-root {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 9999;
+    background: #000000;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .nav-root.scrolled {
+    box-shadow: 0 2px 20px rgba(0,0,0,0.6);
+    border-bottom-color: rgba(255,255,255,0.12);
+  }
+
+  /* ── INNER ROW ───────────────────────────────────────────── */
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ── LOGO ─────────────────────────────────────────────────── */
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .nav-logo img {
+    height: 28px;
+    width: auto;
+    display: block;
+  }
+
+  /* ── DESKTOP LINKS ───────────────────────────────────────── */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+    margin-left: 2rem;
+    flex: 1;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 7px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.72);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: color 0.15s, background 0.15s;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+  .nav-link.active { color: #fff; }
+
+  .nav-sep {
+    width: 1px;
+    height: 14px;
+    background: rgba(255,255,255,0.14);
+    margin: 0 0.4rem;
+    flex-shrink: 0;
+  }
+
+  /* ── RIGHT SIDE ──────────────────────────────────────────── */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .nav-dl {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0.45rem 1rem;
+    border-radius: 980px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fff;
+    background: #0071e3;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: background 0.18s;
+    white-space: nowrap;
+  }
+
+  .nav-dl:hover { background: #0080f5; }
+
+  /* ── HAMBURGER ───────────────────────────────────────────── */
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    cursor: pointer;
+    gap: 5px;
+    transition: background 0.15s;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .nav-burger:hover { background: rgba(255,255,255,0.14); }
+
+  .nav-burger span {
+    display: block;
+    width: 16px;
+    height: 1.5px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.24s ease, opacity 0.18s ease;
+    transform-origin: center;
+  }
+
+  .nav-burger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-burger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-burger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ── MOBILE DRAWER ───────────────────────────────────────── */
+  .nav-drawer {
+    position: fixed;
+    top: 60px;
+    left: 0; right: 0;
+    z-index: 9998;
+    background: #0a0a0a;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 1.25rem 1.25rem 1.75rem;
+    max-height: calc(100dvh - 60px);
+    overflow-y: auto;
+    /* Hidden by default */
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.22,1,0.36,1);
+    /* Critical: display must NOT be none — use opacity/pointer-events to hide */
+  }
+
+  .nav-drawer.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .nav-drawer-section {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+    padding: 0 0.6rem;
+    margin: 1.1rem 0 0.4rem;
+  }
+
+  .nav-drawer-section:first-child { margin-top: 0; }
+
+  .nav-drawer-link {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.7rem 0.65rem;
+    border-radius: 9px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.76);
+    text-decoration: none;
+    transition: color 0.14s, background 0.14s;
+  }
+
+  .nav-drawer-link:hover { color: #fff; background: rgba(255,255,255,0.07); }
+
+  .nav-drawer-link::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    flex-shrink: 0;
+    transition: background 0.14s;
+  }
+
+  .nav-drawer-link:hover::before { background: #0071e3; }
+
+  .nav-drawer-actions {
+    display: flex;
+    gap: 0.65rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .nav-drawer-actions a {
+    flex: 1;
+    text-align: center;
+    padding: 0.7rem;
+    border-radius: 9px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .nav-da-ghost { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.8); }
+  .nav-da-ghost:hover { background: rgba(255,255,255,0.12) !important; }
+  .nav-da-primary { background: #0071e3; color: #fff; }
+  .nav-da-primary:hover { background: #0080f5 !important; }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-dl    { display: none; }
+    .nav-right { gap: 0; }
+    .nav-burger { display: flex; }
+  }
+
+  body { padding-top: 60px; }
+</style>
+
+<header class="nav-root" id="navRoot">
+  <div class="nav-inner">
+
+    <a href="/" class="nav-logo" aria-label="Ubuntu Budgie home">
+      <img src="https://ubuntubudgie.org/wp-content/uploads/2024/03/UbuntuBudgie-Wordmark-whiteblackalt.svg" alt="Ubuntu Budgie" />
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/"        class="nav-link">Home</a>
+      <a href="/about/"  class="nav-link">About</a>
+      <a href="/blog"    class="nav-link">Blog</a>
+      <a href="/team"    class="nav-link">Our Team</a>
+      <a href="/gallery" class="nav-link">Gallery</a>
+      <div class="nav-sep" aria-hidden="true"></div>
+      <a href="/donate"  class="nav-link">Donate</a>
+      <a href="/contact" class="nav-link">Contact</a>
+      <a href="https://discourse.ubuntubudgie.org" class="nav-link" target="_blank" rel="noopener noreferrer">
+        Support
+        <svg width="9" height="9" viewBox="0 0 10 10" fill="none" aria-hidden="true" style="opacity:0.4">
+          <path d="M2 8L8 2M8 2H4M8 2V6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
+      </a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="/downloads" class="nav-dl">
+        Download
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M6 1v7M2.5 5l3.5 3.5L9.5 5M1 10h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
-    
-    <!-- Mobile Navigation -->
-    <div id="mobile-menu" class="hidden md:hidden pb-4">
-      <a href="/" class="block py-2 text-white hover:text-gray-300">Home</a>
-      <a href="/about-us" class="block py-2 text-white hover:text-gray-300">About Us</a>
-      <a href="/downloads" class="block py-2 text-white hover:text-gray-300">Downloads</a>
-      <a href="/donate" class="block py-2 text-white hover:text-gray-300">Donate</a>
-      <a href="/blog" class="block py-2 text-white hover:text-gray-300">Blog</a>
-      <a href="/our-team" class="block py-2 text-white hover:text-gray-300">Our Team</a>
-      <a href="/gallery" class="block py-2 text-white hover:text-gray-300">Gallery</a>
-      <a href="/contact" class="block py-2 text-white hover:text-gray-300">Contact</a>
-      <a href="https://discourse.ubuntubudgie.org" target="_blank" rel="noopener noreferrer" class="block py-2 text-white hover:text-gray-300">Support</a>
-    </div>
+
   </div>
-  
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const mobileMenuButton = document.getElementById('mobile-menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
-      
-      mobileMenuButton.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-      });
-    });
-  </script>
 </header>
+
+<div class="nav-drawer" id="navDrawer" aria-hidden="true">
+  <p class="nav-drawer-section">Navigate</p>
+  <a href="/"        class="nav-drawer-link">Home</a>
+  <a href="/about/"  class="nav-drawer-link">About Us</a>
+  <a href="/blog"    class="nav-drawer-link">Blog</a>
+  <a href="/team"    class="nav-drawer-link">Our Team</a>
+  <a href="/gallery" class="nav-drawer-link">Gallery</a>
+
+  <p class="nav-drawer-section">Community</p>
+  <a href="/donate"  class="nav-drawer-link">Donate</a>
+  <a href="/contact" class="nav-drawer-link">Contact</a>
+  <a href="https://discourse.ubuntubudgie.org" class="nav-drawer-link" target="_blank" rel="noopener noreferrer">Support Forum ↗</a>
+
+  <div class="nav-drawer-actions">
+    <a href="/about/"    class="nav-da-ghost">Learn More</a>
+    <a href="/downloads" class="nav-da-primary">Download</a>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var root    = document.getElementById('navRoot');
+    var burger  = document.getElementById('navBurger');
+    var drawer  = document.getElementById('navDrawer');
+
+    if (!root || !burger || !drawer) return;
+
+    /* ── Scroll shadow ── */
+    function handleScroll() {
+      root.classList.toggle('scrolled', window.scrollY > 10);
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    /* ── Toggle drawer ── */
+    function openDrawer() {
+      drawer.classList.add('is-open');
+      burger.classList.add('is-open');
+      burger.setAttribute('aria-expanded', 'true');
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('is-open');
+      burger.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    burger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (drawer.classList.contains('is-open')) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+
+    /* ── Close on drawer link click ── */
+    var links = drawer.querySelectorAll('a');
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', closeDrawer);
+    }
+
+    /* ── Close on outside click ── */
+    document.addEventListener('click', function (e) {
+      if (!drawer.classList.contains('is-open')) return;
+      var t = e.target;
+      if (t instanceof Node && !root.contains(t) && !drawer.contains(t)) {
+        closeDrawer();
+      }
+    });
+
+    /* ── Close on Escape ── */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeDrawer();
+    });
+
+    /* ── Active link ── */
+    var currentPath = window.location.pathname;
+    var navLinks = root.querySelectorAll('.nav-link');
+    for (var j = 0; j < navLinks.length; j++) {
+      var el = navLinks[j];
+      if (!(el instanceof HTMLAnchorElement)) continue;
+      var href = el.getAttribute('href') || '';
+      if (href === currentPath || (href.length > 1 && currentPath.startsWith(href))) {
+        el.classList.add('active');
+      }
+    }
+  })();
+</script>

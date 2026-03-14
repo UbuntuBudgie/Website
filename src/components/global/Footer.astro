@@ -1,101 +1,364 @@
 ---
 const sections = [
   {
-    title: "All pages",
+    title: "Pages",
     links: [
-      { name: "Home", href: "/" },
-      { name: "FAQ", href: "/faq" },
-      { name: "Terms", href: "/terms" },
-      { name: "Privacy", href: "/privacy" },
-      { name: "Sign up", href: "/signup" },
-      { name: "Sign In", href: "/signup" },
+      { name: "Home",      href: "/" },
+      { name: "About Us",  href: "/about" },
+      { name: "Downloads", href: "/downloads" },
+      { name: "Donate",    href: "/donate" },
+      { name: "Blog",      href: "/blog" },
+      { name: "Our Team",  href: "/team" },
+      { name: "Gallery",   href: "/gallery" },
+      { name: "Contact",   href: "/contact" },
+      { name: "Support",   href: "https://discourse.ubuntubudgie.org" },
     ],
   },
   {
-    title: "Resources",
+    title: "Ubuntu Family",
     links: [
-      {
-        name: "GitHub repo",
-        href: "https://github.com/michael-andreuzza/astrosaas",
-      },
+      { name: "Ubuntu",        href: "https://ubuntu.com" },
+      { name: "Kubuntu",       href: "https://kubuntu.org" },
+      { name: "Xubuntu",       href: "https://xubuntu.org" },
+      { name: "Lubuntu",       href: "https://lubuntu.me" },
+      { name: "Ubuntu MATE",   href: "https://ubuntu-mate.org" },
+      { name: "Ubuntu Studio", href: "https://ubuntustudio.org" },
+      { name: "Ubuntu Unity",  href: "https://ubuntuunity.org" },
+      { name: "Edubuntu",      href: "https://edubuntu.org" },
     ],
   },
   {
-    title: "More themes",
+    title: "Buddies of Budgie",
     links: [
-      {
-        name: "Lexington Themes",
-        href: "https://lexingtonthemes.com/",
-      },
-    ],
-  },
-  {
-    title: "Socials",
-    links: [
-      {
-        name: "@lexingtonthemes",
-        href: "https://x.com/lexingtonthemes",
-      },
-      {
-        name: "@Mike_Andreuzza",
-        href: "https://x.com/Mike_Andreuzza",
-      },
+      { name: "buddiesofbudgie.org",   href: "https://buddiesofbudgie.org" },
+      { name: "GitHub",                href: "https://github.com/BuddiesOfBudgie" },
+      { name: "Budgie Desktop",        href: "https://buddiesofbudgie.org/budgie-desktop" },
+      { name: "Releases",              href: "https://buddiesofbudgie.org/blog" },
+      { name: "Sponsor Buddies",       href: "https://opencollective.com/buddies-of-budgie" },
     ],
   },
 ];
 ---
 
-<footer class="bg-[#1f2229]">
-  <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-    
-    <!-- Social Icons -->
-    <div class="flex justify-center space-x-4">
-      <a href="#" class="text-white hover:text-gray-300">
-        <span class="sr-only">Discourse</span>
-        <!-- Discourse Icon SVG -->
-        <svg class="h-10 w-10 p-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2C6.48 2 2 5.58 2 10.15c0 2.24.9 4.29 2.39 5.86l-1.6 4.79a.5.5 0 00.61.61l4.79-1.6C9.71 20.1 10.84 20.3 12 20.3c5.52 0 10-3.58 10-8.15C22 5.58 17.52 2 12 2zm-8 8.15c0-3.5 3.58-6.15 8-6.15s8 2.65 8 6.15-3.58 6.15-8 6.15-8-2.65-8-6.15z"/>
-        </svg>
-      </a>
-      <a href="#" class="bg-black text-white rounded-full h-10 w-10 flex items-center justify-center hover:bg-gray-800">
-        <span class="sr-only">X (formerly Twitter)</span>
-        <!-- X Icon SVG -->
-        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 300 300" aria-hidden="true">
-          <path d="M178.57 127.15 290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.94L0 300.25h26.46l102.4-116.59 81.8 116.59h89.34L178.57 127.15Zm-20.75 22.79-6.48-9.22-90.1-128.32h40.62l73.57 104.78 6.48 9.22 93.53 133.24h-40.62l-76.9-109.48Z"/>
-        </svg>
-      </a>
-      <a href="#" class="bg-blue-500 text-white rounded-full h-10 w-10 flex items-center justify-center hover:bg-blue-600">
-        <span class="sr-only">Mastodon</span>
-        <!-- Mastodon Icon SVG -->
-        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-<path d="M23.193 7.879c0-5.206-3.411-6.732-3.411-6.732C18.062.357 15.108.025 12.041 0h-.076c-3.068.025-6.02.357-7.74 1.147 0 0-3.411 1.526-3.411 6.732 0 1.192-.023 2.618.015 4.129.124 5.092.934 10.109 5.641 11.355 2.17.574 4.034.695 5.535.612 2.722-.15 4.25-.972 4.25-.972l-.09-1.975s-1.945.613-4.129.539c-2.165-.074-4.449-.233-4.799-2.891a5.499 5.499 0 0 1-.048-.745s2.125.52 4.817.643c1.646.075 3.19-.097 4.758-.283 3.007-.359 5.625-2.212 5.954-3.905.517-2.665.475-6.507.475-6.507zm-4.024 6.709h-2.497V8.469c0-1.29-.543-1.944-1.628-1.944-1.2 0-1.802.776-1.802 2.312v3.349h-2.483v-3.35c0-1.536-.602-2.312-1.802-2.312-1.085 0-1.628.655-1.628 1.944v6.119H4.832V8.284c0-1.289.328-2.313.987-3.07.68-.758 1.569-1.146 2.674-1.146 1.278 0 2.246.491 2.886 1.474L12 6.585l.622-1.043c.64-.983 1.608-1.474 2.886-1.474 1.104 0 1.994.388 2.674 1.146.658.757.986 1.781.986 3.07v6.304z">        </svg>
-      </a>
-      <a href="#" class="bg-blue-500 text-white rounded-full h-10 w-10 flex items-center justify-center hover:bg-blue-600">
-        <span class="sr-only">Facebook</span>
-        <!-- Facebook Icon SVG -->
-        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
-        </svg>
-      </a>
-      <a href="#" class="bg-black text-white rounded-full h-10 w-10 flex items-center justify-center hover:bg-gray-800">
-        <span class="sr-only">GitHub</span>
-        <!-- GitHub Icon SVG -->
-        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
-        </svg>
-      </a>
+<style>
+  .footer-wrap {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif;
+  }
+
+  /* ── CTA BANNER ──────────────────────────────────────────── */
+  .footer-cta {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px;
+    margin: 0px;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(211, 84, 0, 0.55) 0%, transparent 55%),
+      radial-gradient(ellipse at 75% 30%, rgba(39, 174, 96, 0.45) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(52, 152, 219, 0.25) 0%, transparent 45%),
+      linear-gradient(135deg, #2e8ec7 0%, #191b6a  40%, #1a1a0f 100%);
+    padding: 3.5rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  /* Bokeh blobs */
+  .footer-cta::before,
+  .footer-cta::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .footer-cta::before {
+    width: 320px; height: 320px;
+    background: rgba(180, 120, 20, 0.3);
+    top: -80px; left: 10%;
+  }
+  .footer-cta::after {
+    width: 260px; height: 260px;
+    background: rgba(30, 130, 60, 0.35);
+    bottom: -60px; right: 15%;
+  }
+
+  .cta-left h2 {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-right {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-right p {
+    color: rgba(255,255,255,0.72);
+    font-size: 0.975rem;
+    line-height: 1.7;
+    margin: 0 0 1.5rem;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .cta-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 680px) {
+    .footer-cta {
+      grid-template-columns: 1fr;
+      margin: 0 0.75rem;
+      padding: 2.5rem 1.75rem;
+    }
+  }
+
+  /* ── MAIN FOOTER BODY ────────────────────────────────────── */
+  .footer-body {
+    background: #151515;
+    padding: 3.5rem 1.5rem 0;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) auto;
+    gap: 2.5rem 2rem;
+    padding-bottom: 3rem;
+  }
+
+  @media (max-width: 900px) {
+    .footer-inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .footer-contact { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 480px) {
+    .footer-inner { grid-template-columns: 1fr; }
+  }
+
+  .footer-col h3 {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0 0 1.1rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-col ul a {
+    font-size: 0.9rem;
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul a:hover { color: #ffffff; }
+
+  /* ── CONTACT / SOCIALS COLUMN ────────────────────────────── */
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .footer-contact { align-items: flex-start; }
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #252525;
+    color: #aaa;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+  }
+
+  .social-icon:hover {
+    background: #333;
+    color: #fff;
+  }
+
+  .social-icon svg { width: 16px; height: 16px; }
+
+  .contact-info {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  @media (max-width: 900px) {
+    .contact-info { text-align: left; }
+  }
+
+  .contact-info a {
+    font-size: 0.9rem;
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-info a:hover { color: #fff; }
+
+  /* ── BOTTOM BAR ──────────────────────────────────────────── */
+  .footer-bottom {
+    background: #151515;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .footer-bottom-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-bottom p {
+    font-size: 0.8rem;
+    color: #555;
+    margin: 0;
+  }
+
+  .footer-bottom .heart { color: #e53e3e; }
+
+  .footer-bottom .legal {
+    font-size: 0.7rem;
+    color: #444;
+    max-width: 630px;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 680px) {
+    .footer-bottom-inner { flex-direction: column; align-items: flex-start; }
+    .footer-bottom .legal { text-align: left; }
+  }
+</style>
+
+<div class="footer-wrap">
+
+  <!-- ── CTA BANNER ─────────────────────────────────────── -->
+  <div class="footer-cta">
+    <div class="cta-left">
+      <h2>A better desktop<br/>awaits you.</h2>
     </div>
+    <div class="cta-right">
+      <p>
+        No complicated setup, no steep learning curve. Just a clean,
+        powerful OS ready to go from the first boot.
+      </p>
+      <a href="/download" class="cta-btn">Download Now</a>
+    </div>
+  </div>
 
-    <!-- Divider -->
-    <div class="mt-16 border-t border-dashed border-gray-700/50"></div>
+  <!-- ── MAIN FOOTER ────────────────────────────────────── -->
+  <div class="footer-body">
+    <div class="footer-inner">
 
-    <!-- Copyright Text -->
-    <div class="mt-16 text-center text-sm text-gray-400 leading-relaxed">
-      <p>&copy; 2025 Ubuntu Budgie - Simplicity and Elegance</p>
-      <p class="mt-4 text-xs text-gray-500">
-        Ubuntu is a trademark of Canonical Ltd. ubuntubudgie.org is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License. Budgie Desktop is Copyright &copy; 2022 by Buddies of Budgie
+      {sections.map((section) => (
+        <div class="footer-col">
+          <h3>{section.title}</h3>
+          <ul>
+            {section.links.map((link) => (
+              <li><a href={link.href}>{link.name}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <!-- Contact & Socials -->
+      <div class="footer-contact">
+        <div class="social-icons">
+          <!-- Discourse -->
+          <a href="https://discourse.ubuntubudgie.org" class="social-icon" aria-label="Discourse">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.58 2 10.15c0 2.24.9 4.29 2.39 5.86l-1.6 4.79a.5.5 0 00.61.61l4.79-1.6C9.71 20.1 10.84 20.3 12 20.3c5.52 0 10-3.58 10-8.15C22 5.58 17.52 2 12 2z"/></svg>
+          </a>
+          <!-- X / Twitter -->
+          <a href="https://x.com/UbuntuBudgie" class="social-icon" aria-label="X (Twitter)">
+            <svg fill="currentColor" viewBox="0 0 300 300"><path d="M178.57 127.15 290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.94L0 300.25h26.46l102.4-116.59 81.8 116.59h89.34L178.57 127.15Zm-20.75 22.79-6.48-9.22-90.1-128.32h40.62l73.57 104.78 6.48 9.22 93.53 133.24h-40.62l-76.9-109.48Z"/></svg>
+          </a>
+          <!-- Mastodon -->
+          <a href="https://mastodon.social/@ubuntubudgie" class="social-icon" aria-label="Mastodon">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M23.193 7.879c0-5.206-3.411-6.732-3.411-6.732C18.062.357 15.108.025 12.041 0h-.076c-3.068.025-6.02.357-7.74 1.147 0 0-3.411 1.526-3.411 6.732 0 1.192-.023 2.618.015 4.129.124 5.092.934 10.109 5.641 11.355 2.17.574 4.034.695 5.535.612 2.722-.15 4.25-.972 4.25-.972l-.09-1.975s-1.945.613-4.129.539c-2.165-.074-4.449-.233-4.799-2.891a5.499 5.499 0 0 1-.048-.745s2.125.52 4.817.643c1.646.075 3.19-.097 4.758-.283 3.007-.359 5.625-2.212 5.954-3.905.517-2.665.475-6.507.475-6.507zm-4.024 6.709h-2.497V8.469c0-1.29-.543-1.944-1.628-1.944-1.2 0-1.802.776-1.802 2.312v3.349h-2.483v-3.35c0-1.536-.602-2.312-1.802-2.312-1.085 0-1.628.655-1.628 1.944v6.119H4.832V8.284c0-1.289.328-2.313.987-3.07.68-.758 1.569-1.146 2.674-1.146 1.278 0 2.246.491 2.886 1.474L12 6.585l.622-1.043c.64-.983 1.608-1.474 2.886-1.474 1.104 0 1.994.388 2.674 1.146.658.757.986 1.781.986 3.07v6.304z"/></svg>
+          </a>
+          <!-- GitHub -->
+          <a href="https://github.com/ubuntu-budgie" class="social-icon" aria-label="GitHub">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/UbuntuBudgie/" class="social-icon" aria-label="Facebook">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/></svg>
+          </a>
+        </div>
+
+        <div class="contact-info">
+          <a href="https://ubuntubudgie.org">ubuntubudgie.org</a>
+          <a href="https://github.com/ubuntu-budgie">github.com/ubuntu-budgie</a>
+          <a href="https://discourse.ubuntubudgie.org">Community Forum</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── BOTTOM BAR ─────────────────────────────────────── -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <p>Made with <span class="heart">♥</span> by the Ubuntu Budgie Community</p>
+      <p class="legal">
+        &copy; 2025 Ubuntu Budgie — Simplicity and Elegance.
+        Ubuntu is a trademark of Canonical Ltd. This site is licensed under a
+        Creative Commons Attribution-ShareAlike 4.0 International License.
+        Budgie Desktop is Copyright &copy; 2022 by Buddies of Budgie.
       </p>
     </div>
   </div>
-</footer>
 
+</div>

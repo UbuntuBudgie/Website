@@ -1,26 +1,182 @@
-<div class="bg-white relative z-10">
-  <div class="relative isolate px-6 pt-14 lg:px-8">
-    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80 pointer-events-none" aria-hidden="true">
-      <div class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-    </div>
-    <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-      <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-        <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-          Embrace the change 
-        </div>
-      </div>
-      <div class="text-center">
-        <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">Ubuntu Budgie</h1>
-        <p class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">Ubuntu Budgie is a community developed distribution, integrating the Budgie Desktop Environment with Ubuntu at its core.
-        </p>
-        <div class="mt-10 flex items-center justify-center gap-x-6">
-          <a href="/get-started" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 relative z-20">Get started</a>
-          <a href="/learn-more" class="text-sm/6 font-semibold text-gray-900 relative z-20">Learn more <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </div>
-    <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)] pointer-events-none" aria-hidden="true">
-      <div class="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-    </div>
+<style>
+  .s1-wrap {
+    position: relative;
+    background: #ffffff;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 7rem 1.5rem 5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif;
+  }
+
+  /* ── Subtle ambient glow — Ubuntu Budgie amber/orange, not garish ── */
+  .s1-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% -5%,  rgba(220, 100, 20, 0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 55% 40% at 80% 80%,  rgba(30, 120, 60,  0.07) 0%, transparent 65%),
+      radial-gradient(ellipse 45% 35% at 15% 85%,  rgba(220, 100, 20, 0.06) 0%, transparent 60%);
+  }
+
+  /* ── Badge ── */
+  .s1-badge {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    border-radius: 999px;
+    padding: 0.35rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #6e6e73;
+    letter-spacing: 0.01em;
+    margin-bottom: 2rem;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(8px);
+  }
+
+  .s1-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4338D8;
+    flex-shrink: 0;
+  }
+
+  /* ── Headline ── */
+  .s1-headline {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+    color: #1d1d1f;
+    max-width: 820px;
+    margin: 0 auto 1.75rem;
+  }
+
+  /* ── Sub-headline ── */
+  .s1-sub {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 400;
+    line-height: 1.7;
+    color: #6e6e73;
+    max-width: 560px;
+    margin: 0 auto 2.75rem;
+  }
+
+  /* ── CTAs ── */
+  .s1-ctas {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .s1-btn-primary {
+    display: inline-block;
+    background: #0071e3;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.8rem 2rem;
+    border-radius: 980px;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .s1-btn-primary:hover {
+    background: #0077ed;
+    transform: scale(1.02);
+  }
+
+  .s1-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #0071e3;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: gap 0.2s ease;
+  }
+
+  .s1-btn-secondary:hover { gap: 0.5rem; }
+
+  .s1-btn-secondary .arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .s1-btn-secondary:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  /* ── Thin decorative line under CTAs ── */
+  .s1-divider {
+    position: relative;
+    z-index: 1;
+    width: 40px;
+    height: 1px;
+    background: rgba(0,0,0,0.12);
+    margin: 4rem auto 0;
+    border-radius: 1px;
+  }
+
+  /* ── Fade-in animation ── */
+  @keyframes s1FadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .s1-badge    { animation: s1FadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.05s both; }
+  .s1-headline { animation: s1FadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.15s both; }
+  .s1-sub      { animation: s1FadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.28s both; }
+  .s1-ctas     { animation: s1FadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.40s both; }
+</style>
+
+<section class="s1-wrap">
+  <div class="s1-glow" aria-hidden="true"></div>
+
+  <!-- Badge -->
+  <div class="s1-badge">
+    <span class="s1-badge-dot"></span>
+    Embrace the change
   </div>
-</div>
+
+  <!-- Headline -->
+  <h1 class="s1-headline">Ubuntu Budgie</h1>
+
+  <!-- Sub-headline -->
+  <p class="s1-sub">
+    A community developed distribution, integrating the Budgie Desktop
+    Environment with Ubuntu at its core.
+  </p>
+
+  <!-- CTAs -->
+  <div class="s1-ctas">
+    <a href="/get-started" class="s1-btn-primary">Get started</a>
+    <a href="/learn-more" class="s1-btn-secondary">
+      Learn more <span class="arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <div class="s1-divider" aria-hidden="true"></div>
+</section>
