@@ -14,41 +14,236 @@ const { name: authorName, image: authorImage } = author.data;
 const fixedAuthorImage = authorImage.replace(/^public/, '');
 ---
 
-<article class="bg-white shadow-sm rounded-xl overflow-hidden">
-  
-  {/* Cover Image Section */}
+<style>
+  .bl {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.07);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+
+  /* ── Cover image ─────────────────────────────────────────── */
+  .bl-cover {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    max-height: 480px;
+  }
+
+  .bl-cover img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Soft gradient fade at bottom of cover */
+  .bl-cover::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.95));
+    pointer-events: none;
+  }
+
+  /* ── Body ────────────────────────────────────────────────── */
+  .bl-body {
+    padding: 2.5rem 2.5rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 700px) {
+    .bl-body { padding: 1.75rem 1.25rem 2.5rem; }
+    .bl-cover img { height: 240px; }
+  }
+
+  /* ── Back link ───────────────────────────────────────────── */
+  .bl-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6e6e73;
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+
+  .bl-back:hover { color: #0071e3; }
+
+  /* ── Category pill ───────────────────────────────────────── */
+  .bl-cat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0071e3;
+    background: rgba(0,113,227,0.08);
+    border-radius: 999px;
+    padding: 0.28rem 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  /* ── Title ───────────────────────────────────────────────── */
+  .bl-title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    color: #1d1d1f;
+    margin: 0 0 1rem;
+  }
+
+  /* ── Description ─────────────────────────────────────────── */
+  .bl-desc {
+    font-size: 1.1rem;
+    color: #6e6e73;
+    line-height: 1.7;
+    margin: 0 0 1.75rem;
+  }
+
+  /* ── Meta row ────────────────────────────────────────────── */
+  .bl-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    background: #f5f5f7;
+    border-radius: 14px;
+    margin-bottom: 2.5rem;
+  }
+
+  .bl-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid rgba(0,0,0,0.07);
+  }
+
+  .bl-meta-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .bl-author-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1d1d1f;
+    letter-spacing: -0.01em;
+  }
+
+  .bl-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.775rem;
+    color: #86868b;
+  }
+
+  /* ── Reading time badge ──────────────────────────────────── */
+  .bl-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #6e6e73;
+    background: rgba(0,0,0,0.05);
+    border-radius: 999px;
+    padding: 0.3rem 0.7rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── Divider ─────────────────────────────────────────────── */
+  .bl-divider {
+    height: 1px;
+    background: rgba(0,0,0,0.07);
+    margin: 0 0 2.5rem;
+  }
+
+  /* ── Prose content ───────────────────────────────────────── */
+  .bl-content {
+    /* Tailwind prose classes kept intact */
+  }
+</style>
+
+<article class="bl">
+
+  {/* Cover Image */}
   {image && (
-    <div class="w-full">
-      {/* Use a standard <img> tag. It works perfectly with URLs and local public paths. */}
-      <img src={image} alt={title} class="w-full h-96 object-cover" />
+    <div class="bl-cover">
+      <img src={image} alt={title} />
     </div>
   )}
 
-  <div class="px-6 py-10 lg:px-12">
-    
-    {category && <span class="text-sm font-semibold text-indigo-600">{category}</span>}
+  <div class="bl-body">
 
-    <h1 class="mt-2 text-4xl font-bold tracking-tight text-gray-900">{title}</h1>
+    {/* Back to blog */}
+    <a href="/blog" class="bl-back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      All posts
+    </a>
 
-    {description && (
-      <p class="mt-4 text-lg text-gray-600">{description}</p>
+    {/* Category */}
+    {category && (
+      <div>
+        <span class="bl-cat">
+          <svg width="9" height="9" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1 1h4.5L11 6.5 6.5 11 1 5.5V1z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            <circle cx="3.5" cy="3.5" r="0.75" fill="currentColor"/>
+          </svg>
+          {category}
+        </span>
+      </div>
     )}
 
-    {/* Author + Date Section */}
-    <div class="mt-6 flex items-center gap-x-4">
-      {/* Use a standard <img> tag for the author image. */}
-      <img src={fixedAuthorImage} alt={authorName} class="h-12 w-12 rounded-full bg-gray-100 object-cover" />
-      <div>
-        <p class="font-semibold text-gray-900">{authorName}</p>
-        <time datetime={pubDate.toISOString()} class="text-sm text-gray-500">
+    {/* Title */}
+    <h1 class="bl-title">{title}</h1>
+
+    {/* Description */}
+    {description && (
+      <p class="bl-desc">{description}</p>
+    )}
+
+    {/* Author + Date meta bar */}
+    <div class="bl-meta">
+      <img src={fixedAuthorImage} alt={authorName} class="bl-avatar" />
+      <div class="bl-meta-info">
+        <span class="bl-author-name">{authorName}</span>
+        <time datetime={pubDate.toISOString()} class="bl-date">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <rect x="1" y="2" width="10" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M1 5h10" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M4 1v2M8 1v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
           {pubDate.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}
         </time>
       </div>
     </div>
 
+    <div class="bl-divider"></div>
+
     {/* Post Content Slot */}
-    <div class="prose prose-lg max-w-none mt-10">
+    <div class="bl-content prose prose-lg max-w-none">
       <slot />
     </div>
+
   </div>
 </article>
