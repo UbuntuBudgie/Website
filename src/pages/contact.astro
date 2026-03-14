@@ -6,15 +6,257 @@ const pageTitle = "Contact Us";
 const pageDescription = "Reach out to the Ubuntu Budgie team for media inquiries, partnership opportunities, or general feedback.";
 ---
 
+<style>
+  .contact-page {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif;
+  }
+
+  /* ── HERO HEADER ─────────────────────────────────────────── */
+  .contact-hero {
+    background: #ffffff;
+    padding: 5rem 1.5rem 3.5rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle radial tint behind the heading */
+  .contact-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%,
+      rgba(0,113,227,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .contact-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0071e3;
+    background: rgba(0,113,227,0.08);
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    margin-bottom: 1.25rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+    color: #1d1d1f;
+    margin: 0 auto 1.1rem;
+    max-width: 640px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-sub {
+    font-size: clamp(1rem, 1.8vw, 1.1rem);
+    color: #6e6e73;
+    line-height: 1.75;
+    max-width: 520px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── CHANNEL CARDS ───────────────────────────────────────── */
+  .contact-channels {
+    background: #f5f5f7;
+    padding: 3rem 1.5rem 3.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .contact-channels-inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 700px) {
+    .contact-channels-inner { grid-template-columns: 1fr; max-width: 480px; }
+  }
+
+  .contact-channel {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.07);
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    transition: transform 0.25s cubic-bezier(0.22,1,0.36,1),
+                box-shadow 0.25s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .contact-channel:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.09);
+  }
+
+  .contact-channel-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(0,113,227,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #0071e3;
+  }
+
+  .contact-channel-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .contact-channel h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #1d1d1f;
+    margin: 0;
+  }
+
+  .contact-channel p {
+    font-size: 0.82rem;
+    color: #6e6e73;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .contact-channel a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #0071e3;
+    text-decoration: none;
+    margin-top: auto;
+    transition: gap 0.18s;
+  }
+
+  .contact-channel a:hover { gap: 0.4rem; }
+
+  /* ── FORM WRAPPER ────────────────────────────────────────── */
+  .contact-form-wrap {
+    background: #ffffff;
+    padding: 0rem 1.5rem 5rem;
+  }
+
+  .contact-form-inner {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  .contact-form-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-form-header h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #1d1d1f;
+    margin: 0 0 0.6rem;
+  }
+
+  .contact-form-header p {
+    font-size: 0.95rem;
+    color: #6e6e73;
+    line-height: 1.7;
+    margin: 0;
+  }
+</style>
+
 <BaseLayout title={pageTitle} description={pageDescription}>
-    <div class="max-w-7xl mx-auto px-4 py-16 text-center space-y-6">
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-base-900">
-            Contact <span class="text-accent-600">The Team</span>
-        </h1>
-        <p class="text-lg text-base-500 max-w-2xl mx-auto">
-            We are always happy to hear from our community. Select the best method to reach us based on your needs.
-        </p>
+<div class="contact-page">
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section class="contact-hero">
+    <span class="contact-eyebrow">
+      <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M6 1l1.5 3 3.5.5-2.5 2.5.5 3.5L6 9l-3 1.5.5-3.5L1 4.5 4.5 4z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+      </svg>
+      Get in touch
+    </span>
+    <h1 class="contact-title">Contact the Team</h1>
+    <p class="contact-sub">
+      We are always happy to hear from our community. Select the best method to reach us based on your needs.
+    </p>
+  </section>
+
+  <!-- ── CONTACT FORM ───────────────────────────────────────── -->
+  <section class="contact-form-wrap">
+    <div class="contact-form-inner">
+      <ContactForm />
     </div>
-    
-    <ContactForm />
+  </section>
+
+  <!-- ── CHANNEL CARDS ──────────────────────────────────────── -->
+  <section class="contact-channels">
+    <div class="contact-channels-inner">
+
+      <!-- Community Forum -->
+      <div class="contact-channel">
+        <div class="contact-channel-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <h3>Community Forum</h3>
+        <p>Ask questions, share tips and get help from the Ubuntu Budgie community.</p>
+        <a href="https://discourse.ubuntubudgie.org" target="_blank" rel="noopener noreferrer">
+          Visit forum ›
+        </a>
+      </div>
+
+      <!-- GitHub -->
+      <div class="contact-channel">
+        <div class="contact-channel-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </div>
+        <h3>GitHub</h3>
+        <p>Report bugs, request features or contribute to the project on GitHub.</p>
+        <a href="https://github.com/ubuntu-budgie" target="_blank" rel="noopener noreferrer">
+          View repository ›
+        </a>
+      </div>
+
+      <!-- Social -->
+      <div class="contact-channel">
+        <div class="contact-channel-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+          </svg>
+        </div>
+        <h3>Social Media</h3>
+        <p>Follow us for the latest news, releases and community highlights.</p>
+        <a href="https://x.com/UbuntuBudgie" target="_blank" rel="noopener noreferrer">
+          Follow us ›
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</div>
 </BaseLayout>
