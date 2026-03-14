@@ -1,111 +1,543 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-
 ---
 
+<style>
+  .donate {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif;
+    background: #ffffff;
+    color: #1d1d1f;
+  }
 
+  /* ── HERO ─────────────────────────────────────────────────── */
+  .donate-hero {
+    text-align: center;
+    padding: 5.5rem 1.5rem 4rem;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .donate-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 55% at 50% 0%,
+      rgba(0,113,227,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .donate-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0071e3;
+    background: rgba(0,113,227,0.08);
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    margin-bottom: 1.25rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .donate-hero h1 {
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.06;
+    color: #1d1d1f;
+    margin: 0 auto 1.1rem;
+    max-width: 640px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .donate-hero p {
+    font-size: clamp(1rem, 1.8vw, 1.1rem);
+    color: #6e6e73;
+    line-height: 1.75;
+    max-width: 540px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── OPEN COLLECTIVE ──────────────────────────────────────── */
+  .donate-oc {
+    background: #f5f5f7;
+    padding: 5rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .donate-oc-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 700px) {
+    .donate-oc-inner { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+    .donate-oc-inner img { margin: 0 auto; }
+  }
+
+  .donate-oc-logo {
+    height: 165px;
+    width: auto;
+    display: block;
+  }
+
+  .donate-oc-text h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #1d1d1f;
+    margin: 0 0 1rem;
+    line-height: 1.15;
+  }
+
+  .donate-oc-text p {
+    font-size: 0.95rem;
+    color: #6e6e73;
+    line-height: 1.75;
+    margin: 0 0 1.75rem;
+  }
+
+  .donate-oc-text .recommended {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #34c759;
+    background: rgba(52,199,89,0.1);
+    border-radius: 999px;
+    padding: 0.25rem 0.7rem;
+    margin-bottom: 1rem;
+    display: block;
+    width: fit-content;
+  }
+
+  /* ── PRIMARY BUTTON ───────────────────────────────────────── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.75rem 1.6rem;
+    border-radius: 980px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    background: #0071e3;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: background 0.18s, transform 0.18s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover { background: #0080f5; transform: scale(1.02); }
+
+  /* ── ALTERNATIVES ─────────────────────────────────────────── */
+  .donate-alt {
+    background: #ffffff;
+    padding: 5rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .donate-alt-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .donate-alt-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .donate-alt-header h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #1d1d1f;
+    margin: 0 0 0.6rem;
+  }
+
+  .donate-alt-header p {
+    font-size: 0.9rem;
+    color: #86868b;
+    line-height: 1.65;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .donate-note {
+    background: #f5f5f7;
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    font-size: 0.825rem;
+    color: #6e6e73;
+    line-height: 1.65;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .donate-note a { color: #0071e3; text-decoration: none; }
+  .donate-note a:hover { text-decoration: underline; }
+
+  .donate-platforms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 560px) { .donate-platforms { grid-template-columns: 1fr; } }
+
+  .donate-platform-card {
+    background: #f5f5f7;
+    border-radius: 18px;
+    border: 1px solid rgba(0,0,0,0.06);
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
+
+  .donate-platform-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.09);
+  }
+
+  .donate-platform-card .plabel {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #86868b;
+  }
+
+  .donate-platform-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .btn-patreon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 980px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    background: #F96854;
+    text-decoration: none;
+    transition: background 0.18s;
+    margin-top: 0.25rem;
+  }
+
+  .btn-patreon:hover { background: #f75740; }
+
+  .btn-paypal {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 980px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    background: #0070BA;
+    text-decoration: none;
+    transition: background 0.18s;
+    margin-top: 0.25rem;
+  }
+
+  .btn-paypal:hover { background: #005ea6; }
+
+  /* ── DONORS & GOALS ───────────────────────────────────────── */
+  .donate-goals {
+    background: #f5f5f7;
+    padding: 5rem 1.5rem 5rem;
+  }
+
+  .donate-goals-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .donate-goals-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .donate-goals-header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #1d1d1f;
+    margin: 0 0 0.75rem;
+  }
+
+  .donate-goals-header p {
+    font-size: 1rem;
+    color: #6e6e73;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 600px;
+  }
+
+  /* Prose body */
+  .donate-prose p {
+    font-size: 0.95rem;
+    color: #3a3a3c;
+    line-height: 1.8;
+    margin: 0 0 1.1rem;
+  }
+
+  .donate-prose strong { color: #1d1d1f; font-weight: 600; }
+
+  .donate-prose a { color: #0071e3; text-decoration: none; }
+  .donate-prose a:hover { text-decoration: underline; }
+
+  .donate-prose ul {
+    margin: 0 0 1.25rem 1.25rem;
+    padding: 0;
+  }
+
+  .donate-prose ul li {
+    font-size: 0.95rem;
+    color: #3a3a3c;
+    line-height: 1.75;
+    margin-bottom: 0.4rem;
+    padding-left: 0.25rem;
+  }
+
+  /* Funded items */
+  .donate-funded {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.07);
+    padding: 1.5rem 1.75rem;
+    margin: 1.5rem 0;
+  }
+
+  .donate-funded-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-size: 0.875rem;
+    color: #3a3a3c;
+    line-height: 1.55;
+  }
+
+  .donate-funded-item:last-child { border-bottom: none; }
+
+  .donate-funded-item::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #34c759;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  /* Thank you badge */
+  .donate-thankyou {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 1.25rem 2rem;
+    margin: 2rem 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  /* LTS goal items */
+  .donate-lts-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-size: 0.875rem;
+    color: #3a3a3c;
+  }
+
+  .donate-lts-item:last-child { border-bottom: none; }
+
+  .lts-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: 0.2rem 0.55rem;
+    flex-shrink: 0;
+  }
+
+  .lts-funded   { background: rgba(52,199,89,0.12);  color: #1a7a35; }
+  .lts-pending  { background: rgba(255,159,10,0.12); color: #8a5a00; }
+  .lts-unfunded { background: rgba(255,59,48,0.10);  color: #9e1c15; }
+</style>
 
 <BaseLayout>
+<div class="donate">
 
-<body class="bg-white">
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section class="donate-hero">
+    <span class="donate-eyebrow">
+      <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M6 1.5C4 1.5 2 3 2 5c0 3 4 6.5 4 6.5s4-3.5 4-6.5c0-2-2-3.5-4-3.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>
+      Support Ubuntu Budgie
+    </span>
+    <h1>Help us keep<br/>Budgie flying.</h1>
+    <p>Every donation, large or small, helps fund development, infrastructure and the future of Ubuntu Budgie.</p>
+  </section>
 
-<!-- Changed max-w-4xl to max-w-7xl -->
-<div class="py-16 sm:py-24">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <!-- Main Header -->
-    <div class="text-center">
-      <h1 class="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-        Donate
-      </h1>
-    </div>
-
-    <!-- Open Collective Section -->
-    <section class="mt-12 text-center">
-      <img src="/icons/oc.svg" alt="Open Collective Logo" class="h-64 w-auto mx-auto">
-      <p class="mt-6 max-w-3xl mx-auto text-lg leading-8 text-gray-700">
-        Open Collective is the preferred way for donating to Ubuntu Budgie. By using Open Collective you have an even better view and transparency on how donated money is spent and on what. Open Collective ensures full transparency on Ubuntu Budgie's financial status, including received donations, paid expenses, and more.
-      </p>
-      <div class="mt-8">
-        <a href="#" class="inline-block rounded-lg bg-blue-600 px-8 py-3 text-lg font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+  <!-- ── OPEN COLLECTIVE ───────────────────────────────────── -->
+  <section class="donate-oc">
+    <div class="donate-oc-inner">
+      <img src="/icons/oc.svg" alt="Open Collective Logo" class="donate-oc-logo" />
+      <div class="donate-oc-text">
+        <h2>Donate via Open Collective</h2>
+        <p>Open Collective is our preferred donation platform. It provides full financial transparency — you can see exactly how every pound is spent, from developer payments to infrastructure costs.</p>
+        <a href="#" class="btn-primary">
           Donate to our Collective
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2.5 9.5l7-7M9.5 2.5H5M9.5 2.5v4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Donation Options -->
-    <section class="mt-16 text-center">
-      <p class="text-gray-700">
-        Recurring donations and custom, one-time donations are both available.
-        <br>
-        Special thanks to our fiscal host, accountable <a href="#" class="text-blue-600 underline">https://opencollective.com/the-social-change-nest</a>
-      </p>
-      
-      <hr class="my-8 border-gray-300 max-w-md mx-auto">
+  <!-- ── ALTERNATIVES ──────────────────────────────────────── -->
+  <section class="donate-alt">
+    <div class="donate-alt-inner">
+      <div class="donate-alt-header">
+        <h2>Other ways to donate</h2>
+        <p>Recurring donations and custom one-time donations are both available.</p>
+      </div>
 
-      <p class="max-w-3xl mx-auto text-gray-700">
-        Paypal and Patreon are still active, but we would like to encourage our supporters to use Open Collective. Open Collective ensures lower commission fees, therefore maximum impact of your donation.
-      </p>
+      <div class="donate-note">
+        Paypal and Patreon are still active, but we encourage supporters to use Open Collective — it has lower commission fees, meaning maximum impact per donation.<br/>
+        Special thanks to our fiscal host: <a href="https://opencollective.com/the-social-change-nest" target="_blank" rel="noopener noreferrer">The Social Change Nest</a>
+      </div>
 
-      <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-        <!-- Patreon -->
-        <div class="flex flex-col items-center">
-          <h3 class="font-semibold text-gray-800">Recurring donation</h3>
-          <a href="#" class="mt-2 inline-flex items-center justify-center rounded-md bg-[#F96854] px-5 py-2.5 font-semibold text-white shadow-sm hover:bg-opacity-90">
-            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <div class="donate-platforms">
+
+        <div class="donate-platform-card">
+          <span class="plabel">Recurring donation</span>
+          <h3>Patreon</h3>
+          <p style="font-size:0.82rem;color:#6e6e73;margin:0;line-height:1.55;">Monthly support with exclusive updates for patrons.</p>
+          <a href="#" class="btn-patreon">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M15.385 1.015c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zM.985 23V1.015h3V23h-3z"/>
             </svg>
             Support on Patreon
           </a>
         </div>
-        <!-- PayPal -->
-        <div class="flex flex-col items-center">
-          <h3 class="font-semibold text-gray-800">One Time or Monthly donations</h3>
-          <a href="#" class="mt-2 inline-flex items-center justify-center rounded-md bg-[#0070BA] px-5 py-2.5 font-semibold text-white shadow-sm hover:bg-opacity-90">
-            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+
+        <div class="donate-platform-card">
+          <span class="plabel">One-time or monthly</span>
+          <h3>PayPal</h3>
+          <p style="font-size:0.82rem;color:#6e6e73;margin:0;line-height:1.55;">Flexible one-time or recurring PayPal donations.</p>
+          <a href="#" class="btn-paypal">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M7.657 21.327h2.613c.484 0 .872-.388.872-.872v-8.13c0-.484-.388-.872-.872-.872H7.657c-.484 0-.872.388-.872.872v8.13c0 .484.388.872.872.872zm14.4-9.002c0-.484-.388-.872-.872-.872h-2.613c-.484 0-.872.388-.872.872v8.13c0 .484.388.872.872.872h2.613c.484 0 .872-.388.872-.872v-8.13zm-7.2 0c0-.484-.388-.872-.872-.872h-2.613c-.484 0-.872.388-.872.872v8.13c0 .484.388.872.872.872h2.613c.484 0 .872-.388.872-.872v-8.13zM0 3.545c0-.484.388-.872.872-.872h2.613c.484 0 .872.388.872.872v16.91c0 .484-.388.872-.872.872H.872c-.484 0-.872-.388-.872-.872V3.545z"/>
             </svg>
             Support on PayPal
           </a>
         </div>
+
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Donors and Goals -->
-    <section class="mt-16">
-      <article class="prose lg:prose-xl max-w-none text-gray-800">
-        <h2>DONORS AND GOALS</h2>
-        <p>We support opensource and any money raised will go towards opensource developers as well as Ubuntu Budgie itself.</p>
-        <p>Full Transparency is our goal! Patreon donations will be made visible on confirmation of the donation received at the beginning of the next month. Paypal donations will appear ASAP after the donation is received.</p>
-        <p>We mainly invest your donations to provide you a better product. We also would love to give back something to our loyal developers and pay bills, of course. Ubuntu Budgie puts you, our community, in the spotlight.</p>
-        
-        <!-- Added text-center to this div -->
-        <div class="my-6 text-center">
-          <span class="inline-block bg-red-500 text-white font-semibold px-6 py-2 rounded-md">Thank you</span>
+  <!-- ── DONORS & GOALS ─────────────────────────────────────── -->
+  <section class="donate-goals">
+    <div class="donate-goals-inner">
+
+      <div class="donate-goals-header">
+        <h2>Donors &amp; Goals</h2>
+        <p>We support open source and any money raised goes towards open source developers as well as Ubuntu Budgie itself. Full transparency is our goal.</p>
+      </div>
+
+      <div class="donate-prose">
+
+        <p>Patreon donations are made visible on confirmation at the beginning of the next month. PayPal donations appear as soon as possible after receipt. We invest donations to provide a better product, support our developers, and keep the lights on.</p>
+
+        <div class="donate-thankyou">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="rgba(255,255,255,0.9)"/>
+          </svg>
+          Thank you — your support means the world to us.
         </div>
-        
-        <p>To Date your donations have helped to fund the following:</p>
-        <ul>
-          <li>Purchase of the budgie-remix.org URL for one year (2016)</li>
-          <li>Purchase of the ubuntubudgie.org URL for four years (2016-2020)</li>
-          <li>budgie-remix.org three year extension (2017-2020)</li>
-          <li>Transfer of budgie-remix.org from WordPress to Godaddy (2017-2020) - fully funded</li>
-        </ul>
-        <p>Server fees for ubuntubudgie.org 2017 & 2018 - fully funded by our sponsor <strong>DigitalOcean</strong></p>
-        <p>Server fees for ubuntubudgie.org 2019 – pending sponsorship</p>
-        <p><strong>Longterm Goal:</strong> LTS Status. From 18.04 Long-term-support is an option that Ubuntu Budgie would love to provide to all of its users. To be able to do this we need to commit to a financially sound 3 year model for each LTS release - that is - be able to commit to support for three years or more.</p>
-        <ul>
-          <li>Expected costs for 2018 – 2020 fully funded(18.04 LTS)</li>
-          <li>Expected costs for 2021 – 2022 fully funded (20.04 LTS)</li>
-          <li>Expected costs for 2023 – not funded (22.04 LTS)</li>
-        </ul>
-        <p>Ubuntu Budgie puts you – our community - front and center in everything we do.You can also support Ubuntu Budgie by buying Ubuntu Budgie merchandise from our official store available on Zazzle. <a href="#">Ubuntu Budgie Store</a></p>
-      </article>
-    </section>
-    
-  </div>
-</div>
-</body>
 
+        <p>To date, your donations have helped fund:</p>
+
+        <div class="donate-funded">
+          <div class="donate-funded-item">Purchase of the budgie-remix.org URL for one year (2016)</div>
+          <div class="donate-funded-item">Purchase of the ubuntubudgie.org URL for four years (2016–2020)</div>
+          <div class="donate-funded-item">budgie-remix.org three year extension (2017–2020)</div>
+          <div class="donate-funded-item">Transfer of budgie-remix.org from WordPress to GoDaddy (2017–2020) — fully funded</div>
+          <div class="donate-funded-item">Server fees for ubuntubudgie.org 2017 &amp; 2018 — fully funded by our sponsor <strong>DigitalOcean</strong></div>
+        </div>
+
+        <p>Server fees for ubuntubudgie.org 2019 — pending sponsorship</p>
+
+        <p><strong>Long-term Goal — LTS Status.</strong> From 18.04, Long-Term Support is an option Ubuntu Budgie would love to provide to all users. To do this we need a financially sound 3-year model for each LTS release.</p>
+
+        <div class="donate-funded">
+          <div class="donate-lts-item">
+            <span class="lts-badge lts-funded">Funded</span>
+            Expected costs for 2018–2020 (18.04 LTS)
+          </div>
+          <div class="donate-lts-item">
+            <span class="lts-badge lts-funded">Funded</span>
+            Expected costs for 2021–2022 (20.04 LTS)
+          </div>
+          <div class="donate-lts-item">
+            <span class="lts-badge lts-unfunded">Not funded</span>
+            Expected costs for 2023 (22.04 LTS)
+          </div>
+        </div>
+
+        <p>Ubuntu Budgie puts you — our community — front and center in everything we do. You can also support Ubuntu Budgie by buying merchandise from our official store on Zazzle: <a href="#">Ubuntu Budgie Store</a></p>
+
+      </div>
+    </div>
+  </section>
+
+</div>
 </BaseLayout>
