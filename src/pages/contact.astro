@@ -177,11 +177,75 @@ const pageDescription = "Reach out to the Ubuntu Budgie team for media inquiries
     margin: 0 0 0.6rem;
   }
 
-  .contact-form-header p {
+  /* ── SUPPORT BOX ─────────────────────────────────────────── */
+  .support-box {
+    background: #1a1f2e;
+    border-radius: 20px;
+    padding: 2.25rem 2rem;
+    max-width: 420px;
+    margin: 0 auto 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  }
+
+  .support-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* Discourse "D" logomark in SVG */
+  .support-logo-wrap img {
+    height: 36px;
+    width: auto;
+  }
+
+  .support-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .support-text {
     font-size: 0.95rem;
-    color: #6e6e73;
+    color: rgba(255,255,255,0.65);
     line-height: 1.7;
     margin: 0;
+  }
+
+  .support-text strong {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .support-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.4rem;
+    border-radius: 980px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: #0071e3;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: background 0.18s, transform 0.18s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .support-btn:hover {
+    background: #0080f5;
+    transform: scale(1.02);
+  }
+
+  .support-btn svg {
+    flex-shrink: 0;
   }
 </style>
 
@@ -209,11 +273,12 @@ const pageDescription = "Reach out to the Ubuntu Budgie team for media inquiries
     </div>
   </section>
 
-  <!-- ── CHANNEL CARDS ──────────────────────────────────────── -->
+  <!-- ── SUPPORT BOX ───────────────────────────────────────── -->
   <section class="contact-channels">
+
+    <!-- Channel cards -->
     <div class="contact-channels-inner">
 
-      <!-- Community Forum -->
       <div class="contact-channel">
         <div class="contact-channel-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -222,12 +287,9 @@ const pageDescription = "Reach out to the Ubuntu Budgie team for media inquiries
         </div>
         <h3>Community Forum</h3>
         <p>Ask questions, share tips and get help from the Ubuntu Budgie community.</p>
-        <a href="https://discourse.ubuntubudgie.org" target="_blank" rel="noopener noreferrer">
-          Visit forum ›
-        </a>
+        <a href="https://discourse.ubuntubudgie.org" target="_blank" rel="noopener noreferrer">Visit forum ›</a>
       </div>
 
-      <!-- GitHub -->
       <div class="contact-channel">
         <div class="contact-channel-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -236,12 +298,9 @@ const pageDescription = "Reach out to the Ubuntu Budgie team for media inquiries
         </div>
         <h3>GitHub</h3>
         <p>Report bugs, request features or contribute to the project on GitHub.</p>
-        <a href="https://github.com/ubuntu-budgie" target="_blank" rel="noopener noreferrer">
-          View repository ›
-        </a>
+        <a href="https://github.com/ubuntu-budgie" target="_blank" rel="noopener noreferrer">View repository ›</a>
       </div>
 
-      <!-- Social -->
       <div class="contact-channel">
         <div class="contact-channel-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -250,9 +309,7 @@ const pageDescription = "Reach out to the Ubuntu Budgie team for media inquiries
         </div>
         <h3>Social Media</h3>
         <p>Follow us for the latest news, releases and community highlights.</p>
-        <a href="https://x.com/UbuntuBudgie" target="_blank" rel="noopener noreferrer">
-          Follow us ›
-        </a>
+        <a href="https://x.com/UbuntuBudgie" target="_blank" rel="noopener noreferrer">Follow us ›</a>
       </div>
 
     </div>
