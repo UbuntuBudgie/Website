@@ -28,200 +28,694 @@ const installationTitle = settings?.installationTitle ?? "Installation instructi
 const installationContent = settings?.installationContent ?? null;
 ---
 
+<style>
+  .dl-page {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif;
+    color: #1d1d1f;
+  }
+
+  /* ── HERO ─────────────────────────────────────────────────── */
+  .dl-hero {
+    background: #ffffff;
+    padding: 5.5rem 1.5rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .dl-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 55% at 50% 0%,
+      rgba(0,113,227,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .dl-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0071e3;
+    background: rgba(0,113,227,0.08);
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    margin-bottom: 1.25rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .dl-hero h1 {
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.06;
+    color: #1d1d1f;
+    margin: 0 auto 1.5rem;
+    max-width: 640px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Release summary pills */
+  .dl-releases-summary {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .dl-release-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: #f5f5f7;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 12px;
+    padding: 0.65rem 1.1rem;
+    font-size: 0.875rem;
+    color: #3a3a3c;
+    line-height: 1.4;
+  }
+
+  .dl-release-pill strong { color: #1d1d1f; font-weight: 700; }
+
+  .dl-lts-badge {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(52,199,89,0.12);
+    color: #1a7a35;
+    border-radius: 999px;
+    padding: 0.18rem 0.55rem;
+  }
+
+  .dl-std-badge {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(0,113,227,0.10);
+    color: #0051a8;
+    border-radius: 999px;
+    padding: 0.18rem 0.55rem;
+  }
+
+  /* ── DOWNLOAD CARDS ───────────────────────────────────────── */
+  .dl-cards-section {
+    background: #0a0a0f;
+    padding: 5rem 1.5rem 5.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle ambient glow */
+  .dl-cards-section::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(0,113,227,0.12) 0%, transparent 70%);
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .dl-cards-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .dl-cards-header h2 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #f5f5f7;
+    margin: 0 0 0.5rem;
+  }
+
+  .dl-cards-header p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.45);
+    margin: 0;
+  }
+
+  .dl-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 1.25rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 480px) {
+    .dl-cards-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Card */
+  .dl-card {
+    background: #16161e;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 22px;
+    padding: 2rem 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .dl-card:hover {
+    border-color: rgba(255,255,255,0.14);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  }
+
+  /* Accent top line */
+  .dl-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 2rem; right: 2rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,113,227,0.6), transparent);
+  }
+
+  .dl-card-type {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .dl-card-type.lts { color: #34c759; }
+  .dl-card-type.std { color: #0071e3; }
+
+  .dl-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .dl-card-head img {
+    height: 32px;
+    width: auto;
+    opacity: 0.9;
+  }
+
+  .dl-card-version {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+  }
+
+  .dl-card-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.65;
+    margin: 0 0 1.75rem;
+    flex-shrink: 0;
+  }
+
+  /* Buttons */
+  .dl-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .dl-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: opacity 0.18s, transform 0.18s;
+  }
+
+  .dl-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .dl-btn-primary {
+    background: #0071e3;
+    color: #ffffff;
+  }
+
+  .dl-btn-torrent {
+    background: rgba(52,199,89,0.15);
+    color: #34c759;
+    border: 1px solid rgba(52,199,89,0.25);
+  }
+
+  .dl-btn-readme {
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .dl-btn-usb {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.07);
+    font-size: 0.82rem;
+  }
+
+  /* Checksum */
+  .dl-checksum {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .dl-checksum-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .dl-checksum-sub {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 0.3rem;
+  }
+
+  .dl-checksum code {
+    display: block;
+    font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.35);
+    word-break: break-all;
+    line-height: 1.6;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+  }
+
+  /* ── ACCORDION ────────────────────────────────────────────── */
+  .dl-accordion-section {
+    background: #f5f5f7;
+    padding: 4rem 1.5rem;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .dl-accordion-inner {
+    max-width: 1260px;
+    margin: 0 auto;
+  }
+
+  /* Override Preline styles to match our design */
+  .dl-accordion-inner .hs-accordion-group {
+    border: 1px solid rgba(0,0,0,0.08) !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+    background: #ffffff;
+    divide-y: none !important;
+  }
+
+  .dl-accordion-inner .hs-accordion-toggle {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif !important;
+    font-size: 0.975rem !important;
+    font-weight: 600 !important;
+    color: #1d1d1f !important;
+    padding: 1.4rem 1.5rem !important;
+    border-radius: 16px;
+  }
+
+  .dl-accordion-inner .hs-accordion-toggle:hover {
+    color: #0071e3 !important;
+    background: rgba(0,113,227,0.03) !important;
+  }
+
+  .dl-accordion-inner .hs-accordion-content > div {
+    padding: 0 1.5rem 1.5rem !important;
+  }
+
+  /* ── DONATION ─────────────────────────────────────────────── */
+  .dl-donation-section {
+    background: #ffffff;
+    padding: 5.5rem 1.5rem;
+  }
+
+  .dl-donation-inner {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .dl-donation-card {
+    background: #f5f5f7;
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.06);
+    margin-bottom: 1.25rem;
+  }
+
+  @media (max-width: 560px) {
+    .dl-donation-card { padding: 2rem 1.5rem; }
+  }
+
+  .dl-donation-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(0,113,227,0.09);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0071e3;
+    margin: 0 auto 1.5rem;
+  }
+
+  .dl-donation-card h2 {
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #1d1d1f;
+    margin: 0 0 0.75rem;
+    line-height: 1.15;
+  }
+
+  .dl-donation-card p {
+    font-size: 0.95rem;
+    color: #6e6e73;
+    line-height: 1.75;
+    max-width: 520px;
+    margin: 0 auto 2rem;
+  }
+
+  .dl-tip-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+  }
+
+  .dl-tip-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.65rem 1.4rem;
+    border-radius: 980px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: #0071e3;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: background 0.18s, transform 0.18s;
+  }
+
+  .dl-tip-btn:hover { background: #0080f5; transform: scale(1.02); }
+
+  /* USB card */
+  .dl-usb-card {
+    background: #1a1f2e;
+    border-radius: 22px;
+    padding: 2.5rem 2.25rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  @media (max-width: 620px) {
+    .dl-usb-card { flex-direction: column; text-align: center; }
+  }
+
+  .dl-usb-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.7);
+    flex-shrink: 0;
+  }
+
+  .dl-usb-text { flex: 1; }
+
+  .dl-usb-text p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    margin: 0 0 1.25rem;
+  }
+
+  .dl-usb-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 1.4rem;
+    border-radius: 980px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.12);
+    text-decoration: none;
+    transition: background 0.18s;
+  }
+
+  .dl-usb-btn:hover { background: rgba(255,255,255,0.16); }
+</style>
+
 <BaseLayout>
+<div class="dl-page">
 
-<!-- Page Header -->
-<div class="bg-white py-16 sm:py-24">
-  <div class="mx-auto max-w-4xl px-6 lg:px-8">
-    <div class="mx-auto text-center">
-      <h1 class="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-        Downloads
-      </h1>
-    </div>
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section class="dl-hero">
+    <span class="dl-eyebrow">
+      <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M6 1v7M2.5 5l3.5 3.5L9.5 5M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Latest releases
+    </span>
+    <h1>Downloads</h1>
 
-    <div class="mt-16 text-lg text-gray-800">
-      <p class="font-semibold">We offer two stable releases:</p>
-      <ul class="mt-4 list-disc list-inside space-y-3">
-        {releases.map((release) => (
-          <li>
-            <strong>{release.data.version}</strong>
-            {release.data.releaseType?.toLowerCase() === "lts"
-              ? " is a Long Term Support (LTS) release"
-              : " is a standard release"}
-            {release.data.supportPeriod && ` and is supported ${release.data.supportPeriod}`}
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- Download Cards -->
-<div class="bg-[#2a2d34] py-16 sm:py-24">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-2">
-
+    <div class="dl-releases-summary">
       {releases.map((release) => {
         const isLTS = release.data.releaseType?.toLowerCase() === "lts";
         return (
-          <div class="flex flex-col rounded-lg bg-[#3c3f4c] p-8 text-white">
-            <h3 class="text-sm font-semibold uppercase tracking-wide text-gray-300">
-              {isLTS ? "LTS Release" : "Regular Release"}
-            </h3>
+          <div class="dl-release-pill">
+            <strong>{release.data.version}</strong>
+            <span class={isLTS ? "dl-lts-badge" : "dl-std-badge"}>
+              {isLTS ? "LTS" : "Standard"}
+            </span>
+            {release.data.supportPeriod && (
+              <span style="color:#86868b;font-size:0.8rem;">Supported {release.data.supportPeriod}</span>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  </section>
 
-            <div class="mt-4 flex items-center justify-between gap-x-4">
+  <!-- ── DOWNLOAD CARDS ────────────────────────────────────── -->
+  <section class="dl-cards-section">
+    <div class="dl-cards-header">
+      <h2>Choose your release</h2>
+      <p>All ISOs are available as direct download or via torrent.</p>
+    </div>
+
+    <div class="dl-cards-grid">
+      {releases.map((release) => {
+        const isLTS = release.data.releaseType?.toLowerCase() === "lts";
+        return (
+          <div class="dl-card">
+
+            <p class={`dl-card-type ${isLTS ? "lts" : "std"}`}>
+              {isLTS ? "Long Term Support" : "Standard Release"}
+            </p>
+
+            <div class="dl-card-head">
               <img src="/icons/ubuntu-w.svg" alt="Ubuntu Budgie logo" />
-              <span class="text-2xl font-semibold">{release.data.version}</span>
+              <span class="dl-card-version">{release.data.version}</span>
             </div>
 
             {release.data.description && (
-              <p class="mt-4 text-sm leading-6 text-gray-300">
-                {release.data.description}
-              </p>
+              <p class="dl-card-desc">{release.data.description}</p>
             )}
 
-            <div class="mt-8 flex flex-col gap-y-4">
+            <div class="dl-btns">
               {release.data.downloadUrl && (
-                <a href={release.data.downloadUrl}
-                   class="rounded-lg bg-cyan-600 px-6 py-3 text-center font-semibold hover:bg-cyan-700">
-                  Download →
+                <a href={release.data.downloadUrl} class="dl-btn dl-btn-primary">
+                  <svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M6 1v7M2.5 5l3.5 3.5L9.5 5M1 10h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Download
                 </a>
               )}
               {release.data.torrentUrl && (
-                <a href={release.data.torrentUrl}
-                   class="rounded-lg bg-green-600 px-6 py-3 text-center font-semibold hover:bg-green-700">
-                  Torrent Download →
+                <a href={release.data.torrentUrl} class="dl-btn dl-btn-torrent">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 2C6.48 2 2 5.58 2 10.15c0 2.24.9 4.29 2.39 5.86l-1.6 4.79a.5.5 0 00.61.61l4.79-1.6C9.71 20.1 10.84 20.3 12 20.3c5.52 0 10-3.58 10-8.15C22 5.58 17.52 2 12 2z" stroke="currentColor" stroke-width="1.6"/>
+                  </svg>
+                  Torrent Download
                 </a>
               )}
               {release.data.readmeUrl && (
-                <a href={release.data.readmeUrl}
-                   class="rounded-lg bg-[#535768] px-6 py-3 text-center font-semibold hover:bg-opacity-80">
+                <a href={release.data.readmeUrl} class="dl-btn dl-btn-readme">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                   Readme
                 </a>
               )}
               {release.data.usbBuyUrl && (
-                <a href={release.data.usbBuyUrl}
-                   class="mt-4 self-center rounded-lg bg-black/50 px-6 py-3 text-center font-semibold hover:bg-black/70">
+                <a href={release.data.usbBuyUrl} class="dl-btn dl-btn-usb">
                   Buy Ubuntu Budgie USB
                 </a>
               )}
             </div>
 
             {release.data.checksum && (
-              <div class="mt-auto pt-8">
-                <h5 class="font-semibold text-gray-300">
-                  {isLTS ? "Checksum:" : "Checksums:"}
-                </h5>
-                <p class="mt-2 text-sm font-semibold text-gray-300">sha256sum hash amd64.iso:</p>
-                <code class="mt-2 block break-all text-xs text-gray-400">
-                  {release.data.checksum}
-                </code>
+              <div class="dl-checksum">
+                <span class="dl-checksum-label">
+                  {isLTS ? "Checksum" : "Checksums"}
+                </span>
+                <p class="dl-checksum-sub">sha256sum · amd64.iso</p>
+                <code>{release.data.checksum}</code>
               </div>
             )}
+
           </div>
         );
       })}
-
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- Installation Instructions Accordion -->
-<div class="bg-white py-16 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-4xl mx-auto">
-    <div class="hs-accordion-group divide-y divide-gray-200 border border-gray-200 rounded-xl">
-      <div class="hs-accordion" id="hs-installation-instructions">
-        <button
-          class="hs-accordion-toggle group p-6 inline-flex items-center justify-between gap-x-3 w-full font-semibold text-start text-gray-800 transition hover:text-gray-500"
-          aria-controls="hs-installation-instructions-content"
-        >
-          <span class="text-lg">{installationTitle}</span>
-          <svg class="hs-accordion-active:hidden block w-4 h-4 shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          <svg class="hs-accordion-active:block hidden w-4 h-4 shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-        </button>
+  <!-- ── INSTALLATION ACCORDION ────────────────────────────── -->
+  <div class="dl-accordion-section">
+    <div class="dl-accordion-inner">
+      <div class="hs-accordion-group divide-y divide-gray-200 border border-gray-200 rounded-xl">
+        <div class="hs-accordion" id="hs-installation-instructions">
+          <button
+            class="hs-accordion-toggle group p-6 inline-flex items-center justify-between gap-x-3 w-full font-semibold text-start text-gray-800 transition hover:text-gray-500"
+            aria-controls="hs-installation-instructions-content"
+          >
+            <span class="text-lg">{installationTitle}</span>
+            <svg class="hs-accordion-active:hidden block w-4 h-4 shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <svg class="hs-accordion-active:block hidden w-4 h-4 shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+          </button>
 
-        <div id="hs-installation-instructions-content" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-installation-instructions">
-          <div class="px-6 pb-6">
-            {installationContent ? (
-              <article class="prose lg:prose-lg max-w-none" set:html={installationContent} />
-            ) : (
-              <!-- Default static content shown until CMS is populated -->
-              <article class="prose lg:prose-lg max-w-none">
-                <h1>Installation Instructions</h1>
-                <p>Thank you for choosing Ubuntu Budgie for your new operating system. Ubuntu Budgie is a Ubuntu flavor using a desktop environment called Budgie. Budgie is a desktop environment focused on having a clean and yet powerful desktop without unnecessary bloat. Before installing, check the minimum specified hardware, so that you can have a flawless experience. Here are the minimum specs for running Ubuntu Budgie:</p>
-                <h2>System Requirements</h2>
-                <ul>
-                  <li>Processor speed: 2.4Ghz</li>
-                  <li>Memory: 4GB of RAM</li>
-                  <li>Hard Disk space: 60GB</li>
-                </ul>
-                <img src="/screens/welcome.webp" alt="Welcome to Ubuntu Budgie splash screen." class="rounded-lg shadow-md mx-auto" />
-                <p><strong>Note:</strong> In 90% of cases you are good to go with those and specs above. However, some machines have specific hardware that requires you to check the driver before installation which is usually related to Broadcom Network cards found in laptops.</p>
-                <p>Before installation prepare the installation medium. You can choose either CD or DVD or use USB to serve as one. If you are using CD or DVD, use your favorite CD/DVD writer app to write the image to it. Windows users can use ImgBurn or Nero Burner and other similar burner apps. Mac users can use Etcher. If you are using USB as your installation medium you can use UNetbootin to make a bootable USB installation drive. Here are some tools that you can use to make a bootable USB:</p>
-                <h2>USB Tools</h2>
-                <ol>
-                  <li>Rufus - Windows only</li>
-                  <li>Universal USB Installer</li>
-                  <li>UnetBootin</li>
-                  <li>Ubuntu Startup Disk Creator</li>
-                  <li>RMPrepUSB</li>
-                  <li>Etcher – Multi-platform - Recommended for new users</li>
-                  <li>WinSetupFromUSB</li>
-                </ol>
-                <img src="/screens/rufus.jpg" alt="Rufus application screenshot." class="rounded-lg shadow-md mx-auto" />
-                <p>Since there is not yet Ubuntu Budgie as an option you must select Diskimage option, and then specify path to where you've downloaded iso. Choose your USB drive and click ok. Note: When using Windows, be sure to check if UNetBootin has selected the correct drive letter.</p>
-                <h2>Partitioning</h2>
-                <p>After you've setup your location, keyboard, and language settings, up next is drive partitioning. You have few different options. For new users it is recommended to choose install alongside currently installed system.</p>
-                <h2>Partition Sizes</h2>
-                <ul>
-                  <li><code>/</code> - 30GB or more</li>
-                  <li><code>/swap</code> - same as your RAM size (not needed from 17.04+)</li>
-                  <li><code>/boot</code> - 500MB</li>
-                  <li><code>/home</code> - rest of your hard disk space</li>
-                </ul>
-                <p>When done, you can restart into your newly installed Ubuntu Budgie.</p>
-              </article>
-            )}
+          <div id="hs-installation-instructions-content" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-installation-instructions">
+            <div class="px-6 pb-6">
+              {installationContent ? (
+                <article class="prose lg:prose-lg max-w-none" set:html={installationContent} />
+              ) : (
+                <article class="prose lg:prose-lg max-w-none">
+                  <h1>Installation Instructions</h1>
+                  <p>Thank you for choosing Ubuntu Budgie for your new operating system. Ubuntu Budgie is a Ubuntu flavor using a desktop environment called Budgie. Budgie is a desktop environment focused on having a clean and yet powerful desktop without unnecessary bloat. Before installing, check the minimum specified hardware, so that you can have a flawless experience. Here are the minimum specs for running Ubuntu Budgie:</p>
+                  <h2>System Requirements</h2>
+                  <ul>
+                    <li>Processor speed: 2.4Ghz</li>
+                    <li>Memory: 4GB of RAM</li>
+                    <li>Hard Disk space: 60GB</li>
+                  </ul>
+                  <img src="/screens/welcome.webp" alt="Welcome to Ubuntu Budgie splash screen." class="rounded-lg shadow-md mx-auto" />
+                  <p><strong>Note:</strong> In 90% of cases you are good to go with those and specs above. However, some machines have specific hardware that requires you to check the driver before installation which is usually related to Broadcom Network cards found in laptops.</p>
+                  <p>Before installation prepare the installation medium. You can choose either CD or DVD or use USB to serve as one. If you are using CD or DVD, use your favorite CD/DVD writer app to write the image to it. Windows users can use ImgBurn or Nero Burner and other similar burner apps. Mac users can use Etcher. If you are using USB as your installation medium you can use UNetbootin to make a bootable USB installation drive. Here are some tools that you can use to make a bootable USB:</p>
+                  <h2>USB Tools</h2>
+                  <ol>
+                    <li>Rufus - Windows only</li>
+                    <li>Universal USB Installer</li>
+                    <li>UnetBootin</li>
+                    <li>Ubuntu Startup Disk Creator</li>
+                    <li>RMPrepUSB</li>
+                    <li>Etcher – Multi-platform - Recommended for new users</li>
+                    <li>WinSetupFromUSB</li>
+                  </ol>
+                  <img src="/screens/rufus.jpg" alt="Rufus application screenshot." class="rounded-lg shadow-md mx-auto" />
+                  <p>Since there is not yet Ubuntu Budgie as an option you must select Diskimage option, and then specify path to where you've downloaded iso. Choose your USB drive and click ok. Note: When using Windows, be sure to check if UNetBootin has selected the correct drive letter.</p>
+                  <h2>Partitioning</h2>
+                  <p>After you've setup your location, keyboard, and language settings, up next is drive partitioning. You have few different options. For new users it is recommended to choose install alongside currently installed system.</p>
+                  <h2>Partition Sizes</h2>
+                  <ul>
+                    <li><code>/</code> - 30GB or more</li>
+                    <li><code>/swap</code> - same as your RAM size (not needed from 17.04+)</li>
+                    <li><code>/boot</code> - 500MB</li>
+                    <li><code>/home</code> - rest of your hard disk space</li>
+                  </ul>
+                  <p>When done, you can restart into your newly installed Ubuntu Budgie.</p>
+                </article>
+              )}
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Donation Section -->
-<div class="bg-white py-16 sm:py-24">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+  <!-- ── DONATION + USB ────────────────────────────────────── -->
+  <section class="dl-donation-section">
+    <div class="dl-donation-inner">
 
-    <div class="max-w-2xl mx-auto">
-      <h2 class="text-xl font-bold text-gray-900">{donationTitle}</h2>
-      <p class="mt-2 text-lg text-gray-700">{donationDescription}</p>
-      <div class="mt-8 flex flex-wrap justify-center gap-4">
-        {tipOptions.map((tip: { label: string; url: string }) => (
-          <a
-            href={tip.url}
-            class="inline-block rounded-md bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-blue-700"
-          >
-            {tip.label}
+      <div class="dl-donation-card">
+        <div class="dl-donation-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2>{donationTitle}</h2>
+        <p>{donationDescription}</p>
+        <div class="dl-tip-buttons">
+          {tipOptions.map((tip: { label: string; url: string }) => (
+            <a href={tip.url} class="dl-tip-btn">{tip.label}</a>
+          ))}
+        </div>
+      </div>
+
+      <div class="dl-usb-card">
+        <div class="dl-usb-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2v11M8 9l4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="4" y="15" width="16" height="7" rx="2" stroke="currentColor" stroke-width="1.7"/>
+          </svg>
+        </div>
+        <div class="dl-usb-text">
+          <p>{usbDescription}</p>
+          <a href={usbButtonUrl} class="dl-usb-btn">
+            {usbButtonText}
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2.5 9.5l7-7M9.5 2.5H5M9.5 2.5v4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </a>
-        ))}
+        </div>
       </div>
-    </div>
 
-    <!-- USB Buy Section -->
-    <div class="mt-16 max-w-2xl mx-auto">
-      <p class="text-lg text-gray-700">{usbDescription}</p>
-      <div class="mt-8">
-        <a
-          href={usbButtonUrl}
-          class="inline-block rounded-md bg-gray-800 px-8 py-3 text-base font-semibold text-white shadow-sm hover:bg-gray-700"
-        >
-          {usbButtonText}
-        </a>
-      </div>
     </div>
+  </section>
 
-  </div>
 </div>
-
 </BaseLayout>
