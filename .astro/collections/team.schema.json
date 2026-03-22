@@ -1,50 +1,44 @@
 {
-  "$ref": "#/definitions/team",
-  "definitions": {
-    "team": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+    },
+    "social": {
       "type": "object",
       "properties": {
-        "name": {
+        "twitter": {
           "type": "string"
         },
-        "role": {
+        "github": {
           "type": "string"
         },
-        "bio": {
-          "type": "string"
-        },
-        "avatar": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string",
-          "format": "email"
-        },
-        "social": {
-          "type": "object",
-          "properties": {
-            "twitter": {
-              "type": "string"
-            },
-            "github": {
-              "type": "string"
-            },
-            "linkedin": {
-              "type": "string"
-            }
-          },
-          "additionalProperties": false
-        },
-        "$schema": {
+        "linkedin": {
           "type": "string"
         }
-      },
-      "required": [
-        "name",
-        "role"
-      ],
-      "additionalProperties": false
+      }
+    },
+    "$schema": {
+      "type": "string"
     }
   },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "required": [
+    "name",
+    "role"
+  ]
 }

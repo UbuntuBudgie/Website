@@ -1,20 +1,20 @@
 ---
-import { getCollection, getEntry } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  // Ensure this matches the collection name in src/content/config.ts
-  const posts = await getCollection("blog"); 
-  return posts.map(post => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  // Ensure this matches the collection name in src/content.config.ts
+  const posts = await getCollection("blog"); 
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
 }
 
 const { post } = Astro.props as { post: CollectionEntry<"blog"> };
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 // 1. Sanitize the author name to create a predictable slug.
 //    (e.g., "Jane Doe" -> "jane-doe")
@@ -22,7 +22,8 @@ const authorName = post.data.author.trim();
 const authorSlug = authorName.toLowerCase().replace(/\s+/g, '-');
 
 // 2. Prioritize fetching from the 'team' collection.
-let author = await getEntry('authors', authorSlug);
+// Explicitly define the type so TypeScript knows it can be from 'team' OR 'authors'.
+let author: CollectionEntry<"team"> | CollectionEntry<"authors"> | undefined = await getEntry('team', authorSlug);
 
 // 3. Fallback/Strict Check: If the team member wasn't found, check the 'authors' collection 
 //    (useful if your config has both, or if you prefer 'authors').
@@ -32,15 +33,15 @@ if (!author) {
 
 // 4. Throw an error if the author is still missing from both collections.
 if (!author) {
-  throw new Error(`[${post.slug}] Author/Team member not found for slug: "${authorSlug}" (derived from "${authorName}"). Please check 'author' frontmatter against 'src/content/team/' or 'src/content/authors/' filenames.`);
+  throw new Error(`[${post.id}] Author/Team member not found for slug: "${authorSlug}" (derived from "${authorName}"). Please check 'author' frontmatter against 'src/content/team/' or 'src/content/authors/' filenames.`);
 }
 
 // The 'author' variable now holds the CollectionEntry from either 'team' or 'authors'.
 ---
 <BaseLayout title={post.data.title} description={post.data.description}>
-  <div class="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8">
-    <BlogLayout post={post} author={author}>
-      <Content />
-    </BlogLayout>
-  </div>
+  <div class="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8">
+    <BlogLayout post={post} author={author}>
+      <Content />
+    </BlogLayout>
+  </div>
 </BaseLayout>

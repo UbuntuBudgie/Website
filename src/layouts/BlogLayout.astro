@@ -4,14 +4,26 @@ import type { CollectionEntry } from "astro:content";
 
 const { post, author } = Astro.props as {
   post: CollectionEntry<"blog">;
-  author: CollectionEntry<"authors">;
+  // 1. Allow author to be from either collection
+  author: CollectionEntry<"authors"> | CollectionEntry<"team">; 
 };
 
 const { title, description, pubDate, image, category } = post.data;
-const { name: authorName, image: authorImage } = author.data;
 
-// Fix the author image path by removing 'public' prefix
-const fixedAuthorImage = authorImage.replace(/^public/, '');
+// 2. Extract the name safely
+const authorName = author.data.name;
+
+// 3. Safely extract the image depending on which collection the author came from
+let rawAuthorImage = "";
+if (author.collection === "authors") {
+  rawAuthorImage = author.data.image || "";
+} else if (author.collection === "team") {
+  // Team uses Astro's image() helper which returns an object like { src: "..." }
+  rawAuthorImage = author.data.avatar?.src || "";
+}
+
+// 4. Safely fix the image path (prevents crash if no image exists)
+const fixedAuthorImage = rawAuthorImage ? rawAuthorImage.replace(/^public/, '') : '';
 ---
 
 <style>
@@ -201,7 +213,7 @@ const fixedAuthorImage = authorImage.replace(/^public/, '');
       All posts
     </a>
 
-    {/* Category */}
+    {/* Category (You placed this perfectly!) */}
     {category && (
       <div>
         <span class="bl-cat">
@@ -224,7 +236,10 @@ const fixedAuthorImage = authorImage.replace(/^public/, '');
 
     {/* Author + Date meta bar */}
     <div class="bl-meta">
-      <img src={fixedAuthorImage} alt={authorName} class="bl-avatar" />
+      {/* 5. Fallback if the author has no image */}
+      {fixedAuthorImage && (
+        <img src={fixedAuthorImage} alt={authorName} class="bl-avatar" />
+      )}
       <div class="bl-meta-info">
         <span class="bl-author-name">{authorName}</span>
         <time datetime={pubDate.toISOString()} class="bl-date">
