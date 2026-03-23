@@ -2,9 +2,8 @@
 title: Ubuntu Budgie 25.10 Release Notes
 description: Release Notes for 25.10 release containing latest changes
 pubDate: 2025-10-08
-author: David M.
+author: david
 image: public/budgie-2510-release-1-744x385-1.jpg
-category: Release
 draft: false
 ---
 # **Introduction and overview**
