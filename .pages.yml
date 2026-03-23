@@ -1,12 +1,13 @@
 media:
   input: public
-  output: public
+  output: /
 
 content:
   - name: blog
     label: Blog
     path: src/content/blog
     type: collection
+    filename: "{slug}" 
     fields:
       - name: title
         type: string
