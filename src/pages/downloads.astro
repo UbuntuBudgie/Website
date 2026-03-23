@@ -15,10 +15,20 @@ const settings = JSON.parse(settingsRaw);
 const donationTitle = settings?.donationTitle ?? "A little bit goes a long way.";
 
 const donationDescription = settings?.donationDescription ?? "If everyone who downloaded Ubuntu Budgie donated £5 it would fund the continued development of Ubuntu Budgie. Please help the project flourish by showing your support with a tip.";
-const tipOptions = settings?.tipOptions ?? [
-  { label: "Tip £5", url: "#" },
-  { label: "Tip £10", url: "#" },
-  { label: "Tip £20", url: "#" },
+// CMS saves individual tip fields (tip1Label/tip1Url … tip4Label/tip4Url)
+// Build the array from those fields, skipping any that are empty
+const tipOptions = [
+  { label: settings?.tip1Label, url: settings?.tip1Url },
+  { label: settings?.tip2Label, url: settings?.tip2Url },
+  { label: settings?.tip3Label, url: settings?.tip3Url },
+  { label: settings?.tip4Label, url: settings?.tip4Url },
+].filter((tip) => tip.label && tip.url) as { label: string; url: string }[];
+ 
+// Fallback if none are set in CMS yet
+const resolvedTipOptions = tipOptions.length > 0 ? tipOptions : [
+  { label: "Tip £5",   url: "#" },
+  { label: "Tip £10",  url: "#" },
+  { label: "Tip £20",  url: "#" },
   { label: "Tip £100", url: "#" },
 ];
 const usbDescription = settings?.usbDescription ?? "Have you ever wanted to get your custom USB with Ubuntu Budgie preloaded? Now you can - we have partnered with TheLinuxShop to bring you custom USB drives preloaded with Ubuntu Budgie releases. For each USB bought, the percentage of the price, goes back to Ubuntu Budgie for funding development and other costs.";
