@@ -40,8 +40,7 @@ Then add the applet to a panel using Raven
 
 Here’s one screenshot of budgie-remix we spotted in the wild:
 
-[![](images/27512020323_4511fdef7a_b.jpg)](https://ubuntubudgie.org/wp-content/uploads/2016/07/27512020323_4511fdef7a_b.jpg)
-
+[![](images/27512020323_4511fdef7a_b.jpg)]
 We got new official Twitter and Google+ profiles, coz we love to interact more with you, the community! Check ’em out:
 
 Twitter: [@budgie-remix](https://twitter.com/budgie_remix)

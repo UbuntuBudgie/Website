@@ -1,13 +1,12 @@
 ---
 title: "Ubuntu Budgie 25.04 release notes"
-date: 2025-04-15
-categories: 
-  - "other"
+publicationDate: 2025-04-15
+description: "25.04 release notes"
+category: "other"
 author: Sam
-image: "/2019/09/images/19.10_Final_Released-small.jpg"
+image: "/2025/04/images/budgie-codename-with-logo-744x251.jpg"
 ---
 
-![](images/budgie-codename-with-logo-744x251.jpg)
 
 # Introduction and overview
 

@@ -5,12 +5,16 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  // Ensure this matches the collection name in src/content.config.ts
   const posts = await getCollection("blog"); 
-  return posts.map(post => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+  return posts.map(post => {
+    // Bulletproof: removes folders (if any) AND removes the YYYY-MM-DD- date
+    const cleanSlug = post.id.split('/').pop()?.replace(/^\d{4}-\d{2}-\d{2}-/, '') || post.id;
+    
+    return {
+      params: { slug: cleanSlug },
+      props: { post },
+    };
+  });
 }
 
 const { post } = Astro.props as { post: CollectionEntry<"blog"> };

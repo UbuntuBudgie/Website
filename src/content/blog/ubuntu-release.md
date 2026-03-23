@@ -4,7 +4,7 @@ description: "Introduction and overview Ubuntu Budgie 25.04 (Plucky Puffin) is a
 pubDate: 2025-04-15
 author: "david"
 authorImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&facepad=2&w=128&h=128&q=80"
-image: "https://ubuntubudgie.org/wp-content/uploads/2025/04/budgie-codename-with-logo-744x251.jpg"
+image: "/2025/04/images/budgie-codename-with-logo-744x251.jpg"
 category: "Other"
 ---
 These release notes showcase the key takeaways for 24.10 upgraders to 25.04.  Please note - there is no direct upgrade path from 24.04.2 to 25.04; you must uplift to 24.10 first or perform a fresh install.

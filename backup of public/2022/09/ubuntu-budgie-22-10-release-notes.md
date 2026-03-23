@@ -121,7 +121,7 @@ Users of Ubuntu Budgie 22.04 LTS will not be prompted to upgrade to 22.10 automa
 
 After the release of 22.10, ensure you change your Software Sources to offer updates for any version:
 
-[![](images/wp_editor_md_34f6ab29d9728ad3e078317aaafffcc0.jpg)](https://ubuntubudgie.org/wp-content/uploads/2020/09/wp_editor_md_34f6ab29d9728ad3e078317aaafffcc0.jpg)
+[![](images/wp_editor_md_34f6ab29d9728ad3e078317aaafffcc0.jpg)]
 
 You will then be offered to upgrade when you run Software & Updates.
 

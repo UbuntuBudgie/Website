@@ -8,6 +8,7 @@ const { post, author } = Astro.props as {
 };
 
 const { id } = post;
+const cleanSlug = id.split('/').pop()?.replace(/^\d{4}-\d{2}-\d{2}-/, '') || id;
 // 1. Extract image as 'rawImage'
 const { title, description, pubDate, image: rawImage, category: rawCategory, tags } = post.data;
 
@@ -195,7 +196,7 @@ const fixedAuthorImage = fixImagePath(rawAuthorImage);
 <article class="pc">
 
   {image && (
-    <a href={`/blog/${id}/`} class="pc-img-wrap" aria-label={`Read: ${title}`}>
+    <a href={`/blog/${cleanSlug}/`} class="pc-img-wrap" aria-label={`Read: ${title}`}>
       <img src={image} alt={title} />
     </a>
   )}
@@ -213,7 +214,7 @@ const fixedAuthorImage = fixImagePath(rawAuthorImage);
       </span>
     )}
 
-    <a href={`/blog/${id}/`} class="pc-title">{title}</a>
+    <a href={`/blog/${cleanSlug}/`} class="pc-title">{title}</a>
     <p class="pc-desc">{description}</p>
 
     <footer class="pc-footer">
@@ -235,7 +236,7 @@ const fixedAuthorImage = fixImagePath(rawAuthorImage);
         </div>
       </div>
 
-      <a href={`/blog/${id}/`} class="pc-read" aria-label={`Read ${title}`}>
+      <a href={`/blog/${cleanSlug}/`} class="pc-read" aria-label={`Read ${title}`}>
         Read
         <!-- arrow icon -->
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">

@@ -23,7 +23,7 @@ Based on 16.04.1 experiences, feedback and suggestions we have received from our
 - Release of our new default icon-set, Pocillo
 - A complete revision of the  desktop based applications – have fun with GNOME maps, GNOME weather, Geary (email client as requested by our community), stylish dark-themed and GNOME look and feel Rhythmbox and many others.
 
-[![london](images/london.png)](https://ubuntubudgie.org/wp-content/uploads/2016/10/london.png) [![weather](images/weather.png)](https://ubuntubudgie.org/wp-content/uploads/2016/10/weather.png) [![welcome](images/welcome.png)](https://ubuntubudgie.org/wp-content/uploads/2016/10/welcome.png)
+[![london](images/london.png)][![welcome](images/welcome.png)]
 
 **For our laptop users – tlp and thermald are shipped by default – enjoy better battery life and keeping your laptop as cool as possible.**
 

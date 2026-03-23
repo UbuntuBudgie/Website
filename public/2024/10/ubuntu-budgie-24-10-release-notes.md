@@ -34,7 +34,7 @@ Excellent progress has been made towards this huge effort - internally we alread
 
 ## Budgie Desktop
 
-[![This image shows Ubuntu Budgie desktop with system information screen open.](images/Screenshot-from-2024-10-09-14-30-24-744x311.png)](https://ubuntubudgie.org/wp-content/uploads/2024/10/Screenshot-from-2024-10-09-14-30-24.png)
+[![This image shows Ubuntu Budgie desktop with system information screen open.](images/Screenshot-from-2024-10-09-14-30-24-744x311.png)]
 
 1. The latest budgie-desktop v10.9.2 forms the basis of our Oracular offering. summary of the upstream [notes](https://buddiesofbudgie.org/blog/budgie-10-9-2-released)
 
@@ -53,7 +53,7 @@ Excellent progress has been made towards this huge effort - internally we alread
 
 ## Other Improvements and Bug Fixes
 
-[![This image showcases the change of default terminal app to xfce terminal for Ubuntu Budgie.](images/Screenshot-from-2024-10-09-14-34-46-744x311.png)](https://ubuntubudgie.org/wp-content/uploads/2024/10/Screenshot-from-2024-10-09-14-34-46.png)
+[![This image showcases the change of default terminal app to xfce terminal for Ubuntu Budgie.](images/Screenshot-from-2024-10-09-14-34-46-744x311.png)]
 
 1. Our default layout has been revised to ensure a smooth transition later to our wayland offering. The X11 plank dock has been dropped. We have now the budgie-desktop dock styled with our Pocillo theme. The top-bar defaults to a dark bar theme.
     
@@ -76,7 +76,7 @@ Excellent progress has been made towards this huge effort - internally we alread
 
 ## Budgie Welcome
 
-[![This image shows the Ubuntu Budgie desktop with Budgie Welcome app open](images/Screenshot-from-2024-10-09-14-31-26-744x311.jpg)](https://ubuntubudgie.org/wp-content/uploads/2024/10/Screenshot-from-2024-10-09-14-31-26-scaled.jpg)
+[![This image shows the Ubuntu Budgie desktop with Budgie Welcome app open](images/Screenshot-from-2024-10-09-14-31-26-744x311.jpg)]
 
 Our welcome app is automatically updated for all 24.04 and 24.10 users
 
@@ -119,7 +119,7 @@ Users of Ubuntu Budgie 24.04 LTS will not be prompted to upgrade to 24.10 automa
 
 After the release of 24.10, ensure you change your Software Sources to offer updates for any version:
 
-[![](images/wp_editor_md_34f6ab29d9728ad3e078317aaafffcc0.jpg)](https://ubuntubudgie.org/wp-content/uploads/2020/09/wp_editor_md_34f6ab29d9728ad3e078317aaafffcc0.jpg)
+[![](images/wp_editor_md_34f6ab29d9728ad3e078317aaafffcc0.jpg)]
 
 You will then be offered to upgrade when you run Software & Updates.
 
