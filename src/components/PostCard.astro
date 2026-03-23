@@ -1,22 +1,29 @@
 ---
+
 import type { CollectionEntry } from "astro:content";
 
 const { post, author } = Astro.props as {
   post: CollectionEntry<"blog">;
-  // 1. CRITICAL FIX: Allow author to be from either collection to prevent crashes!
   author: CollectionEntry<"authors"> | CollectionEntry<"team">;
 };
 
 const { id } = post;
-// 2. Extract tags as well
-const { title, description, pubDate, image, category: rawCategory, tags } = post.data;
+// 1. Extract image as 'rawImage'
+const { title, description, pubDate, image: rawImage, category: rawCategory, tags } = post.data;
 
-// 3. If `category` exists in markdown, use it. Otherwise, use the first tag.
+// 2. Bulletproof path fixer
+function fixImagePath(path?: string) {
+  if (!path) return undefined;
+  return (path.startsWith('/') ? path : `/${path}`).replace(/^\/public/, '');
+}
+
+// 3. Fix main image
+const image = fixImagePath(rawImage);
+
 const category = rawCategory || (tags && tags.length > 0 ? tags[0] : undefined);
 
 const authorName = author.data.name;
 
-// 4. Safely extract the image depending on which collection the author came from
 let rawAuthorImage = "";
 if (author.collection === "authors") {
   rawAuthorImage = author.data.image || "";
@@ -24,8 +31,8 @@ if (author.collection === "authors") {
   rawAuthorImage = author.data.avatar?.src || "";
 }
 
-// Fix the author image path by removing 'public' prefix
-const fixedAuthorImage = rawAuthorImage ? rawAuthorImage.replace(/^public/, '') : '';
+// 4. Fix author image
+const fixedAuthorImage = fixImagePath(rawAuthorImage);
 ---
 
 <style>
