@@ -1,0 +1,615 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "Store";
+const pageDescription = "Support Ubuntu Budgie and show your love — shop official Ubuntu Budgie merchandise including t-shirts, hoodies, mugs, stickers and more.";
+
+const STORE_URL = "https://ubuntu-budgie.launchcart.store/shop";
+
+const categories = [
+  {
+    name: "T-Shirts",
+    description: "Soft, high-quality tees featuring Ubuntu Budgie artwork and logos.",
+    icon: "shirt",
+    color: "#e86c1f",
+  },
+  {
+    name: "Hoodies",
+    description: "Stay cozy at the terminal. Fleece hoodies with the Budgie logo.",
+    icon: "hoodie",
+    color: "#0071e3",
+  },
+  {
+    name: "Mugs",
+    description: "Start every morning with a cup of open source. Ceramic mugs.",
+    icon: "mug",
+    color: "#34c759",
+  },
+  {
+    name: "Stickers",
+    description: "Deck out your laptop, notebook, or water bottle with Budgie stickers.",
+    icon: "sticker",
+    color: "#af52de",
+  },
+];
+---
+
+<style>
+  .store-page {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif;
+    background: #ffffff;
+    color: #1d1d1f;
+  }
+
+  /* ── HERO ─────────────────────────────────────────────────── */
+  .store-hero {
+    background: #0a0a0f;
+    padding: 6rem 1.5rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Ambient glow */
+  .store-hero::before {
+    content: '';
+    position: absolute;
+    width: 800px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse,
+      rgba(232,108,31,0.14) 0%,
+      rgba(0,113,227,0.08) 45%,
+      transparent 70%);
+    top: -120px; left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .store-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #e86c1f;
+    background: rgba(232,108,31,0.12);
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .store-hero h1 {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin: 0 auto 1.1rem;
+    max-width: 700px;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(160deg, #ffffff 40%, rgba(255,255,255,0.55) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .store-hero p {
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .store-hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2rem;
+    border-radius: 980px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: #e86c1f;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: background 0.18s, transform 0.18s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .store-hero-cta:hover { background: #d4611a; transform: scale(1.02); }
+
+  /* Ubuntu logo in hero */
+  .store-hero-logo {
+    height: 56px;
+    width: auto;
+    margin: 0 auto 2rem;
+    display: block;
+    position: relative;
+    z-index: 1;
+    opacity: 0.9;
+    filter: brightness(0) invert(1);
+  }
+
+  /* ── WHY SHOP ─────────────────────────────────────────────── */
+  .store-why {
+    background: #f5f5f7;
+    padding: 5rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .store-why-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .store-why-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .store-why-header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #1d1d1f;
+    margin: 0 0 0.6rem;
+  }
+
+  .store-why-header p {
+    font-size: 1rem;
+    color: #6e6e73;
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .store-why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 700px) { .store-why-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } }
+
+  .store-why-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 1.75rem 1.5rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .store-why-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .store-why-icon svg { width: 18px; height: 18px; }
+
+  .store-why-card h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #1d1d1f;
+    margin: 0;
+  }
+
+  .store-why-card p {
+    font-size: 0.83rem;
+    color: #6e6e73;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── CATEGORIES ───────────────────────────────────────────── */
+  .store-cats {
+    background: #ffffff;
+    padding: 5rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .store-cats-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .store-cats-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .store-cats-header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #1d1d1f;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .store-cats-header a {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0071e3;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+  }
+
+  .store-cats-header a:hover { opacity: 0.7; }
+
+  .store-cats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 860px)  { .store-cats-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px)  { .store-cats-grid { grid-template-columns: 1fr; } }
+
+  .store-cat-card {
+    background: #f5f5f7;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.28s cubic-bezier(0.22,1,0.36,1),
+                box-shadow  0.28s cubic-bezier(0.22,1,0.36,1);
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .store-cat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.10);
+  }
+
+  /* Illustration area */
+  .store-cat-img {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .store-cat-body {
+    padding: 1.1rem 1.25rem 1.4rem;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    background: #ffffff;
+  }
+
+  .store-cat-body h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #1d1d1f;
+    margin: 0 0 0.3rem;
+  }
+
+  .store-cat-body p {
+    font-size: 0.8rem;
+    color: #6e6e73;
+    line-height: 1.6;
+    margin: 0 0 0.85rem;
+  }
+
+  .store-cat-link {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #0071e3;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    transition: gap 0.18s;
+  }
+
+  .store-cat-card:hover .store-cat-link { gap: 0.4rem; }
+
+  /* ── FULL-WIDTH BANNER ────────────────────────────────────── */
+  .store-banner {
+    background: #0a0a0f;
+    padding: 5.5rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .store-banner::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(232,108,31,0.10) 0%, transparent 70%);
+    bottom: -80px; right: -60px;
+    pointer-events: none;
+  }
+
+  .store-banner::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(0,113,227,0.10) 0%, transparent 70%);
+    top: -50px; left: -40px;
+    pointer-events: none;
+  }
+
+  .store-banner-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .store-banner h2 {
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    color: #f5f5f7;
+    line-height: 1.08;
+    margin: 0 0 1rem;
+  }
+
+  .store-banner p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+    margin: 0 0 2.25rem;
+  }
+
+  .store-banner-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2.25rem;
+    border-radius: 980px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0a0a0f;
+    background: #ffffff;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: background 0.18s, transform 0.18s;
+  }
+
+  .store-banner-btn:hover { background: #e8e8ed; transform: scale(1.02); }
+
+  /* ── LEGAL NOTE ───────────────────────────────────────────── */
+  .store-legal {
+    background: #f5f5f7;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .store-legal p {
+    font-size: 0.78rem;
+    color: #86868b;
+    line-height: 1.65;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .store-legal a { color: #0071e3; text-decoration: none; }
+  .store-legal a:hover { text-decoration: underline; }
+
+  /* ── FADE-IN ─────────────────────────────────────────────── */
+  @keyframes storeFadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .st-anim { opacity: 0; }
+  .st-anim.visible { animation: storeFadeUp 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+  .st-anim.d1.visible { animation-delay: 0.05s; }
+  .st-anim.d2.visible { animation-delay: 0.12s; }
+  .st-anim.d3.visible { animation-delay: 0.19s; }
+  .st-anim.d4.visible { animation-delay: 0.26s; }
+</style>
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+<div class="store-page">
+
+  <!-- ── HERO ──────────────────────────────────────────────── -->
+  <section class="store-hero">
+    <img src="/icons/ubuntu-w.svg" alt="Ubuntu Budgie" class="store-hero-logo" style="height:56px;width:auto;display:block;margin:0 auto 2rem;filter:brightness(0) invert(1);opacity:0.9;" />
+    <span class="store-eyebrow">
+      <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M10 2H2v8h8V2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+        <path d="M4 5h4M4 7h2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      Official Merchandise
+    </span>
+    <h1>Wear your love<br/>for Budgie.</h1>
+    <p>Support the project and show the world you run a better desktop. Every purchase helps fund Ubuntu Budgie development.</p>
+    <a href={STORE_URL} target="_blank" rel="noopener noreferrer" class="store-hero-cta">
+      Visit the Store
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+        <path d="M2.5 10.5l8-8M10.5 2.5H5M10.5 2.5v5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- ── WHY SHOP ──────────────────────────────────────────── -->
+  <section class="store-why">
+    <div class="store-why-inner">
+      <div class="store-why-header st-anim">
+        <h2>Why shop with us?</h2>
+        <p>Every item is designed by the community, for the community — and every sale makes a difference.</p>
+      </div>
+      <div class="store-why-grid">
+
+        <div class="store-why-card st-anim d1">
+          <div class="store-why-icon" style="background:rgba(0,113,227,0.09);color:#0071e3;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </div>
+          <h3>Supports development</h3>
+          <p>A percentage of every sale goes directly back to Ubuntu Budgie for funding development, infrastructure and events.</p>
+        </div>
+
+        <div class="store-why-card st-anim d2">
+          <div class="store-why-icon" style="background:rgba(52,199,89,0.09);color:#34c759;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h3>High quality products</h3>
+          <p>Printed on premium materials. We only sell merchandise we'd be proud to wear or use ourselves.</p>
+        </div>
+
+        <div class="store-why-card st-anim d3">
+          <div class="store-why-icon" style="background:rgba(175,82,222,0.09);color:#af52de;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/>
+            </svg>
+          </div>
+          <h3>Spread the word</h3>
+          <p>Every t-shirt or sticker is a conversation starter. Help grow the Ubuntu Budgie community organically.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CATEGORIES ─────────────────────────────────────────── -->
+  <section class="store-cats">
+    <div class="store-cats-inner">
+      <div class="store-cats-header st-anim">
+        <h2>Shop the collection.</h2>
+        <a href={STORE_URL} target="_blank" rel="noopener noreferrer">Browse all ›</a>
+      </div>
+
+      <div class="store-cats-grid">
+
+        <!-- T-Shirts -->
+        <a href={STORE_URL} target="_blank" rel="noopener noreferrer" class="store-cat-card st-anim d1">
+          <div class="store-cat-img" style="background:linear-gradient(135deg,#fff5f0,#ffe8d6);">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <path d="M20 10 L8 22 L18 28 L18 54 L46 54 L46 28 L56 22 L44 10 C42 16 36 20 32 20 C28 20 22 16 20 10Z" stroke="#e86c1f" stroke-width="2.5" stroke-linejoin="round" fill="rgba(232,108,31,0.12)"/>
+            </svg>
+          </div>
+          <div class="store-cat-body">
+            <h3>T-Shirts</h3>
+            <p>Soft tees with Ubuntu Budgie artwork and logos. Everyday comfort.</p>
+            <span class="store-cat-link">Shop T-Shirts ›</span>
+          </div>
+        </a>
+
+        <!-- Hoodies -->
+        <a href={STORE_URL} target="_blank" rel="noopener noreferrer" class="store-cat-card st-anim d2">
+          <div class="store-cat-img" style="background:linear-gradient(135deg,#f0f5ff,#dce8ff);">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <path d="M16 14 L6 30 L18 34 L18 56 L46 56 L46 34 L58 30 L48 14 C46 20 40 26 32 26 C24 26 18 20 16 14Z" stroke="#0071e3" stroke-width="2.5" stroke-linejoin="round" fill="rgba(0,113,227,0.12)"/>
+              <rect x="26" y="24" width="12" height="10" rx="3" stroke="#0071e3" stroke-width="2" fill="rgba(0,113,227,0.08)"/>
+            </svg>
+          </div>
+          <div class="store-cat-body">
+            <h3>Hoodies</h3>
+            <p>Fleece hoodies and sweatshirts. Stay warm at the terminal.</p>
+            <span class="store-cat-link">Shop Hoodies ›</span>
+          </div>
+        </a>
+
+        <!-- Mugs -->
+        <a href={STORE_URL} target="_blank" rel="noopener noreferrer" class="store-cat-card st-anim d3">
+          <div class="store-cat-img" style="background:linear-gradient(135deg,#f0fff5,#d6ffe5);">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <path d="M14 22 L14 50 C14 52.2 15.8 54 18 54 L42 54 C44.2 54 46 52.2 46 50 L46 22 Z" stroke="#34c759" stroke-width="2.5" stroke-linejoin="round" fill="rgba(52,199,89,0.12)"/>
+              <path d="M46 28 C46 28 52 28 52 34 C52 40 46 40 46 40" stroke="#34c759" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M22 14 C22 14 24 10 28 14" stroke="#34c759" stroke-width="2" stroke-linecap="round"/>
+              <path d="M32 12 C32 12 34 8 38 12" stroke="#34c759" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="store-cat-body">
+            <h3>Mugs</h3>
+            <p>Start every morning with a cup of open source. Ceramic mugs.</p>
+            <span class="store-cat-link">Shop Mugs ›</span>
+          </div>
+        </a>
+
+        <!-- Stickers -->
+        <a href={STORE_URL} target="_blank" rel="noopener noreferrer" class="store-cat-card st-anim d4">
+          <div class="store-cat-img" style="background:linear-gradient(135deg,#fdf0ff,#f0d6ff);">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <rect x="12" y="12" width="30" height="30" rx="5" stroke="#af52de" stroke-width="2.5" fill="rgba(175,82,222,0.12)"/>
+              <rect x="26" y="26" width="26" height="26" rx="5" stroke="#af52de" stroke-width="2.5" fill="rgba(175,82,222,0.12)"/>
+            </svg>
+          </div>
+          <div class="store-cat-body">
+            <h3>Stickers</h3>
+            <p>Deck out your laptop, notebook or water bottle with Budgie stickers.</p>
+            <span class="store-cat-link">Shop Stickers ›</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FULL-WIDTH BANNER ──────────────────────────────────── -->
+  <section class="store-banner">
+    <div class="store-banner-inner st-anim">
+      <h2>Ready to rep<br/>Ubuntu Budgie?</h2>
+      <p>Browse the full collection on our official store — new designs added regularly by our community artists.</p>
+      <a href={STORE_URL} target="_blank" rel="noopener noreferrer" class="store-banner-btn">
+        Open the Store
+        <svg width="14" height="14" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+          <path d="M2.5 10.5l8-8M10.5 2.5H5M10.5 2.5v5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── LEGAL ──────────────────────────────────────────────── -->
+  <div class="store-legal">
+    <p>
+      Clicking "Visit the Store" will take you to an external site at
+      <a href={STORE_URL} target="_blank" rel="noopener noreferrer">ubuntu-budgie.launchcart.store</a>.
+      Ubuntu is a trademark of Canonical Ltd. Ubuntu Budgie merchandise is produced under license.
+      A portion of each sale goes directly towards Ubuntu Budgie development.
+    </p>
+  </div>
+
+</div>
+</BaseLayout>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.st-anim');
+    if (!els.length) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+</script>
