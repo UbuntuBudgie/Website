@@ -27,6 +27,9 @@ content:
       - name: image
         type: image
         label: Featured Image
+      - name: category 
+        type: string
+        label: Category
       - name: tags
         type: string
         label: Tags
@@ -38,7 +41,7 @@ content:
       - name: body
         type: rich-text
         label: Content
-        required: true
+        
 
   - name: gallery
     label: Gallery
