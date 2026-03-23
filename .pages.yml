@@ -7,7 +7,6 @@ content:
     label: Blog
     path: src/content/blog
     type: collection
-    filename: "{slug}" 
     fields:
       - name: title
         type: string
