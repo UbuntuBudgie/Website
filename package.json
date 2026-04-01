@@ -1,6 +1,6 @@
 {
-  "name": "@lexington/astrosaas",
-  "version": "0.0.1",
+  "name": "@ubuntubudgie/website",
+  "version": "1.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
