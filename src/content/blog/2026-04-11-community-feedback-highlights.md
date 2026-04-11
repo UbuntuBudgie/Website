@@ -5,7 +5,7 @@ pubDate: 2026-04-14
 author: david
 draft: false
 ---
-# Blog 2: Community Feedback Highlights
+# Community Feedback Highlights
 
 ## ... and the Workarounds that Helped Everyone
 
