@@ -5,7 +5,7 @@ pubDate: 2026-04-13
 author: david
 draft: false
 ---
-# **Blog 3: The Road to Budgie 11**
+# **The Road to Budgie 11**
 
 # **Building the Next Generation Desktop Together**
 
