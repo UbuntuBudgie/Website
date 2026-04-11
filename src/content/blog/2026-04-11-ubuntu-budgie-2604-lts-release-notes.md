@@ -2,7 +2,7 @@
 title: Ubuntu Budgie 26.04 LTS Release Notes
 description: Ubuntu Budgie 26.04 LTS Release Notes
 pubDate: 2026-04-13
-author: David Mohammed
+author: david
 draft: false
 ---
 # **Ubuntu Budgie 26.04 LTS Release Notes**
