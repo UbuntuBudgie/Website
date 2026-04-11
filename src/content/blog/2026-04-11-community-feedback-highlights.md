@@ -2,10 +2,10 @@
 title: Community Feedback Highlights
 description: ... and the Workarounds that Helped Everyone
 pubDate: 2026-04-13
-author: David Mohammed
+author: david
 draft: false
 ---
-# Blog 2: Community Feedback Highlights 
+# Blog 2: Community Feedback Highlights
 
 ## ... and the Workarounds that Helped Everyone
 
@@ -31,10 +31,10 @@ Some users saw the cursor render incorrectly when running under QEMU with certai
 - If the graphics stack is unstable, disabling or reducing 3D acceleration often trades performance for stability.
 
 **What changed as a result:**  
-Later upstream improvements included a QEMU-focused workaround using WLR_NO_HARDWARE_CURSORS, directly addressing this class of VM cursor issues.[](https://buddiesofbudgie.org/blog/budgie-10-10-2-released) 
+Later upstream improvements included a QEMU-focused workaround using WLR_NO_HARDWARE_CURSORS, directly addressing this class of VM cursor issues. 
 
 **What helps most when reporting VM issues:**  
-VM type, live vs installed session, graphics device, and whether 3D acceleration is enabled.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+VM type, live vs installed session, graphics device, and whether 3D acceleration is enabled. 
 
 ## **2) Displays and scaling: where Wayland feels most different**
 
@@ -42,17 +42,19 @@ Display configuration is one of the areas where Wayland changes the rules most v
 
 ### **Symptom: display settings crash / fractional scaling doesn’t persist**
 
-Users reported settings panels crashing in virtual environments and toggles (like fractional scaling) reverting unexpectedly.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+Users reported settings panels crashing in virtual environments and toggles (like fractional scaling) reverting unexpectedly. 
 
 **Workaround that enabled progress:**
 
-- A “Displays” tool based on **wdisplays** was introduced so users could reliably set resolution, rotation, and scaling while upstream display handling matured.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+- A “Displays” tool based on **wdisplays** was introduced so users could reliably set resolution, rotation, and scaling while upstream display handling matured.
+
+
 
 **Why this matters post‑release:**  
 Even in an LTS, multi‑monitor behaviour is where real-world variety matters most: docking stations, mixed refresh rates, rotated screens, and “primary monitor” decisions can behave differently across setups.
 
 **What to share when you hit display issues:**  
-Your monitor layout, whether settings persist across reboot, and any pattern tied to suspend/resume or hotplug.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+Your monitor layout, whether settings persist across reboot, and any pattern tied to suspend/resume or hotplug. 
 
 ## **3) Admin apps on Wayland: the security model bites differently**
 
@@ -82,7 +84,9 @@ Some reports came down to changed defaults or mismatched expectations.
 
 **What helped:**
 
-- Checking and aligning shortcuts in Budgie Control Center rather than relying on historic defaults.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+- Checking and aligning shortcuts in Budgie Control Center rather than relying on historic defaults.
+
+
 
 ### **Symptom: Super + D (Show Desktop)**
 
@@ -90,7 +94,9 @@ This became a recurring request: users want it to behave like a first-class feat
 
 **What improved upstream:**
 
-- Show Desktop was reworked in 10.10.2 with a DBus interface and correct restore behaviour, so toggling back restores only what was minimized by the toggle.[](https://buddiesofbudgie.org/blog/budgie-10-10-2-released) 
+- Show Desktop was reworked in 10.10.2 with a DBus interface and correct restore behaviour, so toggling back restores only what was minimized by the toggle.
+
+
 
 **What to report now:**  
 Which shortcuts feel missing vs broken, plus your compositor/session and keyboard layout details.
@@ -123,11 +129,13 @@ One user hit a particularly instructive failure mode: installing a bundle of app
 
 **Safer approaches that emerged:**
 
-- Install applets incrementally and review what autoremove proposes before accepting.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
-- Ensure the correct repositories are enabled when instructed, since missing the relevant test repository explained why some applets didn’t appear or behave as expected.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+- Install applets incrementally and review what autoremove proposes before accepting. 
+- Ensure the correct repositories are enabled when instructed, since missing the relevant test repository explained why some applets didn’t appear or behave as expected.
+
+
 
 **A key clarity point:**  
-Some applets are inherently tied to X11 and won’t be viable under Wayland — being explicit about that avoids false expectations and helps focus effort where it matters.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+Some applets are inherently tied to X11 and won’t be viable under Wayland — being explicit about that avoids false expectations and helps focus effort where it matters. 
 
 **Final implementation:**  
 We now install budgie and its applets in an architecture specific location - so for intel its in **/usr/lib/x86_64/budgie-desktop**  
@@ -141,18 +149,22 @@ Across every category above, the reports that led to the best outcomes shared th
 - what was expected
 - steps to reproduce
 - environment details
-- and (crucially) the workaround, even if imperfect[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+- and (crucially) the workaround, even if imperfect
+
+
 
 That combination helps other users immediately *and* gives maintainers the information needed to fix things properly.
 
 ## **How to Report Issues (So Others Can Help — and Fixes Can Happen Faster)**
 
-Ubuntu Budgie 26.04 is an LTS, so the most valuable reports come from real workflows. When you post an issue, think of it as a small “care package” for the next person who hits the same thing — and for the maintainer who needs to reproduce it.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+Ubuntu Budgie 26.04 is an LTS, so the most valuable reports come from real workflows. When you post an issue, think of it as a small “care package” for the next person who hits the same thing — and for the maintainer who needs to reproduce it. 
 
 ### **Where to report**
 
 - Start in the Ubuntu Budgie community discussion area so issues can be triaged collaboratively and routed correctly (Ubuntu Budgie packaging vs upstream Budgie vs compositor vs toolkit/app).
-- During the Wayland transition, the emphasis was on keeping reports central and actionable rather than scattered; that approach remains helpful post‑release.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+- During the Wayland transition, the emphasis was on keeping reports central and actionable rather than scattered; that approach remains helpful post‑release.
+
+
 
 ### **What to include (copy/paste checklist)**
 
@@ -160,14 +172,16 @@ Ubuntu Budgie 26.04 is an LTS, so the most valuable reports come from real workf
 - **Steps to reproduce** (numbered steps help a lot).
 - **Frequency** (every time / intermittent / after suspend).
 - **Environment:**
-  - Hardware or VM (and which VM platform).[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
-  - Session/compositor (labwc / wayfire / etc.).[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
-  - GPU (AMD/Intel/NVIDIA) and monitor setup (single/multi, scaling).[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
-- Any special packages or repositories (especially if you enabled development/test sources).[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+  - Hardware or VM (and which VM platform). 
+  - Session/compositor (labwc / wayfire / etc.). 
+  - GPU (AMD/Intel/NVIDIA) and monitor setup (single/multi, scaling).
+
+  
+- Any special packages or repositories (especially if you enabled development/test sources).
+
+
 
 ### **Commands that help (optional but extremely useful)**
-
-
 
 `echo $XDG_SESSION_TYPE`
 
@@ -177,7 +191,7 @@ Ubuntu Budgie 26.04 is an LTS, so the most valuable reports come from real workf
 
 
 
-These give others a quick, comparable snapshot of your session and graphics stack.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+These give others a quick, comparable snapshot of your session and graphics stack. 
 
 ### **If it’s a “Wayland difference” issue**
 
@@ -190,7 +204,7 @@ Please say so explicitly if it involves:
 
 ### **Include workarounds — even partial ones**
 
-Workarounds are often the clue that leads to a real fix. Even “kill and restart XXXX” or “only happens with 3D acceleration” can save hours and help others immediately.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+Workarounds are often the clue that leads to a real fix. Even “kill and restart XXXX” or “only happens with 3D acceleration” can save hours and help others immediately. 
 
 ### **A good issue report (example template)**
 
@@ -229,6 +243,6 @@ Workarounds are often the clue that leads to a real fix. Even “kill and restar
 
 ## **Closing: The best LTS is the one the community grows into**
 
-Ubuntu Budgie 26.04 is stable and ready for daily life — but the real strength of an LTS comes from the community improving it over time. Every clear report, every workaround, and every “here’s what helped” post makes the experience better for everyone today, and feeds into the maintenance stream and the future direction of Budgie 11.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+Ubuntu Budgie 26.04 is stable and ready for daily life — but the real strength of an LTS comes from the community improving it over time. Every clear report, every workaround, and every “here’s what helped” post makes the experience better for everyone today, and feeds into the maintenance stream and the future direction of Budgie 11. 
 
 Keep sharing what you find. Keep sharing what works. That’s how this desktop gets better — together.
