@@ -1,7 +1,7 @@
 ---
 title: The Road to Budgie 11
 description: Building the Next Generation Desktop Together
-pubDate: 2026-04-13
+pubDate: 2026-04-15
 author: david
 draft: false
 ---
