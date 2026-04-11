@@ -2,10 +2,10 @@
 title: The Road to Budgie 11
 description: Building the Next Generation Desktop Together
 pubDate: 2026-04-13
-author: David Mohammed
+author: david
 draft: false
 ---
-# **Blog 3: The Road to Budgie 11** 
+# **Blog 3: The Road to Budgie 11**
 
 # **Building the Next Generation Desktop Together**
 
@@ -17,7 +17,7 @@ This blog explores **what Budgie 11 aims to be**, **what has already been prepar
 
 ## **1. Why Budgie 11 Starts Here**
 
-The transition to Budgie 11 has been discussed for several years, but the critical prerequisite was clear: the Budgie 10 series still depended heavily on X11‑era architecture. The upstream developers confirmed that Budgie 10.10 — the release that finally migrates the desktop from X11 to Wayland — marks the official point where focus can shift to Budgie 11’s development.[](https://buddiesofbudgie.org/blog/budgie-10-10-released) 
+The transition to Budgie 11 has been discussed for several years, but the critical prerequisite was clear: the Budgie 10 series still depended heavily on X11‑era architecture. The upstream developers confirmed that Budgie 10.10 — the release that finally migrates the desktop from X11 to Wayland — marks the official point where focus can shift to Budgie 11’s development. 
 
 With Budgie 10.10 completed and 26.04 delivering it to users in a polished and stable LTS, Budgie 11 can now be built on:
 
@@ -60,17 +60,17 @@ Budgie 11 is where these foundations move from “supporting role” to “core 
 
 ## **3. Lessons Learned from the Wayland Transition**
 
-Budgie’s move to Wayland wasn’t just a technical milestone — it was a learning process shaped heavily by community testing across the Ubuntu Budgie 26.04 cycle. From VirtualBox failures, to QEMU cursor issues, to Java app icon mismatches and fractional scaling inconsistencies, the community surfaced the real‑world behaviours that upstream could integrate into ongoing fixes.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+Budgie’s move to Wayland wasn’t just a technical milestone — it was a learning process shaped heavily by community testing across the Ubuntu Budgie 26.04 cycle. From VirtualBox failures, to QEMU cursor issues, to Java app icon mismatches and fractional scaling inconsistencies, the community surfaced the real‑world behaviours that upstream could integrate into ongoing fixes. 
 
 These insights directly guide Budgie 11’s priorities:
 
 ### **More reliable window matching**
 
-User‑reported issues with Java apps, snaps, and unconventional applications led to upstream developing a more intelligent ApplicationMatcher in 10.10.2. Budgie 11 will expand on this logic to create a desktop environment that identifies and groups windows more reliably than traditional X11‑era tools ever could.[](https://buddiesofbudgie.org/blog/budgie-10-10-2-released) 
+User‑reported issues with Java apps, snaps, and unconventional applications led to upstream developing a more intelligent ApplicationMatcher in 10.10.2. Budgie 11 will expand on this logic to create a desktop environment that identifies and groups windows more reliably than traditional X11‑era tools ever could. 
 
 ### **Better multi‑monitor handling**
 
-Feedback about primary display inconsistencies and missing display tools heavily influenced the development of the new display management service layer. Budgie 11 will build upon this and deliver a more streamlined multi‑monitor experience with fewer compositor‑specific quirks.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+Feedback about primary display inconsistencies and missing display tools heavily influenced the development of the new display management service layer. Budgie 11 will build upon this and deliver a more streamlined multi‑monitor experience with fewer compositor‑specific quirks. 
 
 ### **Improved applet robustness**
 
@@ -78,7 +78,7 @@ Many community reports on applet migration, breaks, and behaviour differences un
 
 ### **Consistency across compositors**
 
-One of the challenges revealed during 26.04 development was that different Wayland compositors behave differently with the same protocols. Budgie 11 will narrow these differences by centralising more behaviour in its own service layer, ensuring that Budgie feels like Budgie — no matter which compositor powers it.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+One of the challenges revealed during 26.04 development was that different Wayland compositors behave differently with the same protocols. Budgie 11 will narrow these differences by centralising more behaviour in its own service layer, ensuring that Budgie feels like Budgie — no matter which compositor powers it. 
 
 ## **4. What Users Can Expect from Budgie 11**
 
@@ -99,7 +99,7 @@ Budgie 11 will fully embrace Wayland’s capabilities, improving:
 
 ### **More reliable third‑party app behaviour**
 
-Thanks to the groundwork in 10.10.x, Budgie 11 should handle unusual applications — Electron, Java, snap packages, Flatpaks, and niche toolkits — far more consistently.[](https://buddiesofbudgie.org/blog/budgie-10-10-2-released) 
+Thanks to the groundwork in 10.10.x, Budgie 11 should handle unusual applications — Electron, Java, snap packages, Flatpaks, and niche toolkits — far more consistently. 
 
 ### **A modern basis for future innovation**
 
@@ -126,7 +126,7 @@ Even though 26.04 is a stable long‑term release, your daily experiences contin
 
 ### **Examples already seen:**
 
-- Community feedback led to better greeter interactions when returning from lock screen.[](https://fujitsudns-my.sharepoint.com/personal/david_mohammed_fujitsu_co_uk/Documents/Microsoft%20Copilot%20Chat%20Files/Home%20Store%20Blog.txt) 
+- Community feedback led to better greeter interactions when returning from lock screen. 
 - Reports on Crystal Dock startup race conditions guided autostart fixes.
 - Issues found in VMs helped upstream refine compositor and protocol handling.
 - Applet behaviour reports helped determine which applets needed rebuilding and which were no longer viable under modern Wayland.
@@ -137,7 +137,7 @@ These insights feed directly into Ubuntu Budgie development and sets up how we s
 
 Ubuntu Budgie 26.04 is the first true Wayland LTS for our flavour. It is the proving ground, the stabilisation phase, and the source of the community insights that will define Budgie 11’s success.
 
-Upstream Budgie describes 10.10 as the end of one chapter and the start of another. The shift to Budgie 11 promises a modern, efficient, protocol‑driven desktop environment built with the future of Linux in mind.[](https://buddiesofbudgie.org/blog/budgie-10-10-released) 
+Upstream Budgie describes 10.10 as the end of one chapter and the start of another. The shift to Budgie 11 promises a modern, efficient, protocol‑driven desktop environment built with the future of Linux in mind. 
 
 And importantly:
 
