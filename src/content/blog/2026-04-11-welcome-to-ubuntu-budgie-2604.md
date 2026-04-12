@@ -5,10 +5,6 @@ pubDate: 2026-04-13
 author: david
 draft: false
 ---
-# Welcome to Ubuntu Budgie 26.04
-
-## A Wayland Future Built Together
-
 Ubuntu Budgie 26.04 marks one of the most significant transitions in our flavour’s history. It is the first long‑term release built on Budgie Desktop 10.10, the upstream release that officially completes Budgie’s migration from X11 to Wayland. This closes over a decade of Budgie 10 development and positions the desktop for its next major chapter as the project’s focus shifts toward Budgie 11.
 
 But while the development teams laid the new foundations, the true evolution of Ubuntu Budgie begins now—with you. The 26.04 release is stable, feature‑rich, and ready for everyday use, yet the shift to Wayland means that real‑world feedback is more important than ever. What you discover, share, and refine as a community will directly influence future Ubuntu Budgie updates and inform upstream decisions shaping Budgie 11.
