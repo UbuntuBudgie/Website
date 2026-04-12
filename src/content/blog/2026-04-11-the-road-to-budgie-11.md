@@ -5,6 +5,14 @@ pubDate: 2026-04-15
 author: david
 draft: false
 ---
+[Welcome to Ubuntu Budgie 26.04](../welcome-to-ubuntu-budgie-2604)
+
+[Community feedback highlights](../community-feedback-highlights)
+
+[Road to budgie 11](../the-road-to-budgie-11)
+
+[Ubuntu Budgie 26.04 Release Notes](../ubuntu-budgie-2604-lts-release-notes)
+
 ## **Introduction**
 
 With the release of Ubuntu Budgie 26.04 and the upstream milestone of Budgie Desktop 10.10, a major chapter in the Budgie story has come to a close. Budgie 10 is now formally entering maintenance mode while development efforts shift decisively toward **Budgie 11**, the next major evolution of the desktop.
