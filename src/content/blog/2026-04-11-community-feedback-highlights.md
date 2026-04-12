@@ -5,10 +5,6 @@ pubDate: 2026-04-14
 author: david
 draft: false
 ---
-# Community Feedback Highlights
-
-## ... and the Workarounds that Helped Everyone
-
 Ubuntu Budgie 26.04 is a long-term release, but that doesn’t mean the story ends on install. The most valuable improvements now come from **real daily use**: the apps you run, the hardware you rely on, and the edge cases that only appear after hours of normal work.
 
 During the journey to 26.04, the community didn’t just report issues — you **unblocked each other** with practical workarounds, careful observations, and repeatable steps. That’s exactly the kind of feedback that strengthens an LTS over time and feeds directly into future Ubuntu Budgie releases and the longer-term direction of Budgie 11.
