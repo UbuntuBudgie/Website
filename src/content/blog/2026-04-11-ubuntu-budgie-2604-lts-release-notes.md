@@ -5,6 +5,16 @@ pubDate: 2026-04-16
 author: david
 draft: false
 ---
+[Welcome to Ubuntu Budgie 26.04](../welcome-to-ubuntu-budgie-2604)
+
+[Community feedback highlights](../community-feedback-highlights)
+
+[Road to budgie 11](../the-road-to-budgie-11)
+
+[Ubuntu Budgie 26.04 Release Notes](../ubuntu-budgie-2604-lts-release-notes)
+
+
+
 ## **Introduction**
 
 Ubuntu Budgie 26.04 LTS (Resolute Raccoon) is a **Long Term Support** release, supported for **three years** by the Ubuntu Budgie team.
