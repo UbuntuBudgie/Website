@@ -5,13 +5,14 @@ pubDate: 2026-04-14
 author: david
 draft: false
 ---
-[Ubuntu Budgie 26.04 Release Notes](../ubuntu-budgie-2604-lts-release-notes)
+[Welcome to Ubuntu Budgie 26.04](../welcome-to-ubuntu-budgie-2604)
 
 [Community feedback highlights](../community-feedback-highlights)
 
 [Road to budgie 11](../the-road-to-budgie-11)
 
-[Welcome to Ubuntu Budgie 26.04](../welcome-to-ubuntu-budgie-2604)
+[Ubuntu Budgie 26.04 Release Notes](../ubuntu-budgie-2604-lts-release-notes)
+
 
 Ubuntu Budgie 26.04 is a long-term release, but that doesn’t mean the story ends on install. The most valuable improvements now come from **real daily use**: the apps you run, the hardware you rely on, and the edge cases that only appear after hours of normal work.
 
