@@ -1,12 +1,10 @@
 ---
 title: Ubuntu Budgie 26.04 LTS Release Notes
-description: Ubuntu Budgie 26.04 LTS Release Notes
+description: Whats new and changed in this release
 pubDate: 2026-04-16
 author: david
 draft: false
 ---
-# **Ubuntu Budgie 26.04 LTS Release Notes**
-
 ## **Introduction**
 
 Ubuntu Budgie 26.04 LTS (Resolute Raccoon) is a **Long Term Support** release, supported for **three years** by the Ubuntu Budgie team.
