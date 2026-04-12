@@ -5,6 +5,8 @@ pubDate: 2026-04-15
 author: david
 draft: false
 ---
+## **Introduction**
+
 With the release of Ubuntu Budgie 26.04 and the upstream milestone of Budgie Desktop 10.10, a major chapter in the Budgie story has come to a close. Budgie 10 is now formally entering maintenance mode while development efforts shift decisively toward **Budgie 11**, the next major evolution of the desktop.
 
 This is more than just a version bump. Budgie 11 represents a foundational reimagining of the desktop — one that builds upon everything learned during the Wayland transition and everything the community continues to uncover through real‑world use.
