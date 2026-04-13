@@ -32,40 +32,49 @@ const currentPage = 1; // This is always page 1
 ---
 
 <BaseLayout title="Our Blog" description="Latest news and updates.">
-  <section class="py-16 sm:py-24">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-        {paginatedPosts.map(({ post, author }) => (
-          <PostCard post={post} author={author} />
-        ))}
-      </div>
-      
-      {/* Pagination Navigation */}
-      <nav class="mt-16 flex justify-center gap-4" aria-label="Pagination">
-        {/* Previous button - always disabled on page 1 */}
-        <span class="inline-block rounded-lg border border-gray-200 bg-gray-100 px-6 py-2 font-semibold text-gray-400 cursor-not-allowed">
-          ← Previous
-        </span>
-        
-        {/* Page indicator */}
-        <span class="inline-flex items-center px-4 py-2 text-sm text-gray-600">
-          Page {currentPage} of {totalPages}
-        </span>
-        
-        {/* Next button - only show if there are more pages */}
-        {totalPages > 1 ? (
-          <a 
-            href="/blog/page/2/" 
-            class="inline-block rounded-lg border border-gray-300 bg-white px-6 py-2 font-semibold text-gray-800 shadow-sm transition-colors hover:bg-gray-100"
-          >
-            Next →
-          </a>
-        ) : (
-          <span class="inline-block rounded-lg border border-gray-200 bg-gray-100 px-6 py-2 font-semibold text-gray-400 cursor-not-allowed">
-            Next →
-          </span>
-        )}
-      </nav>
+
+<section class="py-16 sm:py-24">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    
+    <!-- Centered hero text aligned to grid -->
+    <div class="mx-auto max-w-3xl text-center">
+      <h1 class="mb-4 text-4xl font-bold tracking-tight text-heading md:text-5xl lg:text-6xl">
+Latest news and updates      </h1>
+      <p class="mb-6 text-lg font-normal text-body lg:text-xl">
+Interested to read what's new or learn more about Ubuntu Budgie? Check out our blog</p>
     </div>
-  </section>
+
+    <!-- Posts grid -->
+    <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+      {paginatedPosts.map(({ post, author }) => (
+        <PostCard post={post} author={author} />
+      ))}
+    </div>
+
+    <!-- Pagination -->
+    <nav class="mt-16 flex justify-center gap-4" aria-label="Pagination">
+      <span class="inline-block rounded-lg border border-gray-200 bg-gray-100 px-6 py-2 font-semibold text-gray-400 cursor-not-allowed">
+        ← Previous
+      </span>
+
+      <span class="inline-flex items-center px-4 py-2 text-sm text-gray-600">
+        Page {currentPage} of {totalPages}
+      </span>
+
+      {totalPages > 1 ? (
+        <a 
+          href="/blog/page/2/" 
+          class="inline-block rounded-lg border border-gray-300 bg-white px-6 py-2 font-semibold text-gray-800 shadow-sm transition-colors hover:bg-gray-100"
+        >
+          Next →
+        </a>
+      ) : (
+        <span class="inline-block rounded-lg border border-gray-200 bg-gray-100 px-6 py-2 font-semibold text-gray-400 cursor-not-allowed">
+          Next →
+        </span>
+      )}
+    </nav>
+
+  </div>
+</section>
 </BaseLayout>
