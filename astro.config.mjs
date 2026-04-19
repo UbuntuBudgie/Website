@@ -30,5 +30,5 @@ export default defineConfig({
   trailingSlash: "ignore",
   output: "static",
   site: "https://ubuntubudgie.org",
-  integrations: [sitemap()],
+  integrations: [sitemap(), favicons()],
 });
