@@ -4,6 +4,8 @@ import tailwindcss from "@tailwindcss/vite";
 // 1. Import the plugin
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
+import favicons from "astro-favicons";
+
 export default defineConfig({
   image: {
     // Disable image optimization for paths in public folder
@@ -28,5 +30,5 @@ export default defineConfig({
   trailingSlash: "ignore",
   output: "static",
   site: "https://yoursite.com",
-  integrations: [sitemap()],
+  integrations: [sitemap(), favicons()],
 });
