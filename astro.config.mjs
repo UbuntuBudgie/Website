@@ -29,6 +29,6 @@ export default defineConfig({
   },
   trailingSlash: "ignore",
   output: "static",
-  site: "https://yoursite.com",
-  integrations: [sitemap(), favicons()],
+  site: "https://ubuntubudgie.org",
+  integrations: [sitemap()],
 });
