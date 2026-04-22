@@ -3,6 +3,7 @@ title: Welcome to Ubuntu Budgie 26.04
 description: A Wayland Future Built Together
 pubDate: 2026-04-13
 author: david
+image: /banner26.04small.jpg
 draft: false
 ---
 [Welcome to Ubuntu Budgie 26.04](../welcome-to-ubuntu-budgie-2604)
