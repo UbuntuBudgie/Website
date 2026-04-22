@@ -3,6 +3,7 @@ title: The Road to Budgie 11
 description: Building the Next Generation Desktop Together
 pubDate: 2026-04-15
 author: david
+image: /banner26.04small.jpg
 draft: false
 ---
 [Welcome to Ubuntu Budgie 26.04](../welcome-to-ubuntu-budgie-2604)
