@@ -3,6 +3,7 @@ title: Ubuntu Budgie 26.04 LTS Release Notes
 description: Whats new and changed in this release
 pubDate: 2026-04-16
 author: david
+image: /banner26.04small.jpg
 draft: false
 ---
 [Welcome to Ubuntu Budgie 26.04](../welcome-to-ubuntu-budgie-2604)

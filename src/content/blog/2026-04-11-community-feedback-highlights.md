@@ -3,6 +3,7 @@ title: Community Feedback Highlights
 description: ... and the Workarounds that Helped Everyone
 pubDate: 2026-04-14
 author: david
+image: /banner26.04small.jpg
 draft: false
 ---
 [Welcome to Ubuntu Budgie 26.04](../welcome-to-ubuntu-budgie-2604)
@@ -72,8 +73,7 @@ Users saw “cannot open display” and GTK initialisation failures when launchi
 
 - For Synaptic, allowing local display access and launching via the correct wrapper helped:
   - xhost + local:
-  - then synaptic-pkexec
-- For GUFW, we are going to have to be pragmatic: if it can’t be made reliable in this environment, it shouldn’t be recommended by default — prompting plans for the Ubuntu Budgie team to remove it from recommended tools.
+  - then gufw
 
 **What this taught us:**  
 Some compositors are stricter than others, and what “just works” elsewhere may fail in a standards-focused environment.
