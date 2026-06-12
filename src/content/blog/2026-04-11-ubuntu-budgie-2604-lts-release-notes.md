@@ -219,6 +219,18 @@ nohup budgie-panel --reset --reset-raven --replace &
 
 11. Upgrade prompts follow standard Ubuntu LTS scheduling.
 
+## 26.04 Hints and Tips
+
+The following are community provided guides to get the most out of 26.04, including tweaks and suggested workarounds for common issues.
+
+[https://discourse.ubuntubudgie.org/t/26-04-tip-1-how-to-activate-the-numeric-keypad-at-startup/8555](https://discourse.ubuntubudgie.org/t/26-04-tip-1-how-to-activate-the-numeric-keypad-at-startup/8555)
+
+[https://discourse.ubuntubudgie.org/t/26-04-tip-2-how-to-launch-graphical-applications-in-sudo-mode/8556](https://discourse.ubuntubudgie.org/t/26-04-tip-2-how-to-launch-graphical-applications-in-sudo-mode/8556)
+
+[https://discourse.ubuntubudgie.org/t/26-04-tip-3-how-to-display-the-desktop-in-nemo/8559](https://discourse.ubuntubudgie.org/t/26-04-tip-3-how-to-display-the-desktop-in-nemo/8559)
+
+[https://discourse.ubuntubudgie.org/t/26-04-tip-4-how-to-configure-the-login-screen/8562](https://discourse.ubuntubudgie.org/t/26-04-tip-4-how-to-configure-the-login-screen/8562)
+
 ## **Fixed Issues and Stability Improvements**
 
 Ubuntu Budgie 26.04 includes numerous fixes, including:
