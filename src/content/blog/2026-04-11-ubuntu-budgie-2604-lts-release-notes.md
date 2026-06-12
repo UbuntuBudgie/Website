@@ -191,16 +191,16 @@ Graphics behaviour in virtual machines depends on the hypervisor and acceleratio
 
 Before upgrading:
 
-1. Ensure the desktop meta‑package is installed
+1. Ensure the desktop meta‑package is installed and budgie-desktop-environment
 
 ```
-sudo apt install ubuntu-budgie-desktop
+sudo apt install ubuntu-budgie-desktop budgie-desktop-environment
 ```
 
 or  
 
 ```
-sudo apt install ubuntu-budgie-desktop-minimal
+sudo apt install ubuntu-budgie-desktop-minimal budgie-desktop-environment
 ```
 
 2. Apply all updates and reboot
