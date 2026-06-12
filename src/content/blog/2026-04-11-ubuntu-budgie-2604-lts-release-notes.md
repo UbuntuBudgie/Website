@@ -187,50 +187,37 @@ Graphics behaviour in virtual machines depends on the hypervisor and acceleratio
 - Virtualbox can be used - graphics will not be accelerated and thus will be sluggish for video and other graphics intensive operations.
 - GNOME Boxes should be avoided due to the limited configuration options available to make a great experience
 
-## **Upgrading from Ubuntu Budgie 25.10 LTS**
+## **Upgrading from Ubuntu Budgie 25.10 LTS & 24.04 LTS**
 
 Before upgrading:
 
 1. Ensure the desktop meta‑package is installed
-2. sudo apt install ubuntu-budgie-desktop
-3. Apply all updates and reboot
-4. Back up important data
-5. IMPORTANT: ppa-purge all third‑party PPAs prior to upgrading including ppa:ubuntubudgie/backports
-6. Use the GUI upgrade manage
-7. IMPORTANT: Review the three categories of package changes - the important one is the proposed packages to be removed.  It should NOT include critical packages like budgie-desktop, budgie-desktop-environment nor ubuntu-budgie-desktop
-8. When prompted to change the default login manager - choose SDDM from the drop-down
-9. IMPORTANT: review the list of packages that will be removed.  It should NOT include critical packages like budgie-desktop, budgie-desktop-environment nor ubuntu-budgie-desktop
-10. On reboot and login, if you have a bottom panel dock as well as Crystal Dock (the replacement for 26.04) then use Budgie Desktop Desktops - panel to remove the bottom dock.
-11. If necessary reset your panel layout(s) via a terminal by typing:  
 
+```
+sudo apt install ubuntu-budgie-desktop
+```
+
+or  
+
+```
+sudo apt install ubuntu-budgie-desktop-minimal
+```
+
+2. Apply all updates and reboot
+3. Back up important data
+4. **IMPORTANT:** ppa-purge all third‑party PPAs prior to upgrading including ppa:ubuntubudgie/backports
+5. Use the GUI upgrade manage
+6. IMPORTANT: Review the three categories of package changes - the important one is the proposed packages to be removed.  It should NOT include critical packages like budgie-desktop, budgie-desktop-environment nor ubuntu-budgie-desktop
+7. When prompted to change the default login manager - choose SDDM from the drop-down
+8. **IMPORTANT:** review the list of packages that will be removed at the prompt "Do you want to start the upgrade".  It should NOT include critical packages like budgie-desktop, budgie-desktop-environment nor ubuntu-budgie-desktop/ubuntu-budgie-desktop-minimal
+9. On reboot and login, if you have a bottom panel dock as well as Crystal Dock (the replacement for 26.04) then use Budgie Desktop Desktops - panel to remove the bottom dock.
+10. If necessary reset your panel layout(s) via a terminal by typing:    
 
 ```
 nohup budgie-panel --reset --reset-raven --replace &
 ```
 
-
-
-## **Upgrading from Ubuntu Budgie 24.04 LTS**
-
-Before upgrading:
-
-1. Ensure the desktop meta‑package is installed
-2. sudo apt install ubuntu-budgie-desktop
-3. Apply all updates and reboot
-4. Back up important data
-5. IMPORTANT: ppa-purge all third‑party PPAs prior to upgrading including ppa:ubuntubudgie/backports
-6. Use the GUI upgrade manage
-7. IMPORTANT: Review the three categories of package changes - the important one is the proposed packages to be removed.  It should NOT include critical packages like budgie-desktop, budgie-desktop-environment nor ubuntu-budgie-desktop
-8. When prompted to change the default login manager - choose SDDM from the drop-down
-9. IMPORTANT: review the list of packages that will be removed.  It should NOT include critical packages like budgie-desktop, budgie-desktop-environment nor ubuntu-budgie-desktop
-10. On reboot and login, if you have a bottom panel dock as well as Crystal Dock (the replacement for 26.04) then use Budgie Desktop Desktops - panel to remove the bottom dock.
-11. If necessary reset your panel layout(s) via a terminal by typing:    
-
-```
-nohup budgie-panel --reset --reset-raven --replace &
-```
-
-Upgrade prompts follow standard Ubuntu LTS scheduling.
+11. Upgrade prompts follow standard Ubuntu LTS scheduling.
 
 ## **Fixed Issues and Stability Improvements**
 
