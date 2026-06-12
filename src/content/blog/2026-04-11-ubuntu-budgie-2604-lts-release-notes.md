@@ -206,9 +206,9 @@ sudo apt install ubuntu-budgie-desktop-minimal
 2. Apply all updates and reboot
 3. Back up important data
 4. **IMPORTANT:** ppa-purge all third‑party PPAs prior to upgrading including ppa:ubuntubudgie/backports
-5. Use the GUI upgrade manage
-6. IMPORTANT: Review the three categories of package changes - the important one is the proposed packages to be removed.  It should NOT include critical packages like budgie-desktop, budgie-desktop-environment nor ubuntu-budgie-desktop
-7. When prompted to change the default login manager - choose SDDM from the drop-down
+5. Use the GUI upgrade manager
+6. **IMPORTANT:** Review the three categories of package changes - the important one is the proposed packages to be removed.  It should NOT include critical packages like budgie-desktop, budgie-desktop-environment nor ubuntu-budgie-desktop
+7. **IMPORTANT:** When prompted to change the default login manager - choose SDDM from the drop-down
 8. **IMPORTANT:** review the list of packages that will be removed at the prompt "Do you want to start the upgrade".  It should NOT include critical packages like budgie-desktop, budgie-desktop-environment nor ubuntu-budgie-desktop/ubuntu-budgie-desktop-minimal
 9. On reboot and login, if you have a bottom panel dock as well as Crystal Dock (the replacement for 26.04) then use Budgie Desktop Desktops - panel to remove the bottom dock.
 10. If necessary reset your panel layout(s) via a terminal by typing:    
