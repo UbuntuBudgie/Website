@@ -304,33 +304,39 @@
 
     if (!root || !burger || !drawer) return;
 
+    // Re-bind to consts so TypeScript keeps the non-null type
+    // inside the closures below (handleScroll, openDrawer, etc.)
+    var rootEl   = root;
+    var burgerEl = burger;
+    var drawerEl = drawer;
+
     /* ── Scroll shadow ── */
     function handleScroll() {
-      root.classList.toggle('scrolled', window.scrollY > 10);
+      rootEl.classList.toggle('scrolled', window.scrollY > 10);
     }
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
     /* ── Toggle drawer ── */
     function openDrawer() {
-      drawer.classList.add('is-open');
-      burger.classList.add('is-open');
-      burger.setAttribute('aria-expanded', 'true');
-      drawer.setAttribute('aria-hidden', 'false');
+      drawerEl.classList.add('is-open');
+      burgerEl.classList.add('is-open');
+      burgerEl.setAttribute('aria-expanded', 'true');
+      drawerEl.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     }
 
     function closeDrawer() {
-      drawer.classList.remove('is-open');
-      burger.classList.remove('is-open');
-      burger.setAttribute('aria-expanded', 'false');
-      drawer.setAttribute('aria-hidden', 'true');
+      drawerEl.classList.remove('is-open');
+      burgerEl.classList.remove('is-open');
+      burgerEl.setAttribute('aria-expanded', 'false');
+      drawerEl.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     }
 
-    burger.addEventListener('click', function (e) {
+    burgerEl.addEventListener('click', function (e) {
       e.stopPropagation();
-      if (drawer.classList.contains('is-open')) {
+      if (drawerEl.classList.contains('is-open')) {
         closeDrawer();
       } else {
         openDrawer();
@@ -338,16 +344,16 @@
     });
 
     /* ── Close on drawer link click ── */
-    var links = drawer.querySelectorAll('a');
+    var links = drawerEl.querySelectorAll('a');
     for (var i = 0; i < links.length; i++) {
       links[i].addEventListener('click', closeDrawer);
     }
 
     /* ── Close on outside click ── */
     document.addEventListener('click', function (e) {
-      if (!drawer.classList.contains('is-open')) return;
+      if (!drawerEl.classList.contains('is-open')) return;
       var t = e.target;
-      if (t instanceof Node && !root.contains(t) && !drawer.contains(t)) {
+      if (t instanceof Node && !rootEl.contains(t) && !drawerEl.contains(t)) {
         closeDrawer();
       }
     });
@@ -359,7 +365,7 @@
 
     /* ── Active link ── */
     var currentPath = window.location.pathname;
-    var navLinks = root.querySelectorAll('.nav-link');
+    var navLinks = rootEl.querySelectorAll('.nav-link');
     for (var j = 0; j < navLinks.length; j++) {
       var el = navLinks[j];
       if (!(el instanceof HTMLAnchorElement)) continue;
