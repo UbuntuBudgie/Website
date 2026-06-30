@@ -6,7 +6,7 @@ author: Sam Lane
 image: /2026/budgie-pi-24.04.png
 draft: false
 ---
-# Ubuntu Budgie 24.04.4 LTS for Raspberry Pi
+# Ubuntu Budgie 24.04.4 for Raspberry Pi
 
 I'm happy to share the Ubuntu Budgie 24.04.4 image for the Raspberry Pi 4 Model B and Raspberry Pi 5.
 This project aims to provide a familiar Ubuntu Budgie experience from the very first boot.
