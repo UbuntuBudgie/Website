@@ -4,7 +4,7 @@ description: Announcement and Instructions for the Ubuntu Budgie 24.04.4 Raspber
 pubDate: 2026-06-30
 author: Sam Lane
 image: /2026/pi1.png
-draft: true
+draft: false
 ---
 # Ubuntu Budgie 24.04.4 LTS for Raspberry Pi
 
