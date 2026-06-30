@@ -14,7 +14,7 @@ Admittedly, it was a while coming, however we were able to work out the issues t
 
 ## Downloads
 
-The latest Raspberry Pi image can be downloaded from the Ubuntu Budgie SourceForge project:
+The latest Raspberry Pi image can be downloaded directly from the Ubuntu Budgie SourceForge project or as a direct link from our Downloads page:
 
 **Download:** [https://sourceforge.net/projects/budgie-remix/](https://sourceforge.net/projects/budgie-remix/)
 
@@ -24,7 +24,7 @@ The latest Raspberry Pi image can be downloaded from the Ubuntu Budgie SourceFor
 - 4 GB RAM
 - 16 GB microSD card
 
-> **Note:** The image is approximately **11 GB**, so a **32 GB** microSD card is recommended.
+> **Note:** The image is approximately **3GB** compressed, **11 GB** uncompressed, so a **32 GB** microSD card is recommended.
 
 ## Features
 
@@ -60,7 +60,7 @@ The complete image definition, supporting files, and instructions are available 
 
 ## Known Issues
 
-- On the Raspberry Pi 5, the mouse cursor will flicker. This is a known issue and does not affect overall system stability or desktop functionality. We are looking at how to resolve this, as it can be annoying. This does not affext the Pi 4.
+- On the Raspberry Pi 5, the mouse cursor will flicker. This is a known issue and does not affect overall system stability or desktop functionality. We are looking at how to resolve this, as it can be annoying. This does not affect the Pi 4.
 - Upgrading to our Wayland-based 26.04 desktop so far has worked well.
 
 ## Support
