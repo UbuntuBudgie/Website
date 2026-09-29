@@ -60,29 +60,29 @@ export interface $ZodCheckMultipleOf<T extends number | bigint = number | bigint
 }
 export declare const $ZodCheckMultipleOf: core.$constructor<$ZodCheckMultipleOf<number | bigint>>;
 export type $ZodNumberFormats = "int32" | "uint32" | "float32" | "float64" | "safeint";
-export interface $ZodCheckNumberFormatDef extends $ZodCheckDef {
+export interface $ZodCheckNumberFormatDef<Format extends $ZodNumberFormats = $ZodNumberFormats> extends $ZodCheckDef {
     check: "number_format";
-    format: $ZodNumberFormats;
+    format: Format;
 }
-export interface $ZodCheckNumberFormatInternals extends $ZodCheckInternals<number> {
-    def: $ZodCheckNumberFormatDef;
+export interface $ZodCheckNumberFormatInternals<Format extends $ZodNumberFormats = $ZodNumberFormats> extends $ZodCheckInternals<number> {
+    def: $ZodCheckNumberFormatDef<Format>;
     issc: errors.$ZodIssueInvalidType | errors.$ZodIssueTooBig<"number"> | errors.$ZodIssueTooSmall<"number">;
 }
-export interface $ZodCheckNumberFormat extends $ZodCheck<number> {
-    _zod: $ZodCheckNumberFormatInternals;
+export interface $ZodCheckNumberFormat<Format extends $ZodNumberFormats = $ZodNumberFormats> extends $ZodCheck<number> {
+    _zod: $ZodCheckNumberFormatInternals<Format>;
 }
 export declare const $ZodCheckNumberFormat: core.$constructor<$ZodCheckNumberFormat>;
 export type $ZodBigIntFormats = "int64" | "uint64";
-export interface $ZodCheckBigIntFormatDef extends $ZodCheckDef {
+export interface $ZodCheckBigIntFormatDef<Format extends $ZodBigIntFormats = $ZodBigIntFormats> extends $ZodCheckDef {
     check: "bigint_format";
-    format: $ZodBigIntFormats | undefined;
+    format: Format;
 }
-export interface $ZodCheckBigIntFormatInternals extends $ZodCheckInternals<bigint> {
-    def: $ZodCheckBigIntFormatDef;
+export interface $ZodCheckBigIntFormatInternals<Format extends $ZodBigIntFormats = $ZodBigIntFormats> extends $ZodCheckInternals<bigint> {
+    def: $ZodCheckBigIntFormatDef<Format>;
     issc: errors.$ZodIssueTooBig<"bigint"> | errors.$ZodIssueTooSmall<"bigint">;
 }
-export interface $ZodCheckBigIntFormat extends $ZodCheck<bigint> {
-    _zod: $ZodCheckBigIntFormatInternals;
+export interface $ZodCheckBigIntFormat<Format extends $ZodBigIntFormats = $ZodBigIntFormats> extends $ZodCheck<bigint> {
+    _zod: $ZodCheckBigIntFormatInternals<Format>;
 }
 export declare const $ZodCheckBigIntFormat: core.$constructor<$ZodCheckBigIntFormat>;
 export interface $ZodCheckMaxSizeDef extends $ZodCheckDef {
@@ -157,7 +157,7 @@ export interface $ZodCheckLengthEquals<T extends util.HasLength = util.HasLength
     _zod: $ZodCheckLengthEqualsInternals<T>;
 }
 export declare const $ZodCheckLengthEquals: core.$constructor<$ZodCheckLengthEquals>;
-export type $ZodStringFormats = "email" | "url" | "emoji" | "uuid" | "guid" | "nanoid" | "cuid" | "cuid2" | "ulid" | "xid" | "ksuid" | "datetime" | "date" | "time" | "duration" | "ipv4" | "ipv6" | "cidrv4" | "cidrv6" | "base64" | "base64url" | "json_string" | "e164" | "lowercase" | "uppercase" | "regex" | "jwt" | "starts_with" | "ends_with" | "includes";
+export type $ZodStringFormats = "email" | "url" | "emoji" | "uuid" | "guid" | "nanoid" | "cuid" | "cuid2" | "ulid" | "xid" | "ksuid" | "datetime" | "date" | "time" | "duration" | "ipv4" | "ipv6" | "cidrv4" | "cidrv6" | "base64" | "base64url" | "json_string" | "e164" | "credit_card" | "lowercase" | "uppercase" | "regex" | "jwt" | "starts_with" | "ends_with" | "includes";
 export interface $ZodCheckStringFormatDef<Format extends string = string> extends $ZodCheckDef {
     check: "string_format";
     format: Format;

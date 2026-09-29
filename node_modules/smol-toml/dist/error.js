@@ -26,11 +26,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 function getLineColFromPtr(string, ptr) {
-    let lines = string.slice(0, ptr).split(/\r\n|\n|\r/g);
+    let lines = string.slice(0, ptr).split(/\r?\n/);
     return [lines.length, lines.pop().length + 1];
 }
 function makeCodeBlock(string, line, column) {
-    let lines = string.split(/\r\n|\n|\r/g);
+    let lines = string.split(/\r?\n/);
     let codeblock = '';
     let numberLen = (Math.log10(line + 1) | 0) + 1;
     for (let i = line - 1; i <= line + 1; i++) {
@@ -59,5 +59,9 @@ export class TomlError extends Error {
         this.line = line;
         this.column = column;
         this.codeblock = codeblock;
+    }
+    /** @internal */
+    static x(message, ctx, ptr) {
+        throw new TomlError(message, { toml: ctx.s, ptr: ptr ?? ctx.p });
     }
 }

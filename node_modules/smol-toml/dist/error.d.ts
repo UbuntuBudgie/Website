@@ -25,7 +25,7 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-type TomlErrorOptions = ErrorOptions & {
+export type TomlErrorOptions = ErrorOptions & {
     toml: string;
     ptr: number;
 };
@@ -35,4 +35,3 @@ export declare class TomlError extends Error {
     codeblock: string;
     constructor(message: string, options: TomlErrorOptions);
 }
-export {};

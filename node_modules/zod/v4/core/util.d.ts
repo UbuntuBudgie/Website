@@ -15,6 +15,27 @@ export type ParsedTypes = "string" | "number" | "bigint" | "boolean" | "symbol" 
 export type AssertEqual<T, U> = (<V>() => V extends T ? 1 : 2) extends <V>() => V extends U ? 1 : 2 ? true : false;
 export type AssertNotEqual<T, U> = (<V>() => V extends T ? 1 : 2) extends <V>() => V extends U ? 1 : 2 ? false : true;
 export type AssertExtends<T, U> = T extends U ? T : never;
+type ToZodMismatch<T, S extends schemas.$ZodType> = {
+    "types do not match": {
+        expected: T;
+        received: S["_zod"]["output"];
+    };
+};
+type ToZodKeyMismatch<Expected, Received> = schemas.$ZodType & {
+    "types do not match": {
+        expected: Expected;
+        received: Received;
+    };
+};
+type ToZodShape<Shape, T> = {
+    [K in keyof Shape]: Shape[K] extends schemas.$ZodType ? K extends keyof T ? AssertEqual<Shape[K]["_zod"]["output"], T[K]> extends true ? Shape[K] : ToZodKeyMismatch<T[K], Shape[K]["_zod"]["output"]> : ToZodKeyMismatch<never, Shape[K]["_zod"]["output"]> : Shape[K];
+} & {
+    [K in Exclude<keyof T, keyof Shape>]: ToZodKeyMismatch<T[K], never>;
+};
+type ToZodExpand<X> = {
+    [K in keyof X]: X[K];
+} & {};
+type ToZodTarget<S extends schemas.$ZodType, T> = S extends schemas.$ZodObject<infer Shape, infer Config> ? T extends object ? AssertEqual<ToZodExpand<ToZodShape<Shape, T>>, ToZodExpand<Shape>> extends true ? S & ToZodMismatch<T, S> : schemas.$ZodObject<ToZodExpand<ToZodShape<Shape, T>>, Config> : S & ToZodMismatch<T, S> : S & ToZodMismatch<T, S>;
 export type IsAny<T> = 0 extends 1 & T ? true : false;
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type OmitKeys<T, K extends string> = Pick<T, Exclude<keyof T, K>>;
@@ -110,6 +131,7 @@ export type PropValues = Record<string, Set<Primitive>>;
 export type PrimitiveSet = Set<Primitive>;
 export declare function assertEqual<A, B>(val: AssertEqual<A, B>): AssertEqual<A, B>;
 export declare function assertNotEqual<A, B>(val: AssertNotEqual<A, B>): AssertNotEqual<A, B>;
+export declare function toZod<T>(): <S extends schemas.$ZodType>(schema: AssertEqual<S["_zod"]["output"], T> extends true ? S : ToZodTarget<S, T>) => S;
 export declare function assertIs<T>(_arg: T): void;
 export declare function assertNever(_x: never): never;
 export declare function assert<T>(_: any): asserts _ is T;
@@ -173,7 +195,7 @@ export declare function omit(schema: schemas.$ZodObject, mask: object): any;
 export declare function extend(schema: schemas.$ZodObject, shape: schemas.$ZodShape): any;
 export declare function safeExtend(schema: schemas.$ZodObject, shape: schemas.$ZodShape): any;
 export declare function merge(a: schemas.$ZodObject, b: schemas.$ZodObject): any;
-export declare function partial(Class: SchemaClass<schemas.$ZodOptional> | null, schema: schemas.$ZodObject, mask: object | undefined): any;
+export declare function partial(Class: SchemaClass<schemas.$ZodOptional> | null, schema: schemas.$ZodObject, mask: object | undefined, name?: string): any;
 export declare function required(Class: SchemaClass<schemas.$ZodNonOptional>, schema: schemas.$ZodObject, mask: object | undefined): any;
 export type Constructor<T, Def extends any[] = any[]> = new (...args: Def) => T;
 export declare function aborted(x: schemas.ParsePayload, startIndex?: number): boolean;
@@ -182,8 +204,10 @@ export declare function prefixIssues(path: PropertyKey, issues: errors.$ZodRawIs
 export declare function unwrapMessage(message: string | {
     message: string;
 } | undefined | null): string | undefined;
+export declare function attachSchema(issues: errors.$ZodRawIssue[], start: number, inst: schemas.$ZodType): void;
 export declare function finalizeIssue(iss: errors.$ZodRawIssue, ctx: schemas.ParseContextInternal | undefined, config: $ZodConfig): errors.$ZodIssue;
 export declare function getSizableOrigin(input: any): "set" | "map" | "file" | "unknown";
+export declare function codePointLength(str: string): number;
 export declare function getLengthableOrigin(input: any): "array" | "string" | "unknown";
 export declare function parsedType(data: unknown): errors.$ZodInvalidTypeExpected;
 export declare function issue(_iss: string, input: any, inst: any): errors.$ZodRawIssue;
@@ -198,3 +222,36 @@ export declare function uint8ArrayToHex(bytes: Uint8Array): string;
 export declare abstract class Class {
     constructor(..._args: any[]);
 }
+/**
+ * Installs a trait's members on its prototype. Each value builds that member for the instance on first read; the built value shadows the accessor as an own property, so a detached `const { parse } = schema` keeps working.
+ *
+ * Call this from a `proto` initializer, which runs once per prototype — never per instance.
+ */
+export declare function members(proto: object, table: object): void;
+/** Shadows a prototype member with an own value, so a getter that builds from the instance runs once. */
+export declare function own<T>(inst: object, key: string, value: T, enumerable?: boolean): T;
+/** Like {@link own}, for a member that was never an own data property and has to stay out of `Object.keys`. */
+export declare function hide<T>(inst: object, key: string, value: T): T;
+/** A trait's prototype members: a partial view of its own interface, with `this` typed as the instance. */
+export type ProtoOf<T> = {
+    [K in keyof T]?: (T[K] extends (...args: infer A) => infer R ? (...args: A) => R : T[K]) | undefined;
+} & ThisType<T>;
+/**
+ * Installs a lazily-derived internal on the `_zod` prototype of `inst`'s
+ * constructor, computed from the internals object itself and cached there on
+ * first read. One accessor per constructor rather than one per instance.
+ */
+export declare function defineLazyInternal<T extends {
+    _zod: any;
+}>(inst: T, key: string, compute: (zod: T["_zod"]) => unknown): void;
+/**
+ * Installs `key` on `inst`'s prototype, computed by `make` on first read and cached there as an own
+ * data property. One accessor per constructor rather than one per instance, because an own accessor
+ * puts every instance after the first into v8 dictionary mode. The key doubles as the sentinel.
+ */
+export declare function installLazyProp(inst: object, key: string, make: (self: any) => unknown, enumerable: boolean): void;
+/** Marks the thunk `_catch` synthesises for a constant catch value. `Function.length` cannot tell that thunk from a user callback — rest and defaulted parameters both report arity 0 — and a user callback reads `ctx.error`, whose issues only finalize correctly against the caller's per-parse error map. Provenance can say what arity cannot. A plain string key rather than `Symbol.for`, whose call at module scope no bundler can prove pure — the same shape that anchored `urlCanParse` into every build. */
+export declare const CONSTANT_CATCH = "~constantCatch";
+/** Wraps a constant catch value in a thunk tagged with {@link CONSTANT_CATCH}. */
+export declare function constantCatch<T>(value: T): () => T;
+export {};

@@ -27,13 +27,6 @@
  */
 import { TomlError } from './error.js';
 /** @internal */
-export function indexOfNewline(str, start = 0) {
-    let idx = str.indexOf('\n', start);
-    if (str.charCodeAt(idx - 1) === 0xd /* \r */)
-        idx--;
-    return idx;
-}
-/** @internal */
 export function skipComment(ctx) {
     for (; ctx.p < ctx.s.length; ctx.p++) {
         let c = ctx.s.charCodeAt(ctx.p);
@@ -44,46 +37,21 @@ export function skipComment(ctx) {
             break;
         }
         if ((c < 0x20 && c !== 0x9 /* \t */) || c === 0x7f) {
-            throw new TomlError('control characters are not allowed in comments', {
-                toml: ctx.s,
-                ptr: ctx.p,
-            });
+            TomlError.x('control characters are not allowed in comments', ctx);
         }
     }
 }
 /** @internal */
 export function skipVoid(ctx, banNewLines, banComments) {
     let c;
-    while (1) {
-        while ((c = ctx.s.charCodeAt(ctx.p)) === 0x20 ||
+    while (ctx.p < ctx.s.length) {
+        while (ctx.p < ctx.s.length && ((c = ctx.s.charCodeAt(ctx.p)) === 0x20 ||
             c === 0x9 /* \t */ ||
             (!banNewLines &&
-                (c === 0xa /* \n */ || (c === 0xd /* \r */ && ctx.s.charCodeAt(ctx.p + 1) === 0xa /* \n */))))
+                (c === 0xa /* \n */ || (c === 0xd /* \r */ && ctx.s.charCodeAt(ctx.p + 1) === 0xa /* \n */)))))
             ctx.p++;
         if (banComments || c !== 0x23 /* # */)
             break;
         skipComment(ctx);
     }
-}
-/** @internal */
-export function skipUntil(ctx, sep, end) {
-    let ptr = ctx.p;
-    if (!end) {
-        ptr = indexOfNewline(ctx.s, ptr);
-        ctx.p = ptr < 0 ? ctx.s.length : ptr;
-        return;
-    }
-    for (; ctx.p < ctx.s.length; ctx.p++) {
-        let c = ctx.s.charCodeAt(ctx.p);
-        if (c === 0x23 /* # */) {
-            skipComment(ctx);
-        }
-        else if (c === end || c === sep) {
-            return;
-        }
-    }
-    throw new TomlError('cannot find end of structure', {
-        toml: ctx.s,
-        ptr,
-    });
 }

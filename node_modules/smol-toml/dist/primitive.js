@@ -25,16 +25,10 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import { TomlDate } from './date.js';
 import { TomlError } from './error.js';
-import { skipComment, skipUntil } from './util.js';
-// let CTRL_REGEX = /[\x00-\x08\x0f-\x1f\x7f]/
-let INT_REGEX = /^((0x[0-9a-fA-F](_?[0-9a-fA-F])*)|(([+-]|0[ob])?\d(_?\d)*))$/;
-let FLOAT_REGEX = /^[+-]?\d(_?\d)*(\.\d(_?\d)*)?([eE][+-]?\d(_?\d)*)?$/;
-let LEADING_ZERO = /^[+-]?0[0-9_]/;
 /** @internal */
 export function parseString(ctx) {
-    let start = ctx.p;
+    let startPtr = ctx.p;
     let c = ctx.s.charCodeAt(ctx.p++);
     let first = c;
     let isLiteral = c === 0x27; /* ' */
@@ -46,37 +40,8 @@ export function parseString(ctx) {
         else if (c === 0xd /* \r */ && ctx.s.charCodeAt(ctx.p + 1) === 0xa /* \n */)
             ctx.p += 2;
     }
-    /*
-    The fast path does not seem to bring significant performance gains, so it's commented out.
-    Kept for reference and/or future fafoing.
-
-    Without: spec  5.08 µs/iter    3.88 ipc (99.44% cache)   23.90 branch misses   28.61k cycles    111.01k instructions
-             5MB   115.73 ms/iter  2.51 ipc (98.36% cache)   3.12M branch misses   619.30M cycles   1.56G instructions
-
-    With:    spec  5.09 µs/iter    3.90 ipc (99.46% cache)   24.42 branch misses   28.57k cycles    111.49k instructions
-             5MB   113.89 ms/iter  2.47 ipc (98.38% cache)   3.12M branch misses   611.94M cycles   1.51G instructions
-
-    if (c === "'") {
-        // Literal strings fast path - no transform needs to occur; just grab the str and that's it
-        let endPtr = str.indexOf(isMultiline ? "'''" : "'", ptr)
-        if (endPtr < 0) {
-            throw new TomlError("unfinished string literal", { toml: str, ptr })
-        }
-
-        if (isMultiline) {
-            // If the string ends with 4-5 quotes, then the first 1-2 are part of the string
-            if (str[endPtr + 3] === "'") endPtr++
-            if (str[endPtr + 3] === "'") endPtr++
-        }
-
-        let string = str.slice(ptr, endPtr)
-        if (CTRL_REGEX.test(string)) {
-            let match = string.match(CTRL_REGEX)!
-            throw new TomlError('control characters are not allowed in strings', { toml: str, ptr: ptr + (match.index ?? 0) })
-        }
-        return [string, endPtr + (isMultiline ? 3 : 1)]
-    }
-    */
+    // For the record: it is not worth it to use a fast-path for literal strings using `indexOf`.
+    // Doing a char-by-char iteration ends up dispatching less instructions, for the same wall-clock runtime.
     let parsed = '';
     let sliceStart = ctx.p;
     // states:
@@ -93,10 +58,7 @@ export function parseString(ctx) {
         }
         // Control characters are banned in TOML, so we throw an error if we encounter them
         else if ((c < 0x20 && c !== 0x9 /* \t */) || c === 0x7f) {
-            throw new TomlError('control characters are not allowed in strings', {
-                toml: ctx.s,
-                ptr: ctx.p,
-            });
+            TomlError.x('control characters are not allowed in strings', ctx);
         }
         // The string might terminate while we're parsing through a newline escape.
         // It must have encountered a newline; otherwise, it'll simply fail in another branch.
@@ -109,11 +71,15 @@ export function parseString(ctx) {
                     ctx.p++;
             }
             // If we're in a newline escape still, then there's nothing to add.
-            if (!state)
-                parsed += ctx.s.slice(sliceStart, ctx.p);
+            if (!state) {
+                // Avoid a useless concat operation if the string can be used as-is.
+                let s = ctx.s.slice(sliceStart, ctx.p);
+                parsed = parsed ? parsed + s : s;
+            }
             ctx.p += isMultiline ? 3 : 1;
             return parsed;
         }
+        // Baseline state; keep moving forward unless an escape sequence starts
         else if (!state) {
             if (!isLiteral && c === 0x5c /* \ */) {
                 parsed += ctx.s.slice(sliceStart, (sliceStart = ctx.p));
@@ -122,29 +88,32 @@ export function parseString(ctx) {
         }
         else if (state === 1) {
             if (c === 0x78 /* x */ || c === 0x75 /* u */ || c === 0x55 /* U */) { // Unicode escape
+                let errPtr = ctx.p++ - 1;
                 let value = 0;
                 let len = c === 0x78 /* x */ ? 2 : c === 0x75 /* u */ ? 4 : 8;
                 for (let j = 0; j < len; j++, ctx.p++) {
-                    let hex = ctx.s.charCodeAt(ctx.p + 1);
+                    let hex = ctx.s.charCodeAt(ctx.p);
                     let digit = 
                     /* 0-9 */ hex >= 0x30 && hex <= 0x39 ? hex - 0x30 :
                         /* A-F */ hex >= 0x41 && hex <= 0x46 ? hex - 0x41 + 10 :
                             /* a-f */ hex >= 0x61 && hex <= 0x66 ? hex - 0x61 + 10 : -1;
                     if (digit < 0)
-                        throw new TomlError('invalid non-hex character in unicode escape', { toml: ctx.s, ptr: ctx.p + 1 });
+                        TomlError.x('invalid non-hex character in unicode escape', ctx);
                     value = (value << 4) | digit;
                 }
                 // Because JS does bitwise on signed 32bit integers, all 0xfzzzzzzz values are actually seen as negative
                 if (value < 0 || value > 0x10ffff || (value >= 0xd800 && value <= 0xdfff)) {
-                    throw new TomlError('invalid unicode escape', { toml: ctx.s, ptr: ctx.p });
+                    TomlError.x('invalid unicode escape', ctx, errPtr);
                 }
                 parsed += String.fromCodePoint(value);
-                sliceStart = ctx.p + 1;
+                sliceStart = ctx.p--;
                 state = 0;
             }
-            else if (c === 0x20 || c === 0x9 /* \t */) { // If it was a newline, it'd have been handled earlier
+            // Newline escape sequence. We only need to care about spaces and tabs; newlines are dealt with earlier
+            else if (isMultiline && (c === 0x20 || c === 0x9 /* \t */)) {
                 state = 2;
             }
+            // Basic escape sequence
             else {
                 if (c === 0x62 /* b */)
                     parsed += '\b';
@@ -163,76 +132,20 @@ export function parseString(ctx) {
                 else if (c === 0x5c /* \ */)
                     parsed += '\\';
                 else
-                    throw new TomlError('unrecognized escape sequence', { toml: ctx.s, ptr: ctx.p });
+                    TomlError.x('unrecognised escape sequence', ctx);
                 sliceStart = ctx.p + 1;
                 state = 0;
             }
         }
+        // Newline escape continuation: keep moving forward until the first non-whitespace char
         else if (c !== 0x20 && c !== 0x9 /* \t */) {
-            if (state === 2) {
-                throw new TomlError('invalid escape: only line-ending whitespace may be escaped', {
-                    toml: ctx.s,
-                    ptr: sliceStart,
-                });
-            }
+            if (state === 2)
+                TomlError.x('invalid escape: only line-ending whitespace may be escaped', ctx, sliceStart);
             // State cannot be zero, or we'd have branched earlier already.
             // If it's a backslash, immediately transition to the escape state so it can be processed.
             state = !isLiteral && c === 0x5c /* \ */ ? 1 : 0;
             sliceStart = ctx.p;
         }
     }
-    throw new TomlError('unfinished string', { toml: ctx.s, ptr: start });
-}
-function sliceAndTrimEndOf(ctx, start, end) {
-    let value = ctx.s.slice(start, end);
-    let commentIdx = value.indexOf('#');
-    if (commentIdx > 0) {
-        // The call to skipComment allows to "validate" the comment
-        // (absence of control characters)
-        skipComment({ s: value, p: commentIdx, d: 0 });
-        value = value.slice(0, commentIdx);
-    }
-    return value.trimEnd();
-}
-/** @internal */
-export function parseValue(ctx, integersAsBigInt, end) {
-    let ptr = ctx.p;
-    let err = { toml: ctx.s, ptr };
-    skipUntil(ctx, 0x2c /* , */, end);
-    let value = sliceAndTrimEndOf(ctx, ptr, ctx.p);
-    if (!value)
-        throw new TomlError('incomplete declaration: value expected', err);
-    if (value === '-inf')
-        return -Infinity;
-    if (value === 'inf' || value === '+inf')
-        return Infinity;
-    if (value === 'nan' || value === '+nan' || value === '-nan')
-        return NaN;
-    // Avoid FP representation of -0
-    if (value === '-0')
-        return integersAsBigInt ? 0n : 0;
-    // Numbers
-    let isInt = INT_REGEX.test(value);
-    if (isInt || FLOAT_REGEX.test(value)) {
-        if (LEADING_ZERO.test(value)) {
-            throw new TomlError('leading zeroes are not allowed', err);
-        }
-        value = value.replace(/_/g, '');
-        let numeric = +value;
-        if (isNaN(numeric)) {
-            throw new TomlError('invalid number', err);
-        }
-        if (isInt) {
-            if ((isInt = !Number.isSafeInteger(numeric)) && !integersAsBigInt) {
-                throw new TomlError('integer value cannot be represented losslessly', err);
-            }
-            if (isInt || integersAsBigInt === true)
-                numeric = BigInt(value);
-        }
-        return numeric;
-    }
-    const date = new TomlDate(value);
-    if (!date.isValid())
-        throw new TomlError('invalid value', err);
-    return date;
+    TomlError.x('unfinished string', ctx, startPtr);
 }

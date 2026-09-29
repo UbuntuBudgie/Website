@@ -46,8 +46,8 @@ export declare function _url<T extends schemas.$ZodURL>(Class: util.SchemaClass<
 export type $ZodEmojiParams = StringFormatParams<schemas.$ZodEmoji, "when">;
 export type $ZodCheckEmojiParams = CheckStringFormatParams<schemas.$ZodEmoji, "when">;
 export declare function _emoji<T extends schemas.$ZodEmoji>(Class: util.SchemaClass<T>, params?: string | $ZodEmojiParams | $ZodCheckEmojiParams): T;
-export type $ZodNanoIDParams = StringFormatParams<schemas.$ZodNanoID, "when">;
-export type $ZodCheckNanoIDParams = CheckStringFormatParams<schemas.$ZodNanoID, "when">;
+export type $ZodNanoIDParams = StringFormatParams<schemas.$ZodNanoID, "when" | "pattern">;
+export type $ZodCheckNanoIDParams = CheckStringFormatParams<schemas.$ZodNanoID, "when" | "pattern">;
 export declare function _nanoid<T extends schemas.$ZodNanoID>(Class: util.SchemaClass<T>, params?: string | $ZodNanoIDParams | $ZodCheckNanoIDParams): T;
 /**
  * @deprecated CUID v1 is deprecated by its authors due to information leakage
@@ -103,6 +103,9 @@ export declare function _base64url<T extends schemas.$ZodBase64URL>(Class: util.
 export type $ZodE164Params = StringFormatParams<schemas.$ZodE164, "when">;
 export type $ZodCheckE164Params = CheckStringFormatParams<schemas.$ZodE164, "when">;
 export declare function _e164<T extends schemas.$ZodE164>(Class: util.SchemaClass<T>, params?: string | $ZodE164Params | $ZodCheckE164Params): T;
+export type $ZodCreditCardParams = StringFormatParams<schemas.$ZodCreditCard, "pattern" | "when">;
+export type $ZodCheckCreditCardParams = CheckStringFormatParams<schemas.$ZodCreditCard, "pattern" | "when">;
+export declare function _creditCard<T extends schemas.$ZodCreditCard>(Class: util.SchemaClass<T>, params?: string | $ZodCreditCardParams | $ZodCheckCreditCardParams): T;
 export type $ZodJWTParams = StringFormatParams<schemas.$ZodJWT, "pattern" | "when">;
 export type $ZodCheckJWTParams = CheckStringFormatParams<schemas.$ZodJWT, "pattern" | "when">;
 export declare function _jwt<T extends schemas.$ZodJWT>(Class: util.SchemaClass<T>, params?: string | $ZodJWTParams | $ZodCheckJWTParams): T;
@@ -210,6 +213,9 @@ export type $ZodCheckPropertyParams = CheckParams<checks.$ZodCheckProperty, "pro
 export declare function _property<K extends string, T extends schemas.$ZodType>(property: K, schema: T, params?: string | $ZodCheckPropertyParams): checks.$ZodCheckProperty<{
     [k in K]: core.output<T>;
 }>;
+export declare function _properties<Shape extends schemas.$ZodShape>(shape: Shape): checks.$ZodCheckProperty<{
+    -readonly [k in keyof Shape]: core.output<Shape[k]>;
+}>[];
 export type $ZodCheckMimeTypeParams = CheckParams<checks.$ZodCheckMimeType, "mime" | "when">;
 export declare function _mime(types: util.MimeTypes[], params?: string | $ZodCheckMimeTypeParams): checks.$ZodCheckMimeType;
 export declare function _overwrite<T>(tx: (input: T) => T): checks.$ZodCheckOverwrite<T>;
@@ -225,22 +231,20 @@ export type $ZodUnionParams = TypeParams<schemas.$ZodUnion, "options">;
 export declare function _union<const T extends readonly schemas.$ZodObject[]>(Class: util.SchemaClass<schemas.$ZodUnion>, options: T, params?: string | $ZodUnionParams): schemas.$ZodUnion<T>;
 export type $ZodXorParams = TypeParams<schemas.$ZodXor, "options">;
 export declare function _xor<const T extends readonly schemas.$ZodObject[]>(Class: util.SchemaClass<schemas.$ZodXor>, options: T, params?: string | $ZodXorParams): schemas.$ZodXor<T>;
-export interface $ZodTypeDiscriminableInternals<Disc extends string = string> extends schemas.$ZodTypeInternals<unknown, {
-    [K in Disc]?: unknown;
-}> {
+export interface $ZodTypeDiscriminableInternals<_Disc extends string = string> extends schemas._$ZodTypeInternals {
     propValues: util.PropValues;
 }
-export interface $ZodTypeDiscriminable<Disc extends string = string> extends schemas.$ZodType {
-    _zod: $ZodTypeDiscriminableInternals<Disc>;
+export interface $ZodTypeDiscriminable<_Disc extends string = string> extends schemas.SomeType {
+    _zod: $ZodTypeDiscriminableInternals;
 }
 export type $ZodDiscriminatedUnionParams = TypeParams<schemas.$ZodDiscriminatedUnion, "options" | "discriminator">;
-export declare function _discriminatedUnion<Types extends [$ZodTypeDiscriminable<Disc>, ...$ZodTypeDiscriminable<Disc>[]], Disc extends string>(Class: util.SchemaClass<schemas.$ZodDiscriminatedUnion>, discriminator: Disc, options: Types, params?: string | $ZodDiscriminatedUnionParams): schemas.$ZodDiscriminatedUnion<Types, Disc>;
+export declare function _discriminatedUnion<Types extends [$ZodTypeDiscriminable, ...$ZodTypeDiscriminable[]], Disc extends string>(Class: util.SchemaClass<schemas.$ZodDiscriminatedUnion>, discriminator: Disc, options: Types, params?: string | $ZodDiscriminatedUnionParams): schemas.$ZodDiscriminatedUnion<Types, Disc>;
 export type $ZodIntersectionParams = TypeParams<schemas.$ZodIntersection, "left" | "right">;
 export declare function _intersection<T extends schemas.$ZodObject, U extends schemas.$ZodObject>(Class: util.SchemaClass<schemas.$ZodIntersection>, left: T, right: U): schemas.$ZodIntersection<T, U>;
 export type $ZodTupleParams = TypeParams<schemas.$ZodTuple, "items" | "rest">;
 export declare function _tuple<T extends readonly [schemas.$ZodType, ...schemas.$ZodType[]]>(Class: util.SchemaClass<schemas.$ZodTuple>, items: T, params?: string | $ZodTupleParams): schemas.$ZodTuple<T, null>;
 export declare function _tuple<T extends readonly [schemas.$ZodType, ...schemas.$ZodType[]], Rest extends schemas.$ZodType>(Class: util.SchemaClass<schemas.$ZodTuple>, items: T, rest: Rest, params?: string | $ZodTupleParams): schemas.$ZodTuple<T, Rest>;
-export type $ZodRecordParams = TypeParams<schemas.$ZodRecord, "keyType" | "valueType">;
+export type $ZodRecordParams = TypeParams<schemas.$ZodRecord, "keyType" | "valueType" | "partial">;
 export declare function _record<Key extends schemas.$ZodRecordKey, Value extends schemas.$ZodObject>(Class: util.SchemaClass<schemas.$ZodRecord>, keyType: Key, valueType: Value, params?: string | $ZodRecordParams): schemas.$ZodRecord<Key, Value>;
 export type $ZodMapParams = TypeParams<schemas.$ZodMap, "keyType" | "valueType">;
 export declare function _map<Key extends schemas.$ZodObject, Value extends schemas.$ZodObject>(Class: util.SchemaClass<schemas.$ZodMap>, keyType: Key, valueType: Value, params?: string | $ZodMapParams): schemas.$ZodMap<Key, Value>;

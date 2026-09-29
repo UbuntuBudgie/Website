@@ -8,6 +8,16 @@ export const $ZodCheck = /*@__PURE__*/ core.$constructor("$ZodCheck", (inst, def
     inst._zod.def = def;
     (_a = inst._zod).onattach ?? (_a.onattach = []);
 });
+/** Default `when` for size-based checks: run only on non-nullish values with a `size`. */
+const _whenHasSize = (payload) => {
+    const val = payload.value;
+    return !util.nullish(val) && val.size !== undefined;
+};
+/** Default `when` for length-based checks: run only on non-nullish values with a `length`. */
+const _whenHasLength = (payload) => {
+    const val = payload.value;
+    return !util.nullish(val) && val.length !== undefined;
+};
 const numericOriginMap = {
     number: "number",
     bigint: "bigint",
@@ -31,7 +41,7 @@ export const $ZodCheckLessThan = /*@__PURE__*/ core.$constructor("$ZodCheckLessT
             return;
         }
         payload.issues.push({
-            origin,
+            origin: numericOriginMap[typeof payload.value] ?? origin,
             code: "too_big",
             maximum: typeof def.value === "object" ? def.value.getTime() : def.value,
             input: payload.value,
@@ -59,7 +69,7 @@ export const $ZodCheckGreaterThan = /*@__PURE__*/ core.$constructor("$ZodCheckGr
             return;
         }
         payload.issues.push({
-            origin,
+            origin: numericOriginMap[typeof payload.value] ?? origin,
             code: "too_small",
             minimum: typeof def.value === "object" ? def.value.getTime() : def.value,
             input: payload.value,
@@ -80,7 +90,8 @@ export const $ZodCheckMultipleOf =
         if (typeof payload.value !== typeof def.value)
             throw new Error("Cannot mix number and bigint in multiple_of check.");
         const isMultiple = typeof payload.value === "bigint"
-            ? payload.value % def.value === BigInt(0)
+            ? // `value % 0n` throws, and nothing is a multiple of zero — the number branch already fails this way via NaN
+                def.value !== BigInt(0) && payload.value % def.value === BigInt(0)
             : util.floatSafeRemainder(payload.value, def.value) === 0;
         if (isMultiple)
             return;
@@ -231,10 +242,7 @@ export const $ZodCheckBigIntFormat = /*@__PURE__*/ core.$constructor("$ZodCheckB
 export const $ZodCheckMaxSize = /*@__PURE__*/ core.$constructor("$ZodCheckMaxSize", (inst, def) => {
     var _a;
     $ZodCheck.init(inst, def);
-    (_a = inst._zod.def).when ?? (_a.when = (payload) => {
-        const val = payload.value;
-        return !util.nullish(val) && val.size !== undefined;
-    });
+    (_a = inst._zod.def).when ?? (_a.when = _whenHasSize);
     inst._zod.onattach.push((inst) => {
         const curr = (inst._zod.bag.maximum ?? Number.POSITIVE_INFINITY);
         if (def.maximum < curr)
@@ -259,10 +267,7 @@ export const $ZodCheckMaxSize = /*@__PURE__*/ core.$constructor("$ZodCheckMaxSiz
 export const $ZodCheckMinSize = /*@__PURE__*/ core.$constructor("$ZodCheckMinSize", (inst, def) => {
     var _a;
     $ZodCheck.init(inst, def);
-    (_a = inst._zod.def).when ?? (_a.when = (payload) => {
-        const val = payload.value;
-        return !util.nullish(val) && val.size !== undefined;
-    });
+    (_a = inst._zod.def).when ?? (_a.when = _whenHasSize);
     inst._zod.onattach.push((inst) => {
         const curr = (inst._zod.bag.minimum ?? Number.NEGATIVE_INFINITY);
         if (def.minimum > curr)
@@ -287,10 +292,7 @@ export const $ZodCheckMinSize = /*@__PURE__*/ core.$constructor("$ZodCheckMinSiz
 export const $ZodCheckSizeEquals = /*@__PURE__*/ core.$constructor("$ZodCheckSizeEquals", (inst, def) => {
     var _a;
     $ZodCheck.init(inst, def);
-    (_a = inst._zod.def).when ?? (_a.when = (payload) => {
-        const val = payload.value;
-        return !util.nullish(val) && val.size !== undefined;
-    });
+    (_a = inst._zod.def).when ?? (_a.when = _whenHasSize);
     inst._zod.onattach.push((inst) => {
         const bag = inst._zod.bag;
         bag.minimum = def.size;
@@ -317,10 +319,7 @@ export const $ZodCheckSizeEquals = /*@__PURE__*/ core.$constructor("$ZodCheckSiz
 export const $ZodCheckMaxLength = /*@__PURE__*/ core.$constructor("$ZodCheckMaxLength", (inst, def) => {
     var _a;
     $ZodCheck.init(inst, def);
-    (_a = inst._zod.def).when ?? (_a.when = (payload) => {
-        const val = payload.value;
-        return !util.nullish(val) && val.length !== undefined;
-    });
+    (_a = inst._zod.def).when ?? (_a.when = _whenHasLength);
     inst._zod.onattach.push((inst) => {
         const curr = (inst._zod.bag.maximum ?? Number.POSITIVE_INFINITY);
         if (def.maximum < curr)
@@ -328,7 +327,9 @@ export const $ZodCheckMaxLength = /*@__PURE__*/ core.$constructor("$ZodCheckMaxL
     });
     inst._zod.check = (payload) => {
         const input = payload.value;
-        const length = input.length;
+        const units = input.length;
+        // Strings are measured in Unicode code points, not UTF-16 units. A code point is at most two units, so a string that already fits in units fits in code points; only an overflow has to be counted.
+        const length = typeof input === "string" && units > def.maximum ? util.codePointLength(input) : units;
         if (length <= def.maximum)
             return;
         const origin = util.getLengthableOrigin(input);
@@ -346,10 +347,7 @@ export const $ZodCheckMaxLength = /*@__PURE__*/ core.$constructor("$ZodCheckMaxL
 export const $ZodCheckMinLength = /*@__PURE__*/ core.$constructor("$ZodCheckMinLength", (inst, def) => {
     var _a;
     $ZodCheck.init(inst, def);
-    (_a = inst._zod.def).when ?? (_a.when = (payload) => {
-        const val = payload.value;
-        return !util.nullish(val) && val.length !== undefined;
-    });
+    (_a = inst._zod.def).when ?? (_a.when = _whenHasLength);
     inst._zod.onattach.push((inst) => {
         const curr = (inst._zod.bag.minimum ?? Number.NEGATIVE_INFINITY);
         if (def.minimum > curr)
@@ -357,7 +355,11 @@ export const $ZodCheckMinLength = /*@__PURE__*/ core.$constructor("$ZodCheckMinL
     });
     inst._zod.check = (payload) => {
         const input = payload.value;
-        const length = input.length;
+        const units = input.length;
+        // A code point is one or two UTF-16 units, so fewer units than the floor can never reach it and twice the floor always clears it. Only in between is the exact count in doubt.
+        const length = typeof input === "string" && units >= def.minimum && units < def.minimum * 2
+            ? util.codePointLength(input)
+            : units;
         if (length >= def.minimum)
             return;
         const origin = util.getLengthableOrigin(input);
@@ -375,10 +377,7 @@ export const $ZodCheckMinLength = /*@__PURE__*/ core.$constructor("$ZodCheckMinL
 export const $ZodCheckLengthEquals = /*@__PURE__*/ core.$constructor("$ZodCheckLengthEquals", (inst, def) => {
     var _a;
     $ZodCheck.init(inst, def);
-    (_a = inst._zod.def).when ?? (_a.when = (payload) => {
-        const val = payload.value;
-        return !util.nullish(val) && val.length !== undefined;
-    });
+    (_a = inst._zod.def).when ?? (_a.when = _whenHasLength);
     inst._zod.onattach.push((inst) => {
         const bag = inst._zod.bag;
         bag.minimum = def.length;
@@ -387,7 +386,11 @@ export const $ZodCheckLengthEquals = /*@__PURE__*/ core.$constructor("$ZodCheckL
     });
     inst._zod.check = (payload) => {
         const input = payload.value;
-        const length = input.length;
+        const units = input.length;
+        // A code point is one or two UTF-16 units, so outside `[length, length * 2]` units the target is missed either way — and missed in the same direction in both measures.
+        const length = typeof input === "string" && units >= def.length && units <= def.length * 2
+            ? util.codePointLength(input)
+            : units;
         if (length === def.length)
             return;
         const origin = util.getLengthableOrigin(input);
@@ -460,7 +463,10 @@ export const $ZodCheckUpperCase = /*@__PURE__*/ core.$constructor("$ZodCheckUppe
 export const $ZodCheckIncludes = /*@__PURE__*/ core.$constructor("$ZodCheckIncludes", (inst, def) => {
     $ZodCheck.init(inst, def);
     const escapedRegex = util.escapeRegex(def.includes);
-    const pattern = new RegExp(typeof def.position === "number" ? `^.{${def.position}}${escapedRegex}` : escapedRegex);
+    // `String.prototype.includes(sub, position)` matches `sub` at `position`
+    // OR LATER, so the pattern must allow at least `position` leading chars
+    // (`{N,}`), not exactly `position` chars (`{N}`).
+    const pattern = new RegExp(typeof def.position === "number" ? `^.{${def.position},}${escapedRegex}` : escapedRegex);
     def.pattern = pattern;
     inst._zod.onattach.push((inst) => {
         const bag = inst._zod.bag;

@@ -27,85 +27,69 @@
  */
 import { parseString } from './primitive.js';
 import { extractValue } from './extract.js';
-import { indexOfNewline, skipVoid } from './util.js';
+import { skipVoid } from './util.js';
 import { TomlError } from './error.js';
-let KEY_PART_RE = /^[a-zA-Z0-9-_]+[ \t]*$/;
 /** @internal */
-export function parseKey(ctx, end = '=') {
-    let start = ctx.p;
-    let dot = start - 1;
+export function parseKey(ctx, end = 0x3d /* = */) {
+    // States:
+    // 0: before first char
+    // 1: parsing bare key
+    // 2: after key component
+    let startPtr;
+    let state = 0;
     let parsed = [];
-    let endPtr = ctx.s.indexOf(end, start);
-    if (endPtr < 0) {
-        throw new TomlError('incomplete key-value: cannot find end of key', {
-            toml: ctx.s,
-            ptr: start,
-        });
-    }
+    let sliceStart;
+    let c = ctx.s.charCodeAt(startPtr = ctx.p);
     do {
-        let c = ctx.s.charCodeAt(ctx.p = ++dot);
-        // If it's whitespace, ignore
-        if (c !== 0x20 && c !== 0x9 /* \t */) {
-            // If it's a string
-            if (c === 0x22 /* " */ || c === 0x27 /* ' */) {
-                if (c === ctx.s.charCodeAt(ctx.p + 1) && c === ctx.s.charCodeAt(ctx.p + 2)) {
-                    throw new TomlError('multiline strings are not allowed in keys', {
-                        toml: ctx.s,
-                        ptr: ctx.p,
-                    });
-                }
-                let part = parseString(ctx);
-                dot = ctx.s.indexOf('.', ctx.p);
-                let strEnd = ctx.s.slice(ctx.p, dot < 0 || dot > endPtr ? endPtr : dot);
-                let newLine = indexOfNewline(strEnd);
-                if (newLine > -1) {
-                    throw new TomlError('newlines are not allowed in keys', {
-                        toml: ctx.s,
-                        ptr: newLine,
-                    });
-                }
-                if (strEnd.trimStart()) {
-                    throw new TomlError('found extra tokens after the string part', {
-                        toml: ctx.s,
-                        ptr: ctx.p,
-                    });
-                }
-                if (endPtr < ctx.p) {
-                    endPtr = ctx.s.indexOf(end, ctx.p);
-                    if (endPtr < 0) {
-                        throw new TomlError('incomplete key-value: cannot find end of key', {
-                            toml: ctx.s,
-                            ptr: start,
-                        });
-                    }
-                }
-                parsed.push(part);
-            }
-            else {
-                // Normal raw key part consumption and validation
-                dot = ctx.s.indexOf('.', ctx.p);
-                let part = ctx.s.slice(ctx.p, dot < 0 || dot > endPtr ? endPtr : dot);
-                if (!KEY_PART_RE.test(part)) {
-                    throw new TomlError('only letter, numbers, dashes and underscores are allowed in keys', {
-                        toml: ctx.s,
-                        ptr: ctx.p,
-                    });
-                }
-                parsed.push(part.trimEnd());
+        // End of key
+        if (c === end) {
+            if (!state)
+                TomlError.x('unexpected end of key', ctx);
+            if (state === 1)
+                parsed.push(ctx.s.slice(sliceStart, ctx.p));
+            return ctx.p++, parsed;
+        }
+        // Dotted key separator
+        else if (c === 0x2e /* . */) {
+            if (!state)
+                TomlError.x('illegal empty bare key', ctx);
+            if (state === 1)
+                parsed.push(ctx.s.slice(sliceStart, ctx.p));
+            state = 0;
+        }
+        // Quoted key
+        else if (!state && (c === 0x22 /* " */ || c === 0x27 /* ' */)) {
+            if (c === ctx.s.charCodeAt(ctx.p + 1) && c === ctx.s.charCodeAt(ctx.p + 2))
+                TomlError.x('illegal quoted key: multiline strings are not allowed', ctx);
+            parsed.push(parseString(ctx));
+            state = 2;
+            ctx.p--;
+        }
+        // Whitespace; no-op in state 0 and 2, end of bare key in state 1
+        else if (c === 0x20 || c === 0x9 /* \t */) {
+            if (state === 1) {
+                parsed.push(ctx.s.slice(sliceStart, ctx.p));
+                state = 2;
             }
         }
-        // Until there's no more dot
-    } while (dot + 1 && dot < endPtr);
-    ctx.p = endPtr + 1;
-    skipVoid(ctx, true, true);
-    return parsed;
+        // If state is post-key, no character is allowed; otherwise ensure it's a bare-key component
+        else if (state === 2 || (c < 0x30 && c !== 0x2d /* - */) || (c > 0x39 && c < 0x41) || (c > 0x5a && c < 0x61 && c !== 0x5f /* _ */) || c > 0x7a) {
+            TomlError.x('illegal character in key', ctx);
+        }
+        // Illegal character
+        else if (!state) {
+            state = 1;
+            sliceStart = ctx.p;
+        }
+    } while (c = ctx.s.charCodeAt(++ctx.p));
+    TomlError.x('incomplete key-value: cannot find end of key', ctx, startPtr);
 }
 /** @internal */
-export function parseInlineTable(ctx, integersAsBigInt) {
-    let res = {};
+export function parseInlineTable(ctx) {
+    let startPtr = ctx.p++;
+    let res = Object.create(null);
     let seen = new Set();
     let c;
-    ctx.p++;
     while (ctx.p < ctx.s.length) {
         skipVoid(ctx);
         if ((c = ctx.s.charCodeAt(ctx.p)) === 0x7d /* } */) {
@@ -115,65 +99,58 @@ export function parseInlineTable(ctx, integersAsBigInt) {
         let k;
         let t = res;
         let hasOwn = false;
-        let p = ctx.p;
+        let errPtr = ctx.p;
         let key = parseKey(ctx);
         for (let i = 0; i < key.length; i++) {
             if (i)
-                t = hasOwn ? t[k] : (t[k] = {});
+                t = hasOwn ? t[k] : (t[k] = Object.create(null));
             k = key[i];
             if ((hasOwn = Object.hasOwn(t, k)) && (typeof t[k] !== 'object' || seen.has(t[k]))) {
-                throw new TomlError('trying to redefine an already defined value', {
-                    toml: ctx.s,
-                    ptr: p,
-                });
+                TomlError.x('trying to redefine an already defined value', ctx, errPtr);
             }
-            if (!hasOwn && k === '__proto__') {
+            let unsafe = k === '__proto__';
+            if (ctx.uk && (unsafe || k === 'constructor')) {
+                t = ctx.uk !== 1 && TomlError.x('document contains an unsafe property', ctx, errPtr);
+                break;
+            }
+            if (!hasOwn && unsafe) {
                 Object.defineProperty(t, k, { enumerable: true, configurable: true, writable: true });
             }
         }
         if (hasOwn) {
-            throw new TomlError('trying to redefine an already defined value', {
-                toml: ctx.s,
-                ptr: ctx.p,
-            });
+            TomlError.x('trying to redefine an already defined value', ctx, errPtr);
         }
-        let value = extractValue(ctx, 0x7d /* } */, integersAsBigInt);
-        seen.add(t[k] = value);
+        skipVoid(ctx, true, true);
+        let value = extractValue(ctx, 0x7d /* } */);
+        if (t && typeof (t[k] = value) === 'object')
+            seen.add(value);
         skipVoid(ctx);
         if ((c = ctx.s.charCodeAt(ctx.p++)) === 0x7d /* } */) {
             return res;
         }
-        if (c !== 0x2c /* , */) {
-            throw new TomlError('expected comma or end of structure', { toml: ctx.s, ptr: ctx.p - 1 });
-        }
+        if (c !== 0x2c /* , */)
+            TomlError.x('expected comma or end of structure', ctx, ctx.p - 1);
     }
-    throw new TomlError('unfinished table encountered', {
-        toml: ctx.s,
-        ptr: ctx.p,
-    });
+    TomlError.x('unfinished table', ctx, startPtr);
 }
 /** @internal */
-export function parseArray(ctx, integersAsBigInt) {
+export function parseArray(ctx) {
+    let startPtr = ctx.p++;
     let res = [];
     let c;
-    ctx.p++;
     while (ctx.p < ctx.s.length) {
         skipVoid(ctx);
         if ((c = ctx.s.charCodeAt(ctx.p)) === 0x5d /* ] */) {
             ctx.p++;
             return res;
         }
-        res.push(extractValue(ctx, 0x5d /* ] */, integersAsBigInt));
+        res.push(extractValue(ctx, 0x5d /* ] */));
         skipVoid(ctx);
         if ((c = ctx.s.charCodeAt(ctx.p++)) === 0x5d /* ] */) {
             return res;
         }
-        if (c !== 0x2c /* , */) {
-            throw new TomlError('expected comma or end of structure', { toml: ctx.s, ptr: ctx.p - 1 });
-        }
+        if (c !== 0x2c /* , */)
+            TomlError.x('expected comma or end of structure', ctx, ctx.p - 1);
     }
-    throw new TomlError('unfinished array encountered', {
-        toml: ctx.s,
-        ptr: ctx.p,
-    });
+    TomlError.x('unfinished array', ctx, startPtr);
 }

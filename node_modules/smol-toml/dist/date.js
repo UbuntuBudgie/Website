@@ -25,38 +25,67 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-let DATE_TIME_RE = /^(\d{4}-\d{2}-\d{2})?[T ]?(?:(\d{2}):\d{2}(?::\d{2}(?:\.\d+)?)?)?(Z|[-+]\d{2}:\d{2})?$/i;
+let DATE_TIME_RE = /^(\d{4}-\d{2}-\d{2})?[Tt ]?(?:(\d{2}):\d{2}(?::\d{2}(?:\.\d+)?)?)?(Z|z|[-+]\d{2}:\d{2})?$/i;
 export class TomlDate extends Date {
     #hasDate = false;
     #hasTime = false;
     #offset = null;
-    constructor(date) {
+    constructor(date, fasttype, unsafeDelim) {
         let hasDate = true;
         let hasTime = true;
         let offset = 'Z';
+        let c;
         if (typeof date === 'string') {
-            let match = date.match(DATE_TIME_RE);
-            if (match) {
-                if (!match[1]) {
-                    hasDate = false;
-                    date = `0000-01-01T${date}`;
+            if (fasttype)
+                prep: {
+                    // Date-time
+                    if (fasttype < 3) {
+                        if (+date.slice(11, 13) > 23) {
+                            date = '';
+                            break prep;
+                        }
+                        // Local
+                        if (fasttype === 2) {
+                            offset = null;
+                            date += 'Z';
+                        }
+                        // Offset; keep track of offset if not Z
+                        else if ((c = date.charCodeAt(date.length - 1)) !== 0x5a /* Z */ && c !== 0x7a /* z */) {
+                            offset = date.slice(date.length - 6);
+                        }
+                        if (unsafeDelim)
+                            date = date.slice(0, 10) + 'T' + date.slice(11);
+                    }
+                    // Time
+                    else if (fasttype === 4) {
+                        date = +date.slice(0, 2) > 23 ? '' : `0000-01-01T${date}Z`;
+                    }
+                    hasDate = fasttype !== 4;
+                    hasTime = fasttype !== 3;
                 }
-                hasTime = !!match[2];
-                // Make sure to use T instead of a space. Breaks in case of extreme values otherwise.
-                hasTime && date[10] === ' ' && (date = date.replace(' ', 'T'));
-                // Do not allow rollover hours.
-                if (match[2] && +match[2] > 23) {
-                    date = '';
+            else {
+                let match = date.match(DATE_TIME_RE);
+                if (match) {
+                    if (!match[1]) {
+                        hasDate = false;
+                        date = `0000-01-01T${date}`;
+                    }
+                    hasTime = !!match[2];
+                    // Make sure to use T instead of a space. Breaks in case of extreme values otherwise.
+                    hasTime && date[10] === ' ' && (date = date.replace(' ', 'T'));
+                    // Do not allow rollover hours.
+                    if (match[2] && +match[2] > 23) {
+                        date = '';
+                    }
+                    else {
+                        offset = match[3] || null;
+                        if (!offset && hasTime)
+                            date += 'Z';
+                    }
                 }
                 else {
-                    offset = match[3] || null;
-                    date = date.toUpperCase();
-                    if (!offset && hasTime)
-                        date += 'Z';
+                    date = '';
                 }
-            }
-            else {
-                date = '';
             }
         }
         super(date);
@@ -93,7 +122,7 @@ export class TomlDate extends Date {
         if (this.#offset === null)
             return iso.slice(0, -1);
         // Offset DateTime
-        if (this.#offset === 'Z')
+        if (this.#offset === 'Z' || this.#offset === 'z')
             return iso;
         // This part is quite annoying: JS strips the original timezone from the ISO string representation
         // Instead of using a "modified" date and "Z", we restore the representation "as authored"

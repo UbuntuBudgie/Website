@@ -29,7 +29,7 @@ import { parseKey } from './struct.js';
 import { extractValue } from './extract.js';
 import { skipVoid } from './util.js';
 import { TomlError } from './error.js';
-function peekTable(key, table, meta, type) {
+function peekTable(ctx, key, table, meta, type) {
     let t = table;
     let m = meta;
     let k;
@@ -37,7 +37,7 @@ function peekTable(key, table, meta, type) {
     let state;
     for (let i = 0; i < key.length; i++) {
         if (i) {
-            t = hasOwn ? t[k] : (t[k] = {});
+            t = hasOwn ? t[k] : (t[k] = Object.create(null));
             m = (state = m[k]).c;
             if (type === 0 /* Type.DOTTED */ && (state.t === 1 /* Type.EXPLICIT */ || state.t === 2 /* Type.ARRAY */)) {
                 return null;
@@ -53,7 +53,10 @@ function peekTable(key, table, meta, type) {
             return null;
         }
         if (!hasOwn) {
-            if (k === '__proto__') {
+            let unsafe = k === '__proto__';
+            if (ctx.uk && (unsafe || k === 'constructor'))
+                return false;
+            if (unsafe) {
                 Object.defineProperty(t, k, { enumerable: true, configurable: true, writable: true });
                 Object.defineProperty(m, k, { enumerable: true, configurable: true, writable: true });
             }
@@ -62,7 +65,7 @@ function peekTable(key, table, meta, type) {
                     ? 3 /* Type.ARRAY_DOTTED */ : type,
                 d: false,
                 i: 0,
-                c: {},
+                c: Object.create(null),
             };
         }
     }
@@ -76,8 +79,8 @@ function peekTable(key, table, meta, type) {
             state.d = true;
             t[k] = [];
         }
-        t[k].push(t = {});
-        state.c[state.i++] = (state = { t: 1 /* Type.EXPLICIT */, d: false, i: 0, c: {} });
+        t[k].push(t = Object.create(null));
+        state.c[state.i++] = (state = { t: 1 /* Type.EXPLICIT */, d: false, i: 0, c: Object.create(null) });
     }
     if (state.d) {
         // Redefining a table!
@@ -85,63 +88,75 @@ function peekTable(key, table, meta, type) {
     }
     state.d = true;
     if (type === 1 /* Type.EXPLICIT */) {
-        t = hasOwn ? t[k] : (t[k] = {});
+        t = hasOwn ? t[k] : (t[k] = Object.create(null));
     }
     else if (type === 0 /* Type.DOTTED */ && hasOwn) {
         return null;
     }
     return [k, t, state.c];
 }
-export function parse(toml, { maxDepth = 1000, integersAsBigInt } = {}) {
-    let ctx = { s: toml, p: 0, d: maxDepth };
-    let res = {};
-    let meta = {};
+function validateTablePeek(ctx, peek, ptr) {
+    if (peek === null || ctx.uk === 2)
+        TomlError.x(peek === null
+            ? 'trying to redefine an already defined table or value'
+            : 'document contains an unsafe property', ctx, ptr);
+}
+export function parse(toml, options = {}) {
+    let ctx = {
+        s: toml,
+        p: 0,
+        d: options.maxDepth ?? 1000,
+        bi: options.integersAsBigInt ?? false,
+        ld: options.useLegacyDate ?? true,
+        uk: options.unsafeKeyBehaviour === 'throw' ? 2 : options.unsafeKeyBehaviour === 'drop' ? 1 : 0,
+    };
+    let res = Object.create(null);
+    let meta = Object.create(null);
     let tmp;
+    let skipping = false;
     let tbl = res;
     let m = meta;
+    // BOM is allowed, skip.
+    // JS is UTF-16, so we have to check for the UTF-16 BOM instead of the UTF-8 BOM sequence!
+    if (toml.charCodeAt(0) === 0xfeff)
+        ctx.p++;
     skipVoid(ctx);
     while (ctx.p < toml.length) {
         if (toml.charCodeAt(ctx.p) === 0x5b /* [ */) {
             let isTableArray = toml.charCodeAt(++ctx.p) === 0x5b; /* [ */
             tmp = ctx.p += +isTableArray;
-            let k = parseKey(ctx, ']');
+            skipping = false;
+            let k = parseKey(ctx, 0x5d /* ] */);
             if (isTableArray) {
-                if (toml.charCodeAt(ctx.p - 1) !== 0x5d /* ] */) {
-                    throw new TomlError('expected end of table declaration', {
-                        toml: toml,
-                        ptr: ctx.p - 1,
-                    });
+                if (toml.charCodeAt(ctx.p) !== 0x5d /* ] */) {
+                    TomlError.x('expected end of table array declaration', ctx);
                 }
                 ctx.p++;
             }
-            let p = peekTable(k, res, meta, isTableArray ? 2 /* Type.ARRAY */ : 1 /* Type.EXPLICIT */);
+            let p = peekTable(ctx, k, res, meta, isTableArray ? 2 /* Type.ARRAY */ : 1 /* Type.EXPLICIT */);
             if (!p) {
-                throw new TomlError('trying to redefine an already defined table or value', {
-                    toml: toml,
-                    ptr: tmp,
-                });
+                validateTablePeek(ctx, p, tmp);
+                skipping = true;
             }
-            m = p[2];
-            tbl = p[1];
+            else {
+                m = p[2];
+                tbl = p[1];
+            }
         }
         else {
             tmp = ctx.p;
             let k = parseKey(ctx);
-            let p = peekTable(k, tbl, m, 0 /* Type.DOTTED */);
-            if (!p) {
-                throw new TomlError('trying to redefine an already defined table or value', {
-                    toml: toml,
-                    ptr: tmp,
-                });
-            }
-            p[1][p[0]] = extractValue(ctx, void 0, integersAsBigInt);
+            let p = peekTable(ctx, k, tbl, m, 0 /* Type.DOTTED */);
+            if (!p && !skipping)
+                validateTablePeek(ctx, p, tmp);
+            skipVoid(ctx, true, true);
+            let v = extractValue(ctx, void 0);
+            if (p && !skipping)
+                p[1][p[0]] = v;
         }
         skipVoid(ctx, true);
-        if (ctx.p < toml.length && (tmp = toml.charCodeAt(ctx.p)) !== 0xa /* \n */ && tmp !== 0xd /* \r */) {
-            throw new TomlError('each key-value declaration must be followed by an end-of-line', {
-                toml: toml,
-                ptr: ctx.p,
-            });
+        if (ctx.p < toml.length && (tmp = toml.charCodeAt(ctx.p)) !== 0xa /* \n */ && (tmp !== 0xd /* \r */ || toml.charCodeAt(ctx.p + 1) !== 0xa /* \n */)) {
+            TomlError.x('each key-value declaration must be followed by an end-of-line', ctx);
         }
         skipVoid(ctx);
     }

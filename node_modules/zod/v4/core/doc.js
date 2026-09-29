@@ -1,9 +1,9 @@
 export class Doc {
-    constructor(args = []) {
+    constructor(args = [], closed = {}) {
         this.content = [];
         this.indent = 0;
-        if (this)
-            this.args = args;
+        this.args = args;
+        this.closed = closed;
     }
     indented(fn) {
         this.indent += 1;
@@ -26,10 +26,8 @@ export class Doc {
     }
     compile() {
         const F = Function;
-        const args = this?.args;
         const content = this?.content ?? [``];
-        const lines = [...content.map((x) => `  ${x}`)];
-        // console.log(lines.join("\n"));
-        return new F(...args, lines.join("\n"));
+        const factory = new F(...Object.keys(this.closed), `return function (${this.args.join(", ")}) {\n${content.join("\n")}\n};`);
+        return factory(...Object.values(this.closed));
     }
 }

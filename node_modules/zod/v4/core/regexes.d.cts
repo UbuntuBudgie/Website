@@ -9,6 +9,7 @@ export declare const ulid: RegExp;
 export declare const xid: RegExp;
 export declare const ksuid: RegExp;
 export declare const nanoid: RegExp;
+export declare function nanoidOfLength(length: number): RegExp;
 /** ISO 8601-1 duration regex. Does not support the 8601-2 extensions like negative durations or fractional/negative components. */
 export declare const duration: RegExp;
 /** Implements ISO 8601-2 extensions like explicit +- prefixes, mixing weeks with other units, and fractional/negative components. */
@@ -44,6 +45,7 @@ export declare const hostname: RegExp;
 export declare const domain: RegExp;
 export declare const httpProtocol: RegExp;
 export declare const e164: RegExp;
+export declare const creditCard: RegExp;
 export declare const date: RegExp;
 export declare function time(args: {
     precision?: number | null;

@@ -246,6 +246,16 @@ export function _e164(Class, params) {
     });
 }
 // @__NO_SIDE_EFFECTS__
+export function _creditCard(Class, params) {
+    return new Class({
+        type: "string",
+        format: "credit_card",
+        check: "string_format",
+        abort: false,
+        ...util.normalizeParams(params),
+    });
+}
+// @__NO_SIDE_EFFECTS__
 export function _jwt(Class, params) {
     return new Class({
         type: "string",
@@ -668,6 +678,10 @@ export function _property(property, schema, params) {
     });
 }
 // @__NO_SIDE_EFFECTS__
+export function _properties(shape) {
+    return Object.entries(shape).map(([property, schema]) => new checks.$ZodCheckProperty({ check: "property", property, schema }));
+}
+// @__NO_SIDE_EFFECTS__
 export function _mime(types, params) {
     return new checks.$ZodCheckMimeType({
         check: "mime_type",
@@ -738,7 +752,7 @@ export function _xor(Class, options, params) {
 export function _discriminatedUnion(Class, discriminator, options, params) {
     return new Class({
         type: "union",
-        options,
+        options: options,
         discriminator,
         ...util.normalizeParams(params),
     });
@@ -895,7 +909,7 @@ export function _catch(Class, innerType, catchValue) {
     return new Class({
         type: "catch",
         innerType,
-        catchValue: (typeof catchValue === "function" ? catchValue : () => catchValue),
+        catchValue: (typeof catchValue === "function" ? catchValue : util.constantCatch(catchValue)),
     });
 }
 // @__NO_SIDE_EFFECTS__
@@ -971,7 +985,8 @@ export function _superRefine(fn, params) {
                 if (_issue.fatal)
                     _issue.continue = false;
                 _issue.code ?? (_issue.code = "custom");
-                _issue.input ?? (_issue.input = payload.value);
+                if (!("input" in _issue))
+                    _issue.input = payload.value;
                 _issue.inst ?? (_issue.inst = ch);
                 _issue.continue ?? (_issue.continue = !ch._zod.def.abort); // abort is always undefined, so this is always true...
                 payload.issues.push(util.issue(_issue));
@@ -1066,13 +1081,15 @@ export function _stringbool(Classes, _params) {
         }),
         error: params.error,
     });
+    codec._zod.bag.truthy = truthyArray;
+    codec._zod.bag.falsy = falsyArray;
+    codec._zod.bag.case = params.case ?? "insensitive";
     return codec;
 }
 // @__NO_SIDE_EFFECTS__
 export function _stringFormat(Class, format, fnOrRegex, _params = {}) {
     const params = util.normalizeParams(_params);
     const def = {
-        ...util.normalizeParams(_params),
         check: "string_format",
         type: "string",
         format,
