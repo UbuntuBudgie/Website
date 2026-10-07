@@ -31,11 +31,36 @@ Highlights - budgie on wayfire, creating a brand new radio search & play raven w
 ## Applets and mini-apps
 
 1. Lots of updated translations from our brilliant translators [https://www.transifex.com/ubuntu-budgie/](https://www.transifex.com/ubuntu-budgie/)
-2. Our wallpaper manager  & switcher app now include two additional options  
-  
+2. Our wallpaper manager  & switcher app now include two additional options
 
+![](/Snapshot_2026-10-07_20-08-33.png)
+
+![](/Snapshot_2026-10-07_20-09-04.png)
+
+3. Budgie Weather now includes the ability to display wind speed in various units
+
+![](/Snapshot_2026-10-07_20-15-15.png)
+
+... and you can now easily move the applet around your desktop
+
+![](/Snapshot_2026-10-07_20-17-55.png)
+
+![](/Figma.svg)
 
 ## Budgie Desktop
+
+We have backported a key fix to budgie-desktop this cycle to both 26.04 and 26.10: Polkit dialogs no longer freeze the desktop
+
+But we taken the advantage of budgie 10.10 to be able to run on various wayland compositors.  Key has been wayfire where we have written a bridge between budgie and wayfire to make the experience as seamless as possible 
+
+![click to open video](https://www.youtube.com/watch?v=rVsEDvpRBcs)
+
+To try this use our budgie-backports PPA:
+
+    sudo add-apt-repository ppa:ubuntubudgie/backports-budgie
+    sudo apt install budgie-wayfire-session
+
+Then from the login screen choose the wayfire session
 
 1. The latest budgie-desktop v10.9.2 forms the basis of our Oracular offering. summary of the upstream [notes](https://buddiesofbudgie.org/blog/budgie-10-9-2-released)
 
