@@ -45,7 +45,13 @@ Highlights - budgie on wayfire, creating a brand new radio search & play raven w
 
 ![](/Snapshot_2026-10-07_20-17-55.png)
 
-![](/Figma.svg)
+4. budgie-radio-widget: we have created a brand new raven widget to allow you to find and play from 1000s of internet radio stations
+
+![](/radioraven.png)
+
+![](/Snapshot_2026-10-07_21-31-22.png)
+
+You can save multiple presets and you can scrobble back and forth / pause playing streams
 
 ## Budgie Desktop
 
@@ -57,25 +63,14 @@ But we taken the advantage of budgie 10.10 to be able to run on various wayland 
 
 To try this use our budgie-backports PPA:
 
-    sudo add-apt-repository ppa:ubuntubudgie/backports-budgie
-    sudo apt install budgie-wayfire-session
+```
+sudo add-apt-repository ppa:ubuntubudgie/backports-budgie
+sudo apt install budgie-wayfire-session
+```
 
 Then from the login screen choose the wayfire session
 
-1. The latest budgie-desktop v10.9.2 forms the basis of our Oracular offering. summary of the upstream [notes](https://buddiesofbudgie.org/blog/budgie-10-9-2-released)
 
-- Budgie Menu: The upstream budgie menu will now show applications which report as being Terminal-based (e.g. `Terminal=true` in their desktop file). Users of applications like Neovim rejoice!
-- Budgie Run Dialog: Fixed a regression where our setting of skip pager and taskbar was not being called during construction, which resulted in it showing up in our task switchers (IconTasklist and Task List).
-- Dialogs: Fixed end session dialogs blocking authentication dialogs.
-- Notifications: Fixed an issue where a notification's default action would be performed when the close button was clicked.
-- Specification Compliance: Fixed an issue where we referred to the restart / reboot icon as "system-restart-symbolic" instead of "system-reboot-symbolic". This should improve compatibility with icon themes while retaining our own icon as a fallback in the event the icon theme does not provide it.
-- System Tray: Fixed an issue whereby some applications would not show with their intended icon. This is the result of such applications (e.g. Cinny and Tauon) being non-compliant with the [StatusNotifierItem specification](https://www.freedesktop.org/wiki/Specifications/StatusNotifierItem/StatusNotifierItem/) by providing absolute paths to icons instead of either an icon name or icon data.
-- TabSwitcher: We will no longer show an empty switcher when there are no windows to actually switch between.
-- Workspace Applet
-  - Fixed an issue where clicking a window icon would not perform an intended workspace switch.
-  - Fixed left scroll direction. In libxfce4windowing, *our* concept of "left" maps to their "down", but "right" is still "right".
-- build: Re-hide warnings that were previously hidden in Meson < 1.4.0. In 1.4.0, it began to show warnings that are largely the result of bad C codegen in the Vala compiler, resulting in unreadable log spam and making it substantially more difficult to see actual warnings that need to be addressed.
-- vapi: update to support libxfce4windowing 4.19.3
 
 ## Other Improvements and Bug Fixes
 
@@ -93,9 +88,9 @@ Then from the login screen choose the wayfire session
 
 ## Budgie Welcome
 
-Our welcome app is automatically updated for all 24.04 and 24.10 users
+Our welcome app is automatically updated for all 24.04/ 26.04 and 26.10 users
 
-Budgie welcome now has its oracular configuration.
+Budgie welcome now has its stonking configuration.
 
 ## Areas to look out for
 
