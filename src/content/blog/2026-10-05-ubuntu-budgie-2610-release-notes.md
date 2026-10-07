@@ -31,7 +31,9 @@ Highlights - budgie on wayfire, creating a brand new radio search & play raven w
 ## Applets and mini-apps
 
 1. Lots of updated translations from our brilliant translators [https://www.transifex.com/ubuntu-budgie/](https://www.transifex.com/ubuntu-budgie/)
-2. The third-party applet budgie-sysmonitor-applet has received a number of new sensors and changes (v0.10.2). This has been backported to noble as well.
+2. Our wallpaper manager  & switcher app now include two additional options  
+  
+
 
 ## Budgie Desktop
 
