@@ -22,8 +22,11 @@ In these release notes the areas covered are:
 
 # New Features and Enhancements
 
-The key focus for the team for this cycle has been the conversion of our distro to a Wayland based distro. We have been working closely with our fellow Buddies Of Budgie maintainers.  
-Excellent progress has been made towards this huge effort - internally we already have a Wayland based distro that we are 'dog-fooding'. We will share more information once we have a more stable offering.
+The key focus for this cycle was the budgie-desktop 10.10.3 uplift.  We are pleased how well this has been received - more information on the buddiesofbudgie blog.
+
+Whilst the release date didn't fell outside Ubuntu's mid August freeze date we still have  had lots of fun with the 26.10 release.
+
+Highlights - budgie on wayfire, creating a brand new radio search & play raven widget, weather applet updates galore, supporting nighttime & daytime wallpapers via our wallstreet app together with 'wallpaper of the day' from Bing and Wikimedia  
 
 ## Applets and mini-apps
 
