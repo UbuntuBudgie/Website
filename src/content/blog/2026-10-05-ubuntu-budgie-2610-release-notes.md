@@ -70,21 +70,9 @@ sudo apt install budgie-wayfire-session
 
 Then from the login screen choose the wayfire session
 
-
-
 ## Other Improvements and Bug Fixes
 
-1. Our default layout has been revised to ensure a smooth transition later to our wayland offering. The X11 plank dock has been dropped. We have now the budgie-desktop dock styled with our Pocillo theme. The top-bar defaults to a dark bar theme.
-2. We now support the Apple image format .heif - such images can be seen through gThumb, Nemo and can be set as a wallpaper via budgie-control-center
-3. We now support the Jpeg-xl format .jxl - again such images can be seen through gThumb, Nemo and can be set as a wallpaper via budgie-control-center
-4. In 24.04 external deb packages were installed via gdebi. gdebi has now been dropped in favour of the updated snap-store that handles side-loading of deb packages.
-5. Due to Tilix receiving very little maintenence bugs are creeping in without any resolution upstream. The project desperately needs an active maintainer. As such, we have decided to change our default terminal. We have changed from Tilix to xfce4-terminal. This is actively looked after by our xfce friends. We have slightly switched the appearance of xfce4-terminal for our distro.
-6. Default wallpaper updated for oracular.
-7. To celebrate 20 years of ubuntu we also sharing all the LTS backgrounds that have been tweaked and updated.
-
-### Bug Fixes
-
-1. Budgie Control Center. Add picture button fails to select an image. This has been resolved by Ubuntu devs and has also been SRUd to 24.04
+1. Default wallpaper updated for stonking.
 
 ## Budgie Welcome
 
@@ -94,15 +82,16 @@ Budgie welcome now has its stonking configuration.
 
 ## Areas to look out for
 
-The Ubuntu release notes are to be found [here](https://discourse.ubuntu.com/t/oracular-oriole-release-notes/44878)
+The Ubuntu release notes are to be found [here](https://documentation.ubuntu.com/release-notes/26.10/)
 
 ## Packaging Updates
 
 Whilst not immediately obvious, various packages need to be updated for a number of reasons, so this section lists what updates have been made and this needs extra testing to confirm no regressions:
 
-1. budgie-session. Debian has split systemd into various component parts. budgie-session has been updated to correspond to this split request. This resolved build related issues.
-2. slick-greeter has received a number of refinements; v2.0.5 has been packaged by Ubuntu Budgie
-3. lightdm-settings has received a number of updates; v2.0.4 has been packaged by Ubuntu Budgie
+1. budgie-user-indicator-redux
+2. budgie-indicator-applet
+3. whitesur-gtk-theme
+4. whitesur-icon-theme
 
 ## Upgrading from previous releases
 
