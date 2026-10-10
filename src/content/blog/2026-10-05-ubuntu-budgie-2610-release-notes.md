@@ -3,7 +3,7 @@ title: Ubuntu Budgie 26.10 Release Notes
 description: Ubuntu Budgie 26.10 Release Notes
 pubDate: 2026-10-05
 author: David Mohammed
-draft: true
+draft: false
 ---
 # Introduction and overview
 
