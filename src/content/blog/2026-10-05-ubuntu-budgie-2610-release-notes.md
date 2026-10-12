@@ -24,7 +24,7 @@ In these release notes the areas covered are:
 
 The key focus for this cycle was the budgie-desktop 10.10.3 uplift.  We are pleased how well this has been received - more information on the buddiesofbudgie blog.
 
-Whilst the release date didn't fell outside Ubuntu's mid August freeze date we still have  had lots of fun with the 26.10 release.
+Whilst the release date fell beyond Ubuntu's mid August freeze date we still have had lots of fun with the 26.10 release.
 
 Highlights - budgie on wayfire, creating a brand new radio search & play raven widget, weather applet updates galore, supporting nighttime & daytime wallpapers via our wallstreet app together with 'wallpaper of the day' from Bing and Wikimedia  
 
@@ -53,13 +53,15 @@ Highlights - budgie on wayfire, creating a brand new radio search & play raven w
 
 You can save multiple presets and you can scrobble back and forth / pause playing streams
 
+Bonus for all of you 26.04 LTS folk - all of this has been backported - see below
+
 ## Budgie Desktop
 
 We have backported a key fix to budgie-desktop this cycle to both 26.04 and 26.10: Polkit dialogs no longer freeze the desktop
 
-But we taken the advantage of budgie 10.10 to be able to run on various wayland compositors.  Key has been wayfire where we have written a bridge between budgie and wayfire to make the experience as seamless as possible 
+But we taken the advantage of budgie 10.10 to be able to run on various wayland compositors.  Key has been wayfire where we have written a bridge between budgie and wayfire to make the experience as seamless as possible
 
-![click to open video](https://www.youtube.com/watch?v=rVsEDvpRBcs)
+[click to open the video](https://www.youtube.com/watch?v=rVsEDvpRBcs)
 
 To try this use our budgie-backports PPA:
 
@@ -69,6 +71,8 @@ sudo apt install budgie-wayfire-session
 ```
 
 Then from the login screen choose the wayfire session
+
+An just for all of us - the very latest wayfire v0.11 is now in this backports-budgie repo.
 
 ## Other Improvements and Bug Fixes
 
