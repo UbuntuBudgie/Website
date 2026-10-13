@@ -13,12 +13,19 @@ These release notes showcase the key takeaways for 26.04 upgraders to 26.10.
 
 In these release notes the areas covered are:
 
+- Website news
 - New features and enhancements released since 26.04
 - Upgrading from 26.04 Ubuntu Budgie
 - Fixed Issues
 - Known Issues when upgrading
 - Support arrangements for our distro
 - Where to download Ubuntu Budgie
+
+# Website
+
+Nikola has led the charge this year to convert our hosted wordpress based website into a static pagescms based site.  I'm sure you can appreciate many long hours over weeks and months to complete and it is looking great!
+
+![image.png](/image.png)
 
 # New Features and Enhancements
 
