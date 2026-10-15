@@ -94,7 +94,7 @@ Budgie welcome now has its stonking configuration.
 
 ## Areas to look out for
 
-The Ubuntu release notes are to be found [here](https://documentation.ubuntu.com/release-notes/26.10/)
+The Ubuntu release notes are to be found [here](https://discourse.ubuntu.com/t/ubuntu-26-10-stonking-stingray-released/89539)
 
 ## Packaging Updates
 
